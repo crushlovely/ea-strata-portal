@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html class="dxChrome dxMacOSPlatform dxWebKitFamily dxBrowserVersion-148 dxTheme-MaterialCompact js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" savedpadding-top="[object Object]" savedpadding-bottom="[object Object]" style="padding-top: 96px; padding-bottom: 41px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Announcements</title>
+
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-12B88VJM6V"></script>
+        <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-12B88VJM6V');</script>
+    <link rel="stylesheet" href="/DXR.axd?r=0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47-SZRsu&amp;p=573b1aec">
+    <script id="dxis_664406351" src="/DXR.axd?r=1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1-SZRsu"></script>
+
+    <!--Vue.js lib files-->
+    <script src="/Scripts/lib/vue/vue.min.js"></script>
+    <script src="/Scripts/lib/vuex/vuex.js"></script>
+    <!--Custom Vue.js components-->
+    <script src="/Scripts/Vue/Components/customGridView.js"></script>
+    <script src="/Scripts/Vue/Components/modalPopup.js"></script>
+
+    <link href="/Content/Stylesheets/Site.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customMobileGrid.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/portal.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customGridView.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/modalPopup.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/regular.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/solid.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-codex-favicon-badge%3D%22codex-favicon-badge%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cimage%20href%3D%22data%3Aimage%2Fbmp%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABp0lEQVR4nOyWMUvDQBTH311itamziHRS0dbVQVzUigUp4taptoqgBVG6iQhiBl0UhCodtChKcekqOEmrg4MfQNBJcXK1Qito73yxDiJt4S4l6ZAf4d6Rl%2BT9eby8exRshoLNqGCC3GF0yLDj8cwdSCKdAc6BEEVJEkpTuq5Lf0f6xevjWAxVGBkYHPM%2BR0ASAhLkU%2BF24tIeOUDX763XkvurPzRzXgBBpDLAW7T1P8ENOt0ldRUkEM7A1cl8t1Iu3%2BO27Z%2FrgwIbGF3IPIEAwn8BLTMfll%2Bymo8z4kMjJECqBhqJ7Y3IEdD8Z8FNOupnQC%2BIYMFy42JkKhA%2FfQAzAjD4HpoeDhJQfoBrsO4j9Zy5o9lpNJMgz0QuPRcCGQHZbNhFCeyCSQjw5OX%2BSiuICuh48yQw7X1gnl5NKyzVctasATzv33FdgwbACRRr%2BZxW7AhonlacT8c2sSZ1sAIOG4HFsy1jSyrBI17UYvRsD1gABi1%2BMuYPxjMvtCJI3bEqeCUeaCql2z9icL4fxlnuFqzvCXhashGVM5rAfi00SDZMAVWWnU74DQAA%2F%2F9h9g3vAAAABklEQVQDAGLIbR6SrbuXAAAAAElFTkSuQmCC%22%20width%3D%2232%22%20height%3D%2232%22%20opacity%3D%220.3%22%20%2F%3E%3Cpath%20d%3D%22M3.04536%204.45259C2.7582%203.60299%203.60299%202.7582%204.45259%203.04536L14.1828%206.33403C15.1637%206.66558%2015.0872%208.08006%2014.0715%208.39045L10.2994%209.54319C9.93919%209.65327%209.65327%209.93919%209.54319%2010.2994L8.39046%2014.0715C8.08007%2015.0872%206.66558%2015.1637%206.33404%2014.1828L3.04536%204.45259Z%22%20fill%3D%22black%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%20paint-order%3D%22stroke%20fill%22%20transform%3D%22translate(-2%20-2)%20scale(2.1)%22%20%2F%3E%3C%2Fsvg%3E" data-codex-favicon-badge="true" data-codex-original-favicon-href="/Content/Images/favicon.ico">
+<style></style><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+    <div id="HeaderPane_EB" class="dxpnl-bar dxpnl-edge t dxpnlControl_MaterialCompact headerPane bar" style="background-color:#003057;">
+	<div class="dxpnl-bar-tmpl dxpnl-np">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+    <div class="templateTitle">
+        <a href="/">AFFF MDL Portal</a>
+    </div>
+
+	</div><div id="HeaderPane_EBB" class="dxpnl-btn dxpnl-fp">
+		<img id="HeaderPane_EBBI" class="dxWeb_pnlExpand_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="">
+	</div>
+</div><div class="dxpnlControl_MaterialCompact headerPane panel dxpnl-edge t" id="HeaderPane" style="background-color: rgb(0, 48, 87); top: 0px;" savedtop="[object Object]">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+        <div class="d-flex flex-row">
+            <div class="templateTitle" style="width:65%">
+                
+<style>
+    .templateTitle a {
+        text-decoration: none;
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        display: flex;
+        flex-direction: column;
+        max-width:fit-content;
+        width: 90%;
+    }
+
+    .templateMainTitle {
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        white-space: nowrap;
+    }
+
+    .templateSubTitle {
+        text-decoration: none;
+        font-size: 15px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="d-flex align-items-center">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="height: 28px; margin: 0px 12px 0px 0px;">
+    <a href="/">
+        <div class="templateMainTitle">
+            AFFF MDL Portal
+        </div>
+        <div class="templateSubTitle">
+            In re: Aqueous Film-Forming Foams Products Liability Litigation (MDL 2873)
+        </div>
+    </a>
+</div>
+
+            </div>
+            <div id="flash-message" style="float:left;display:none"></div>
+            <div class="loginControl">
+                     Welcome jeffrey.schram@eisneramper.com 
+     |
+<a href="/Account/LogOff">Logout</a>
+            </div>
+        </div>
+    <div class="headerMenu" style="background-color:#003057">
+        <div class="dxmLite_MaterialCompact dxm-ltr">
+	<input type="hidden" name="HeaderMenu" id="HeaderMenu_State" value="{&amp;quot;itemsInfo&amp;quot;:&amp;quot;Bw0HAAIAAgRIb21lAgAHAAcBAgACDUFubm91bmNlbWVudHMCAAcABwICAAIQUG9ydGFsIERvY3VtZW50cwIABwAHAwIAAghTZWN1cml0eQIABwIHAAIAAg9Vc2VyIE1hbmFnZW1lbnQCAAcABwECAAIPUm9sZSBNYW5hZ2VtZW50AgAHAAcEAgACDkFkbWluaXN0cmF0aW9uAgAHDAcAAgACF0xhdyBGaXJtIEFkbWluaXN0cmF0aW9uAgAHAAcBAgACEUxhdyBGaXJtIEFwcHJvdmFsAgAHAAcCAgACE0Fubm91bmNlbWVudHMgQWRtaW4CAAcABwMCAAIPQ2FzZSBNaWxlc3RvbmVzAgAHAAcEAgACD0FsbG9jYXRpb24gSW5mbwIABwAHBQIAAhVQb3J0YWwgRG9jdW1lbnQgQWRtaW4CAAcABwYCAAIQQ2xhaW0gRm9ybSBBZG1pbgIABwAHBwIAAhtUaW1lICYgRXhwZW5zZSBTdGF0dXMgQWRtaW4CAAcABwgCAAIRQnVsayBDbGFpbSBSZXZpZXcCAAcABwkCAAIRQnVsayBDbGFpbSBJbXBvcnQCAAcABwoCAAIQQnVsayBTb2Z0IERlbGV0ZQIABwAHCwIAAhZCdWxrIExpdGlnYXRpb24gU3RhdHVzAgAHAAcFAgACEFBsYWludGlmZiBTZWFyY2gCAAcABwYCAAIKRXh0ZW5zaW9ucwIABwQHAAIAAhdDbGFpbSBFeHRlbnNpb24gUmVxdWVzdAIABwAHAQIAAhZDbGFpbSBFeHRlbnNpb24gUmV2aWV3AgAHAAcCAgACG1BsYWludGlmZiBFeHRlbnNpb24gUmVxdWVzdAIABwAHAwIAAhpQbGFpbnRpZmYgRXh0ZW5zaW9uIFJldmlldwIABwAHBwIAAgdSZXBvcnRzAgAHAAcIAgACB0ltcG9ydHMCAAcFBwACAAIJUGxhaW50aWZmAgAHAAcBAgACB0RldGFpbHMCAAcABwICAAIJRG9jdW1lbnRzAgAHAAcDAgACB0RlZmVuc2UCAAcABwQCAAIETG9ncwIABwAHCQIAAgxCdWxrIEFjdGlvbnMCAAcDBwACAAIKQnVsayBBbWVuZAIABwAHAQIAAg9CdWxrIFN1Ym1pc3Npb24CAAcABwICAAIYQnVsayBFLVNpZ25hdHVyZSBSZXF1ZXN0AgAHAAcKAgACBUF1ZGl0AgAHAgcAAgACDFN5c3RlbSBBdWRpdAIABwAHAQIAAglFbWFpbCBMb2cCAAcABwsCAAIEQ2FzZQIABwIHAAIAAgtDbGFpbSBBZG1pbgIABwAHAQIAAg5Xb3JrZmxvdyBBZG1pbgIABwAHDAIAAgpDb250YWN0IFVzAgAHAA==&amp;quot;,&amp;quot;selectedItemIndexPath&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;checkedState&amp;quot;:&amp;quot;&amp;quot;}"><div class="dxm-main dxm-horizontal headerMenu" id="HeaderMenu" style="width: 100%;">
+		<ul class="dx dxm-image-l dxm-noImages">
+			<li class="dxm-item" id="HeaderMenu_DXI0_" style="min-width: 65px;"><a class="dxm-content dxm-hasText dx" href="/" id="HeaderMenu_DXI0_T"><span class="dx-vam dxm-contentText">Home</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI1_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item dxm-selected" id="HeaderMenu_DXI1_" style="min-width: 129px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI1_T">
+				<span class="dx-vam dxm-contentText">Announcements</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI2_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI2_" style="min-width: 139px;"><a class="dxm-content dxm-hasText dx" href="/PortalDocuments/" target="_blank" id="HeaderMenu_DXI2_T" style=""><span class="dx-vam dxm-contentText">Portal Documents</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI3_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI3_" style="min-width: 78px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI3_T">
+				<span class="dx-vam dxm-contentText">Security</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI4_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI4_" style="min-width: 116px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI4_T">
+				<span class="dx-vam dxm-contentText">Administration</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI5_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI5_" style="min-width: 121px;"><a class="dxm-content dxm-hasText dx" href="/FactSheet/Search" id="HeaderMenu_DXI5_T"><span class="dx-vam dxm-contentText">Plaintiff Search</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI6_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI6_" style="min-width: 96px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI6_T">
+				<span class="dx-vam dxm-contentText">Extensions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI7_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI7_" style="min-width: 77px;"><a class="dxm-content dxm-hasText dx" href="/Report/" id="HeaderMenu_DXI7_T"><span class="dx-vam dxm-contentText">Reports</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI8_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI8_" style="min-width: 74px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI8_T">
+				<span class="dx-vam dxm-contentText">Imports</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI9_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI9_" style="min-width: 104px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI9_T">
+				<span class="dx-vam dxm-contentText">Bulk Actions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI10_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI10_" style="min-width: 59px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI10_T">
+				<span class="dx-vam dxm-contentText">Audit</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI11_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI11_" style="min-width: 60px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI11_T">
+				<span class="dx-vam dxm-contentText">Case</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI12_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI12_" style="min-width: 97px;"><a class="dxm-content dxm-hasText dx" href="/ContactUs/" id="HeaderMenu_DXI12_T"><span class="dx-vam dxm-contentText">Contact Us</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" savedheight="[object Object]"><b></b></li>
+		</ul>
+	</div><b class="dx-clear"></b><div id="HeaderMenu_DXM3_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME3_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI3i0_"><a class="dxm-content dxm-hasText dx" href="/Security/" id="HeaderMenu_DXI3i0_T"><span class="dx-vam dxm-contentText">User Management</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI3i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI3i1_"><a class="dxm-content dxm-hasText dx" href="/Security/RoleManagement/" id="HeaderMenu_DXI3i1_T"><span class="dx-vam dxm-contentText">Role Management</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM4_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME4_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI4i0_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmAdmin" id="HeaderMenu_DXI4i0_T"><span class="dx-vam dxm-contentText">Law Firm Administration</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i1_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmUserApproval" id="HeaderMenu_DXI4i1_T"><span class="dx-vam dxm-contentText">Law Firm Approval</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i2_"><a class="dxm-content dxm-hasText dx" href="/Admin/Announcements" id="HeaderMenu_DXI4i2_T"><span class="dx-vam dxm-contentText">Announcements Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i3_"><a class="dxm-content dxm-hasText dx" href="/Admin/Milestones" id="HeaderMenu_DXI4i3_T"><span class="dx-vam dxm-contentText">Case Milestones</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i4_"><a class="dxm-content dxm-hasText dx" href="/Admin/AllocationInfo" id="HeaderMenu_DXI4i4_T"><span class="dx-vam dxm-contentText">Allocation Info</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i5_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i5_"><a class="dxm-content dxm-hasText dx" href="/Admin/PortalDocumentAdmin" id="HeaderMenu_DXI4i5_T"><span class="dx-vam dxm-contentText">Portal Document Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i6_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i6_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimFormAdmin" id="HeaderMenu_DXI4i6_T"><span class="dx-vam dxm-contentText">Claim Form Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i7_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i7_"><a class="dxm-content dxm-hasText dx" href="/Admin/TimeExpenseStatusAdmin" id="HeaderMenu_DXI4i7_T"><span class="dx-vam dxm-contentText">Time &amp; Expense Status Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i8_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i8_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkClaimReview" id="HeaderMenu_DXI4i8_T"><span class="dx-vam dxm-contentText">Bulk Claim Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i9_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i9_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimImport" id="HeaderMenu_DXI4i9_T"><span class="dx-vam dxm-contentText">Bulk Claim Import</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i10_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i10_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkSoftDelete" id="HeaderMenu_DXI4i10_T"><span class="dx-vam dxm-contentText">Bulk Soft Delete</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i11_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i11_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkUpdateLitigationStatus" id="HeaderMenu_DXI4i11_T"><span class="dx-vam dxm-contentText">Bulk Litigation Status</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM6_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME6_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI6i0_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionRequest" id="HeaderMenu_DXI6i0_T"><span class="dx-vam dxm-contentText">Claim Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i1_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionReview" id="HeaderMenu_DXI6i1_T"><span class="dx-vam dxm-contentText">Claim Extension Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i2_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionRequest" id="HeaderMenu_DXI6i2_T"><span class="dx-vam dxm-contentText">Plaintiff Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i3_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionReview" id="HeaderMenu_DXI6i3_T"><span class="dx-vam dxm-contentText">Plaintiff Extension Review</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM8_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME8_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI8i0_"><a class="dxm-content dxm-hasText dx" href="/Import/Plaintiff" id="HeaderMenu_DXI8i0_T"><span class="dx-vam dxm-contentText">Plaintiff</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i1_"><a class="dxm-content dxm-hasText dx" href="/Import/Details" id="HeaderMenu_DXI8i1_T"><span class="dx-vam dxm-contentText">Details</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i2_"><a class="dxm-content dxm-hasText dx" href="/Import/Documents" id="HeaderMenu_DXI8i2_T"><span class="dx-vam dxm-contentText">Documents</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i3_"><a class="dxm-content dxm-hasText dx" href="/Import/Defense" id="HeaderMenu_DXI8i3_T"><span class="dx-vam dxm-contentText">Defense</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i4_"><a class="dxm-content dxm-hasText dx" href="/Import/Logs" id="HeaderMenu_DXI8i4_T"><span class="dx-vam dxm-contentText">Logs</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM9_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME9_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI9i0_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkAmend" id="HeaderMenu_DXI9i0_T"><span class="dx-vam dxm-contentText">Bulk Amend</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i1_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkSubmission" id="HeaderMenu_DXI9i1_T"><span class="dx-vam dxm-contentText">Bulk Submission</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i2_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard" id="HeaderMenu_DXI9i2_T"><span class="dx-vam dxm-contentText">Bulk E-Signature Request</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM10_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME10_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI10i0_"><a class="dxm-content dxm-hasText dx" href="/Audit/" id="HeaderMenu_DXI10i0_T"><span class="dx-vam dxm-contentText">System Audit</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI10i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI10i1_"><a class="dxm-content dxm-hasText dx" href="/Audit/EmailLog" id="HeaderMenu_DXI10i1_T"><span class="dx-vam dxm-contentText">Email Log</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM11_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME11_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI11i0_"><a class="dxm-content dxm-hasText dx" href="/Case/ClaimAdmin" id="HeaderMenu_DXI11i0_T"><span class="dx-vam dxm-contentText">Claim Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI11i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI11i1_"><a class="dxm-content dxm-hasText dx" href="/Case/WorkflowAdmin" id="HeaderMenu_DXI11i1_T"><span class="dx-vam dxm-contentText">Workflow Admin</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div>
+</div><script id="dxss_1251957940" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderMenu',[[['dxm-hovered',''],['',''],['DXI0_','DXI2_','DXI3_','DXI3i0_','DXI3i1_','DXI4_','DXI4i0_','DXI4i1_','DXI4i2_','DXI4i3_','DXI4i4_','DXI4i5_','DXI4i6_','DXI4i7_','DXI4i8_','DXI4i9_','DXI4i10_','DXI4i11_','DXI5_','DXI6_','DXI6i0_','DXI6i1_','DXI6i2_','DXI6i3_','DXI7_','DXI8_','DXI8i0_','DXI8i1_','DXI8i2_','DXI8i3_','DXI8i4_','DXI9_','DXI9i0_','DXI9i1_','DXI9i2_','DXI10_','DXI10i0_','DXI10i1_','DXI11_','DXI11i0_','DXI11i1_','DXI12_'],['','T']],[[''],[''],['DXI1_'],['','T']],[[''],[''],['DXME3_','DXMBC3_','DXME4_','DXMBC4_','DXME6_','DXMBC6_','DXME8_','DXMBC8_','DXME9_','DXMBC9_','DXME10_','DXMBC10_','DXME11_','DXMBC11_']]]);
+ASPx.createControl(MVCxClientMenu,'HeaderMenu','',{'stateObject':{'itemsInfo':'Bw0HAAIAAgRIb21lAgAHAAcBAgACDUFubm91bmNlbWVudHMCAAcABwICAAIQUG9ydGFsIERvY3VtZW50cwIABwAHAwIAAghTZWN1cml0eQIABwIHAAIAAg9Vc2VyIE1hbmFnZW1lbnQCAAcABwECAAIPUm9sZSBNYW5hZ2VtZW50AgAHAAcEAgACDkFkbWluaXN0cmF0aW9uAgAHDAcAAgACF0xhdyBGaXJtIEFkbWluaXN0cmF0aW9uAgAHAAcBAgACEUxhdyBGaXJtIEFwcHJvdmFsAgAHAAcCAgACE0Fubm91bmNlbWVudHMgQWRtaW4CAAcABwMCAAIPQ2FzZSBNaWxlc3RvbmVzAgAHAAcEAgACD0FsbG9jYXRpb24gSW5mbwIABwAHBQIAAhVQb3J0YWwgRG9jdW1lbnQgQWRtaW4CAAcABwYCAAIQQ2xhaW0gRm9ybSBBZG1pbgIABwAHBwIAAhtUaW1lICYgRXhwZW5zZSBTdGF0dXMgQWRtaW4CAAcABwgCAAIRQnVsayBDbGFpbSBSZXZpZXcCAAcABwkCAAIRQnVsayBDbGFpbSBJbXBvcnQCAAcABwoCAAIQQnVsayBTb2Z0IERlbGV0ZQIABwAHCwIAAhZCdWxrIExpdGlnYXRpb24gU3RhdHVzAgAHAAcFAgACEFBsYWludGlmZiBTZWFyY2gCAAcABwYCAAIKRXh0ZW5zaW9ucwIABwQHAAIAAhdDbGFpbSBFeHRlbnNpb24gUmVxdWVzdAIABwAHAQIAAhZDbGFpbSBFeHRlbnNpb24gUmV2aWV3AgAHAAcCAgACG1BsYWludGlmZiBFeHRlbnNpb24gUmVxdWVzdAIABwAHAwIAAhpQbGFpbnRpZmYgRXh0ZW5zaW9uIFJldmlldwIABwAHBwIAAgdSZXBvcnRzAgAHAAcIAgACB0ltcG9ydHMCAAcFBwACAAIJUGxhaW50aWZmAgAHAAcBAgACB0RldGFpbHMCAAcABwICAAIJRG9jdW1lbnRzAgAHAAcDAgACB0RlZmVuc2UCAAcABwQCAAIETG9ncwIABwAHCQIAAgxCdWxrIEFjdGlvbnMCAAcDBwACAAIKQnVsayBBbWVuZAIABwAHAQIAAg9CdWxrIFN1Ym1pc3Npb24CAAcABwICAAIYQnVsayBFLVNpZ25hdHVyZSBSZXF1ZXN0AgAHAAcKAgACBUF1ZGl0AgAHAgcAAgACDFN5c3RlbSBBdWRpdAIABwAHAQIAAglFbWFpbCBMb2cCAAcABwsCAAIEQ2FzZQIABwIHAAIAAgtDbGFpbSBBZG1pbgIABwAHAQIAAg5Xb3JrZmxvdyBBZG1pbgIABwAHDAIAAgpDb250YWN0IFVzAgAHAA=='},'renderData':{'':[[0],1,[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12]],'3':[[0],[1]],'4':[[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11]],'6':[[0],[1],[2],[3]],'8':[[0],[1],[2],[3],[4]],'9':[[0],[1],[2]],'10':[[0],[1]],'11':[[0],[1]]}});
+
+//-->
+</script>
+    </div>
+
+</div><script id="dxss_1617918754" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderPane',[[['dxpnl-btnHover'],[''],['EBB']]]);
+ASPx.AddPressedItems('HeaderPane',[[['dxpnl-btnPressed'],[''],['EBB']]]);
+ASPx.AddSelectedItems('HeaderPane',[[['dxpnl-expanded expandedPanel'],[''],['']],[['dxpnl-expanded'],[''],['EB']],[['dxpnl-btnSelected'],[''],['EBB']]]);
+ASPx.createControl(ASPxClientPanel,'HeaderPane','',{'collapseWindowWidth':500,'animationType':'fade','expandEffect':'PopupToBottom'});
+
+//-->
+</script>
+
+    <script type="text/javascript">
+        function updateHeaderMenuOrientation(){
+            if(!window.HeaderMenu) return;
+            var orientation = HeaderPane.IsExpandable() ? 'Vertical' : 'Horizontal';
+            if(orientation !== HeaderMenu.GetOrientation())
+                HeaderMenu.SetOrientation(orientation);
+        }
+        var collection = ASPxClientControl.GetControlCollection();
+        collection.ControlsInitialized.AddHandler(updateHeaderMenuOrientation);
+        collection.BrowserWindowResized.AddHandler(updateHeaderMenuOrientation);
+
+        $.fn.flashMessage = function (options) {
+            var target = this;
+            options = $.extend({}, options, { timeout: 5000 });
+            if (!options.message) {
+                options.message = getFlashMessageFromCookie();
+                options.isWarning = getFlashMessageSeverityFromCookie();
+                deleteFlashMessageCookie();
+            }
+            if (options.message) {
+                if (typeof options.message === "string") {
+                    target.html("<span>" + options.message + "</span>");
+                } else {
+                    target.empty().append(options.message);
+                }
+            }
+
+            //console.log("Is warning: " + options.isWarning);
+            if (options.isWarning === 'True') {
+                //console.log("target background color is: " + target.css("background-color") )
+                target.css("background-color", "#F22E2E");
+            }
+            else
+            {
+                target.css("background-color", "#a4c3f4");
+            }
+
+            if (target.children().length === 0) return;
+
+            target.fadeIn().one("click", function () {
+                $(this).fadeOut();
+            });
+
+            if (options.timeout > 0) {
+                setTimeout(function () { target.fadeOut(); }, options.timeout);
+            }
+
+            return this;
+
+            function getFlashMessageFromCookie() {
+                return $.cookie("MTPFlashMessage");
+            }
+
+            function getFlashMessageSeverityFromCookie() {
+                return $.cookie("MTPFlashMessageBad");
+            }
+
+            function deleteFlashMessageCookie() {
+                $.cookie("MTPFlashMessage", null, { path: '/' });
+                $.cookie("MTPFlashMessageBad", null, { path: '/' });
+            }
+        };
+
+        function showFlashIfPopulated() {
+            if ($.cookie("MTPFlashMessage") != undefined && $.cookie("MTPFlashMessage") != "null") {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage();
+            }
+            else {
+            }
+        }
+
+        function hideFlashIfEmpty() {
+            if ($.cookie("MTPFlashMessage") == "null") {
+                $('#flash-message').hide();
+            }
+
+        MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+        }
+
+        // shows the flash message when it is triggered on file upload complete
+        function showFlashMessageForFileUploadComplete(callbackData) {
+            const { message, error, isError } = JSON.parse(callbackData);
+
+            if (message) {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage({ message: `${message}${isError === 'True' ? ` Error message: "${error}"` : ""}`, isWarning: isError });
+            }
+        }
+
+        function viewClaimDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewClaimPackageDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimPackageDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPortalDoc(s, e, docId) {
+            var url = '/PortalDocuments/ViewPortalDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewLawFirmDoc(s, e, docId) {
+            var url = '/Admin/ViewLawFirmDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPFSDoc(s, e, docId) {
+            var url = '/FactSheet/ViewPFSDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e) {
+            var url = '/TimeExpense/ViewExpenseDocument';
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e, docId) {
+            var url = '/TimeExpense/ViewExpenseDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function GetElementById(id) {
+            return document.querySelector('#' + id);
+        }
+
+        function SetElementValue(elemId, value) {
+            GetElementById(elemId).value = value;
+        }
+    </script>
+
+    <div class="dxpnlControl_MaterialCompact mainContentPane" id="MainPane">
+	
+
+
+    <div class="contentPane">
+        
+        
+
+<script type="text/javascript">
+
+    var annTypeId;
+    var searchText;
+    function RefreshAnnouncementList()
+    {
+        annTypeId = cbAnnouncementTypes.GetValue();
+        searchText = txtSearch.GetText();
+        if (!cbpAnnouncements.InCallback())
+            cbpAnnouncements.PerformCallback();
+    }
+
+    function OnBeginAnnouncementCallback(s, e)
+    {
+        e.customArgs["announcementTypeId"] = annTypeId;
+        e.customArgs["searchText"] = searchText;
+        annTypeId = null;
+        searchText = null;
+    }
+</script>
+
+<h2>Announcements</h2>
+
+<div style="float:left; width:100%; padding-bottom:20px">
+    <div style="float:left; width:30%">
+        <table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="cbAnnouncementTypes">
+	<tbody><tr>
+		<td style="display:none;"><input id="cbAnnouncementTypes_VI" name="cbAnnouncementTypes_VI" type="hidden" value="0"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="cbAnnouncementTypes_I" name="cbAnnouncementTypes" onchange="ASPx.ETextChanged('cbAnnouncementTypes')" value="All Announcements" type="text" autocomplete="off"></td><td id="cbAnnouncementTypes_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact  dxRippleTargetExternal" style="-webkit-user-select:none;"><img id="cbAnnouncementTypes_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+	</tr>
+</tbody></table><input type="hidden" name="cbAnnouncementTypes$DDDState" id="cbAnnouncementTypes_DDD_State" value="{&amp;quot;windowsState&amp;quot;:&amp;quot;0:0:-1:15:173:1:168:221:1:0:0:0&amp;quot;}"><div id="cbAnnouncementTypes_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index: 10000; visibility: hidden; width: 170px; height: 221px; position: absolute; left: 15px; top: 172.398px; overflow: visible; display: none;">
+	<div class="dxpc-mainDiv dxdd-list dxpc-shadow" style="left: 0px; top: 0px;">
+		<div class="dxpc-contentWrapper" style="display: table; height: 221px;">
+			<div class="dxpc-content" id="cbAnnouncementTypes_DDD_PWC-1" style="display: table-cell;">
+				<input type="hidden" name="cbAnnouncementTypes$DDD$L$State" id="cbAnnouncementTypes_DDD_L_State" value="{&amp;quot;CustomCallback&amp;quot;:&amp;quot;&amp;quot;}"><table class="dxeListBox_MaterialCompact" id="cbAnnouncementTypes_DDD_L" style="border-collapse: separate; height: 0px; width: 168px;">
+					<tbody><tr>
+						<td style="vertical-align:Top;"><div id="cbAnnouncementTypes_DDD_L_D" class="dxlbd" style="width: 168px; overflow: hidden auto; padding-right: 0px; height: 217px;"><div id="cbAnnouncementTypes_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 217px;"><div id="cbAnnouncementTypes_DDD_LVirtualScrollTopSpacer" style="height: 0px;"></div>
+							<input id="cbAnnouncementTypes_DDD_L_VI" type="hidden" name="cbAnnouncementTypes$DDD$L" value="0"><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+								<tbody><tr id="cbAnnouncementTypes_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+								</tr>
+							</tbody></table><table id="cbAnnouncementTypes_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+							<tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI0T0" class="dxeListBoxItem_MaterialCompact  dxeListBoxItemSelected_MaterialCompact">All Announcements</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI1T0" class="dxeListBoxItem_MaterialCompact">Policies</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI2T0" class="dxeListBoxItem_MaterialCompact">Reminders</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI3T0" class="dxeListBoxItem_MaterialCompact">Portal Enhancements</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI4T0" class="dxeListBoxItem_MaterialCompact">FAQs</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI5T0" class="dxeListBoxItem_MaterialCompact">Important Dates</td>
+								</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+									<td id="cbAnnouncementTypes_DDD_L_LBI6T0" class="dxeListBoxItem_MaterialCompact">Informational</td>
+								</tr></table>
+						</div></div></td>
+					</tr>
+				</tbody></table><script id="dxss_1281382310" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'cbAnnouncementTypes_DDD_L','',{'uniqueID':'cbAnnouncementTypes$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'savedSelectedIndex':0,'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':'0','text':'All Announcements'},{'value':'1','text':'Policies'},{'value':'2','text':'Reminders'},{'value':'3','text':'Portal Enhancements'},{'value':'4','text':'FAQs'},{'value':'5','text':'Important Dates'},{'value':'6','text':'Informational'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('cbAnnouncementTypes', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('cbAnnouncementTypes', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><script id="dxss_1036450280" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbAnnouncementTypes_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'cbAnnouncementTypes_DDD','',{'uniqueID':'cbAnnouncementTypes$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('cbAnnouncementTypes', e); }});
+
+//-->
+</script><script id="dxss_2128094994" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbAnnouncementTypes',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('cbAnnouncementTypes',[[['B-100']]]);
+ASPx.AddPressedItems('cbAnnouncementTypes',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('cbAnnouncementTypes',[[['B-100']]]);
+ASPx.AddDisabledItems('cbAnnouncementTypes',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('cbAnnouncementTypes',[[['B-100'],]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientComboBox,'cbAnnouncementTypes','',{'scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'ddmInput':true,'lastSuccessValue':'0','islastSuccessValueInit':true},{'ValueChanged':function(s,e) { RefreshAnnouncementList(); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+    </div>
+    <div style="float:left">
+        <input type="hidden" name="txtSearch$State" id="txtSearch_State" value="{&amp;quot;rawValue&amp;quot;:&amp;quot;&amp;quot;}"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys dxeNullText_MaterialCompact dxh0" id="txtSearch" savedspellcheck="[object Object]" spellcheck="false">
+	<tbody><tr>
+		<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0" id="txtSearch_I" onchange="ASPx.EValueChanged('txtSearch')" value="Search" type="text" name="txtSearch" autocomplete="off" savedspellcheck="[object Object]" spellcheck="false"></td>
+	</tr>
+</tbody></table><script id="dxss_848827083" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'txtSearch','',{'scStates':6,'scPostfix':'MaterialCompact','stateObject':{'rawValue':''},'nullText':'Search'},{'KeyUp':function(s,e) { RefreshAnnouncementList();}},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+    </div>
+</div>
+
+<div>
+    
+<div class="dxpnlControl_MaterialCompact" id="cbpAnnouncements"><p> <font style="font:bold;font-size:24px">Informational: Description box update</font>  posted on 3/10/2026</p>Test<br>
+<br><i>Effective as of 3/9/2026</i>
+<hr>
+<p> <font style="font:bold;font-size:24px">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders</font>  posted on 2/20/2026</p><div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;"> 
+
+ 
+
+  <ul style="margin-top: 4px; margin-bottom: 16px;"> 
+
+    <li> 
+
+      You can find an updated <strong>User Guide</strong> on the Portal Documents tab. 
+
+    </li> 
+
+    <li style="margin-top: 4px;"> 
+
+      <strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a hard refresh.<br> 
+
+      <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> + <code>F5</code>  
+
+      <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>. 
+
+    </li> 
+
+  </ul> 
+
+ 
+
+
+
+ 
+
+  <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"> Bulk E-Signature Verification Requests </p> 
+
+  <p style="margin-bottom: 6px;"> 
+
+ You can now send E-Signature Verification Requests to up to 500 plaintiffs at once using the Bulk Actions tab. Only plaintiffs with no outstanding items will be eligible for bulk signature. Please refer to Section V. Adding a Plaintiff to the Portal – G. Completing a Verification (page 23) in the User Guide </p> 
+
+ 
+
+
+
+<p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"> Reminders </p> 
+
+ 
+
+    <ul style="margin-top: 4px; margin-bottom: 16px;"> 
+
+    <li>Documents can be uploaded in bulk regardless of Plaintiff status.  
+
+    </li> 
+
+ 
+
+    <li> SDWIS IDs can be updated via Import 
+
+    </li> 
+
+ 
+
+ 
+
+</ul></div> <br>
+<hr>
+<p> <font style="font:bold;font-size:24px">Reminders: test</font>  posted on 11/14/2025</p><div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+    <h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;">
+        Important Maintenance Notice
+    </h2>
+
+    <p style="margin-bottom: 6px;">
+        The AFFF MDL Portal will offline for scheduled maintenance beginning <strong>Friday, November 14th at 5:00 pm CST</strong>. The portal will be back online no later than Monday, November 17th at 8:00 am CST. We will post an announcement once maintenance is complete and the portal is accessible.
+    </p>
+
+</div>
+<br>
+<hr>
+<p> <font style="font:bold;font-size:24px">Reminders: test</font>  posted on 11/11/2025</p><div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+  <p style="font-size: 16px; margin-bottom: 10px;">
+    Updates were rolled out to the portal today.
+  </p>
+
+  <ul style="margin-top: 4px; margin-bottom: 16px;">
+    <li>
+      You can find an updated <strong>User Guide</strong> on the Portal Documents tab.
+    </li>
+    <li style="margin-top: 4px;">
+      <strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a hard refresh.<br>
+      <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> + <code>F5</code> 
+      <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>.
+    </li>
+  </ul>
+
+  <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Electronic Verification</p>
+  <p style="margin-bottom: 6px;">
+    The system will now default to sending the signature request to the email address listed on the Plaintiff Information tab. An alternative signer email may be provided if necessary.  </p>
+
+
+  <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Expert Disclosure</p>
+  <p style="margin-bottom: 6px;">
+    This question will no longer be required for submission to accommodate varying requirements.   </p>
+
+  <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Plaintiff Enrollment Report</p>
+  <p style="margin-bottom: 6px;">
+    Additional fields are now available on this report that were already stored on the Plaintiff Information tab such as plaintiff address, plaintiff email address, and original filing information. </p>
+
+  <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Incomplete Items Report </p>
+  <p style="margin-bottom: 4px;">
+    A new report is now available that lists all incomplete items required for submission for each plaintiff. The report includes a full description of each incomplete item. 
+  </p>
+
+</div>
+<br>
+<br><i>Effective as of 1/1/2025</i>
+<hr></div><table id="cbpAnnouncements_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpAnnouncements_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpAnnouncements_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_774335159" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpAnnouncements','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/Announcements/cbpAnnouncementsPartial'},{'BeginCallback':OnBeginAnnouncementCallback});
+
+//-->
+</script>
+</div>
+
+
+
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+</div>
+
+    <div class="dxpnlControl_MaterialCompact footerPane panel dxpnl-edge b" id="FooterPane">
+<div class="footerMenu">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="width: 20px; height: 20px; margin: 0px 20px;">
+</div>
+<div class="copyright">
+    <span class="dxeBase_MaterialCompact">© 2026 EisnerAmper</span>
+    
+</div>
+</div><script id="dxss_215181112" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientPanel,'FooterPane','',{'hideWindowWidth':500});
+
+//-->
+</script>
+
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/modernizr-2.6.2.js" type="text/javascript"></script>
+    <script src="/Scripts/Bootstrap/bootstrap.js" type="text/javascript"></script>
+
+
+
+</body><div id="codex-agent-overlay-root" data-codex-agent-overlay-root="true"></div></html>

@@ -1,0 +1,1134 @@
+{
+  "capturedAt": "2026-06-22T20:15:35.992Z",
+  "title": "Email Log",
+  "url": "https://uat.afffmdlportal.com/Audit/EmailLog",
+  "page": "email-log",
+  "state": "date-opened",
+  "visibleDateControls": [
+    {
+      "className": "dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeFocused_MaterialCompact dxh0",
+      "id": "deEmailLogStartDate",
+      "rect": {
+        "height": 31,
+        "width": 170,
+        "x": 15,
+        "y": 158
+      },
+      "tag": "table",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxeEditArea_MaterialCompact dxeEditAreaSys",
+      "id": "deEmailLogStartDate_I",
+      "rect": {
+        "height": 16,
+        "width": 130,
+        "x": 23,
+        "y": 166
+      },
+      "tag": "input",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxeButton dxeButtonEditButton_MaterialCompact  dxRippleTargetExternal dxeButtonEditButtonHover_MaterialCompact",
+      "id": "deEmailLogStartDate_B-1",
+      "rect": {
+        "height": 29,
+        "width": 24,
+        "x": 160,
+        "y": 159
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtDropDown_MaterialCompact",
+      "id": "deEmailLogStartDate_B-1Img",
+      "rect": {
+        "height": 10,
+        "width": 10,
+        "x": 167,
+        "y": 169
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root",
+      "id": "deEmailLogStartDate_DDD_PW-1",
+      "rect": {
+        "height": 357,
+        "width": 306,
+        "x": 15,
+        "y": 188
+      },
+      "tag": "div",
+      "text": "June 2026 SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011 JanFebMarApr MayJunJulAug SepOctNovDec TodayClear <!-- ASPx.AddHoverItems('deEmailLogStartDate_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','",
+      "visible": true
+    },
+    {
+      "className": "dxpc-mainDiv dxdd-cal dxpc-shadow",
+      "id": null,
+      "rect": {
+        "height": 357,
+        "width": 306,
+        "x": 15,
+        "y": 188
+      },
+      "tag": "div",
+      "text": "June 2026 SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011 JanFebMarApr MayJunJulAug SepOctNovDec TodayClear <!-- ASPx.AddHoverItems('deEmailLogStartDate_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','",
+      "visible": true
+    },
+    {
+      "className": "dxpc-content",
+      "id": "deEmailLogStartDate_DDD_PWC-1",
+      "rect": {
+        "height": 357,
+        "width": 306,
+        "x": 15,
+        "y": 188
+      },
+      "tag": "div",
+      "text": "June 2026 SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011 JanFebMarApr MayJunJulAug SepOctNovDec TodayClear <!-- ASPx.AddHoverItems('deEmailLogStartDate_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','",
+      "visible": true
+    },
+    {
+      "className": "dxeCVC dxeCalendar_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C",
+      "rect": {
+        "height": 357,
+        "width": 306,
+        "x": 15,
+        "y": 188
+      },
+      "tag": "table",
+      "text": "June 2026 SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011 JanFebMarApr MayJunJulAug SepOctNovDec TodayClear",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarHeader_MaterialCompact",
+      "id": null,
+      "rect": {
+        "height": 35,
+        "width": 304,
+        "x": 16,
+        "y": 189
+      },
+      "tag": "td",
+      "text": "June 2026",
+      "visible": true
+    },
+    {
+      "className": "dxe",
+      "id": "deEmailLogStartDate_DDD_C_PYC",
+      "rect": {
+        "height": 19,
+        "width": 12,
+        "x": 24,
+        "y": 197
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtCalendarPrevYear_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_PYCImg",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 24,
+        "y": 201
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxe",
+      "id": "deEmailLogStartDate_DDD_C_PMC",
+      "rect": {
+        "height": 19,
+        "width": 12,
+        "x": 46,
+        "y": 197
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtCalendarPrevMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_PMCImg",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 46,
+        "y": 201
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxe",
+      "id": "deEmailLogStartDate_DDD_C_TC",
+      "rect": {
+        "height": 19,
+        "width": 220,
+        "x": 58,
+        "y": 197
+      },
+      "tag": "td",
+      "text": "June 2026",
+      "visible": true
+    },
+    {
+      "className": "",
+      "id": "deEmailLogStartDate_DDD_C_T",
+      "rect": {
+        "height": 19,
+        "width": 115,
+        "x": 110,
+        "y": 197
+      },
+      "tag": "span",
+      "text": "June 2026",
+      "visible": true
+    },
+    {
+      "className": "dxe",
+      "id": "deEmailLogStartDate_DDD_C_NMC",
+      "rect": {
+        "height": 19,
+        "width": 12,
+        "x": 278,
+        "y": 197
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtCalendarNextMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_NMCImg",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 278,
+        "y": 201
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxe",
+      "id": "deEmailLogStartDate_DDD_C_NYC",
+      "rect": {
+        "height": 19,
+        "width": 12,
+        "x": 300,
+        "y": 197
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtCalendarNextYear_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_NYCImg",
+      "rect": {
+        "height": 12,
+        "width": 12,
+        "x": 300,
+        "y": 201
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxMonthGridWithWeekNumbers",
+      "id": "deEmailLogStartDate_DDD_C_mc",
+      "rect": {
+        "height": 273,
+        "width": 304,
+        "x": 16,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011",
+      "visible": true
+    },
+    {
+      "className": "",
+      "id": "deEmailLogStartDate_DDD_C_mt",
+      "rect": {
+        "height": 273,
+        "width": 304,
+        "x": 16,
+        "y": 224
+      },
+      "tag": "table",
+      "text": "SunMonTueWedThuFriSat 2331123456 2478910111213 2514151617181920 2621222324252627 272829301234 28567891011",
+      "visible": true
+    },
+    {
+      "className": "",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_0",
+      "rect": {
+        "height": 45,
+        "width": 30,
+        "x": 16,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_1",
+      "rect": {
+        "height": 45,
+        "width": 44,
+        "x": 46,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Sun",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_2",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 89,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Mon",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_3",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 127,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Tue",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_4",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 164,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Wed",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_5",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 202,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Thu",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_6",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 240,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Fri",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDayHeader_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_7",
+      "rect": {
+        "height": 45,
+        "width": 38,
+        "x": 277,
+        "y": 224
+      },
+      "tag": "td",
+      "text": "Sat",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_8",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "23",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_7",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "31",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_8",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "1",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_9",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "2",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_10",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "3",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_11",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "4",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_12",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "5",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_13",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 268
+      },
+      "tag": "td",
+      "text": "6",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_9",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "24",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_14",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "7",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_15",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "8",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_16",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "9",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_17",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "10",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_18",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "11",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_19",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "12",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_20",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 306
+      },
+      "tag": "td",
+      "text": "13",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_10",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "25",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_21",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "14",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_22",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "15",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_23",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "16",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_24",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "17",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_25",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "18",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_26",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "19",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_27",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 344
+      },
+      "tag": "td",
+      "text": "20",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_11",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "26",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_28",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "21",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_29",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "22",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_30",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "23",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_31",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "24",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_32",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "25",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_33",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "26",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_34",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 382
+      },
+      "tag": "td",
+      "text": "27",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_12",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "27",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_35",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "28",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_36",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "29",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_37",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "30",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_38",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "1",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_39",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "2",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_40",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "3",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_41",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 420
+      },
+      "tag": "td",
+      "text": "4",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarWeekNumber_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_AUX_0_0_13",
+      "rect": {
+        "height": 38,
+        "width": 30,
+        "x": 16,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "28",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_42",
+      "rect": {
+        "height": 38,
+        "width": 44,
+        "x": 46,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "5",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_43",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 89,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "6",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_44",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 127,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "7",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_45",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 164,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "8",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_46",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 202,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "9",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_47",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 240,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "10",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_mc_48",
+      "rect": {
+        "height": 38,
+        "width": 38,
+        "x": 277,
+        "y": 458
+      },
+      "tag": "td",
+      "text": "11",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarFooter_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_F",
+      "rect": {
+        "height": 48,
+        "width": 304,
+        "x": 16,
+        "y": 496
+      },
+      "tag": "td",
+      "text": "TodayClear",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarButton_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_BT",
+      "rect": {
+        "height": 31,
+        "width": 69,
+        "x": 159,
+        "y": 505
+      },
+      "tag": "button",
+      "text": "Today",
+      "visible": true
+    },
+    {
+      "className": "dxeCalendarButton_MaterialCompact",
+      "id": "deEmailLogStartDate_DDD_C_BC",
+      "rect": {
+        "height": 31,
+        "width": 70,
+        "x": 237,
+        "y": 505
+      },
+      "tag": "button",
+      "text": "Clear",
+      "visible": true
+    },
+    {
+      "className": "dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeNullText_MaterialCompact dxh0",
+      "id": "deEmailLogEndDate",
+      "rect": {
+        "height": 31,
+        "width": 170,
+        "x": 15,
+        "y": 189
+      },
+      "tag": "table",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxeEditArea_MaterialCompact dxeEditAreaSys dxh0",
+      "id": "deEmailLogEndDate_I",
+      "rect": {
+        "height": 16,
+        "width": 130,
+        "x": 23,
+        "y": 197
+      },
+      "tag": "input",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxeButton dxeButtonEditButton_MaterialCompact",
+      "id": "deEmailLogEndDate_B-1",
+      "rect": {
+        "height": 29,
+        "width": 24,
+        "x": 160,
+        "y": 190
+      },
+      "tag": "td",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtDropDown_MaterialCompact",
+      "id": "deEmailLogEndDate_B-1Img",
+      "rect": {
+        "height": 10,
+        "width": 10,
+        "x": 167,
+        "y": 200
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtDropDown_MaterialCompact",
+      "id": "gvEmailLog_DXFREditorcol2_B-1Img",
+      "rect": {
+        "height": 10,
+        "width": 10,
+        "x": 325,
+        "y": 396
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    },
+    {
+      "className": "dxEditors_edtDropDown_MaterialCompact",
+      "id": "gvEmailLog_DXFREditorcol6_B-1Img",
+      "rect": {
+        "height": 10,
+        "width": 10,
+        "x": 1389,
+        "y": 396
+      },
+      "tag": "img",
+      "text": "",
+      "visible": true
+    }
+  ],
+  "screenshot": "audit-email-log-date-opened.png",
+  "html": "audit-email-log-date-opened.html",
+  "width": 1418,
+  "height": 1182,
+  "viewportWidth": 1433,
+  "viewportHeight": 873,
+  "screenshotSha256": "a397dc95b37bcbc8ba6e8f13336e45229afaef4ce92cc43f04ed17747dd8b53b"
+}

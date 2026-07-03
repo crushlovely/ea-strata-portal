@@ -1,0 +1,208 @@
+// Viewport variables — generated from the Figma "Viewport" variable collection
+// (Settlement-Redesign file, ERtCJDYHwv062jearypfP7). Mobile-first: Phone values
+// are the :root defaults; Tablet and Desktop override only the values that
+// change, inside min-width media queries. Numeric sizes are rem (16px base);
+// figma-* helper variables are omitted. Do not hand-edit values; re-sync from
+// Figma instead. See /skills/figma-var-to-scss.md.
+
+$bp-tablet: 394px;
+$bp-desktop: 835px;
+
+:root {
+  // heading1
+  --heading1-font-family: "Fraunces";
+  --heading1-font-size: 2.4881rem;
+  --heading1-line-height: 1.25;
+  --heading1-font-weight: 375;
+
+  // heading2
+  --heading2-font-family: "Fraunces";
+  --heading2-font-size: 1.7281rem;
+  --heading2-line-height: 1.375;
+  --heading2-font-weight: 375;
+
+  // heading3
+  --heading3-font-family: "Fraunces";
+  --heading3-font-size: 1.44rem;
+  --heading3-line-height: 1.375;
+  --heading3-font-weight: 400;
+
+  // heading4
+  --heading4-font-family: "Fraunces";
+  --heading4-font-size: 1.2rem;
+  --heading4-line-height: 1.5;
+  --heading4-font-weight: 375;
+
+  // heading5
+  --heading5-font-family: "Fraunces";
+  --heading5-font-size: 1rem;
+  --heading5-line-height: 1.5;
+  --heading5-font-weight: 375;
+
+  // heading6
+  --heading6-font-family: "Raleway";
+  --heading6-font-size: 0.75rem;
+  --heading6-line-height: 1.5;
+  --heading6-font-weight: 650;
+  --heading6-letter-spacing: 0.15em;
+  --heading6-text-transform: uppercase;
+
+  // body
+  --body-font-family: "Raleway";
+  --body-font-size: 1rem;
+  --body-line-height: 1.5;
+  --body-font-weight: 500;
+
+  // large-text
+  --large-text-font-family: "Raleway";
+  --large-text-font-size: 1.2rem;
+  --large-text-line-height: 1.75;
+  --large-text-font-weight: 400;
+
+  // small-text
+  --small-text-font-family: "Albert Sans";
+  --small-text-font-size: 0.875rem;
+  --small-text-line-height: 1.5;
+  --small-text-font-weight: 500;
+
+  // btn
+  --btn-font-family: "Raleway";
+  --btn-font-size: 0.6875rem;
+  --btn-line-height: 1.25;
+  --btn-font-weight: 650;
+  --btn-letter-spacing: 0.15em;
+  --btn-text-transform: uppercase;
+
+  // eyebrow-label
+  --eyebrow-label-font-family: "Raleway";
+  --eyebrow-label-font-size: 0.6875rem;
+  --eyebrow-label-line-height: 1.5;
+  --eyebrow-label-font-weight: 650;
+  --eyebrow-label-letter-spacing: 0.15em;
+  --eyebrow-label-text-transform: uppercase;
+
+  // spacing
+  --spacing-xxs: 0.375rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.125rem;
+  --spacing-lg: 1.375rem;
+  --spacing-xl: 2.25rem;
+  --spacing-0: 0;
+  --spacing-block: 2.25rem;
+
+  // form-ui
+  --form-ui-input-border-radius: 0.125rem;
+  --form-ui-checkbox-radio-size: 1.125rem;
+
+  // data-grid
+  --data-grid-table-border-radius: 0.25rem;
+
+  // viewport-break-point
+  --viewport-break-point: 0;
+
+  // border-radius
+  --border-radius: 0.0625rem;
+
+  // form-ui
+  --form-ui-label-text-font-family: "Raleway";
+  --form-ui-input-text-font-family: "Raleway";
+  --form-ui-input-text-font-size: 1rem;
+  --form-ui-input-text-line-height: 1.5;
+  --form-ui-input-text-font-weight: 500;
+  --form-ui-label-text-font-size: 0.875rem;
+  --form-ui-label-text-line-height: 1.5;
+  --form-ui-label-text-font-weight: 500;
+  --form-ui-hint-text-font-family: "Raleway";
+  --form-ui-hint-text-font-size: 0.875rem;
+  --form-ui-hint-text-line-height: 1.5;
+  --form-ui-hint-text-font-weight: 500;
+
+  // data-grid
+  --data-grid-title-font-family: "Fraunces";
+  --data-grid-title-font-size: 1.775rem;
+  --data-grid-header-font-family: "Raleway";
+  --data-grid-header-font-size: 0.6875rem;
+  --data-grid-header-line-height: 1.5;
+  --data-grid-header-font-weight: 650;
+  --data-grid-header-letter-spacing: 0.15em;
+  --data-grid-header-text-transform: uppercase;
+  --data-grid-cell-font-family: var(--small-text-font-family);
+  --data-grid-cell-font-size: var(--small-text-font-size);
+  --data-grid-meta-font-family: var(--small-text-font-family);
+  --data-grid-meta-font-size: 0.75rem;
+
+  // btn-simple
+  --btn-simple-simple-font-family: "Raleway";
+  --btn-simple-simple-font-size: 0.6875rem;
+  --btn-simple-simple-line-height: 1.5;
+  --btn-simple-simple-letter-spacing: 0.15em;
+  --btn-simple-simple-font-weight: 600;
+
+  // link
+  --link-font-family: var(--small-text-font-family);
+  --link-font-size: var(--small-text-font-size);
+  --link-line-height: var(--small-text-line-height);
+  --link-font-weight: var(--small-text-font-weight);
+}
+
+@media (min-width: $bp-tablet) {
+  :root {
+    // heading1
+    --heading1-font-size: 3.1225rem;
+
+    // heading2
+    --heading2-font-size: 1.9644rem;
+
+    // heading3
+    --heading3-font-size: 1.5644rem;
+
+    // heading4
+    --heading4-font-size: 1.2488rem;
+
+    // large-text
+    --large-text-font-size: 1.2488rem;
+
+    // spacing
+    --spacing-xs: 0.75rem;
+    --spacing-sm: 1.1875rem;
+    --spacing-md: 2.1875rem;
+    --spacing-lg: 4.25rem;
+    --spacing-xl: 6.375rem;
+    --spacing-block: 3.125rem;
+
+    // viewport-break-point
+    --viewport-break-point: 24.625rem;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  :root {
+    // heading1
+    --heading1-font-size: 4.2063rem;
+
+    // heading2
+    --heading2-font-size: 2.3688rem;
+
+    // heading3
+    --heading3-font-size: 1.775rem;
+
+    // heading4
+    --heading4-font-size: 1.3313rem;
+
+    // large-text
+    --large-text-font-size: 1.3313rem;
+
+    // spacing
+    --spacing-xxs: 0.5rem;
+    --spacing-xs: 1rem;
+    --spacing-sm: 1.5rem;
+    --spacing-md: 2.875rem;
+    --spacing-lg: 5.375rem;
+    --spacing-xl: 7.75rem;
+    --spacing-block: 3.75rem;
+
+    // viewport-break-point
+    --viewport-break-point: 52.1875rem;
+  }
+}

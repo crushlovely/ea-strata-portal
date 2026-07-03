@@ -1,0 +1,14 @@
+{
+  "name": "ea-strata-portal",
+  "version": "0.1.0",
+  "description": "EA STRATA Portal — HTML/CSS from Figma design system using SCSS and Eleventy",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "sass": "^1.80.0"
+  }
+}

@@ -1,0 +1,73 @@
+// Color Primitives — generated from the Figma "Color Primitives" variable collection
+// (Settlement-Redesign file, ERtCJDYHwv062jearypfP7). Do not hand-edit values;
+// re-sync from Figma instead. See /skills/figma-var-to-scss.md.
+
+:root {
+  // palette
+  --palette-black: #181f25;
+  --palette-black-medium: #242322;
+  --palette-black-60: #181f2599;
+  --palette-black-80: #181f25cc;
+  --palette-transparent: #ffffff00;
+  --palette-white: #ffffff;
+  --palette-white-80: #ffffffcc;
+  --palette-parchment: #f5f4f3;
+  --palette-beige: #eae5e1;
+  --palette-gray: #56524e;
+  --palette-gray-lighter: #efedeb;
+  --palette-gray-light: #817b74;
+  --palette-gray-medium: #575451;
+  --palette-gray-dark: #3e3b38;
+  --palette-gray-darker: #363029;
+  --palette-gold: #bf9b5f;
+  --palette-gold-light: #f4cf97;
+  --palette-gold-medium: #bf9b5f;
+  --palette-gold-dark: #9d804e;
+  --palette-gold-darker: #816840;
+  --palette-leather: #885c11;
+  --palette-leather-light: #b87d17;
+  --palette-leather-medium: #885c11;
+  --palette-leather-dark: #67460d;
+  --palette-leather-darker: #54390b;
+  --palette-forest-green: #0d5b3c;
+  --palette-forest-green-light: #1d885d;
+  --palette-forest-green-medium: #0d5b3c;
+  --palette-forest-green-dark: #08482f;
+  --palette-forest-green-darker: #073b26;
+  --palette-sage: #c1dec2;
+  --palette-sage-light: #e9ffe9;
+  --palette-sage-medium: #c1dec2;
+  --palette-sage-dark: #9bb29c;
+  --palette-sage-darker: #7f9280;
+  --palette-bright-blue: #93ddec;
+  --palette-bright-blue-light: #c0f3fd;
+  --palette-bright-blue-medium: #93ddec;
+  --palette-bright-blue-dark: #55a5b5;
+  --palette-bright-blue-darker: #468794;
+  --palette-navy-blue: #0c2e45;
+  --palette-navy-blue-light: #19557d;
+  --palette-navy-blue-medium: #0c2e45;
+  --palette-navy-blue-dark: #072133;
+  --palette-navy-blue-darker: #051b2a;
+  --palette-red: #7f2629;
+  --palette-red-light: #ad3b3f;
+  --palette-red-medium: #7f2629;
+  --palette-red-dark: #5d1a1c;
+  --palette-red-darker: #4c1517;
+  --palette-teal: #115e67;
+  --palette-teal-light: #1a8793;
+  --palette-teal-medium: #115e67;
+  --palette-teal-dark: #0d5058;
+  --palette-teal-darker: #0b4248;
+  --palette-pink: #f8485e;
+  --palette-pink-light: #fe8392;
+  --palette-pink-medium: #f8485e;
+  --palette-pink-dark: #d62239;
+  --palette-pink-darker: #af1c2f;
+
+  // status
+  --status-error: var(--palette-red);
+  --status-warning: var(--palette-gold);
+  --status-success: var(--palette-forest-green);
+  --status-info: var(--palette-navy-blue);
+}

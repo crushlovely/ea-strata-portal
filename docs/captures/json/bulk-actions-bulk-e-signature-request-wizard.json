@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T20:11:39.909Z",
+  "title": "Bulk E-signature Request Wizard",
+  "url": "https://uat.afffmdlportal.com/FSBulkOperationsWizard",
+  "screenshot": "bulk-actions-bulk-e-signature-request-wizard.png",
+  "html": "bulk-actions-bulk-e-signature-request-wizard.html",
+  "width": 1418,
+  "height": 1040,
+  "viewportWidth": 1433,
+  "viewportHeight": 873,
+  "screenshotSha256": "17f4f8207d5d0add200dbf1f15feb6d40f48d4a41878faf1d98cc3f611433d80"
+}

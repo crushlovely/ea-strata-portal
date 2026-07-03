@@ -1,0 +1,7 @@
+{
+  "name": "EA STRATA Portal",
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "About", "url": "/about/" }
+  ]
+}

@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html class="dxChrome dxMacOSPlatform dxWebKitFamily dxBrowserVersion-148 dxTheme-MaterialCompact js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" savedpadding-top="[object Object]" savedpadding-bottom="[object Object]" style="padding-top: 96px; padding-bottom: 41px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Reporting</title>
+
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-12B88VJM6V"></script>
+        <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-12B88VJM6V');</script>
+    <link rel="stylesheet" href="/DXR.axd?r=0_2067,1_66,1_67,0_2070,0_2,0_56,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_50,0_53,0_47-SZRsu&amp;p=573b1aec">
+    <script id="dxis_664406351" src="/DXR.axd?r=1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1-SZRsu"></script>
+
+    <!--Vue.js lib files-->
+    <script src="/Scripts/lib/vue/vue.min.js"></script>
+    <script src="/Scripts/lib/vuex/vuex.js"></script>
+    <!--Custom Vue.js components-->
+    <script src="/Scripts/Vue/Components/customGridView.js"></script>
+    <script src="/Scripts/Vue/Components/modalPopup.js"></script>
+
+    <link href="/Content/Stylesheets/Site.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customMobileGrid.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/portal.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customGridView.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/modalPopup.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/regular.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/solid.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-codex-favicon-badge%3D%22codex-favicon-badge%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cimage%20href%3D%22data%3Aimage%2Fbmp%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABp0lEQVR4nOyWMUvDQBTH311itamziHRS0dbVQVzUigUp4taptoqgBVG6iQhiBl0UhCodtChKcekqOEmrg4MfQNBJcXK1Qito73yxDiJt4S4l6ZAf4d6Rl%2BT9eby8exRshoLNqGCC3GF0yLDj8cwdSCKdAc6BEEVJEkpTuq5Lf0f6xevjWAxVGBkYHPM%2BR0ASAhLkU%2BF24tIeOUDX763XkvurPzRzXgBBpDLAW7T1P8ENOt0ldRUkEM7A1cl8t1Iu3%2BO27Z%2FrgwIbGF3IPIEAwn8BLTMfll%2Bymo8z4kMjJECqBhqJ7Y3IEdD8Z8FNOupnQC%2BIYMFy42JkKhA%2FfQAzAjD4HpoeDhJQfoBrsO4j9Zy5o9lpNJMgz0QuPRcCGQHZbNhFCeyCSQjw5OX%2BSiuICuh48yQw7X1gnl5NKyzVctasATzv33FdgwbACRRr%2BZxW7AhonlacT8c2sSZ1sAIOG4HFsy1jSyrBI17UYvRsD1gABi1%2BMuYPxjMvtCJI3bEqeCUeaCql2z9icL4fxlnuFqzvCXhashGVM5rAfi00SDZMAVWWnU74DQAA%2F%2F9h9g3vAAAABklEQVQDAGLIbR6SrbuXAAAAAElFTkSuQmCC%22%20width%3D%2232%22%20height%3D%2232%22%20opacity%3D%220.3%22%20%2F%3E%3Cpath%20d%3D%22M3.04536%204.45259C2.7582%203.60299%203.60299%202.7582%204.45259%203.04536L14.1828%206.33403C15.1637%206.66558%2015.0872%208.08006%2014.0715%208.39045L10.2994%209.54319C9.93919%209.65327%209.65327%209.93919%209.54319%2010.2994L8.39046%2014.0715C8.08007%2015.0872%206.66558%2015.1637%206.33404%2014.1828L3.04536%204.45259Z%22%20fill%3D%22black%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%20paint-order%3D%22stroke%20fill%22%20transform%3D%22translate(-2%20-2)%20scale(2.1)%22%20%2F%3E%3C%2Fsvg%3E" data-codex-favicon-badge="true" data-codex-original-favicon-href="/Content/Images/favicon.ico">
+<style></style><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+    <div id="HeaderPane_EB" class="dxpnl-bar dxpnl-edge t dxpnlControl_MaterialCompact headerPane bar" style="background-color:#003057;">
+	<div class="dxpnl-bar-tmpl dxpnl-np">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+    <div class="templateTitle">
+        <a href="/">AFFF MDL Portal</a>
+    </div>
+
+	</div><div id="HeaderPane_EBB" class="dxpnl-btn dxpnl-fp">
+		<img id="HeaderPane_EBBI" class="dxWeb_pnlExpand_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="">
+	</div>
+</div><div class="dxpnlControl_MaterialCompact headerPane panel dxpnl-edge t" id="HeaderPane" style="background-color: rgb(0, 48, 87); top: 0px;" savedtop="[object Object]">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+        <div class="d-flex flex-row">
+            <div class="templateTitle" style="width:65%">
+                
+<style>
+    .templateTitle a {
+        text-decoration: none;
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        display: flex;
+        flex-direction: column;
+        max-width:fit-content;
+        width: 90%;
+    }
+
+    .templateMainTitle {
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        white-space: nowrap;
+    }
+
+    .templateSubTitle {
+        text-decoration: none;
+        font-size: 15px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="d-flex align-items-center">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="height: 28px; margin: 0px 12px 0px 0px;">
+    <a href="/">
+        <div class="templateMainTitle">
+            AFFF MDL Portal
+        </div>
+        <div class="templateSubTitle">
+            In re: Aqueous Film-Forming Foams Products Liability Litigation (MDL 2873)
+        </div>
+    </a>
+</div>
+
+            </div>
+            <div id="flash-message" style="float:left;display:none"></div>
+            <div class="loginControl">
+                     Welcome jeffrey.schram@eisneramper.com 
+     |
+<a href="/Account/LogOff">Logout</a>
+            </div>
+        </div>
+    <div class="headerMenu" style="background-color:#003057">
+        <div class="dxmLite_MaterialCompact dxm-ltr">
+	<div class="dxm-main dxm-horizontal headerMenu" id="HeaderMenu" style="width: 100%;">
+		<ul class="dx dxm-image-l dxm-noImages">
+			<li class="dxm-item" id="HeaderMenu_DXI0_" style="min-width: 65px;"><a class="dxm-content dxm-hasText dx" href="/" id="HeaderMenu_DXI0_T"><span class="dx-vam dxm-contentText">Home</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI1_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI1_" style="min-width: 129px;"><a class="dxm-content dxm-hasText dx" href="/Announcements/" id="HeaderMenu_DXI1_T"><span class="dx-vam dxm-contentText">Announcements</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI2_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI2_" style="min-width: 139px;"><a class="dxm-content dxm-hasText dx" href="/PortalDocuments/" target="_blank" id="HeaderMenu_DXI2_T"><span class="dx-vam dxm-contentText">Portal Documents</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI3_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI3_" style="min-width: 78px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI3_T">
+				<span class="dx-vam dxm-contentText">Security</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI4_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI4_" style="min-width: 116px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI4_T">
+				<span class="dx-vam dxm-contentText">Administration</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI5_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI5_" style="min-width: 121px;"><a class="dxm-content dxm-hasText dx" href="/FactSheet/Search" id="HeaderMenu_DXI5_T"><span class="dx-vam dxm-contentText">Plaintiff Search</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI6_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI6_" style="min-width: 96px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI6_T">
+				<span class="dx-vam dxm-contentText">Extensions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI7_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item dxm-selected" id="HeaderMenu_DXI7_" style="min-width: 77px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI7_T">
+				<span class="dx-vam dxm-contentText">Reports</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI8_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI8_" style="min-width: 74px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI8_T">
+				<span class="dx-vam dxm-contentText">Imports</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI9_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI9_" style="min-width: 104px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI9_T">
+				<span class="dx-vam dxm-contentText">Bulk Actions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI10_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI10_" style="min-width: 59px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI10_T">
+				<span class="dx-vam dxm-contentText">Audit</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI11_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI11_" style="min-width: 60px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI11_T">
+				<span class="dx-vam dxm-contentText">Case</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI12_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI12_" style="min-width: 97px;"><a class="dxm-content dxm-hasText dx" href="/ContactUs/" id="HeaderMenu_DXI12_T"><span class="dx-vam dxm-contentText">Contact Us</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" savedheight="[object Object]"><b></b></li>
+		</ul>
+	</div><b class="dx-clear"></b><div id="HeaderMenu_DXM3_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME3_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI3i0_"><a class="dxm-content dxm-hasText dx" href="/Security/" id="HeaderMenu_DXI3i0_T"><span class="dx-vam dxm-contentText">User Management</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI3i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI3i1_"><a class="dxm-content dxm-hasText dx" href="/Security/RoleManagement/" id="HeaderMenu_DXI3i1_T"><span class="dx-vam dxm-contentText">Role Management</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM4_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME4_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI4i0_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmAdmin" id="HeaderMenu_DXI4i0_T"><span class="dx-vam dxm-contentText">Law Firm Administration</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i1_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmUserApproval" id="HeaderMenu_DXI4i1_T"><span class="dx-vam dxm-contentText">Law Firm Approval</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i2_"><a class="dxm-content dxm-hasText dx" href="/Admin/Announcements" id="HeaderMenu_DXI4i2_T"><span class="dx-vam dxm-contentText">Announcements Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i3_"><a class="dxm-content dxm-hasText dx" href="/Admin/Milestones" id="HeaderMenu_DXI4i3_T"><span class="dx-vam dxm-contentText">Case Milestones</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i4_"><a class="dxm-content dxm-hasText dx" href="/Admin/AllocationInfo" id="HeaderMenu_DXI4i4_T"><span class="dx-vam dxm-contentText">Allocation Info</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i5_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i5_"><a class="dxm-content dxm-hasText dx" href="/Admin/PortalDocumentAdmin" id="HeaderMenu_DXI4i5_T"><span class="dx-vam dxm-contentText">Portal Document Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i6_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i6_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimFormAdmin" id="HeaderMenu_DXI4i6_T"><span class="dx-vam dxm-contentText">Claim Form Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i7_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i7_"><a class="dxm-content dxm-hasText dx" href="/Admin/TimeExpenseStatusAdmin" id="HeaderMenu_DXI4i7_T"><span class="dx-vam dxm-contentText">Time &amp; Expense Status Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i8_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i8_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkClaimReview" id="HeaderMenu_DXI4i8_T"><span class="dx-vam dxm-contentText">Bulk Claim Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i9_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i9_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimImport" id="HeaderMenu_DXI4i9_T"><span class="dx-vam dxm-contentText">Bulk Claim Import</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i10_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i10_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkSoftDelete" id="HeaderMenu_DXI4i10_T"><span class="dx-vam dxm-contentText">Bulk Soft Delete</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i11_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i11_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkUpdateLitigationStatus" id="HeaderMenu_DXI4i11_T"><span class="dx-vam dxm-contentText">Bulk Litigation Status</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM6_" style="z-index: 20002; position: absolute; left: 654px; top: 94.5px; overflow: visible; width: unset; height: unset; visibility: hidden; display: none;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME6_" style="border-spacing: 0px; width: 213px; left: 0px; top: 0px;">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI6i0_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionRequest" id="HeaderMenu_DXI6i0_T" style="float: none;"><span class="dx-vam dxm-contentText">Claim Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i1_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionReview" id="HeaderMenu_DXI6i1_T" style="float: none;"><span class="dx-vam dxm-contentText">Claim Extension Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i2_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionRequest" id="HeaderMenu_DXI6i2_T" style="float: none;"><span class="dx-vam dxm-contentText">Plaintiff Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i3_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionReview" id="HeaderMenu_DXI6i3_T" style="float: none;"><span class="dx-vam dxm-contentText">Plaintiff Extension Review</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM8_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME8_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI8i0_"><a class="dxm-content dxm-hasText dx" href="/Import/Plaintiff" id="HeaderMenu_DXI8i0_T"><span class="dx-vam dxm-contentText">Plaintiff</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i1_"><a class="dxm-content dxm-hasText dx" href="/Import/Details" id="HeaderMenu_DXI8i1_T"><span class="dx-vam dxm-contentText">Details</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i2_"><a class="dxm-content dxm-hasText dx" href="/Import/Documents" id="HeaderMenu_DXI8i2_T"><span class="dx-vam dxm-contentText">Documents</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i3_"><a class="dxm-content dxm-hasText dx" href="/Import/Defense" id="HeaderMenu_DXI8i3_T"><span class="dx-vam dxm-contentText">Defense</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i4_"><a class="dxm-content dxm-hasText dx" href="/Import/Logs" id="HeaderMenu_DXI8i4_T"><span class="dx-vam dxm-contentText">Logs</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM9_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME9_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI9i0_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkAmend" id="HeaderMenu_DXI9i0_T"><span class="dx-vam dxm-contentText">Bulk Amend</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i1_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkSubmission" id="HeaderMenu_DXI9i1_T"><span class="dx-vam dxm-contentText">Bulk Submission</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i2_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard" id="HeaderMenu_DXI9i2_T"><span class="dx-vam dxm-contentText">Bulk E-Signature Request</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM10_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME10_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI10i0_"><a class="dxm-content dxm-hasText dx" href="/Audit/" id="HeaderMenu_DXI10i0_T"><span class="dx-vam dxm-contentText">System Audit</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI10i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI10i1_"><a class="dxm-content dxm-hasText dx" href="/Audit/EmailLog" id="HeaderMenu_DXI10i1_T"><span class="dx-vam dxm-contentText">Email Log</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM11_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME11_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI11i0_"><a class="dxm-content dxm-hasText dx" href="/Case/ClaimAdmin" id="HeaderMenu_DXI11i0_T"><span class="dx-vam dxm-contentText">Claim Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI11i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI11i1_"><a class="dxm-content dxm-hasText dx" href="/Case/WorkflowAdmin" id="HeaderMenu_DXI11i1_T"><span class="dx-vam dxm-contentText">Workflow Admin</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div>
+</div><script id="dxss_1085750566" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderMenu',[[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_','DXI3_','DXI3i0_','DXI3i1_','DXI4_','DXI4i0_','DXI4i1_','DXI4i2_','DXI4i3_','DXI4i4_','DXI4i5_','DXI4i6_','DXI4i7_','DXI4i8_','DXI4i9_','DXI4i10_','DXI4i11_','DXI5_','DXI6_','DXI6i0_','DXI6i1_','DXI6i2_','DXI6i3_','DXI8_','DXI8i0_','DXI8i1_','DXI8i2_','DXI8i3_','DXI8i4_','DXI9_','DXI9i0_','DXI9i1_','DXI9i2_','DXI10_','DXI10i0_','DXI10i1_','DXI11_','DXI11i0_','DXI11i1_','DXI12_'],['','T']],[[''],[''],['DXME3_','DXMBC3_','DXME4_','DXMBC4_','DXME6_','DXMBC6_','DXME8_','DXMBC8_','DXME9_','DXMBC9_','DXME10_','DXMBC10_','DXME11_','DXMBC11_']],[[''],[''],['DXI7_'],['','T']]]);
+ASPx.createControl(MVCxClientMenu,'HeaderMenu','',{'stateObject':{'itemsInfo':'Bw0HAAIAAgRIb21lAgAHAAcBAgACDUFubm91bmNlbWVudHMCAAcABwICAAIQUG9ydGFsIERvY3VtZW50cwIABwAHAwIAAghTZWN1cml0eQIABwIHAAIAAg9Vc2VyIE1hbmFnZW1lbnQCAAcABwECAAIPUm9sZSBNYW5hZ2VtZW50AgAHAAcEAgACDkFkbWluaXN0cmF0aW9uAgAHDAcAAgACF0xhdyBGaXJtIEFkbWluaXN0cmF0aW9uAgAHAAcBAgACEUxhdyBGaXJtIEFwcHJvdmFsAgAHAAcCAgACE0Fubm91bmNlbWVudHMgQWRtaW4CAAcABwMCAAIPQ2FzZSBNaWxlc3RvbmVzAgAHAAcEAgACD0FsbG9jYXRpb24gSW5mbwIABwAHBQIAAhVQb3J0YWwgRG9jdW1lbnQgQWRtaW4CAAcABwYCAAIQQ2xhaW0gRm9ybSBBZG1pbgIABwAHBwIAAhtUaW1lICYgRXhwZW5zZSBTdGF0dXMgQWRtaW4CAAcABwgCAAIRQnVsayBDbGFpbSBSZXZpZXcCAAcABwkCAAIRQnVsayBDbGFpbSBJbXBvcnQCAAcABwoCAAIQQnVsayBTb2Z0IERlbGV0ZQIABwAHCwIAAhZCdWxrIExpdGlnYXRpb24gU3RhdHVzAgAHAAcFAgACEFBsYWludGlmZiBTZWFyY2gCAAcABwYCAAIKRXh0ZW5zaW9ucwIABwQHAAIAAhdDbGFpbSBFeHRlbnNpb24gUmVxdWVzdAIABwAHAQIAAhZDbGFpbSBFeHRlbnNpb24gUmV2aWV3AgAHAAcCAgACG1BsYWludGlmZiBFeHRlbnNpb24gUmVxdWVzdAIABwAHAwIAAhpQbGFpbnRpZmYgRXh0ZW5zaW9uIFJldmlldwIABwAHBwIAAgdSZXBvcnRzAgAHAAcIAgACB0ltcG9ydHMCAAcFBwACAAIJUGxhaW50aWZmAgAHAAcBAgACB0RldGFpbHMCAAcABwICAAIJRG9jdW1lbnRzAgAHAAcDAgACB0RlZmVuc2UCAAcABwQCAAIETG9ncwIABwAHCQIAAgxCdWxrIEFjdGlvbnMCAAcDBwACAAIKQnVsayBBbWVuZAIABwAHAQIAAg9CdWxrIFN1Ym1pc3Npb24CAAcABwICAAIYQnVsayBFLVNpZ25hdHVyZSBSZXF1ZXN0AgAHAAcKAgACBUF1ZGl0AgAHAgcAAgACDFN5c3RlbSBBdWRpdAIABwAHAQIAAglFbWFpbCBMb2cCAAcABwsCAAIEQ2FzZQIABwIHAAIAAgtDbGFpbSBBZG1pbgIABwAHAQIAAg5Xb3JrZmxvdyBBZG1pbgIABwAHDAIAAgpDb250YWN0IFVzAgAHAA=='},'renderData':{'':[[0],[1],[2],[3],[4],[5],[6],7,[8],[9],[10],[11],[12]],'3':[[0],[1]],'4':[[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11]],'6':[[0],[1],[2],[3]],'8':[[0],[1],[2],[3],[4]],'9':[[0],[1],[2]],'10':[[0],[1]],'11':[[0],[1]]}});
+
+//-->
+</script>
+    </div>
+
+</div><script id="dxss_1617918754" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderPane',[[['dxpnl-btnHover'],[''],['EBB']]]);
+ASPx.AddPressedItems('HeaderPane',[[['dxpnl-btnPressed'],[''],['EBB']]]);
+ASPx.AddSelectedItems('HeaderPane',[[['dxpnl-expanded expandedPanel'],[''],['']],[['dxpnl-expanded'],[''],['EB']],[['dxpnl-btnSelected'],[''],['EBB']]]);
+ASPx.createControl(ASPxClientPanel,'HeaderPane','',{'collapseWindowWidth':500,'animationType':'fade','expandEffect':'PopupToBottom'});
+
+//-->
+</script>
+
+    <script type="text/javascript">
+        function updateHeaderMenuOrientation(){
+            if(!window.HeaderMenu) return;
+            var orientation = HeaderPane.IsExpandable() ? 'Vertical' : 'Horizontal';
+            if(orientation !== HeaderMenu.GetOrientation())
+                HeaderMenu.SetOrientation(orientation);
+        }
+        var collection = ASPxClientControl.GetControlCollection();
+        collection.ControlsInitialized.AddHandler(updateHeaderMenuOrientation);
+        collection.BrowserWindowResized.AddHandler(updateHeaderMenuOrientation);
+
+        $.fn.flashMessage = function (options) {
+            var target = this;
+            options = $.extend({}, options, { timeout: 5000 });
+            if (!options.message) {
+                options.message = getFlashMessageFromCookie();
+                options.isWarning = getFlashMessageSeverityFromCookie();
+                deleteFlashMessageCookie();
+            }
+            if (options.message) {
+                if (typeof options.message === "string") {
+                    target.html("<span>" + options.message + "</span>");
+                } else {
+                    target.empty().append(options.message);
+                }
+            }
+
+            //console.log("Is warning: " + options.isWarning);
+            if (options.isWarning === 'True') {
+                //console.log("target background color is: " + target.css("background-color") )
+                target.css("background-color", "#F22E2E");
+            }
+            else
+            {
+                target.css("background-color", "#a4c3f4");
+            }
+
+            if (target.children().length === 0) return;
+
+            target.fadeIn().one("click", function () {
+                $(this).fadeOut();
+            });
+
+            if (options.timeout > 0) {
+                setTimeout(function () { target.fadeOut(); }, options.timeout);
+            }
+
+            return this;
+
+            function getFlashMessageFromCookie() {
+                return $.cookie("MTPFlashMessage");
+            }
+
+            function getFlashMessageSeverityFromCookie() {
+                return $.cookie("MTPFlashMessageBad");
+            }
+
+            function deleteFlashMessageCookie() {
+                $.cookie("MTPFlashMessage", null, { path: '/' });
+                $.cookie("MTPFlashMessageBad", null, { path: '/' });
+            }
+        };
+
+        function showFlashIfPopulated() {
+            if ($.cookie("MTPFlashMessage") != undefined && $.cookie("MTPFlashMessage") != "null") {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage();
+            }
+            else {
+            }
+        }
+
+        function hideFlashIfEmpty() {
+            if ($.cookie("MTPFlashMessage") == "null") {
+                $('#flash-message').hide();
+            }
+
+        MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+        }
+
+        // shows the flash message when it is triggered on file upload complete
+        function showFlashMessageForFileUploadComplete(callbackData) {
+            const { message, error, isError } = JSON.parse(callbackData);
+
+            if (message) {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage({ message: `${message}${isError === 'True' ? ` Error message: "${error}"` : ""}`, isWarning: isError });
+            }
+        }
+
+        function viewClaimDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewClaimPackageDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimPackageDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPortalDoc(s, e, docId) {
+            var url = '/PortalDocuments/ViewPortalDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewLawFirmDoc(s, e, docId) {
+            var url = '/Admin/ViewLawFirmDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPFSDoc(s, e, docId) {
+            var url = '/FactSheet/ViewPFSDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e) {
+            var url = '/TimeExpense/ViewExpenseDocument';
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e, docId) {
+            var url = '/TimeExpense/ViewExpenseDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function GetElementById(id) {
+            return document.querySelector('#' + id);
+        }
+
+        function SetElementValue(elemId, value) {
+            GetElementById(elemId).value = value;
+        }
+    </script>
+
+    <div class="dxpnlControl_MaterialCompact mainContentPane" id="MainPane">
+	
+
+
+    <div class="contentPane">
+        
+        
+
+<script>
+    var reportAction = "/Report";
+
+    function ShowSSNPopup(s, e, action) {
+        UnderstandCheckbox.SetValue(false);
+        pcAcknowledgeSSN.Show();
+
+        reportAction = action;
+    }
+
+    function HandleReportExport(s, e) {
+        if (UnderstandCheckbox.GetValue() != true) {
+            alert("Please check the box to state that you understand the report contains PII.");
+            return;
+        }
+
+        pcAcknowledgeSSN.Hide();
+
+        window.location.href = reportAction;
+    }
+</script>
+
+<h2>Reports</h2>
+<p>Use the buttons below to view various reports.</p>
+<div>
+    <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc" id="pcReportsTabView" style="min-width:500px;">
+	<ul class="dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer" id="pcReportsTabView_TC">
+		<li class="dxtc-leftIndent">&nbsp;</li><li class="dxtc-tab dxtc-lead" style="display:none;" id="pcReportsTabView_T0"><a class="dxtc-link" id="pcReportsTabView_T0T"><span class="dx-vam">Plaintiff Reports</span></a></li><li class="dxtc-activeTab dxtc-lead dxtc-psi" id="pcReportsTabView_AT0" style="height: 37px;"><a class="dxtc-link" id="pcReportsTabView_AT0T"><span class="dx-vam">Plaintiff Reports</span></a></li><li class="dxtc-spacer" id="pcReportsTabView_T0S">&nbsp;</li><li class="dxtc-tab dxtc-psi" id="pcReportsTabView_T1" style="height: 37px;"><a class="dxtc-link" id="pcReportsTabView_T1T"><span class="dx-vam">Plaintiff Leadership Reports</span></a></li><li class="dxtc-activeTab" style="display:none;" id="pcReportsTabView_AT1"><a class="dxtc-link" id="pcReportsTabView_AT1T"><span class="dx-vam">Plaintiff Leadership Reports</span></a></li><li class="dxtc-spacer" id="pcReportsTabView_T1S">&nbsp;</li><li class="dxtc-tab dxtc-psi" id="pcReportsTabView_T2" style="height: 37px;"><a class="dxtc-link" id="pcReportsTabView_T2T"><span class="dx-vam">Defendant Reports</span></a></li><li class="dxtc-activeTab" style="display:none;" id="pcReportsTabView_AT2"><a class="dxtc-link" id="pcReportsTabView_AT2T"><span class="dx-vam">Defendant Reports</span></a></li><li class="dxtc-spacer" id="pcReportsTabView_T2S">&nbsp;</li><li class="dxtc-tab dxtc-psi" id="pcReportsTabView_T3" style="height: 37px;"><a class="dxtc-link" id="pcReportsTabView_T3T"><span class="dx-vam">Lien Reports</span></a></li><li class="dxtc-activeTab" style="display:none;" id="pcReportsTabView_AT3"><a class="dxtc-link" id="pcReportsTabView_AT3T"><span class="dx-vam">Lien Reports</span></a></li><li class="dxtc-spacer" id="pcReportsTabView_T3S">&nbsp;</li><li class="dxtc-tab dxtc-last dxtc-psi" id="pcReportsTabView_T4" style="height: 37px;"><a class="dxtc-link" id="pcReportsTabView_T4T"><span class="dx-vam">Administrative Reports</span></a></li><li class="dxtc-activeTab dxtc-last" style="display:none;" id="pcReportsTabView_AT4"><a class="dxtc-link" id="pcReportsTabView_AT4T"><span class="dx-vam">Administrative Reports</span></a></li><li class="dxtc-rightIndent">&nbsp;</li>
+	</ul><div class="dxtc-content" id="pcReportsTabView_CC">
+		<div id="pcReportsTabView_C0">
+			<div>
+<div style="width:300px"><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSEnrollment_I" class="dxb-hb" value="Plaintiff Enrollment Report" type="button" name="btnPFSEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSEnrollmentImg"><span class="dx-vam">Plaintiff Enrollment Report</span>
+	</div>
+</div><script id="dxss_1783138729" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnPFSEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSEnrollment") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSExport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSExport_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSExport_I" class="dxb-hb" value="Plaintiff Profile Form Export" type="button" name="btnPFSExport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSExportImg"><span class="dx-vam">Plaintiff Profile Form Export</span>
+	</div>
+</div><script id="dxss_1809151869" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSExport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSExport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSExport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSExport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSExport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSDocuments" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSDocuments_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSDocuments_I" class="dxb-hb" value="Plaintiff Documents Report" type="button" name="btnPFSDocuments">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSDocumentsImg"><span class="dx-vam">Plaintiff Documents Report</span>
+	</div>
+</div><script id="dxss_832446429" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSDocuments',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSDocuments',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSDocuments',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSDocuments','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSDocumentsWithSummary'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSAmendments" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSAmendments_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSAmendments_I" class="dxb-hb" value="Plaintiff Amendment Report" type="button" name="btnPFSAmendments">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSAmendmentsImg"><span class="dx-vam">Plaintiff Amendment Report</span>
+	</div>
+</div><script id="dxss_621125527" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSAmendments',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSAmendments',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSAmendments',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSAmendments','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSAmendments'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSSignedVerification" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSSignedVerification_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSSignedVerification_I" class="dxb-hb" value="Plaintiff Signed Verification Report" type="button" name="btnPFSSignedVerification">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSSignedVerificationImg"><span class="dx-vam" style="width: 250px;">Plaintiff Signed Verification Report</span>
+	</div>
+</div><script id="dxss_1763446003" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSSignedVerification',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSSignedVerification',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSSignedVerification',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSSignedVerification','',{'useSubmitBehavior':false,'submitUrl':'/Report/SignedVerification'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSAudit" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSAudit_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSAudit_I" class="dxb-hb" value="Plaintiff Audit Report" type="button" name="btnPFSAudit">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSAuditImg"><span class="dx-vam">Plaintiff Audit Report</span>
+	</div>
+</div><script id="dxss_724611710" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSAudit',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSAudit',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSAudit',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSAudit',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSAudit','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/LawFirmAudit") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnNewPFSEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnNewPFSEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnNewPFSEnrollment_I" class="dxb-hb" value="Plaintiff Fact Sheet Export" type="button" name="btnNewPFSEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnNewPFSEnrollmentImg"><span class="dx-vam">Plaintiff Fact Sheet Export</span>
+	</div>
+</div><script id="dxss_1222058127" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnNewPFSEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnNewPFSEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnNewPFSEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnNewPFSEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnNewPFSEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/NewPFSExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedPPFEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedPPFEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedPPFEnrollment_I" class="dxb-hb" value="Consolidated PPF Export" type="button" name="btnConsolidatedPPFEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedPPFEnrollmentImg"><span class="dx-vam">Consolidated PPF Export</span>
+	</div>
+</div><script id="dxss_2124765091" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedPPFEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedPPFEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedPPFEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedPPFEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedPPFEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPPFExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedPFSEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedPFSEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedPFSEnrollment_I" class="dxb-hb" value="Consolidated PFS Export" type="button" name="btnConsolidatedPFSEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedPFSEnrollmentImg"><span class="dx-vam">Consolidated PFS Export</span>
+	</div>
+</div><script id="dxss_1609797693" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedPFSEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedPFSEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedPFSEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedPFSEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedPFSEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPFSExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedEnrollment_I" class="dxb-hb" value="Consolidated Plaintiff Export Report" type="button" name="btnConsolidatedEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedEnrollmentImg"><span class="dx-vam" style="width: 250px;">Consolidated Plaintiff Export Report</span>
+	</div>
+</div><script id="dxss_1141768899" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffPortalAccessAndNameChangeReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffPortalAccessAndNameChangeReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffPortalAccessAndNameChangeReport_I" class="dxb-hb" value="Plaintiff Portal Access and Name Change Report" type="button" name="btnPlaintiffPortalAccessAndNameChangeReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffPortalAccessAndNameChangeReportImg"><span class="dx-vam" style="width: 250px;">Plaintiff Portal Access and Name Change Report</span>
+	</div>
+</div><script id="dxss_770947889" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffPortalAccessAndNameChangeReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffPortalAccessAndNameChangeReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffPortalAccessAndNameChangeReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffPortalAccessAndNameChangeReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffPortalAccessAndNameChangeReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PlaintiffPortalAccess") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnIncompleteItemsRequiredForSubmission" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnIncompleteItemsRequiredForSubmission_CD">
+		<div class="dxb-hbc">
+			<input id="btnIncompleteItemsRequiredForSubmission_I" class="dxb-hb" value="Incomplete Items Required for Submission Report" type="button" name="btnIncompleteItemsRequiredForSubmission">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnIncompleteItemsRequiredForSubmissionImg"><span class="dx-vam" style="width: 250px;">Incomplete Items Required for Submission Report</span>
+	</div>
+</div><script id="dxss_1842427390" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnIncompleteItemsRequiredForSubmission',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnIncompleteItemsRequiredForSubmission',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnIncompleteItemsRequiredForSubmission',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnIncompleteItemsRequiredForSubmission',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnIncompleteItemsRequiredForSubmission','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/AFFFIncompleteItems") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnAddressOfContaminatedWaterIDReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnAddressOfContaminatedWaterIDReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnAddressOfContaminatedWaterIDReport_I" class="dxb-hb" value="Address of Contaminated Water ID Report" type="button" name="btnAddressOfContaminatedWaterIDReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnAddressOfContaminatedWaterIDReportImg"><span class="dx-vam" style="width: 250px;">Address of Contaminated Water ID Report</span>
+	</div>
+</div><script id="dxss_1741730119" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnAddressOfContaminatedWaterIDReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnAddressOfContaminatedWaterIDReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnAddressOfContaminatedWaterIDReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnAddressOfContaminatedWaterIDReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnAddressOfContaminatedWaterIDReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/AFFFDrinkingwaterSDWIS") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnCMO37DeficiencyReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnCMO37DeficiencyReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnCMO37DeficiencyReport_I" class="dxb-hb" value="CMO 37 Deficiency Report" type="button" name="btnCMO37DeficiencyReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnCMO37DeficiencyReportImg"><span class="dx-vam">CMO 37 Deficiency Report</span>
+	</div>
+</div><script id="dxss_1322393251" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCMO37DeficiencyReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCMO37DeficiencyReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCMO37DeficiencyReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnCMO37DeficiencyReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCMO37DeficiencyReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/CMO37DeficiencyReport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnDualRepresentationCaseReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnDualRepresentationCaseReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnDualRepresentationCaseReport_I" class="dxb-hb" value="Dual Representation Case Report" type="button" name="btnDualRepresentationCaseReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDualRepresentationCaseReportImg"><span class="dx-vam" style="width: 250px;">Dual Representation Case Report</span>
+	</div>
+</div><script id="dxss_421529213" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnDualRepresentationCaseReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnDualRepresentationCaseReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnDualRepresentationCaseReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnDualRepresentationCaseReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnDualRepresentationCaseReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/DualRepresentationCaseReport") }});
+
+//-->
+</script></div>
+			</div>
+		</div><div style="display:none;" id="pcReportsTabView_C1">
+			<div>
+<div style="width:350px"><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSEnrollment_PL" style="display:none;-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSEnrollment_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSEnrollment_PL_I" class="dxb-hb" value="JCCP Plaintiff Enrollment" type="button" name="btnPFSEnrollment_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSEnrollment_PLImg"><span class="dx-vam">JCCP Plaintiff Enrollment</span>
+	</div>
+</div><script id="dxss_757573076" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSEnrollment_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSEnrollment_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSEnrollment_PL',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSEnrollment_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSEnrollment_PL','',{'clientVisible':false,'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PlaintiffLeadershipPFSEnrollment") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSExport_PL" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSExport_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSExport_PL_I" class="dxb-hb" value="Plaintiff Profile Form Export" type="button" name="btnPFSExport_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSExport_PLImg"><span class="dx-vam">Plaintiff Profile Form Export</span>
+	</div>
+</div><script id="dxss_997965332" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSExport_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSExport_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSExport_PL',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSExport_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSExport_PL','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSDocuments_PL" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSDocuments_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSDocuments_PL_I" class="dxb-hb" value="Plaintiff Documents Report" type="button" name="btnPFSDocuments_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSDocuments_PLImg"><span class="dx-vam">Plaintiff Documents Report</span>
+	</div>
+</div><script id="dxss_1695574375" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSDocuments_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSDocuments_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSDocuments_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSDocuments_PL','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSDocumentsWithSummary'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSAmendments_PL" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSAmendments_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSAmendments_PL_I" class="dxb-hb" value="Plaintiff Amendment Report" type="button" name="btnPFSAmendments_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSAmendments_PLImg"><span class="dx-vam">Plaintiff Amendment Report</span>
+	</div>
+</div><script id="dxss_1375833107" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSAmendments_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSAmendments_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSAmendments_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSAmendments_PL','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSAmendments'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSSignedVerification_PL" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSSignedVerification_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSSignedVerification_PL_I" class="dxb-hb" value="Plaintiff Signed Verification Report" type="button" name="btnPFSSignedVerification_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSSignedVerification_PLImg"><span class="dx-vam">Plaintiff Signed Verification Report</span>
+	</div>
+</div><script id="dxss_1961721231" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSSignedVerification_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSSignedVerification_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSSignedVerification_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSSignedVerification_PL','',{'useSubmitBehavior':false,'submitUrl':'/Report/SignedVerification'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimDocuments_PL" style="display:none;-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimDocuments_PL_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimDocuments_PL_I" class="dxb-hb" value="Plaintiff Claim Documents Report" type="button" name="btnClaimDocuments_PL">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimDocuments_PLImg"><span class="dx-vam">Plaintiff Claim Documents Report</span>
+	</div>
+</div><script id="dxss_1291773087" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimDocuments_PL',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimDocuments_PL',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimDocuments_PL',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimDocuments_PL',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimDocuments_PL','',{'clientVisible':false,'useSubmitBehavior':false,'submitUrl':'/Report/PFSClaimDocumentsPL'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipPFSEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipPFSEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipPFSEnrollment_I" class="dxb-hb" value="Plaintiff Enrollment Report" type="button" name="btnPlaintiffLeadershipPFSEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipPFSEnrollmentImg"><span class="dx-vam">Plaintiff Enrollment Report</span>
+	</div>
+</div><script id="dxss_1209576609" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipPFSEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipPFSEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipPFSEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipPFSEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipPFSEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSEnrollment") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnNewPlaintiffLeadershipPFSEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnNewPlaintiffLeadershipPFSEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnNewPlaintiffLeadershipPFSEnrollment_I" class="dxb-hb" value="Plaintiff Fact Sheet Export" type="button" name="btnNewPlaintiffLeadershipPFSEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnNewPlaintiffLeadershipPFSEnrollmentImg"><span class="dx-vam">Plaintiff Fact Sheet Export</span>
+	</div>
+</div><script id="dxss_2017210255" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnNewPlaintiffLeadershipPFSEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnNewPlaintiffLeadershipPFSEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnNewPlaintiffLeadershipPFSEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnNewPlaintiffLeadershipPFSEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnNewPlaintiffLeadershipPFSEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/NewPFSExport") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipConsolidatedPPFEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipConsolidatedPPFEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipConsolidatedPPFEnrollment_I" class="dxb-hb" value="Consolidated PPF Export" type="button" name="btnPlaintiffLeadershipConsolidatedPPFEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipConsolidatedPPFEnrollmentImg"><span class="dx-vam">Consolidated PPF Export</span>
+	</div>
+</div><script id="dxss_396573245" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipConsolidatedPPFEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipConsolidatedPPFEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipConsolidatedPPFEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipConsolidatedPPFEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipConsolidatedPPFEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPPFExport?IsPlaintiffLeadershipReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipConsolidatedPFS" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipConsolidatedPFS_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipConsolidatedPFS_I" class="dxb-hb" value="Consolidated PFS Export" type="button" name="btnPlaintiffLeadershipConsolidatedPFS">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipConsolidatedPFSImg"><span class="dx-vam">Consolidated PFS Export</span>
+	</div>
+</div><script id="dxss_2076461375" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipConsolidatedPFS',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipConsolidatedPFS',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipConsolidatedPFS',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipConsolidatedPFS',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipConsolidatedPFS','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPFSExport?IsPlaintiffLeadershipReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipConsolidatedEnrollment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipConsolidatedEnrollment_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipConsolidatedEnrollment_I" class="dxb-hb" value="Consolidated Plaintiff Export Report" type="button" name="btnPlaintiffLeadershipConsolidatedEnrollment">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipConsolidatedEnrollmentImg"><span class="dx-vam">Consolidated Plaintiff Export Report</span>
+	</div>
+</div><script id="dxss_296380739" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipConsolidatedEnrollment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipConsolidatedEnrollment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipConsolidatedEnrollment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipConsolidatedEnrollment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipConsolidatedEnrollment','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedExport?IsPlaintiffLeadershipReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipPortalAccessAndNameChangeReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipPortalAccessAndNameChangeReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipPortalAccessAndNameChangeReport_I" class="dxb-hb" value="Plaintiff Portal Access and Name Change Report" type="button" name="btnPlaintiffLeadershipPortalAccessAndNameChangeReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipPortalAccessAndNameChangeReportImg"><span class="dx-vam">Plaintiff Portal Access and Name Change Report</span>
+	</div>
+</div><script id="dxss_2054606104" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipPortalAccessAndNameChangeReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipPortalAccessAndNameChangeReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipPortalAccessAndNameChangeReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipPortalAccessAndNameChangeReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipPortalAccessAndNameChangeReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PlaintiffPortalAccess") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPlaintiffLeadershipCMO37DeficiencyReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPlaintiffLeadershipCMO37DeficiencyReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnPlaintiffLeadershipCMO37DeficiencyReport_I" class="dxb-hb" value="CMO 37 Deficiency Report" type="button" name="btnPlaintiffLeadershipCMO37DeficiencyReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPlaintiffLeadershipCMO37DeficiencyReportImg"><span class="dx-vam">CMO 37 Deficiency Report</span>
+	</div>
+</div><script id="dxss_1795177889" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPlaintiffLeadershipCMO37DeficiencyReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPlaintiffLeadershipCMO37DeficiencyReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPlaintiffLeadershipCMO37DeficiencyReport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPlaintiffLeadershipCMO37DeficiencyReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPlaintiffLeadershipCMO37DeficiencyReport','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/CMO37DeficiencyReport") }});
+
+//-->
+</script></div>
+			</div>
+		</div><div style="display:none;" id="pcReportsTabView_C2">
+			<div>
+<div style="width:300px"><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSEnrollmentDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSEnrollmentDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSEnrollmentDefendant_I" class="dxb-hb" value="Submitted Plaintiff Report" type="button" name="btnPFSEnrollmentDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSEnrollmentDefendantImg"><span class="dx-vam">Submitted Plaintiff Report</span>
+	</div>
+</div><script id="dxss_1550454019" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSEnrollmentDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSEnrollmentDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSEnrollmentDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSEnrollmentDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSEnrollmentDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSEnrollment?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSExportDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSExportDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSExportDefendant_I" class="dxb-hb" value="Submitted Profile Form Export" type="button" name="btnPFSExportDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSExportDefendantImg"><span class="dx-vam">Submitted Profile Form Export</span>
+	</div>
+</div><script id="dxss_90463901" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSExportDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSExportDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSExportDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSExportDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSExportDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PFSExport?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSDocumentsDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSDocumentsDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSDocumentsDefendant_I" class="dxb-hb" value="Plaintiff Documents Report" type="button" name="btnPFSDocumentsDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSDocumentsDefendantImg"><span class="dx-vam">Plaintiff Documents Report</span>
+	</div>
+</div><script id="dxss_1667533398" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSDocumentsDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSDocumentsDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSDocumentsDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSDocumentsDefendant','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSDocumentsWithSummary?IsDefendantReport=True'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSAmendmentsDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSAmendmentsDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSAmendmentsDefendant_I" class="dxb-hb" value="Plaintiff Amendment Report" type="button" name="btnPFSAmendmentsDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSAmendmentsDefendantImg"><span class="dx-vam">Plaintiff Amendment Report</span>
+	</div>
+</div><script id="dxss_2105561792" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSAmendmentsDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSAmendmentsDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSAmendmentsDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSAmendmentsDefendant','',{'useSubmitBehavior':false,'submitUrl':'/Report/PFSAmendments?IsDefendantReport=True'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSSignedVerificationDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSSignedVerificationDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSSignedVerificationDefendant_I" class="dxb-hb" value="Plaintiff Signed Verification Report" type="button" name="btnPFSSignedVerificationDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSSignedVerificationDefendantImg"><span class="dx-vam">Plaintiff Signed Verification Report</span>
+	</div>
+</div><script id="dxss_1974300878" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSSignedVerificationDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSSignedVerificationDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPFSSignedVerificationDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSSignedVerificationDefendant','',{'useSubmitBehavior':false,'submitUrl':'/Report/SignedVerification?IsDefendantReport=True'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPFSDefendantSummary" style="display:none;-webkit-user-select:none;">
+	<div class="dxb" id="btnPFSDefendantSummary_CD">
+		<div class="dxb-hbc">
+			<input id="btnPFSDefendantSummary_I" class="dxb-hb" value="Plaintiff Analysis Report" type="button" name="btnPFSDefendantSummary">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPFSDefendantSummaryImg"><span class="dx-vam">Plaintiff Analysis Report</span>
+	</div>
+</div><script id="dxss_1448911942" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPFSDefendantSummary',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPFSDefendantSummary',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPFSDefendantSummary',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPFSDefendantSummary',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPFSDefendantSummary','',{'clientVisible':false,'useSubmitBehavior':false,'submitUrl':'/Report/PFSAnalysis'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnNewPFSEnrollmentDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnNewPFSEnrollmentDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnNewPFSEnrollmentDefendant_I" class="dxb-hb" value="Submitted Fact Sheet Export" type="button" name="btnNewPFSEnrollmentDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnNewPFSEnrollmentDefendantImg"><span class="dx-vam">Submitted Fact Sheet Export</span>
+	</div>
+</div><script id="dxss_1225818671" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnNewPFSEnrollmentDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnNewPFSEnrollmentDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnNewPFSEnrollmentDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnNewPFSEnrollmentDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnNewPFSEnrollmentDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/NewPFSExport?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedPPFEnrollmentDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedPPFEnrollmentDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedPPFEnrollmentDefendant_I" class="dxb-hb" value="Consolidated Submitted PPF Export" type="button" name="btnConsolidatedPPFEnrollmentDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedPPFEnrollmentDefendantImg"><span class="dx-vam">Consolidated Submitted PPF Export</span>
+	</div>
+</div><script id="dxss_1950576995" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedPPFEnrollmentDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedPPFEnrollmentDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedPPFEnrollmentDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedPPFEnrollmentDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedPPFEnrollmentDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPPFExport?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedPFSEnrollmentDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedPFSEnrollmentDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedPFSEnrollmentDefendant_I" class="dxb-hb" value="Consolidated Submitted PFS Export" type="button" name="btnConsolidatedPFSEnrollmentDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedPFSEnrollmentDefendantImg"><span class="dx-vam">Consolidated Submitted PFS Export</span>
+	</div>
+</div><script id="dxss_306983501" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedPFSEnrollmentDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedPFSEnrollmentDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedPFSEnrollmentDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedPFSEnrollmentDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedPFSEnrollmentDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedPFSExport?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnConsolidatedEnrollmentDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnConsolidatedEnrollmentDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnConsolidatedEnrollmentDefendant_I" class="dxb-hb" value="Consolidated Submitted Plaintiff Export Report" type="button" name="btnConsolidatedEnrollmentDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnConsolidatedEnrollmentDefendantImg"><span class="dx-vam">Consolidated Submitted Plaintiff Export Report</span>
+	</div>
+</div><script id="dxss_509512815" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnConsolidatedEnrollmentDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnConsolidatedEnrollmentDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnConsolidatedEnrollmentDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnConsolidatedEnrollmentDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnConsolidatedEnrollmentDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ConsolidatedExport?IsDefendantReport=True") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnCMO37DeficiencyReportDefendant" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnCMO37DeficiencyReportDefendant_CD">
+		<div class="dxb-hbc">
+			<input id="btnCMO37DeficiencyReportDefendant_I" class="dxb-hb" value="CMO 37 Deficiency Report" type="button" name="btnCMO37DeficiencyReportDefendant">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnCMO37DeficiencyReportDefendantImg"><span class="dx-vam">CMO 37 Deficiency Report</span>
+	</div>
+</div><script id="dxss_1952486557" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCMO37DeficiencyReportDefendant',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCMO37DeficiencyReportDefendant',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCMO37DeficiencyReportDefendant',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnCMO37DeficiencyReportDefendant',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCMO37DeficiencyReportDefendant','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/CMO37DeficiencyReport?IsDefendantReport=True") }});
+
+//-->
+</script></div>
+			</div>
+		</div><div style="display:none;" id="pcReportsTabView_C3">
+			<div>
+<div style="width:300px"><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnBankruptcyLien" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnBankruptcyLien_CD">
+		<div class="dxb-hbc">
+			<input id="btnBankruptcyLien_I" class="dxb-hb" value="Bankruptcy &amp; Lien Summary" type="button" name="btnBankruptcyLien">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnBankruptcyLienImg"><span class="dx-vam">Bankruptcy &amp; Lien Summary</span>
+	</div>
+</div><script id="dxss_187188399" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnBankruptcyLien',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnBankruptcyLien',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnBankruptcyLien',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnBankruptcyLien',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnBankruptcyLien','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/BankruptcyLienSummary") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnPrivateHealthPlan" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnPrivateHealthPlan_CD">
+		<div class="dxb-hbc">
+			<input id="btnPrivateHealthPlan_I" class="dxb-hb" value="Private Health Plan Detail" type="button" name="btnPrivateHealthPlan">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnPrivateHealthPlanImg"><span class="dx-vam">Private Health Plan Detail</span>
+	</div>
+</div><script id="dxss_1215916622" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPrivateHealthPlan',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPrivateHealthPlan',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPrivateHealthPlan',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnPrivateHealthPlan',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPrivateHealthPlan','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/PrivateHealthPlanDetail") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnGovernmentHealthPlan" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnGovernmentHealthPlan_CD">
+		<div class="dxb-hbc">
+			<input id="btnGovernmentHealthPlan_I" class="dxb-hb" value="Government Health Plan Detail" type="button" name="btnGovernmentHealthPlan">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnGovernmentHealthPlanImg"><span class="dx-vam">Government Health Plan Detail</span>
+	</div>
+</div><script id="dxss_1280167710" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnGovernmentHealthPlan',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnGovernmentHealthPlan',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnGovernmentHealthPlan',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnGovernmentHealthPlan',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnGovernmentHealthPlan','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/GovernmentHealthPlanDetail") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnOtherLienholders" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnOtherLienholders_CD">
+		<div class="dxb-hbc">
+			<input id="btnOtherLienholders_I" class="dxb-hb" value="Other Lienholders Detail" type="button" name="btnOtherLienholders">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnOtherLienholdersImg"><span class="dx-vam">Other Lienholders Detail</span>
+	</div>
+</div><script id="dxss_477377752" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnOtherLienholders',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnOtherLienholders',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnOtherLienholders',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnOtherLienholders',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnOtherLienholders','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/OtherLienholdersDetail") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnQSFFinalAllocation" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnQSFFinalAllocation_CD">
+		<div class="dxb-hbc">
+			<input id="btnQSFFinalAllocation_I" class="dxb-hb" value="QSF Final Allocation" type="button" name="btnQSFFinalAllocation">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnQSFFinalAllocationImg"><span class="dx-vam">QSF Final Allocation</span>
+	</div>
+</div><script id="dxss_593682173" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnQSFFinalAllocation',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnQSFFinalAllocation',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnQSFFinalAllocation',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnQSFFinalAllocation',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnQSFFinalAllocation','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/QSFFinalAllocation") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnFinalAllocation" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnFinalAllocation_CD">
+		<div class="dxb-hbc">
+			<input id="btnFinalAllocation_I" class="dxb-hb" value="Final Allocation" type="button" name="btnFinalAllocation">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnFinalAllocationImg"><span class="dx-vam">Final Allocation</span>
+	</div>
+</div><script id="dxss_419362851" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnFinalAllocation',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnFinalAllocation',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnFinalAllocation',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnFinalAllocation',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnFinalAllocation','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/FinalAllocation") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimantListNonEncLien" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimantListNonEncLien_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimantListNonEncLien_I" class="dxb-hb" value="Claimant List - SSN and DOB" type="button" name="btnClaimantListNonEncLien">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimantListNonEncLienImg"><span class="dx-vam">Claimant List - SSN and DOB</span>
+	</div>
+</div><script id="dxss_1207544765" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimantListNonEncLien',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimantListNonEncLien',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimantListNonEncLien',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimantListNonEncLien',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimantListNonEncLien','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ClaimantListNonEnc") }});
+
+//-->
+</script></div>
+			</div>
+		</div><div style="display:none;" id="pcReportsTabView_C4">
+			<div>
+<div style="width:300px"><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimantList" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimantList_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimantList_I" class="dxb-hb" value="Claimant List" type="button" name="btnClaimantList">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimantListImg"><span class="dx-vam">Claimant List</span>
+	</div>
+</div><script id="dxss_2060632461" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimantList',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimantList',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimantList',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimantList',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimantList','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ClaimantList") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnExtraordinaryInjury" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnExtraordinaryInjury_CD">
+		<div class="dxb-hbc">
+			<input id="btnExtraordinaryInjury_I" class="dxb-hb" value="Extraordinary Injury" type="button" name="btnExtraordinaryInjury">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnExtraordinaryInjuryImg"><span class="dx-vam">Extraordinary Injury</span>
+	</div>
+</div><script id="dxss_354775178" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnExtraordinaryInjury',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnExtraordinaryInjury',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnExtraordinaryInjury',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnExtraordinaryInjury',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnExtraordinaryInjury','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ExtraordinaryInjuryClaims") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnInjuryTypeOTHER" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnInjuryTypeOTHER_CD">
+		<div class="dxb-hbc">
+			<input id="btnInjuryTypeOTHER_I" class="dxb-hb" value="Injury Type - OTHER" type="button" name="btnInjuryTypeOTHER">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnInjuryTypeOTHERImg"><span class="dx-vam">Injury Type - OTHER</span>
+	</div>
+</div><script id="dxss_1473944543" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnInjuryTypeOTHER',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnInjuryTypeOTHER',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnInjuryTypeOTHER',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnInjuryTypeOTHER','',{'useSubmitBehavior':false,'submitUrl':'/Report/InjuryTypeOther'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnInitialAllocationBreakdown" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnInitialAllocationBreakdown_CD">
+		<div class="dxb-hbc">
+			<input id="btnInitialAllocationBreakdown_I" class="dxb-hb" value="Initial Allocation Breakdown" type="button" name="btnInitialAllocationBreakdown">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnInitialAllocationBreakdownImg"><span class="dx-vam">Initial Allocation Breakdown</span>
+	</div>
+</div><script id="dxss_1049404709" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnInitialAllocationBreakdown',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnInitialAllocationBreakdown',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnInitialAllocationBreakdown',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnInitialAllocationBreakdown','',{'useSubmitBehavior':false,'submitUrl':'/Report/InitialAllocationBreakdown'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimantListNonEnc" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimantListNonEnc_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimantListNonEnc_I" class="dxb-hb" value="Claimant List - SSN and DOB" type="button" name="btnClaimantListNonEnc">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimantListNonEncImg"><span class="dx-vam">Claimant List - SSN and DOB</span>
+	</div>
+</div><script id="dxss_1983957549" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimantListNonEnc',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimantListNonEnc',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimantListNonEnc',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimantListNonEnc',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimantListNonEnc','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ClaimantListNonEnc") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimPackageAcceptWithdraw" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimPackageAcceptWithdraw_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimPackageAcceptWithdraw_I" class="dxb-hb" value="Claim Package Accept/Withdraw" type="button" name="btnClaimPackageAcceptWithdraw">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimPackageAcceptWithdrawImg"><span class="dx-vam">Claim Package Accept/Withdraw</span>
+	</div>
+</div><script id="dxss_610708817" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimPackageAcceptWithdraw',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimPackageAcceptWithdraw',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimPackageAcceptWithdraw',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimPackageAcceptWithdraw',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimPackageAcceptWithdraw','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ClaimPackageAcceptWithdraw") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnInitialAllocation" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnInitialAllocation_CD">
+		<div class="dxb-hbc">
+			<input id="btnInitialAllocation_I" class="dxb-hb" value="Initial Allocation" type="button" name="btnInitialAllocation">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnInitialAllocationImg"><span class="dx-vam">Initial Allocation</span>
+	</div>
+</div><script id="dxss_441312605" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnInitialAllocation',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnInitialAllocation',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnInitialAllocation',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnInitialAllocation',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnInitialAllocation','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/InitialAllocation") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnExcludedClaims" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnExcludedClaims_CD">
+		<div class="dxb-hbc">
+			<input id="btnExcludedClaims_I" class="dxb-hb" value="Excluded Claims" type="button" name="btnExcludedClaims">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnExcludedClaimsImg"><span class="dx-vam">Excluded Claims</span>
+	</div>
+</div><script id="dxss_1416146861" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnExcludedClaims',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnExcludedClaims',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnExcludedClaims',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnExcludedClaims',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnExcludedClaims','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ExcludedClaims") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnFinalAllocationBreakdown" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnFinalAllocationBreakdown_CD">
+		<div class="dxb-hbc">
+			<input id="btnFinalAllocationBreakdown_I" class="dxb-hb" value="Final Allocation Breakdown" type="button" name="btnFinalAllocationBreakdown">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnFinalAllocationBreakdownImg"><span class="dx-vam">Final Allocation Breakdown</span>
+	</div>
+</div><script id="dxss_723570629" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnFinalAllocationBreakdown',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnFinalAllocationBreakdown',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnFinalAllocationBreakdown',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnFinalAllocationBreakdown','',{'useSubmitBehavior':false,'submitUrl':'/Report/FinalAllocationBreakdown'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnInternalClaimReviewComments" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnInternalClaimReviewComments_CD">
+		<div class="dxb-hbc">
+			<input id="btnInternalClaimReviewComments_I" class="dxb-hb" value="Internal Claim Review Comments" type="button" name="btnInternalClaimReviewComments">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnInternalClaimReviewCommentsImg"><span class="dx-vam">Internal Claim Review Comments</span>
+	</div>
+</div><script id="dxss_1106589477" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnInternalClaimReviewComments',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnInternalClaimReviewComments',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnInternalClaimReviewComments',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnInternalClaimReviewComments','',{'useSubmitBehavior':false,'submitUrl':'/Report/InternalClaimReviewComments'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimEligibilityAdmin" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimEligibilityAdmin_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimEligibilityAdmin_I" class="dxb-hb" value="Claim Eligibility Admin" type="button" name="btnClaimEligibilityAdmin">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimEligibilityAdminImg"><span class="dx-vam">Claim Eligibility Admin</span>
+	</div>
+</div><script id="dxss_2058493021" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimEligibilityAdmin',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimEligibilityAdmin',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClaimEligibilityAdmin',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClaimEligibilityAdmin',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimEligibilityAdmin','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/ClaimEligibilityAdmin") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClaimFormReview" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnClaimFormReview_CD">
+		<div class="dxb-hbc">
+			<input id="btnClaimFormReview_I" class="dxb-hb" value="Claim Form Review" type="button" name="btnClaimFormReview">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClaimFormReviewImg"><span class="dx-vam">Claim Form Review</span>
+	</div>
+</div><script id="dxss_815072444" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClaimFormReview',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClaimFormReview',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnClaimFormReview',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnClaimFormReview','',{'useSubmitBehavior':false,'submitUrl':'/Report/ClaimFormReview'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnFinalAllocationLien" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnFinalAllocationLien_CD">
+		<div class="dxb-hbc">
+			<input id="btnFinalAllocationLien_I" class="dxb-hb" value="Final Allocation" type="button" name="btnFinalAllocationLien">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnFinalAllocationLienImg"><span class="dx-vam">Final Allocation</span>
+	</div>
+</div><script id="dxss_1345674555" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnFinalAllocationLien',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnFinalAllocationLien',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnFinalAllocationLien',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnFinalAllocationLien',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnFinalAllocationLien','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/FinalAllocation") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnInitialAllocationPoints" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnInitialAllocationPoints_CD">
+		<div class="dxb-hbc">
+			<input id="btnInitialAllocationPoints_I" class="dxb-hb" value="Initial Allocation Points" type="button" name="btnInitialAllocationPoints">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnInitialAllocationPointsImg"><span class="dx-vam">Initial Allocation Points</span>
+	</div>
+</div><script id="dxss_1311016931" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnInitialAllocationPoints',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnInitialAllocationPoints',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnInitialAllocationPoints',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnInitialAllocationPoints',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnInitialAllocationPoints','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/InitialAllocationPoints") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnIncompleteItemsSettlementDocuments" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnIncompleteItemsSettlementDocuments_CD">
+		<div class="dxb-hbc">
+			<input id="btnIncompleteItemsSettlementDocuments_I" class="dxb-hb" value="Incomplete Items - Settlement &amp;lt;br/&amp;gt;Documents" type="button" name="btnIncompleteItemsSettlementDocuments">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnIncompleteItemsSettlementDocumentsImg"><span class="dx-vam">Incomplete Items - Settlement <br>Documents</span>
+	</div>
+</div><script id="dxss_938569271" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnIncompleteItemsSettlementDocuments',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnIncompleteItemsSettlementDocuments',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnIncompleteItemsSettlementDocuments',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnIncompleteItemsSettlementDocuments',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnIncompleteItemsSettlementDocuments','',{'encodeHtml':false,'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/IncompleteItemsSettlementDocuments") }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnTimeEntry" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnTimeEntry_CD">
+		<div class="dxb-hbc">
+			<input id="btnTimeEntry_I" class="dxb-hb" value="Time Entry" type="button" name="btnTimeEntry">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnTimeEntryImg"><span class="dx-vam">Time Entry</span>
+	</div>
+</div><script id="dxss_15489435" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnTimeEntry',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnTimeEntry',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnTimeEntry',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnTimeEntry','',{'encodeHtml':false,'useSubmitBehavior':false,'submitUrl':'/Report/TimeEntry'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnExpenseEntry" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnExpenseEntry_CD">
+		<div class="dxb-hbc">
+			<input id="btnExpenseEntry_I" class="dxb-hb" value="Expense Entry" type="button" name="btnExpenseEntry">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnExpenseEntryImg"><span class="dx-vam">Expense Entry</span>
+	</div>
+</div><script id="dxss_1931973424" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnExpenseEntry',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnExpenseEntry',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnExpenseEntry',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnExpenseEntry','',{'encodeHtml':false,'useSubmitBehavior':false,'submitUrl':'/Report/ExpenseEntry'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnBulkPDFGenerationReport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnBulkPDFGenerationReport_CD">
+		<div class="dxb-hbc">
+			<input id="btnBulkPDFGenerationReport_I" class="dxb-hb" value="Bulk PDF Generation Report" type="button" name="btnBulkPDFGenerationReport">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnBulkPDFGenerationReportImg"><span class="dx-vam">Bulk PDF Generation Report</span>
+	</div>
+</div><script id="dxss_729917916" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnBulkPDFGenerationReport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnBulkPDFGenerationReport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnBulkPDFGenerationReport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnBulkPDFGenerationReport','',{'useSubmitBehavior':false,'submitUrl':'/Report/BulkPDFGenerationReport'});
+
+//-->
+</script><div class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnSoftDeletedPlaintiffs" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnSoftDeletedPlaintiffs_CD">
+		<div class="dxb-hbc">
+			<input id="btnSoftDeletedPlaintiffs_I" class="dxb-hb" value="Soft Deleted Plaintiffs" type="button" name="btnSoftDeletedPlaintiffs">
+		</div><img class="dxIcon_export_exporttoxls_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnSoftDeletedPlaintiffsImg"><span class="dx-vam">Soft Deleted Plaintiffs</span>
+	</div>
+</div><script id="dxss_1011186243" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSoftDeletedPlaintiffs',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSoftDeletedPlaintiffs',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSoftDeletedPlaintiffs',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnSoftDeletedPlaintiffs',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnSoftDeletedPlaintiffs','',{'useSubmitBehavior':false},{'Click':function (s,e) { ShowSSNPopup(s, e, "/Report/SoftDeletedPlaintiffs") }});
+
+//-->
+</script></div>
+			</div>
+		</div>
+	</div>
+</div><b class="dx-clear"></b><script id="dxss_508339496" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcReportsTabView',[[['dxtc-tabHover',''],['',''],['T0','T1','T2','T3','T4'],['','T']],[['dxtc-activeTabHover',''],['',''],['AT0','AT1','AT2','AT3','AT4'],['','T']]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientPageControl,'pcReportsTabView','',{'stateObject':{'tabsInfo':'BwUHAAIAAhFQbGFpbnRpZmYgUmVwb3J0cwcBAgACHFBsYWludGlmZiBMZWFkZXJzaGlwIFJlcG9ydHMHAgIAAhFEZWZlbmRhbnQgUmVwb3J0cwcDAgACDExpZW4gUmVwb3J0cwcEAgACFkFkbWluaXN0cmF0aXZlIFJlcG9ydHM='},'emptyHeight':true,'emptyWidth':true},null,null,{'tabs':[['',,,,,],['',,,,,],['',,,,,],['',,,,,],['',,,,,]]});
+
+//-->
+</script>
+</div>
+
+<div id="pcAcknowledgeSSN_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:600px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header drag dxpc-withBtn" style="-webkit-user-select:none;" id="pcAcknowledgeSSN_PWH-1">
+			<div class="dxpc-closeBtn" id="pcAcknowledgeSSN_HCB-1">
+				<img class="dxWeb_pcCloseButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcAcknowledgeSSN_PWH-1T">Sensitive PII Warning</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcAcknowledgeSSN_PWC-1">
+				<div class="d-flex flex-row w-100 justify-content-center mb-2">
+<a class="dxbButton_MaterialCompact ms-auto me-1 dxbButtonSys" id="WarningIcon" href="javascript:;" style="font-size: 0pt;"><img class="dxIcon_iconbuilder_security_warning_svg_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" id="WarningIconImg"></a><script id="dxss_1641449508" data-executed="true">
+<!--
+ASPx.AddDisabledItems('WarningIcon',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_iconbuilder_security_warning_svg_32x32_disabled'}]],['Img']]]);
+ASPx.createControl(MVCxClientButton,'WarningIcon','',{'isTextEmpty':true,'useSubmitBehavior':false},{'Click':function (s,e) { }});
+
+//-->
+</script><p class="my-auto ms-1 me-auto"><strong>WARNING!</strong>
+</p></div>
+<p class="text-center">This document contains sensitive PII and needs to be handled appropriately.</p>
+<div class="d-flex flex-row w-100 justify-content-center mb-2">
+<table class="dxeBase_MaterialCompact dxeTAR" id="UnderstandCheckbox">
+	<tbody><tr>
+		<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="UnderstandCheckbox_S_D"><span class="dxKBSW"><input id="UnderstandCheckbox_S" class="dxKBSI" name="UnderstandCheckbox" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label>I Understand</label></td>
+	</tr>
+</tbody></table><script id="dxss_1416167040" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'UnderstandCheckbox','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact','']},null,null,{'decorationStyles':[]});
+
+//-->
+</script></div>
+<div class="d-flex flex-row w-100">
+<div class="dxbButton_MaterialCompact ms-auto me-1 dxbButtonSys dxbTSys" id="CancelSSNExport" style="-webkit-user-select:none;">
+	<div class="dxb" id="CancelSSNExport_CD">
+		<div class="dxb-hbc">
+			<input id="CancelSSNExport_I" class="dxb-hb" value="Cancel" type="button" name="CancelSSNExport">
+		</div><span class="dx-vam">Cancel</span>
+	</div>
+</div><script id="dxss_1009517080" data-executed="true">
+<!--
+ASPx.AddHoverItems('CancelSSNExport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('CancelSSNExport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('CancelSSNExport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('CancelSSNExport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'CancelSSNExport','',{'useSubmitBehavior':false},{'Click':function(s,e) { pcAcknowledgeSSN.Hide(); }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact ms-1 me-auto dxbButtonSys dxbTSys" id="BeginSSNExport" style="-webkit-user-select:none;">
+	<div class="dxb" id="BeginSSNExport_CD">
+		<div class="dxb-hbc">
+			<input id="BeginSSNExport_I" class="dxb-hb" value="OK" type="button" name="BeginSSNExport">
+		</div><span class="dx-vam">OK</span>
+	</div>
+</div><script id="dxss_161169896" data-executed="true">
+<!--
+ASPx.AddHoverItems('BeginSSNExport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('BeginSSNExport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('BeginSSNExport',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('BeginSSNExport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'BeginSSNExport','',{'useSubmitBehavior':false},{'Click':function(s,e) { HandleReportExport(s, e); }});
+
+//-->
+</script></div>
+
+			</div>
+		</div>
+	</div>
+</div><div id="pcAcknowledgeSSN_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1328302390" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcAcknowledgeSSN',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcAcknowledgeSSN','',{'popupAnimationType':'fade','closeAction':'CloseButton','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','allowDragging':true,'modal':true,'width':600,'widthFromServer':true},{'Shown':function(s,e) {s.UpdatePosition();}});
+
+//-->
+</script>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+</div>
+
+    <div class="dxpnlControl_MaterialCompact footerPane panel dxpnl-edge b" id="FooterPane">
+<div class="footerMenu">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="width: 20px; height: 20px; margin: 0px 20px;">
+</div>
+<div class="copyright">
+    <span class="dxeBase_MaterialCompact">© 2026 EisnerAmper</span>
+    
+</div>
+</div><script id="dxss_215181112" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientPanel,'FooterPane','',{'hideWindowWidth':500});
+
+//-->
+</script>
+
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/modernizr-2.6.2.js" type="text/javascript"></script>
+    <script src="/Scripts/Bootstrap/bootstrap.js" type="text/javascript"></script>
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0fdd605dcd7aeda',t:'MTc4MjE1ODM5Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;"></iframe>
+</body><div id="codex-agent-overlay-root" data-codex-agent-overlay-root="true"></div></html>

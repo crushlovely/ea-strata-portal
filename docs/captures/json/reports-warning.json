@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-06-22T20:04:41.587Z",
+  "title": "Reporting",
+  "url": "https://uat.afffmdlportal.com/Report/",
+  "activeReportTab": "Plaintiff Reports",
+  "visibleModals": [
+    {
+      "ariaModal": null,
+      "className": "dxpc-mainDiv dxpc-shadow",
+      "id": null,
+      "rect": {
+        "height": 192,
+        "width": 600,
+        "x": 546,
+        "y": 369
+      },
+      "role": null,
+      "tag": "div",
+      "text": "Sensitive PII Warning <!-- ASPx.AddDisabledItems('WarningIcon',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_iconbuilder_security_warning_svg_32x32_disabled'}]],['Img']]]); ASPx.createControl(MVCxClientButton,'WarningIcon','',{'isTextEmpty':true,'useSubmitBehavior':false},{'Click':function (s,e) { }}); //--> WARNING! This document contains sensitive PII and needs to be handled appropriately. I Understand <!-- ASPx.createControl(ASPxClientCheckBox,'UnderstandCh",
+      "visible": true
+    },
+    {
+      "ariaModal": null,
+      "className": "dxpc-content",
+      "id": "pcAcknowledgeSSN_PWC-1",
+      "rect": {
+        "height": 148,
+        "width": 598,
+        "x": 547,
+        "y": 412
+      },
+      "role": null,
+      "tag": "div",
+      "text": "<!-- ASPx.AddDisabledItems('WarningIcon',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_iconbuilder_security_warning_svg_32x32_disabled'}]],['Img']]]); ASPx.createControl(MVCxClientButton,'WarningIcon','',{'isTextEmpty':true,'useSubmitBehavior':false},{'Click':function (s,e) { }}); //--> WARNING! This document contains sensitive PII and needs to be handled appropriately. I Understand <!-- ASPx.createControl(ASPxClientCheckBox,'UnderstandCheckbox','',{'imageProp",
+      "visible": true
+    }
+  ],
+  "screenshot": "reports-warning.png",
+  "html": "reports-warning.html",
+  "width": 1691,
+  "height": 1119,
+  "viewportWidth": 1691,
+  "viewportHeight": 873,
+  "screenshotSha256": "5a30c1315c1120bf6abeb03635ee23c00d1fd3f3c94d3c0e14fd5876d20dc304"
+}
