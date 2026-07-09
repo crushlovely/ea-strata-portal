@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T20:11:40.194Z",
+  "title": "FactSheet Bulk Submission Wizard",
+  "url": "https://uat.afffmdlportal.com/FSBulkOperationsWizard/BulkSubmission",
+  "screenshot": "bulk-actions-factsheet-bulk-submission-wizard.png",
+  "html": "bulk-actions-factsheet-bulk-submission-wizard.html",
+  "width": 1418,
+  "height": 992,
+  "viewportWidth": 1433,
+  "viewportHeight": 929,
+  "screenshotSha256": "c0b8c254308ea6df05c7cc2d098a2daeb8fa17d9f7098e72231042cbbffd45b9"
+}

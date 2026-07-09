@@ -1,0 +1,118 @@
+// ASTRA Card — Figma component set 6328:46567.
+// Variants: Intent=Primary (6328:46566, thick accent top border),
+// Intent=Secondary (6328:46568, hairline top border).
+// Buttons/inputs/checkboxes inside the Figma examples are separate components
+// (Buttons/Forms sections) and are not styled here.
+@use "typography" as *;
+
+@mixin card {
+  // Intent=Primary (default)
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-top: 6px solid var(--border-accent);
+}
+
+@mixin card-secondary {
+  // Intent=Secondary
+  border-top-width: 1px;
+}
+
+@mixin card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem; // 40px unbound literal in Figma
+  width: 100%;
+}
+
+@mixin card-title {
+  // Primary card title is a one-off size in Figma (40px Fraunces Regular,
+  // -0.4px tracking), not one of the heading styles.
+  @include wonk;
+  font-family: var(--heading3-font-family);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+  color: var(--text-heading);
+  text-align: center;
+  width: 100%;
+}
+
+@mixin card-title-secondary {
+  @include heading3;
+  @include wonk;
+  color: var(--text-heading);
+  text-align: center;
+}
+
+@mixin card-content {
+  display: grid;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+@mixin card-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem; // 20px unbound literal in Figma
+  width: 100%;
+}
+
+@mixin card-block-heading {
+  @include heading4;
+  @include wonk;
+  color: var(--text-heading);
+  text-align: center;
+}
+
+@mixin card-block-text {
+  @include small-text;
+  color: var(--text-default);
+  text-align: center;
+}
+
+// Component classes
+.card {
+  @include card;
+
+  &__body {
+    @include card-body;
+  }
+
+  &__title {
+    @include card-title;
+  }
+
+  &__content {
+    @include card-content;
+  }
+
+  &__block {
+    @include card-block;
+  }
+
+  &__block-heading {
+    @include card-block-heading;
+  }
+
+  &__block-text {
+    @include card-block-text;
+  }
+
+  &--secondary {
+    @include card-secondary;
+
+    .card__title {
+      @include card-title-secondary;
+    }
+  }
+}
+
+.card-stack {
+  position: relative;
+}

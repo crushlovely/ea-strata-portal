@@ -1,0 +1,21 @@
+// STRATA Data Table Header — Figma component 6283:960.
+// Header-bg row of STRATA Grid Header Cells (each cell flex: 1).
+
+@mixin data-table-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--data-grid-header-bg);
+  padding-inline: var(--spacing-xxs);
+}
+
+// ---------------------------------------------------------------- classes
+
+.data-table-header {
+  @include data-table-header;
+
+  > * {
+    flex: 1;
+  }
+}
+
+// App selectors

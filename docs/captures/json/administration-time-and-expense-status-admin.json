@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T19:55:36.130Z",
+  "title": "Time & Expense Status Admin",
+  "url": "https://uat.afffmdlportal.com/Admin/TimeExpenseStatusAdmin",
+  "screenshot": "administration-time-and-expense-status-admin.png",
+  "html": "administration-time-and-expense-status-admin.html",
+  "width": 1440,
+  "height": 929,
+  "viewportWidth": 1440,
+  "viewportHeight": 929,
+  "screenshotSha256": "23f783b7faa05cb761b42322f4cccd1152c9d371f1858e3881fd95a6ee26b737"
+}

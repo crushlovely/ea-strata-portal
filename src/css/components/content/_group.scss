@@ -1,0 +1,17 @@
+[class*="GroupContainer"] {
+  display: grid;
+  gap: var(--spacing-sm);
+  // Auto columns: fit as many 20rem+ tracks as the row allows, stretch to
+  // fill, wrap the rest. min(20rem, 100%) keeps a single column from
+  // forcing overflow on narrow viewports.
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+
+  [class*="GroupCell"] > div {
+    display: flex;
+    gap: var(--spacing-xxs);
+    align-items: center;
+    & div:first-child {
+      font-weight: 600;
+    }
+  }
+}

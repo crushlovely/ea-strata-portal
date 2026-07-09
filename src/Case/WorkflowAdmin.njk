@@ -1,0 +1,490 @@
+---
+layout: layouts/base.njk
+title: "Workflow Admin"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<style type="text/css">
+    .tv-node {
+        cursor: default!important;
+        /*background-color: transparent!important;*/
+    }
+</style>
+
+<script type="text/javascript">
+
+    function ToggleTimeAndExpense(s, e) {
+        var action = '';
+        if (s.GetChecked() == false)
+            action = 'disallow';
+        else
+            action = 'allow';
+
+        if (confirm('Are you sure you want to toggle the Time & Expense module? This will ' + action + ' users with the appropriate permissions to access Time & Expense related functions. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpense',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeAndExpenseJurisdiction(s, e) {
+        var action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Time & Expense Jurisdiction field? This will ' + action + ' the jurisdiction field on Time and Expense popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpenseJurisdiction',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeAndExpenseApprovedBy(s, e) {
+        var action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Time & Expense Approved By field? This will ' + action + ' the approved by field on Time and Expense popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpenseApprovedBy',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeEntryHourlyRate(s, e) {
+        var action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Time Entry Hourly Rate and Total fields? This will ' + action + ' those fields on Time Entry popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeEntryHourlyRate',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeAndExpenseNameOfCaseMemo(s, e) {
+        let action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Time & Expense Name of Case Memo field? This will ' + action + ' the Name of Case Memo field on Time and Expense popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpenseNameOfCaseMemo',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeAndExpenseExpenseType(s, e) {
+        let action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Expense Entry Expense Type field? This will ' + action + ' the Expense Type field on Expense popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpenseExpenseType',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    function ToggleTimeAndExpenseActivityCode(s, e) {
+        let action = '';
+        if (s.GetChecked() == false)
+            action = 'hide';
+        else
+            action = 'show';
+
+        if (confirm('Are you sure you want to toggle the Expense Entry Activity Code field? This will ' + action + ' the Activity Code field on Time Entry popups. Continue?')) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Case/ToggleTimeAndExpenseActivityCode',
+                success: function(data) {
+                    showFlashIfPopulated();
+                },
+                error: function(data) {
+                    showFlashIfPopulated();
+                },
+                complete: function() {
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+
+</script>
+
+
+<h2>Workflow Admin</h2>
+
+<p>Use this screen to toggle off/on certain modules and features of the Portal outside of the normal Case workflow.</p>
+<p>
+    The manual toggling done here is outside of the normal workflow controlled by the status of the Case. Please use this screen if you are sure you want
+    to override the normal case workflow and manually turn on/off specific modules and features.
+</p>
+
+<div class="dxflFormLayout_MaterialCompact" id="flWorkflowFeatures" style="width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flWorkflowFeatures_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflChildInLastRowSys" style="width:38%;" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="width:100%;">
+				<span class="dxflGroupBoxCaption_MaterialCompact"></span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flWorkflowFeatures_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseToggle" style="font-size:Large;font-weight:bold;">Time &amp; Expense</span>
+						</div></td><td id="flWorkflowFeatures_0_1" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseToggle_S" class="dxKBSI" name="cbxTimeExpenseToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_1706361306" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpense},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_2" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvFeatureList" style="width: 100%; min-width: 277px;">
+	<div id="tvFeatureList_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse"></span><div class="dxtv-nd" id="tvFeatureList_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul>
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvFeatureList_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Time &amp; Expense Entry</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvFeatureList_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Common Benefit Acknowledgement</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvFeatureList_N0_2">
+					<span class="dxtv-ndTxt dx-vam">User Profile Survey (If Enabled)</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvFeatureList_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvFeatureList_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_743367301" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvFeatureList',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvFeatureList','',{'stateObject':{'nodesInfo':'BwEHAAIRdHZGZWF0dXJlTGlzdFJvb3QCCEZlYXR1cmVzBwMHAAIAAhRUaW1lICYgRXhwZW5zZSBFbnRyeQcABwECAAIeQ29tbW9uIEJlbmVmaXQgQWNrbm93bGVkZ2VtZW50BwAHAgIAAiBVc2VyIFByb2ZpbGUgU3VydmV5IChJZiBFbmFibGVkKQcA'},'nodesState':[{'N0':'T'},'',{}],'nodesInfo':{'0':['T','T','tvFeatureListRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_3" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseJurisdictionToggle" style="font-size:Large;font-weight:bold;">Time &amp; Expense - Show Jurisdiction Field</span>
+						</div></td><td id="flWorkflowFeatures_0_4" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseJurisdictionToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseJurisdictionToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseJurisdictionToggle_S" class="dxKBSI" name="cbxTimeExpenseJurisdictionToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_616341352" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseJurisdictionToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpenseJurisdiction},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_5" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvJurisdictionFeatures" style="width: 100%; min-width: 540px;">
+	<div id="tvJurisdictionFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn dxRippleTargetExternal"><img id="" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style=""></span><div class="dxtv-nd" id="tvJurisdictionFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvJurisdictionFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the (required) Jurisdiction dropdown field on Time &amp; Expense Pop-ups.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvJurisdictionFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Adds Jurisdiction field to both Time &amp; Expense Reports.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvJurisdictionFeatures_N0_2">
+					<span class="dxtv-ndTxt dx-vam">Note: Requires Jurisdiction data table to be populated.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvJurisdictionFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvJurisdictionFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_762639164" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvJurisdictionFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvJurisdictionFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIadHZKdXJpc2RpY3Rpb25GZWF0dXJlc1Jvb3QCCEZlYXR1cmVzBwMHAAIAAktTaG93cyB0aGUgKHJlcXVpcmVkKSBKdXJpc2RpY3Rpb24gZHJvcGRvd24gZmllbGQgb24gVGltZSAmIEV4cGVuc2UgUG9wLXVwcy4HAAcBAgACN0FkZHMgSnVyaXNkaWN0aW9uIGZpZWxkIHRvIGJvdGggVGltZSAmIEV4cGVuc2UgUmVwb3J0cy4HAAcCAgACN05vdGU6IFJlcXVpcmVzIEp1cmlzZGljdGlvbiBkYXRhIHRhYmxlIHRvIGJlIHBvcHVsYXRlZC4HAA=='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvJurisdictionFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_6" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseApprovedByToggle" style="font-size:Large;font-weight:bold;">Time &amp; Expense - Show Approved By Field</span>
+						</div></td><td id="flWorkflowFeatures_0_7" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseApprovedByToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseApprovedByToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseApprovedByToggle_S" class="dxKBSI" name="cbxTimeExpenseApprovedByToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_61715770" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseApprovedByToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpenseApprovedBy},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_8" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvApprovedByFeatures" style="width: 100%; min-width: 93px;">
+	<div id="tvApprovedByFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand"></span><div class="dxtv-nd" id="tvApprovedByFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="display:none;">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvApprovedByFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the (required) Approved By dropdown field on Time &amp; Expense Pop-ups.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvApprovedByFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Adds Approved By field to both Time &amp; Expense Reports.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvApprovedByFeatures_N0_2">
+					<span class="dxtv-ndTxt dx-vam">Note: Requires Approved By data table to be populated.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvApprovedByFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvApprovedByFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_533660814" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvApprovedByFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvApprovedByFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIYdHZBcHByb3ZlZEJ5RmVhdHVyZXNSb290AghGZWF0dXJlcwcDBwACAAJKU2hvd3MgdGhlIChyZXF1aXJlZCkgQXBwcm92ZWQgQnkgZHJvcGRvd24gZmllbGQgb24gVGltZSAmIEV4cGVuc2UgUG9wLXVwcy4HAAcBAgACNkFkZHMgQXBwcm92ZWQgQnkgZmllbGQgdG8gYm90aCBUaW1lICYgRXhwZW5zZSBSZXBvcnRzLgcABwICAAI2Tm90ZTogUmVxdWlyZXMgQXBwcm92ZWQgQnkgZGF0YSB0YWJsZSB0byBiZSBwb3B1bGF0ZWQuBwA='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvApprovedByFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_9" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeEntryHourlyRateToggle" style="font-size:Large;font-weight:bold;">Time Entry - Show Hourly Rate and Total Field</span>
+						</div></td><td id="flWorkflowFeatures_0_10" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeEntryHourlyRateToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeEntryHourlyRateToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeEntryHourlyRateToggle_S" class="dxKBSI" name="cbxTimeEntryHourlyRateToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_757498297" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeEntryHourlyRateToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeEntryHourlyRate},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_11" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvHourlyRateFeatures" style="width: 100%; min-width: 93px;">
+	<div id="tvHourlyRateFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand"></span><div class="dxtv-nd" id="tvHourlyRateFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="display:none;">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvHourlyRateFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the Hourly Rate field on Time Entry Pop-up.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvHourlyRateFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Shows the Total field on the Time Entry Pop-up.&nbsp; This field automatically populates by multiplying the Hours * Hourly Rate.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvHourlyRateFeatures_N0_2">
+					<span class="dxtv-ndTxt dx-vam">Adds Hourly Rate and Total field to both Time &amp; Expense Reports.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvHourlyRateFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvHourlyRateFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_865888973" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvHourlyRateFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvHourlyRateFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIYdHZIb3VybHlSYXRlRmVhdHVyZXNSb290AghGZWF0dXJlcwcDBwACAAIxU2hvd3MgdGhlIEhvdXJseSBSYXRlIGZpZWxkIG9uIFRpbWUgRW50cnkgUG9wLXVwLgcABwECAAJ7U2hvd3MgdGhlIFRvdGFsIGZpZWxkIG9uIHRoZSBUaW1lIEVudHJ5IFBvcC11cC4gIFRoaXMgZmllbGQgYXV0b21hdGljYWxseSBwb3B1bGF0ZXMgYnkgbXVsdGlwbHlpbmcgdGhlIEhvdXJzICogSG91cmx5IFJhdGUuBwAHAgIAAkBBZGRzIEhvdXJseSBSYXRlIGFuZCBUb3RhbCBmaWVsZCB0byBib3RoIFRpbWUgJiBFeHBlbnNlIFJlcG9ydHMuBwA='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvHourlyRateFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_12" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseNameOfCaseToggle" style="font-size:Large;font-weight:bold;">Time &amp; Expense - Show Name of Case Memo Field</span>
+						</div></td><td id="flWorkflowFeatures_0_13" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseNameOfCaseToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseNameOfCaseToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseNameOfCaseToggle_S" class="dxKBSI" name="cbxTimeExpenseNameOfCaseToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_1054410416" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseNameOfCaseToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpenseNameOfCaseMemo},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_14" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvNameOfCaseMemoFeatures" style="width: 100%; min-width: 93px;">
+	<div id="tvNameOfCaseMemoFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand"></span><div class="dxtv-nd" id="tvNameOfCaseMemoFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="display:none;">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvNameOfCaseMemoFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the Name of Case Memo dropdown field on Time &amp; Expense Pop-ups.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvNameOfCaseMemoFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Adds Name of Case Memo field to both Time &amp; Expense Reports.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvNameOfCaseMemoFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvNameOfCaseMemoFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_1841377127" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvNameOfCaseMemoFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1']]]);
+ASPx.createControl(MVCxClientTreeView,'tvNameOfCaseMemoFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIcdHZOYW1lT2ZDYXNlTWVtb0ZlYXR1cmVzUm9vdAIIRmVhdHVyZXMHAgcAAgACRVNob3dzIHRoZSBOYW1lIG9mIENhc2UgTWVtbyBkcm9wZG93biBmaWVsZCBvbiBUaW1lICYgRXhwZW5zZSBQb3AtdXBzLgcABwECAAI8QWRkcyBOYW1lIG9mIENhc2UgTWVtbyBmaWVsZCB0byBib3RoIFRpbWUgJiBFeHBlbnNlIFJlcG9ydHMuBwA='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvNameOfCaseMemoFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_15" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseExpenseTypeToggle" style="font-size:Large;font-weight:bold;">Expense Entry - Show Expense Type Field</span>
+						</div></td><td id="flWorkflowFeatures_0_16" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseExpenseTypeToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseExpenseTypeToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseExpenseTypeToggle_S" class="dxKBSI" name="cbxTimeExpenseExpenseTypeToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_959618394" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseExpenseTypeToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpenseExpenseType},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_17" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvExpenseTypeFeatures" style="width: 100%; min-width: 93px;">
+	<div id="tvExpenseTypeFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand"></span><div class="dxtv-nd" id="tvExpenseTypeFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="display:none;">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvExpenseTypeFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the Expense Type dropdown field on Expense Pop-ups.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvExpenseTypeFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Adds the Expense Type field to Expense Reports.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvExpenseTypeFeatures_N0_2">
+					<span class="dxtv-ndTxt dx-vam">Enforces import of the Expense Type field on Expense Entry Excel imports.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvExpenseTypeFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvExpenseTypeFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_1338103370" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvExpenseTypeFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvExpenseTypeFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIZdHZFeHBlbnNlVHlwZUZlYXR1cmVzUm9vdAIIRmVhdHVyZXMHAwcAAgACOVNob3dzIHRoZSBFeHBlbnNlIFR5cGUgZHJvcGRvd24gZmllbGQgb24gRXhwZW5zZSBQb3AtdXBzLgcABwECAAIvQWRkcyB0aGUgRXhwZW5zZSBUeXBlIGZpZWxkIHRvIEV4cGVuc2UgUmVwb3J0cy4HAAcCAgACSUVuZm9yY2VzIGltcG9ydCBvZiB0aGUgRXhwZW5zZSBUeXBlIGZpZWxkIG9uIEV4cGVuc2UgRW50cnkgRXhjZWwgaW1wb3J0cy4HAA=='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvExpenseTypeFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_18" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact">
+<span class="dxeBase_MaterialCompact" id="lblTimeExpenseActivityCodeToggle" style="font-size:Large;font-weight:bold;">Time Entry - Show Activity Code Field</span>
+						</div></td><td id="flWorkflowFeatures_0_19" class="dxflGroupCell_MaterialCompact dxflLastChildInRowSys" data-left="271.1328125"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCheckBoxItemSys dxflItem_MaterialCompact">
+<span class="dxichCellSys dxeBase_MaterialCompact dxeTAR" id="cbxTimeExpenseActivityCodeToggle" style="display:inline-block;width:100%;padding-left:12rem!important;"><span class=" dxICheckBox_MaterialCompact dxichSys dxToggle dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="cbxTimeExpenseActivityCodeToggle_S_D"><span class="dxSwitcher dx-not-acc"></span><span class="dxKBSW"><input id="cbxTimeExpenseActivityCodeToggle_S" class="dxKBSI" name="cbxTimeExpenseActivityCodeToggle" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></span><script id="dxss_1321052454" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'cbxTimeExpenseActivityCodeToggle','',{'scStates':6,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'displaySwitch':true},{'CheckedChanged':ToggleTimeAndExpenseActivityCode},null,{'decorationStyles':[]});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flWorkflowFeatures_0_20" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="2" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="dxtvControl_MaterialCompact dxtv-control" id="tvActivityCodeFeatures" style="width: 100%; min-width: 93px;">
+	<div id="tvActivityCodeFeatures_CD" style="">
+		<ul style="">
+			<li><span class="dxtv-elbNoLn"><img class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand"></span><div class="dxtv-nd" id="tvActivityCodeFeatures_N0">
+				<span class="dxtv-ndTxt dx-vam" style="font-weight:bold;">Features</span>
+			</div><b class="dxtv-clr"></b><ul style="display:none;">
+				<li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvActivityCodeFeatures_N0_0">
+					<span class="dxtv-ndTxt dx-vam">Shows the Activity Code dropdown field on Time Entry Pop-ups.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvActivityCodeFeatures_N0_1">
+					<span class="dxtv-ndTxt dx-vam">Adds the Activity Code field to Time Entry Reports.</span>
+				</div></li><li class="dxtv-subnd"><span class="dxtv-elbNoLn"></span><div class="dxtv-nd tv-node" id="tvActivityCodeFeatures_N0_2">
+					<span class="dxtv-ndTxt dx-vam">Enforces import of the Activity Code field on Time Entry Excel imports.</span>
+				</div></li>
+			</ul></li>
+		</ul>
+	</div><img id="tvActivityCodeFeatures_SCB" class="dxtv-btn dxWeb_tvColBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Collapse" style="display:none;"><img id="tvActivityCodeFeatures_SEB" class="dxtv-btn dxWeb_tvExpBtn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="display:none;">
+</div><b class="dx-clear"></b><script id="dxss_1917427366" data-executed="true">
+<!--
+ASPx.AddDisabledItems('tvActivityCodeFeatures',[[['dxtv-nd dxtvDisabled_MaterialCompact'],[''],['N0']],[['dxtv-nd tv-node dxtvDisabled_MaterialCompact'],[''],['N0_0','N0_1','N0_2']]]);
+ASPx.createControl(MVCxClientTreeView,'tvActivityCodeFeatures','',{'stateObject':{'nodesInfo':'BwEHAAIadHZBY3Rpdml0eUNvZGVGZWF0dXJlc1Jvb3QCCEZlYXR1cmVzBwMHAAIAAj1TaG93cyB0aGUgQWN0aXZpdHkgQ29kZSBkcm9wZG93biBmaWVsZCBvbiBUaW1lIEVudHJ5IFBvcC11cHMuBwAHAQIAAjNBZGRzIHRoZSBBY3Rpdml0eSBDb2RlIGZpZWxkIHRvIFRpbWUgRW50cnkgUmVwb3J0cy4HAAcCAgACR0VuZm9yY2VzIGltcG9ydCBvZiB0aGUgQWN0aXZpdHkgQ29kZSBmaWVsZCBvbiBUaW1lIEVudHJ5IEV4Y2VsIGltcG9ydHMuBwA='},'nodesState':[{'N0':''},'',{}],'nodesInfo':{'0':['T','T','tvActivityCodeFeaturesRoot','',''],'0_0':['T','T','','',''],'0_1':['T','T','','',''],'0_2':['T','T','','','']}});
+
+//-->
+</script>
+						</div></td>
+					</tr>
+				</tbody></table>
+			</div></td><td data-left="548.1328125" class="dxflChildInFirstRowSys dxflChildInLastRowSys"></td><td data-left="983.0625" class="dxflChildInFirstRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_562419104" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientFormLayout,'flWorkflowFeatures','',null,null,null,{'items':[{'name':'timeExpenseGrp','path':'0','items':[{'name':'lblTimeExpenseToggle','path':'0_0','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseToggle','path':'0_1','associatedNestedExtensionName':null},{'name':'tvFeatureListItem','path':'0_2','associatedNestedExtensionName':null},{'name':'lblTimeExpenseJurisdictionToggle','path':'0_3','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseJurisdictionToggle','path':'0_4','associatedNestedExtensionName':null},{'name':'tvJurisdictionFeatures','path':'0_5','associatedNestedExtensionName':null},{'name':'lblTimeExpenseApprovedByToggle','path':'0_6','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseApprovedByToggle','path':'0_7','associatedNestedExtensionName':null},{'name':'tvApprovedByFeatures','path':'0_8','associatedNestedExtensionName':null},{'name':'lblTimeEntryHourlyRateToggle','path':'0_9','associatedNestedExtensionName':null},{'name':'cbxTimeEntryHourlyRateToggle','path':'0_10','associatedNestedExtensionName':null},{'name':'tvHourlyRateFeatures','path':'0_11','associatedNestedExtensionName':null},{'name':'lblTimeExpenseNameOfCaseToggle','path':'0_12','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseNameOfCaseToggle','path':'0_13','associatedNestedExtensionName':null},{'name':'tvNameOfCaseMemoFeatures','path':'0_14','associatedNestedExtensionName':null},{'name':'lblTimeExpenseExpenseTypeToggle','path':'0_15','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseExpenseTypeToggle','path':'0_16','associatedNestedExtensionName':null},{'name':'tvExpenseTypeFeatures','path':'0_17','associatedNestedExtensionName':null},{'name':'lblTimeExpenseActivityCodeToggle','path':'0_18','associatedNestedExtensionName':null},{'name':'cbxTimeExpenseActivityCodeToggle','path':'0_19','associatedNestedExtensionName':null},{'name':'tvActivityCodeFeatures','path':'0_20','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

@@ -1,0 +1,13 @@
+{
+  // Treat Nunjucks templates as HTML so they get HTML tooling + formatting.
+  "files.associations": {
+    "*.njk": "html"
+  },
+  // Make the built-in HTML formatter aware of {% ... %} / {{ ... }} template
+  // syntax so it doesn't mangle Nunjucks tags when formatting.
+  "html.format.templating": true,
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

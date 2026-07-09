@@ -1,0 +1,678 @@
+---
+layout: layouts/base.njk
+title: "Bulk Amend"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<script>
+    var rcId = 5;
+</script>
+<script type="text/javascript" src="/Scripts/Pages/bulkamend.js"></script>
+
+<div style="margin-top: 1.5rem">
+    <h2>Bulk Amend</h2>
+    <div style="margin-bottom: 1.5rem">
+        <p style="margin: 0rem">Select the Plaintiff(s) on the grid below you need to amendment. Once selected, click Amend and then provide a reason the plaintiffs need to be amended.  </p>
+        <br>
+        <style>
+    .searchValuesContainer {
+        display: flex;
+        align-items: flex-start;
+        font-family: monospace;
+    }
+
+    .lineNumbersContainer {
+        background-color: #f0f0f0;
+        font-size: 1rem;
+        line-height: 1.0rem;
+        padding: 3px 5px 5px 5px;
+        text-align: right;
+        user-select: none;
+        border-right: 1px solid #ccc;
+        overflow: hidden; /* Prevent scrolling in the line-numbers div */
+        height: 10rem; /* Match the height of the textarea */
+    }
+
+    .lineNumbersContainer span {
+        display: block;
+    }
+
+    #pasteFilterTextArea {
+        height: 10rem;
+        font-size: 1rem;
+        line-height: 1.0rem;
+        resize: none;
+    }
+</style>
+
+<div>
+
+    <table id="cbSearchFilter_ET" class="dxeRoot_MaterialCompact">
+	<tbody><tr>
+		<td id="cbSearchFilter_CapC" class="dxeCaptionHALSys dxeCaptionVATSys dxeTextEditCTypeSys dxeCLLSys dxeCaptionCell_MaterialCompact"><label class="dxeCaption_MaterialCompact" for="cbSearchFilter_I" style="font-weight:bold;">Search By:</label></td><td id="cbSearchFilter_CC"><input type="hidden" name="cbSearchFilter$State" id="cbSearchFilter_State" value="{&amp;quot;rawValue&amp;quot;:&amp;quot;Plaintiff Number&amp;quot;}"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="cbSearchFilter" style="width:250px;">
+			<tbody><tr>
+				<td style="display:none;"><input id="cbSearchFilter_VI" name="cbSearchFilter_VI" type="hidden" value="0"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="cbSearchFilter_I" name="cbSearchFilter" onchange="ASPx.ETextChanged('cbSearchFilter')" value="(None)" type="text" autocomplete="off"></td><td id="cbSearchFilter_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="cbSearchFilter_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+			</tr>
+		</tbody></table><input type="hidden" name="cbSearchFilter$DDDState" id="cbSearchFilter_DDD_State" value="{&amp;quot;windowsState&amp;quot;:&amp;quot;1:1:12000:101:229:1:248:97:1:0:0:0&amp;quot;}"><div id="cbSearchFilter_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index: 10000; visibility: hidden; width: 250px; height: 97px; display: none; position: absolute; left: 100.148px; top: 228.398px; overflow: visible;">
+			<div class="dxpc-mainDiv dxdd-list dxpc-shadow" style="left: 0px; top: 0px;">
+				<div class="dxpc-contentWrapper" style="display: table; height: 97px;">
+					<div class="dxpc-content" id="cbSearchFilter_DDD_PWC-1" style="display: table-cell;">
+						<input type="hidden" name="cbSearchFilter$DDD$L$State" id="cbSearchFilter_DDD_L_State" value="{&amp;quot;CustomCallback&amp;quot;:&amp;quot;&amp;quot;}"><table class="dxeListBox_MaterialCompact" id="cbSearchFilter_DDD_L" style="border-collapse: separate; height: 0px; width: 248px;">
+							<tbody><tr>
+								<td style="vertical-align:Top;"><div id="cbSearchFilter_DDD_L_D" class="dxlbd" style="width: 248px; overflow: hidden auto; padding-right: 0px; height: 93px;"><div id="cbSearchFilter_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 93px;"><div id="cbSearchFilter_DDD_LVirtualScrollTopSpacer" style="height: 0px;"></div>
+									<input id="cbSearchFilter_DDD_L_VI" type="hidden" name="cbSearchFilter$DDD$L" value="0"><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+										<tbody><tr id="cbSearchFilter_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+										</tr>
+									</tbody></table><table id="cbSearchFilter_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+									<tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI0T0" class="dxeListBoxItem_MaterialCompact">(None)</td>
+										</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI1T0" class="dxeListBoxItem_MaterialCompact  dxeListBoxItemSelected_MaterialCompact">Plaintiff Number</td>
+										</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI2T0" class="dxeListBoxItem_MaterialCompact">Law Firm Client ID</td>
+										</tr></table>
+								</div></div></td>
+							</tr>
+						</tbody></table><script id="dxss_627742904" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'cbSearchFilter_DDD_L','',{'uniqueID':'cbSearchFilter$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'savedSelectedIndex':0,'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':null,'text':'(None)'},{'value':0,'text':'Plaintiff Number'},{'value':1,'text':'Law Firm Client ID'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('cbSearchFilter', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('cbSearchFilter', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+					</div>
+				</div>
+			</div>
+		</div><script id="dxss_197579632" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbSearchFilter_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'cbSearchFilter_DDD','',{'uniqueID':'cbSearchFilter$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('cbSearchFilter', e); }});
+
+//-->
+</script></td>
+	</tr>
+</tbody></table><script id="dxss_354509832" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbSearchFilter',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('cbSearchFilter',[[['B-100']]]);
+ASPx.AddPressedItems('cbSearchFilter',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('cbSearchFilter',[[['B-100']]]);
+ASPx.AddDisabledItems('cbSearchFilter',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('cbSearchFilter',[[['B-100'],]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientComboBox,'cbSearchFilter','',{'scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'(None)'},'nullText':'Select Search Filter','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true},{'SelectedIndexChanged':OnBulkSearchFilterValueChanged},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+
+    <div class="dxpnlControl_MaterialCompact my-4" id="tbPasteFilter" style="">
+<p id="searchHelpText" class="my-2">Enter or paste the Plaintiff Numbers below to apply the filter.</p>
+<div class="searchValuesContainer">
+<div class="lineNumbersContainer" id="lineNumbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+<textarea id="pasteFilterTextArea" wrap="off" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
+</div>
+
+</div><script id="dxss_2126580247" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientPanel,'tbPasteFilter','',{'clientVisible':false});
+
+//-->
+</script>
+
+    <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnSearch" style="user-select: none;">
+	<div class="dxb" id="btnSearch_CD">
+		<div class="dxb-hbc">
+			<input id="btnSearch_I" class="dxb-hb" value="Search Plaintiffs" type="button" name="btnSearch">
+		</div><span class="dx-vam">Search Plaintiffs</span>
+	</div>
+</div><script id="dxss_2045566830" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSearch',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSearch',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSearch',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSearch',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnSearch','',{'clientVisible':false,'useSubmitBehavior':false},{'Click':OnBulkSearchButtonClicked});
+
+//-->
+</script>
+</div>
+<script>
+    function updateLineNumbers() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+
+        const lines = textArea.value.split('\n').length < 10 ? 10 : textArea.value.split('\n').length;
+        lineNumbers.innerHTML = '';
+
+        for (let i = 1; i <= lines; i++) {
+            const lineNumber = document.createElement('span');
+            lineNumber.textContent = i;
+            lineNumbers.appendChild(lineNumber);
+        }
+    }
+
+    function syncScroll() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+        lineNumbers.scrollTop = textArea.scrollTop;
+    }
+
+    // Initialize line numbers on page load
+    updateLineNumbers();
+</script>
+
+
+
+    </div>
+
+    <input type="hidden" name="gvAmendFactSheets" id="gvAmendFactSheets_State" value="{&amp;quot;keys&amp;quot;:[&amp;quot;2&amp;quot;,&amp;quot;4&amp;quot;,&amp;quot;49&amp;quot;,&amp;quot;50&amp;quot;,&amp;quot;53&amp;quot;,&amp;quot;57&amp;quot;,&amp;quot;66&amp;quot;,&amp;quot;6754&amp;quot;,&amp;quot;7404&amp;quot;,&amp;quot;7405&amp;quot;,&amp;quot;7869&amp;quot;,&amp;quot;7876&amp;quot;,&amp;quot;7877&amp;quot;,&amp;quot;7878&amp;quot;,&amp;quot;7879&amp;quot;,&amp;quot;7880&amp;quot;,&amp;quot;7901&amp;quot;,&amp;quot;7926&amp;quot;,&amp;quot;7931&amp;quot;,&amp;quot;7932&amp;quot;,&amp;quot;7956&amp;quot;,&amp;quot;7975&amp;quot;,&amp;quot;8147&amp;quot;,&amp;quot;8165&amp;quot;,&amp;quot;8403&amp;quot;,&amp;quot;10429&amp;quot;,&amp;quot;10620&amp;quot;,&amp;quot;11965&amp;quot;,&amp;quot;11975&amp;quot;,&amp;quot;11982&amp;quot;,&amp;quot;11990&amp;quot;,&amp;quot;12001&amp;quot;,&amp;quot;14017&amp;quot;,&amp;quot;15048&amp;quot;,&amp;quot;15049&amp;quot;,&amp;quot;15055&amp;quot;,&amp;quot;15056&amp;quot;,&amp;quot;15058&amp;quot;,&amp;quot;15059&amp;quot;,&amp;quot;15061&amp;quot;,&amp;quot;15064&amp;quot;,&amp;quot;15065&amp;quot;,&amp;quot;15066&amp;quot;,&amp;quot;15068&amp;quot;,&amp;quot;15071&amp;quot;,&amp;quot;15073&amp;quot;,&amp;quot;15074&amp;quot;,&amp;quot;15077&amp;quot;,&amp;quot;15078&amp;quot;,&amp;quot;15079&amp;quot;],&amp;quot;callbackState&amp;quot;:&amp;quot;9omJVqHOOsgKb0UlngFHE+NNn1vRSIUjqevou6EGWWXvsf+VgBmxNc7wS0VgCHO12ICUQy2n7OjyfiMyXHH6awU5MvqRpNOiNaILnMXqDjqULSZec95JSgpaYZmIXI1DqLZo5V8A1TyUo37QlPs0bs3wm7Q/K3XnjGDsqagrL+JlrSSRLlk91ZuvqK1qBv1oS+brws+XVc4aK/mQy4BlMIMnelM3N6O6mFUJZ8cjSl6iyQNliYwLxDOje67WbnQewMx02QQtrhk63euUji7uIWUvn/w2ny2qkdxk2op0UREc2AlC9rj1m3QwL+SBQYmwXxUJ603W5szveRY+wBCkBi5/PolqCHHg81uDzwe9E+h1yx96ZNag+cN2Bf68Dc3J7t2PeHxrrOOpmxP7oSvdYw==&amp;quot;,&amp;quot;groupLevelState&amp;quot;:{},&amp;quot;selection&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;toolbar&amp;quot;:&amp;quot;{}&amp;quot;}"><table class="dxgvControl_MaterialCompact dxgv" id="gvAmendFactSheets" style="width:90%;border-collapse:separate;">
+	<tbody><tr>
+		<td><table id="gvAmendFactSheets_DXTitle" style="width:100%;">
+	<tbody><tr>
+		<td id="gvAmendFactSheets_tcTitle" class="dxgvTitlePanel_MaterialCompact"><span class="dxeBase_MaterialCompact dxeDisabled_MaterialCompact" id="lblTotalRowsSelected" savedonclick="[object Object]" savedhtmlfor="[object Object]">Total rows selected: <b>0</b>. <br></span><script id="dxss_1106656986" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientLabel,'lblTotalRowsSelected','',{'clientEnabled':false,'scStates':4,'scPostfix':'MaterialCompact'});
+
+//-->
+</script></td>
+	</tr>
+</tbody></table><table id="gvAmendFactSheets_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvAmendFactSheets',event);" style="width:100%;empty-cells:show;">
+	<tbody><tr id="gvAmendFactSheets_DXHeadersRow0">
+		<td id="gvAmendFactSheets_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td class="dx-ac"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" title="Selection state of all rows on all pages" id="gvAmendFactSheets_DXSelAllBtn0_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelAllBtn0" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td>
+			</tr>
+		</tbody></table></td><td id="gvAmendFactSheets_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Plaintiff Number</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td><td id="gvAmendFactSheets_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Law Firm Client ID</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td><td id="gvAmendFactSheets_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Plaintiff Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td><td id="gvAmendFactSheets_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Plaintiff Status</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td><td id="gvAmendFactSheets_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Law Firm</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td>
+	</tr><tr id="gvAmendFactSheets_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAmendFactSheets_DXFREditorcol1" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAmendFactSheets_DXFREditorcol1_I" name="gvAmendFactSheets$DXFREditorcol1" onchange="ASPx.EValueChanged('gvAmendFactSheets_DXFREditorcol1')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_1633522080" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAmendFactSheets_DXFREditorcol1','',{'uniqueID':'gvAmendFactSheets$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAmendFactSheets',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAmendFactSheets',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAmendFactSheets',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAmendFactSheets_DXFREditorcol2" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAmendFactSheets_DXFREditorcol2_I" name="gvAmendFactSheets$DXFREditorcol2" onchange="ASPx.EValueChanged('gvAmendFactSheets_DXFREditorcol2')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_386108992" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAmendFactSheets_DXFREditorcol2','',{'uniqueID':'gvAmendFactSheets$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAmendFactSheets',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAmendFactSheets',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAmendFactSheets',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAmendFactSheets_DXFREditorcol3" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAmendFactSheets_DXFREditorcol3_I" name="gvAmendFactSheets$DXFREditorcol3" onchange="ASPx.EValueChanged('gvAmendFactSheets_DXFREditorcol3')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_1999943968" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAmendFactSheets_DXFREditorcol3','',{'uniqueID':'gvAmendFactSheets$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAmendFactSheets',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAmendFactSheets',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAmendFactSheets',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAmendFactSheets_DXFREditorcol4" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAmendFactSheets_DXFREditorcol4_I" name="gvAmendFactSheets$DXFREditorcol4" onchange="ASPx.EValueChanged('gvAmendFactSheets_DXFREditorcol4')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_1804745344" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAmendFactSheets_DXFREditorcol4','',{'uniqueID':'gvAmendFactSheets$DXFREditorcol4','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAmendFactSheets',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAmendFactSheets',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAmendFactSheets',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="border-right-width:0px;"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAmendFactSheets_DXFREditorcol6" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAmendFactSheets_DXFREditorcol6_I" name="gvAmendFactSheets$DXFREditorcol6" onchange="ASPx.EValueChanged('gvAmendFactSheets_DXFREditorcol6')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_1695633600" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAmendFactSheets_DXFREditorcol6','',{'uniqueID':'gvAmendFactSheets$DXFREditorcol6','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAmendFactSheets',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAmendFactSheets',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAmendFactSheets',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',0],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn0_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn0" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000002</td><td class="dxgv">1234LawFirmID</td><td class="dxgv">Test2 A Test2</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">ABC Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',1],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn1_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn1" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000004</td><td class="dxgv">AM3999</td><td class="dxgv">&nbsp;</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Law Firm 2 TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',2],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn2_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn2" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000049</td><td class="dxgv">Defendant Client ID 46</td><td class="dxgv">Change D Plaintiff 466</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow3" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',3],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn3_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn3" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000050</td><td class="dxgv">Defendant Client ID 47</td><td class="dxgv">Test D Plaintiff 47</td><td class="dxgv">Review Complete</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow4" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',4],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn4_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn4" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000053</td><td class="dxgv">Defendant Client ID 50</td><td class="dxgv">Test D Plaintiff 50</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow5" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',5],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn5_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn5" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000057</td><td class="dxgv">123</td><td class="dxgv">Test D Plaintiff 54</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow6" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',6],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn6_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn6" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000066</td><td class="dxgv">Defendant Client ID 63</td><td class="dxgv">Test D Plaintiff 63</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow7" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',7],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn7_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn7" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF000478</td><td class="dxgv">MSW121326</td><td class="dxgv">Linda A Conrad</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Napoli Shkolnik TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow8" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',8],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn8_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn8" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001128</td><td class="dxgv">EPC038658</td><td class="dxgv">Glen George</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Napoli Shkolnik TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow9" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',9],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn9_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn9" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001129</td><td class="dxgv">MSW063430</td><td class="dxgv">Stephen Miller</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Napoli Shkolnik TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow10" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',10],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn10_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn10" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001593</td><td class="dxgv">&nbsp;</td><td class="dxgv">Amadna PPFTest</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow11" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',11],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn11_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn11" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001600</td><td class="dxgv">Defendant Client ID 24</td><td class="dxgv">Test D Defendant 24</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Defendant Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow12" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',12],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn12_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn12" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001601</td><td class="dxgv">Defendant Client ID 25</td><td class="dxgv">Test D Defendant 25</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Defendant Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow13" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',13],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn13_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn13" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001602</td><td class="dxgv">Defendant Client ID 26</td><td class="dxgv">Test D Defendant 26</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Defendant Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow14" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',14],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn14_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn14" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001603</td><td class="dxgv">Defendant Client ID 27</td><td class="dxgv">Test D Defendant 27</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Defendant Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow15" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',15],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn15_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn15" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001604</td><td class="dxgv">Defendant Client ID 28</td><td class="dxgv">Test D Defendant 28</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">Defendant Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow16" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',16],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn16_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn16" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001625</td><td class="dxgv">DL Client ID 29</td><td class="dxgv">Test N DL 29</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow17" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',17],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn17_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn17" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001650</td><td class="dxgv">123456</td><td class="dxgv">InitialImport Test</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow18" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',18],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn18_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn18" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001655</td><td class="dxgv">00000</td><td class="dxgv">Test Plaintiff 20</td><td class="dxgv">Review Complete</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow19" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',19],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn19_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn19" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF001656</td><td class="dxgv">123456</td><td class="dxgv">Amanda Test pFS</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow20" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',20],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn20_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn20" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF058217</td><td class="dxgv">new</td><td class="dxgv">Robert V Johns</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow21" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',21],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn21_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn21" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF123713</td><td class="dxgv">Test</td><td class="dxgv">Ashley P Mcclain</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow22" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',22],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn22_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn22" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF010959</td><td class="dxgv">Test</td><td class="dxgv">Benjamin L Ward</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow23" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',23],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn23_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn23" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF081525</td><td class="dxgv">Test</td><td class="dxgv">Melissa C Hansen</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow24" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',24],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn24_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn24" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF076111</td><td class="dxgv">Test</td><td class="dxgv">Sean E I Johnson</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow25" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',25],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn25_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn25" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF039159</td><td class="dxgv">Test</td><td class="dxgv">Jennifer M Miller</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow26" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',26],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn26_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn26" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF065526</td><td class="dxgv">Test</td><td class="dxgv">Alyssa E Morse</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow27" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',27],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn27_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn27" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF025102</td><td class="dxgv">WHATWHATWHATwhat</td><td class="dxgv">Test PFS TOG Doc Adam</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow28" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',28],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn28_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn28" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF035617</td><td class="dxgv">OA_LAW_18</td><td class="dxgv">TestPFSPDF Adam</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow29" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',29],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn29_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn29" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF049291</td><td class="dxgv">OA_LAW_19</td><td class="dxgv">AdamTest NewPFSPlaintiffUser</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow30" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',30],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn30_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn30" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF004236</td><td class="dxgv">&nbsp;</td><td class="dxgv">Harry Johnson</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow31" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',31],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn31_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn31" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF048084</td><td class="dxgv">XX999</td><td class="dxgv">Test M Alexander</td><td class="dxgv">Submitted: In Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow32" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',32],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn32_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn32" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF220292</td><td class="dxgv">&nbsp;</td><td class="dxgv">AdamTestOne DeficienciesPFS</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">EAG Law Firm TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow33" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',33],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn33_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn33" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF140592</td><td class="dxgv">&nbsp;</td><td class="dxgv">Bridget W Mcdonald</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow34" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',34],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn34_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn34" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF048986</td><td class="dxgv">&nbsp;</td><td class="dxgv">Brandy K Guerrero</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow35" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',35],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn35_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn35" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF047870</td><td class="dxgv">&nbsp;</td><td class="dxgv">Albert C Jackson</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow36" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',36],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn36_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn36" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF064048</td><td class="dxgv">&nbsp;</td><td class="dxgv">Michael J Jones</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow37" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',37],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn37_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn37" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF031339</td><td class="dxgv">&nbsp;</td><td class="dxgv">Andrew Q Conley</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow38" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',38],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn38_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn38" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF194868</td><td class="dxgv">&nbsp;</td><td class="dxgv">Ricardo O Henderson</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow39" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',39],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn39_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn39" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF140171</td><td class="dxgv">&nbsp;</td><td class="dxgv">Kristina O Novak</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow40" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',40],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn40_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn40" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF225600</td><td class="dxgv">&nbsp;</td><td class="dxgv">Brittany Z Harrington</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow41" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',41],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn41_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn41" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF169668</td><td class="dxgv">&nbsp;</td><td class="dxgv">Megan P Rivera</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow42" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',42],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn42_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn42" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF074460</td><td class="dxgv">&nbsp;</td><td class="dxgv">Anne V Carr</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow43" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',43],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn43_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn43" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF114613</td><td class="dxgv">&nbsp;</td><td class="dxgv">Nicole E Morales</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow44" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',44],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn44_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn44" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF101131</td><td class="dxgv">&nbsp;</td><td class="dxgv">Lindsay H Gregory</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow45" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',45],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn45_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn45" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF032398</td><td class="dxgv">&nbsp;</td><td class="dxgv">Dalton E Gonzales</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow46" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',46],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn46_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn46" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF011293</td><td class="dxgv">&nbsp;</td><td class="dxgv">Susan S Kim</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow47" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',47],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn47_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn47" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF246119</td><td class="dxgv">&nbsp;</td><td class="dxgv">Joshua K Randolph</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow48" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',48],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn48_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn48" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF238607</td><td class="dxgv">&nbsp;</td><td class="dxgv">Tracy N Gonzalez</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr><tr id="gvAmendFactSheets_DXDataRow49" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+		<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" onclick="ASPx.GVScheduleCommand('gvAmendFactSheets',['Select',49],1)"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="gvAmendFactSheets_DXSelBtn49_D"><span class="dxKBSW"><input id="gvAmendFactSheets_DXSelBtn49" class="dxKBSI" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxgv">AFFF139021</td><td class="dxgv">&nbsp;</td><td class="dxgv">Richard P Ibarra</td><td class="dxgv">Submitted: Pending Review</td><td class="dxgv" style="border-right-width:0px;">Gachassin Law TEST</td>
+	</tr>
+</tbody></table><div class="dxmodalSys">
+	<div id="gvAmendFactSheets_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+		<div class="dxpc-mainDiv dxpc-hf">
+			<div class="dxpc-contentWrapper">
+				<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvAmendFactSheets_DXHFP_PWC-1">
+					&nbsp;&nbsp;
+				</div>
+			</div><div class="dxpc-footer" id="gvAmendFactSheets_DXHFP_PWF-1">
+				<div class="dxpc-footerContent">
+					<table id="gvAmendFactSheets_DXHFP_TPCFCm1_P">
+						<tbody><tr>
+							<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAmendFactSheets_DXHFP_TPCFCm1_O" style="-webkit-user-select:none;">
+								<div class="dxb" id="gvAmendFactSheets_DXHFP_TPCFCm1_O_CD">
+									<div class="dxb-hbc">
+										<input id="gvAmendFactSheets_DXHFP_TPCFCm1_O_I" class="dxb-hb" value="OK" type="button" name="gvAmendFactSheets$DXHFP$TPCFCm1$O">
+									</div><span class="dx-vam">OK</span>
+								</div>
+							</div><script id="dxss_838496717" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAmendFactSheets_DXHFP_TPCFCm1_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAmendFactSheets_DXHFP_TPCFCm1_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAmendFactSheets_DXHFP_TPCFCm1_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAmendFactSheets_DXHFP_TPCFCm1_O',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(ASPxClientButton,'gvAmendFactSheets_DXHFP_TPCFCm1_O','',{'uniqueID':'gvAmendFactSheets$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvAmendFactSheets');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+							</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAmendFactSheets_DXHFP_TPCFCm1_C" style="-webkit-user-select:none;">
+								<div class="dxb" id="gvAmendFactSheets_DXHFP_TPCFCm1_C_CD">
+									<div class="dxb-hbc">
+										<input id="gvAmendFactSheets_DXHFP_TPCFCm1_C_I" class="dxb-hb" value="Cancel" type="button" name="gvAmendFactSheets$DXHFP$TPCFCm1$C">
+									</div><span class="dx-vam">Cancel</span>
+								</div>
+							</div><script id="dxss_1208219435" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAmendFactSheets_DXHFP_TPCFCm1_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAmendFactSheets_DXHFP_TPCFCm1_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAmendFactSheets_DXHFP_TPCFCm1_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAmendFactSheets_DXHFP_TPCFCm1_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvAmendFactSheets_DXHFP_TPCFCm1_C','',{'uniqueID':'gvAmendFactSheets$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvAmendFactSheets');}});
+
+//-->
+</script></td>
+						</tr>
+					</tbody></table>
+				</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+			</div>
+		</div>
+	</div>
+</div><div id="gvAmendFactSheets_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="gvAmendFactSheets_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAmendFactSheets_DXHFP_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="gvAmendFactSheets_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_636777870" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAmendFactSheets_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAmendFactSheets_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvAmendFactSheets$DXHFP','cpButtonPanelID':'gvAmendFactSheets_DXHFP_TPCFCm1_P','cpOkButtonID':'gvAmendFactSheets_DXHFP_TPCFCm1_O','cpCancelButtonID':'gvAmendFactSheets_DXHFP_TPCFCm1_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+	<div class="dxpLite_MaterialCompact" id="gvAmendFactSheets_DXPagerBottom" style="width: 100%; min-width: 857px; display: inline-block; float: none;">
+		<b class="dxp-lead dxp-summary">Page 1 of 284 (14164 items)</b><b id="gvAmendFactSheets_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b class="dxp-num dxp-current">1</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN1');">2</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN2');">3</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN3');">4</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN4');">5</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN5');">6</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN6');">7</a><b class="dxp-ellip">…</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN281');">282</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN282');">283</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PN283');">284</a><a id="gvAmendFactSheets_DXPagerBottom_PBN" class="dxp-button dxp-bi" onclick="ASPx.GVPagerOnClick('gvAmendFactSheets','PBN');"><img class="dxWeb_pNext_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></a><b class="dxp-spacer" style="width: 0px;">&nbsp;</b>
+	<div class="dxp-right" style="border-width: 0px; padding: 0px; margin: 0px"><b class="dxp-pageSizeItem"><span class="dx"><label for="gvAmendFactSheets_DXPagerBottom_PSI">Page size:</label></span><span id="gvAmendFactSheets_DXPagerBottom_PSB" class="dxp-comboBox" onmousedown="ASPx.POnPageSizeClick('gvAmendFactSheets_DXPagerBottom', event)" style="margin-left:4px;"><input id="gvAmendFactSheets_DXPagerBottom_PSI" type="text" readonly="readonly" value="50" onkeydown="ASPx.POnPageSizeKeyDown('gvAmendFactSheets_DXPagerBottom', event)" onblur="ASPx.POnPageSizeBlur('gvAmendFactSheets_DXPagerBottom', event)" style="border-width:0px;"><span id="gvAmendFactSheets_DXPagerBottom_DDB" class="dxp-dropDownButton"><img id="gvAmendFactSheets_DXPagerBottom_DDBImg" class="dxWeb_pPopOut_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></span></span></b></div></div><b class="dx-clear"></b><div class="dxmLite_MaterialCompact dxm-ltr">
+		<div id="gvAmendFactSheets_DXPagerBottom_PSP" style="z-index: 20000; display: none; position: absolute;">
+			<div class="dxm-popupMain dxm-shadow dxm-popup" id="gvAmendFactSheets_DXPagerBottom_PSP_DXME_">
+				<ul class="dx dxm-noImages">
+					<li class="dxm-item dxm-selected" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI0_"><div class="dxm-content dxm-hasText" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI0_T">
+						<span class="dx-vam dxm-contentText">50</span>
+					</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI1_II"></li><li class="dxm-item" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI1_"><div class="dxm-content dxm-hasText" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI1_T">
+						<span class="dx-vam dxm-contentText">100</span>
+					</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI2_II"></li><li class="dxm-item" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI2_"><div class="dxm-content dxm-hasText" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI2_T">
+						<span class="dx-vam dxm-contentText">500</span>
+					</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI3_II"></li><li class="dxm-item" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI3_"><div class="dxm-content dxm-hasText" id="gvAmendFactSheets_DXPagerBottom_PSP_DXI3_T">
+						<span class="dx-vam dxm-contentText">1000</span>
+					</div><b class="dx-clear"></b></li>
+				</ul>
+			</div>
+		</div>
+	</div><script id="dxss_2042491712" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAmendFactSheets_DXPagerBottom_PSP',[[[''],[''],['DXME_']],[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_','DXI3_'],['','T']]]);
+ASPx.AddSelectedItems('gvAmendFactSheets_DXPagerBottom_PSP',[[['dxm-selected',''],['',''],['DXI0_','DXI1_','DXI2_','DXI3_'],['','T']]]);
+ASPx.AddDisabledItems('gvAmendFactSheets_DXPagerBottom_PSP',[[['dxm-disabled'],[''],['DXI0_','DXI1_','DXI2_','DXI3_'],['','T']]]);
+ASPx.createControl(ASPxClientPopupMenu,'gvAmendFactSheets_DXPagerBottom_PSP','',{'uniqueID':'gvAmendFactSheets$DXPagerBottom$PSP','renderData':{'':[[0],[1],[2],[3]]},'allowSelectItem':true,'selectedItemIndexPath':'0','popupElementIDList':['gvAmendFactSheets_DXPagerBottom_PSB'],'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'ItemClick':function(s,e) { ASPx.POnPageSizePopupItemClick('gvAmendFactSheets_DXPagerBottom', e.item); }},null,{'items':[{'name':'50'},{'name':'100'},{'name':'500'},{'name':'1000'}]});
+
+//-->
+</script><script id="dxss_419775236" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAmendFactSheets_DXPagerBottom',[[['dxp-hoverComboBox'],[''],['PSB']],[['dxp-hoverDropDownButton'],[''],['DDB']],[['dxp-hoverButton'],[''],['PBN']]]);
+ASPx.RemoveHoverItems('gvAmendFactSheets_DXPagerBottom',[[['PBP']]]);
+ASPx.AddPressedItems('gvAmendFactSheets_DXPagerBottom',[[['dxp-pressedComboBox'],[''],['PSB']],[['dxp-pressedDropDownButton'],[''],['DDB']]]);
+ASPx.createControl(ASPxClientPager,'gvAmendFactSheets_DXPagerBottom','',{'uniqueID':'gvAmendFactSheets$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'pageSizeItems':[{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'500','value':'500'},{'text':'1000','value':'1000'}],'pageSizeSelectedItem':{'text':'50','value':50}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvAmendFactSheets',e.value); }});
+
+//-->
+</script>
+</div><table id="gvAmendFactSheets_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAmendFactSheets_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="gvAmendFactSheets_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+</div><img id="gvAmendFactSheets_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAmendFactSheets_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAmendFactSheets_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAmendFactSheets_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAmendFactSheets_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"><script id="dxss_1562914687" data-executed="true">
+<!--
+var dxo = ASPx.GetControlCollection().Get('gvAmendFactSheets');
+dxo.SetProperties({'callBacksEnabled':true,'pageRowCount':50,'pageRowSize':50,'pageIndex':0,'pageCount':284,'selectedWithoutPageRowCount':0,'checkBoxImageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact','dxWeb_edtCheckBoxGrayed_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxGrayedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','selectAllBtnStateWithoutPage':null,'selectAllSettings':[{'index':0,'mode':2}],'allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'PlaintiffNumber',,2,,,1],[2,,,'LawFirmClientId',,2,,,2],[3,,,'FullName',,2,,,3],[4,,,'PlaintiffStatus',,2,,,4],[5,0,,'PlaintiffStatusId',,2,,,,,,,,,,,1],[6,,,'LawFirmName',,2,,,5]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1});
+
+//-->
+</script><script id="dxss_931507600" data-executed="true">
+<!--
+ASPxClientGridBase.PostponeInitialize('gvAmendFactSheets',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="6" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script></td>
+	</tr>
+</tbody></table><script id="dxss_584437457" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvAmendFactSheets','',{'callBack':function(arg) { ; },'stateObject':{'keys':['2','4','49','50','53','57','66','6754','7404','7405','7869','7876','7877','7878','7879','7880','7901','7926','7931','7932','7956','7975','8147','8165','8403','10429','10620','11965','11975','11982','11990','12001','14017','15048','15049','15055','15056','15058','15059','15061','15064','15065','15066','15068','15071','15073','15074','15077','15078','15079'],'callbackState':'9omJVqHOOsgKb0UlngFHE+NNn1vRSIUjqevou6EGWWXvsf+VgBmxNc7wS0VgCHO12ICUQy2n7OjyfiMyXHH6awU5MvqRpNOiNaILnMXqDjqULSZec95JSgpaYZmIXI1DqLZo5V8A1TyUo37QlPs0bs3wm7Q/K3XnjGDsqagrL+JlrSSRLlk91ZuvqK1qBv1oS+brws+XVc4aK/mQy4BlMIMnelM3N6O6mFUJZ8cjSl6iyQNliYwLxDOje67WbnQewMx02QQtrhk63euUji7uIWUvn/w2ny2qkdxk2op0UREc2AlC9rj1m3QwL+SBQYmwXxUJ603W5szveRY+wBCkBi5/PolqCHHg81uDzwe9E+h1yx96ZNag+cN2Bf68Dc3J7t2PeHxrrOOpmxP7oSvdYw==','groupLevelState':{},'selection':''},'cpSelectedRowsHiddenByFilter':0,'callBacksEnabled':true,'pageRowCount':50,'pageRowSize':50,'pageIndex':0,'pageCount':284,'selectedWithoutPageRowCount':0,'checkBoxImageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact','dxWeb_edtCheckBoxGrayed_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxGrayedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','selectAllBtnStateWithoutPage':null,'selectAllSettings':[{'index':0,'mode':2}],'allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'PlaintiffNumber',,2,,,1],[2,,,'LawFirmClientId',,2,,,2],[3,,,'FullName',,2,,,3],[4,,,'PlaintiffStatus',,2,,,4],[5,0,,'PlaintiffStatusId',,2,,,,,,,,,,,1],[6,,,'LawFirmName',,2,,,5]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/FSBulkOperationsWizard/gvAmendFactSheets','keyName':'PlaintiffFactSheetBaseId'},{'BeginCallback':OnGridBeginCallback,'EndCallback':OnGridEndCallback,'SelectionChanged':OnGridSelectionChanged});
+ASPxClientGridBase.PostponeInitialize('gvAmendFactSheets',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="6" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+
+    <div style="margin-top: 1.5rem">
+        <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys dxbDisabled_MaterialCompact" id="btnAmend" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnAmend_CD">
+		<div class="dxb-hbc">
+			<input id="btnAmend_I" class="dxb-hb" value="Amend" type="button" name="btnAmend" disabled="">
+		</div><span class="dx-vam">Amend</span>
+	</div>
+</div><script id="dxss_617505895" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnAmend',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnAmend',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnAmend',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnAmend',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnAmend','',{'clientEnabled':false,'useSubmitBehavior':false},{'Click':OnAmendButtonClicked});
+
+//-->
+</script>
+    </div>
+
+</div>
+
+
+<input type="hidden" name="pcWarningForAlreadyCompleteState" id="pcWarningForAlreadyComplete_State" value="{&amp;quot;windowsState&amp;quot;:&amp;quot;0:0:-1:0:0:0:-10000:-10000:1:0:0:0&amp;quot;}"><div id="pcWarningForAlreadyComplete_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:400px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcWarningForAlreadyComplete_PWC-1">
+				<div class="text-center" style="font-size: 20px"><p>WARNING</p></div><div class="text-center"><p>One or more selected plaintiffs are in the ‘Review is Complete’ status. Are you sure you want to continue?</p></div><div class="mt-5 d-flex flex-row justify-content-evenly"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnCancelWarningForAlreadyComplete" style="width:35%;-webkit-user-select:none;">
+	<div class="dxb" id="btnCancelWarningForAlreadyComplete_CD">
+		<div class="dxb-hbc">
+			<input id="btnCancelWarningForAlreadyComplete_I" class="dxb-hb" value="No" type="button" name="btnCancelWarningForAlreadyComplete">
+		</div><span class="dx-vam">No</span>
+	</div>
+</div><script id="dxss_951775394" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCancelWarningForAlreadyComplete',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCancelWarningForAlreadyComplete',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCancelWarningForAlreadyComplete',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnCancelWarningForAlreadyComplete',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCancelWarningForAlreadyComplete','',{'useSubmitBehavior':false},{'Click':function(s, e){ pcWarningForAlreadyComplete.Hide(); }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnSubmitWarningForAlreadyComplete" style="width:35%;-webkit-user-select:none;">
+	<div class="dxb" id="btnSubmitWarningForAlreadyComplete_CD">
+		<div class="dxb-hbc">
+			<input id="btnSubmitWarningForAlreadyComplete_I" class="dxb-hb" value="Yes" type="button" name="btnSubmitWarningForAlreadyComplete">
+		</div><span class="dx-vam">Yes</span>
+	</div>
+</div><script id="dxss_385927600" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSubmitWarningForAlreadyComplete',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSubmitWarningForAlreadyComplete',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSubmitWarningForAlreadyComplete',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSubmitWarningForAlreadyComplete',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnSubmitWarningForAlreadyComplete','',{'useSubmitBehavior':false},{'Click':function (s,e) { pcWarningForAlreadyComplete.Hide(); pcReasonForAmendment.Show(); }});
+
+//-->
+</script></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcWarningForAlreadyComplete_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1430084245" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcWarningForAlreadyComplete',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcWarningForAlreadyComplete','',{'popupAnimationType':'fade','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':400,'widthFromServer':true,'defaultWindowPopupElementIDList':['pcWarningForAlreadyComplete']},{'Shown':function(s,e) {s.UpdatePosition();}});
+
+//-->
+</script>
+
+
+<input type="hidden" name="pcReasonForAmendmentState" id="pcReasonForAmendment_State" value="{&amp;quot;windowsState&amp;quot;:&amp;quot;0:0:-1:0:0:0:-10000:-10000:1:0:0:0&amp;quot;}"><div id="pcReasonForAmendment_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header dxpc-withBtn" id="pcReasonForAmendment_PWH-1">
+			<div class="dxpc-closeBtn" id="pcReasonForAmendment_HCB-1">
+				<img class="dxWeb_pcCloseButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcReasonForAmendment_PWH-1T">Reason for Amendment</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcReasonForAmendment_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flReasonForAmendment" style="width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flReasonForAmendment_0" class="dxflGroupCell_MaterialCompact" style="width:100%;"><table class="dxflCLTSys dxflItemSys dxflMemoItemSys dxflItem_MaterialCompact" style="width:100%;border-collapse:separate;">
+				<tbody><tr>
+					<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact wrapCaption" for="ReasonForAmendment_I">Please provide a reason for the amendment.:</label><em class="dxflRequired_MaterialCompact">*</em></td>
+				</tr><tr>
+					<td class="dxflNestedControlCell_MaterialCompact" style="width:100%;"><table id="ReasonForAmendment_ET" class="dxeValidStEditorTable dxeRoot_MaterialCompact" style="width:100%;" errorframe="errorFrame">
+	<tbody><tr>
+		<td id="ReasonForAmendment_CC" class="dxeErrorFrame_MaterialCompact dxeErrorFrameSys dxeNoBorderBottom dxeControlsCell_MaterialCompact" style="width:100%;"><input type="hidden" name="ReasonForAmendment$State" id="ReasonForAmendment_State" value="{&amp;quot;validationState&amp;quot;:&amp;quot;&amp;quot;}"><table class="dxeMemoSys dxeMemo_MaterialCompact" id="ReasonForAmendment" style="width:100%;border-collapse:separate;">
+			<tbody><tr>
+				<td style="width:100%;"><textarea class="dxeMemoEditArea_MaterialCompact dxeMemoEditAreaSys" maxlength="2000" id="ReasonForAmendment_I" name="ReasonForAmendment" onchange="ASPx.EValueChanged('ReasonForAmendment')" rows="8" style="height:100%;width:100%;" autocomplete="off"></textarea></td>
+			</tr>
+		</tbody></table></td>
+	</tr><tr>
+		<td id="ReasonForAmendment_EC" class="dxeErrorCell_MaterialCompact dxeErrorFrame_MaterialCompact dxeErrorFrameSys dxeErrorCellSys dxeNoBorderTop" style="visibility:hidden;white-space:nowrap;">Invalid value</td>
+	</tr>
+</tbody></table><script id="dxss_121251766" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientMemo,'ReasonForAmendment','',{'validationGroup':'ReasonForAmendmentValidation','customValidationEnabled':true,'isValid':true,'errorText':'Invalid value','validationPatterns':[new ASPx.RequiredFieldValidationPattern('Reason for the amendment is required')],'isErrorFrameRequired':true,'errorDisplayMode':'t','errorCellPosition':'Bottom'},null,null,{'decorationStyles':[{'key':'I','className':'dxeInvalid_MaterialCompact','cssText':''},{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_2070242109" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flReasonForAmendment','',null,null,null,{'items':[{'name':'ReasonForAmendment','path':'0','associatedNestedExtensionName':null}]});
+
+//-->
+</script><div class="mx-1 d-flex align-items-center"><i class="fas fa-triangle-exclamation" style="font-size: 24px"></i><span class="ms-2">You will need to resubmit after you have completed your amendment. </span></div><br><div class="mt-3 d-flex flex-row justify-content-end"><div class="dxbButton_MaterialCompact mx-3 dxbButtonSys dxbTSys" id="btnCancelReasonForAmendment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnCancelReasonForAmendment_CD">
+		<div class="dxb-hbc">
+			<input id="btnCancelReasonForAmendment_I" class="dxb-hb" value="Cancel" type="button" name="btnCancelReasonForAmendment">
+		</div><span class="dx-vam">Cancel</span>
+	</div>
+</div><script id="dxss_337909186" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCancelReasonForAmendment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCancelReasonForAmendment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCancelReasonForAmendment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnCancelReasonForAmendment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCancelReasonForAmendment','',{'useSubmitBehavior':false},{'Click':function(s, e){ pcReasonForAmendment.Hide(); }});
+
+//-->
+</script><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnSubmitReasonForAmendment" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnSubmitReasonForAmendment_CD">
+		<div class="dxb-hbc">
+			<input id="btnSubmitReasonForAmendment_I" class="dxb-hb" value="Ok" type="button" name="btnSubmitReasonForAmendment">
+		</div><span class="dx-vam">Ok</span>
+	</div>
+</div><script id="dxss_2108343069" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSubmitReasonForAmendment',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSubmitReasonForAmendment',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSubmitReasonForAmendment',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSubmitReasonForAmendment',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnSubmitReasonForAmendment','',{'useSubmitBehavior':false},{'Click':function (s,e) { OnSubmitReasonForAmendmentBtnClick('/FSBulkOperationsWizard/SaveBulkAmendments'); }});
+
+//-->
+</script></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcReasonForAmendment_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_2142958060" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcReasonForAmendment',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcReasonForAmendment','',{'popupAnimationType':'fade','closeAction':'CloseButton','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'defaultWindowPopupElementIDList':['pcReasonForAmendment']},{'CloseUp':function(s,e) {ASPxClientEdit.ClearGroup('ReasonForAmendmentValidation');},'Shown':function(s,e) {s.UpdatePosition(); }});
+
+//-->
+</script>
+
+<script>
+    function updateLineNumbers() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+
+        const lines = textArea.value.split('\n').length < 10 ? 10 : textArea.value.split('\n').length;
+        lineNumbers.innerHTML = '';
+
+        for (let i = 1; i <= lines; i++) {
+            const lineNumber = document.createElement('span');
+            lineNumber.textContent = i;
+            lineNumbers.appendChild(lineNumber);
+        }
+    }
+
+    function syncScroll() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+        lineNumbers.scrollTop = textArea.scrollTop;
+    }
+
+    // Initialize line numbers on page load
+    updateLineNumbers();
+</script>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

@@ -1,0 +1,89 @@
+// STRATA Toggle Field — Figma component set 6401:119054.
+// Variants: Selected=True/False (Primary/Default only).
+// Row: semibold large-text label (flex 1) + 60x30 switch. The switch artwork
+// is a baked image in Figma, so the track/knob below is reconstructed with
+// palette colors — adjust if the design gets real toggle tokens.
+@use "typography" as *;
+
+// ---------------------------------------------------------------- elements
+
+@mixin toggle-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+@mixin toggle-field-label {
+  @include large-text;
+  font-weight: 600; // "large-text-bold" one-off in Figma (SemiBold)
+  color: var(--text-heading);
+  flex: 1;
+}
+
+// The switch — apply to <input type="checkbox" role="switch">.
+@mixin toggle-field-switch {
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 3.75rem; // 60px
+  height: 1.875rem; // 30px
+  border: 1px solid var(--form-ui-primary-default-input-border);
+  border-radius: 0.9375rem; // full pill
+  background-color: var(--form-ui-primary-default-input-bg);
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  // knob
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.1875rem;
+    translate: 0 -50%;
+    width: 1.375rem; // 22px
+    height: 1.375rem;
+    border-radius: 50%;
+    background-color: var(--form-ui-primary-default-input-accent);
+    transition: left 120ms ease;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--form-ui-primary-focus-input-outline);
+    outline-offset: 1px;
+  }
+
+  &:checked {
+    background-color: var(--form-ui-primary-default-input-accent);
+
+    &::before {
+      left: calc(100% - 1.375rem - 0.1875rem);
+      background-color: var(--form-ui-primary-default-input-bg);
+    }
+  }
+
+  &:disabled {
+    border-color: var(--form-ui-primary-disabled-input-border);
+    background-color: var(--form-ui-primary-disabled-input-bg);
+    cursor: not-allowed;
+
+    &::before {
+      background-color: var(--form-ui-primary-disabled-input-accent);
+    }
+  }
+}
+
+// ---------------------------------------------------------------- classes
+
+.toggle-field {
+  @include toggle-field;
+
+  &__label {
+    @include toggle-field-label;
+  }
+
+  &__switch {
+    @include toggle-field-switch;
+  }
+}
+
+// App selectors

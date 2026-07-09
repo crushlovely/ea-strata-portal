@@ -1,0 +1,1095 @@
+---
+layout: layouts/base.njk
+title: "Documents Import"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<script>
+    function fileDocImportUploadCompleteEvent(s, e) {
+        popDocumentImportLoading.Hide();
+
+        if (e.callbackData != null && e.callbackData != undefined && e.callbackData != "") {
+
+            //only callback if import processed
+            if (!cbPlaintiffDocumentImportPartial.InCallback())
+                cbPlaintiffDocumentImportPartial.PerformCallback();
+
+            cbPlaintiffDocumentImportPartial.SetVisible(true);
+        }
+    }
+
+    function OnBeginDocumentImportPartialCallback(s, e) {
+        //e.customArgs["documentReferenceId"] = document.getElementById('DocumentReferenceId').value;
+    }
+
+    function fileDocImportUploadStarted(s, e) {
+        popDocumentImportLoading.Show();
+    }
+</script>
+
+<script>
+    const MAX_IMPORT_RECORD_COUNT = 50_000;
+    const PROCESS_STATUS_FAILED = 0;
+    const PROCESS_STATUS_NEEDS_APPROVAL = 1;
+    const PROCESS_STATUS_SUCCESS = 2;
+
+    let selectedImportTypeId = 15;
+
+    // File Uploading Callbacks
+    function OnFileUploadStart(s, e) {
+        pcScanLoadingModal.Show();
+    }
+
+    function OnFileUploadComplete(s, e) {
+        pcScanLoadingModal.Hide();
+
+        // Get summary from upload callback
+        const summary = JSON.parse(e.callbackData);
+        console.log(summary);
+
+        // Show import error modal
+        if (summary.RecordCount > MAX_IMPORT_RECORD_COUNT) {
+            // Show error pop-up for import
+            if (!pcImportErrorModal.InCallback())
+                pcImportErrorModal.PerformCallback();
+
+            return;
+        }
+
+        // Show confirmation pop-up for import
+        if (!pcImportConfirmationModal.InCallback())
+            pcImportConfirmationModal.PerformCallback();
+    }
+    // Modal Popup Callbacks
+    function OnEndImportErrorModalCallback(s, e) {
+        s.Show();
+    }
+
+    function OnEndImportConfirmationModalCallback(s, e) {
+        s.Show();
+    }
+
+    function OnEndImportProcessingDetailsModalCallback(s, e) {
+        pcProcessLoadingModal.Hide();
+        s.Show();
+    }
+
+    function OnEndImportSummaryModalCallback(s, e) {
+        pcProcessLoadingModal.Hide();
+        s.Show();
+    }
+
+    function OnImportCancelButtonClicked(s, e) {
+        pcImportProcessingDetailsModal.Hide();
+    }
+
+    async function OnImportProceedButtonClicked(s, e) {
+        pcImportProcessingDetailsModal.Hide();
+
+        try {
+            pcProcessLoadingModal.Show();
+
+            const response = await fetch(`SaveProcessedRecords?importTypeId=${selectedImportTypeId}`, {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const result = await response.json();
+            if (!result.Success) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            // Display post-import summary
+            if (!pcImportSummaryModal.InCallback())
+                pcImportSummaryModal.PerformCallback();
+        }
+        catch (error) {
+            alert("An error occurred while trying to process your import. Please try again.");
+
+            console.error(error);
+            pcProcessLoadingModal.Hide();
+        }
+    }
+
+    function OnImportNoButtonClicked(s, e) {
+        pcImportConfirmationModal.Hide();
+    }
+
+    async function OnImportYesButtonClicked(s, e) {
+        pcImportConfirmationModal.Hide();
+
+        try {
+            pcProcessLoadingModal.Show();
+
+            const response = await fetch(`ProcessUploadedFile?importTypeId=${selectedImportTypeId}`, {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const result = await response.json();
+            if (!result.Success) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const data = result.Data;
+            if (data.ProcessStatus === PROCESS_STATUS_NEEDS_APPROVAL) {
+                // Display warnings on modal
+                if (!pcImportProcessingDetailsModal.InCallback())
+                    pcImportProcessingDetailsModal.PerformCallback();
+
+            } else {
+                // Display post-import summary
+                if (!pcImportSummaryModal.InCallback())
+                    pcImportSummaryModal.PerformCallback();
+            }
+        }
+        catch (error) {
+            alert("An error occurred while trying to process your import. Please try again.");
+
+            console.error(error);
+            pcProcessLoadingModal.Hide();
+        }
+    }
+</script>
+
+<script>
+    const MEDICAL_RECORD_DOC_TYPE_ID = 7;
+    const BULK_MEDICAL_RECORD_MAX_FILE_SIZE = 524288000;
+    const BULK_DEFAULT_MAX_FILE_SIZE = 314572800;
+
+    let plaintiffDocumentImportHandledInvalidFileNames = [];
+
+    function getPlaintiffDocumentImportDocTypeId(fileName) {
+        const parts = fileName.split('_');
+        if (parts.length !== 3)
+            return null;
+
+        const docTypeId = parseInt(parts[1], 10);
+        return isNaN(docTypeId) ? null : docTypeId;
+    }
+
+    function getPlaintiffDocumentImportMaxAllowedSize(fileName) {
+        const docTypeId = getPlaintiffDocumentImportDocTypeId(fileName);
+
+        return docTypeId === MEDICAL_RECORD_DOC_TYPE_ID ? BULK_MEDICAL_RECORD_MAX_FILE_SIZE : BULK_DEFAULT_MAX_FILE_SIZE;
+    }
+
+    function getInvalidFileDisplayName(file) {
+        if (!file)
+            return "";
+
+        if (typeof file === "string")
+            return file;
+
+        if (file.name)
+            return file.name;
+
+        if (file.fileName)
+            return file.fileName;
+
+        if (file.inputFile && file.inputFile.name)
+            return file.inputFile.name;
+
+        if (file.text)
+            return file.text;
+
+        return "";
+    }
+
+    function buildBulkDocumentImportMultiFileMessage(invalidFiles) {
+        const invalidFileNames = invalidFiles
+            .map(getInvalidFileDisplayName)
+            .filter(name => name && name.trim() !== "");
+
+        return "Attention! " + invalidFileNames.length + " files are invalid and will not be uploaded. " + "Possible reasons are: they exceed the allowed file size per document (500MB for Medical Records and 300MB for all other document types), " + "their extensions are not allowed, or their filenames contain invalid characters. These files have been removed from the selection:\n\n" + invalidFileNames.join("\n");
+    }
+
+    function showBulkDocumentImportSingleFileMessage() {
+        alert("You have exceeded the maximum file size of 500MB for Medical Records or 300MB for all other document types.");
+    }
+
+    function onPlaintiffDocumentImportTextChanged(s, e) {
+        const selectedFiles = s.GetSelectedFiles();
+        if (!selectedFiles || !selectedFiles.length)
+            return;
+
+        const invalidFiles = [];
+
+        for (let i = selectedFiles.length - 1; i >= 0; i--) {
+            const file = selectedFiles[i];
+            const maxAllowedSize = getPlaintiffDocumentImportMaxAllowedSize(file.name);
+
+            if (file.size > maxAllowedSize) {
+                invalidFiles.push({
+                    index: i,
+                    name: file.name
+                });
+            }
+        }
+
+        if (!invalidFiles.length) {
+            plaintiffDocumentImportHandledInvalidFileNames = [];
+            return;
+        }
+
+        for (let i = 0; i < invalidFiles.length; i++) {
+            s.RemoveFileFromSelection(invalidFiles[i].index);
+        }
+
+        const invalidFileNames = invalidFiles.map(f => f.name).reverse();
+        plaintiffDocumentImportHandledInvalidFileNames = invalidFileNames.slice();
+
+        if (invalidFileNames.length === 1 && selectedFiles.length === 1) {
+            showBulkDocumentImportSingleFileMessage();
+            return;
+        }
+
+        alert(buildBulkDocumentImportMultiFileMessage(invalidFileNames));
+    }
+
+    function onPlaintiffDocumentImportValidationErrorOccurred(s, e) {
+        if (!e.invalidFiles || !e.invalidFiles.length)
+            return;
+
+        e.showAlert = false;
+
+        const invalidFileNames = e.invalidFiles
+            .map(getInvalidFileDisplayName)
+            .filter(name => name && name.trim() !== "");
+
+        const remainingInvalidFileNames = invalidFileNames.filter(name =>
+            plaintiffDocumentImportHandledInvalidFileNames.indexOf(name) === -1
+        );
+
+        plaintiffDocumentImportHandledInvalidFileNames = [];
+
+        if (!remainingInvalidFileNames.length)
+            return;
+
+        if (remainingInvalidFileNames.length === 1) {
+            showBulkDocumentImportSingleFileMessage();
+            return;
+        }
+
+        alert(buildBulkDocumentImportMultiFileMessage(remainingInvalidFileNames));
+    }
+</script>
+
+<h2>Plaintiff Document Import</h2>
+<p><b>Use this section to bulk import plaintiff documents.</b></p><p>
+
+</p><p>Use the uploader below to select 1 or more documents to upload for your plaintiffs.  You can select multiple documents by holding down the CTRL or SHIFT key and clicking multiple documents in the popup when using the uploader.</p>
+
+<p>
+    The naming convention of the documents <b>must</b> follow the format below:<br>
+    CLAIMNUMBER_DOCUMENTTYPEID_FILENAME.EXTENSION (E.g. XYZ0001_19_JohnDoePlaintiffFactSheet.pdf) <br>
+    <br>
+    To see the list of document type IDs, click <a href="#" onclick="window.open('/Import/PlaintiffDocTypes', '_blank')">here</a>.
+</p>
+
+<div style="display: flex; margin-top: 10px; overflow-y:auto">
+    <div style="flex: 1;">
+<form action="/Import/Documents" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flPlaintiffDocumentImport" style="width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flPlaintiffDocumentImport_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Start Plaintiff Document Import</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flPlaintiffDocumentImport_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCheckBoxWithTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact" for="chkConfidentialDocs_S" style="color:Black;font-weight:bold;">Confidential Documents:</label></td>
+							</tr><tr>
+								<td class="dxflNestedControlCell_MaterialCompact"><table class="dxeBase_MaterialCompact dxeTAR" id="chkConfidentialDocs">
+	<tbody><tr>
+		<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="chkConfidentialDocs_S_D"><span class="dxKBSW"><input id="chkConfidentialDocs_S" class="dxKBSI" name="chkConfidentialDocs" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label>Check this box to mark all uploaded documents as Confidential</label></td>
+	</tr>
+</tbody></table><script id="dxss_2138233382" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'chkConfidentialDocs','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact','']},null,null,{'decorationStyles':[]});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td>
+					</tr><tr>
+						<td id="flPlaintiffDocumentImport_0_1" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="4" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact" for="plaintiffDocumentImportFileUpload_TextBox0_Input" style="color:Black;font-weight:bold;">Upload Plaintiff Documents Below:</label></td>
+							</tr><tr>
+								<td class="dxflNestedControlCell_MaterialCompact"><table class="dxflInternalEditorTable_MaterialCompact" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="width:1px;"><table class="dxuc-root dxucControl_MaterialCompact" id="plaintiffDocumentImportFileUpload" style="width: 297.352px;">
+	<tbody><tr>
+		<td style="width:100%;vertical-align:top;"><table id="plaintiffDocumentImportFileUpload_UploadInputs" class="dxucInputs_MaterialCompact" style="width:100%;border-collapse:separate;">
+			<tbody><tr id="plaintiffDocumentImportFileUpload_FIT" style="display:none;">
+				<td id="plaintiffDocumentImportFileUpload_TextBoxT" class="dxTB dxucTextBox_MaterialCompact dx-al" style="width:100%;border-right-style:Solid;border-right-width:0px;"><input id="plaintiffDocumentImportFileUpload_TextBoxT_Input" class="dxTI" type="file" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;" multiple=""><input id="plaintiffDocumentImportFileUpload_TextBoxT_FakeInput" class="dxTF dxucEditArea_MaterialCompact" type="text" readonly="readonly" tabindex="-1" style="background-color:Transparent;border-width:0px;"></td><td id="plaintiffDocumentImportFileUpload_ClearBoxT" class="dxCB dxucTextBox_MaterialCompact" style="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;"><a href="javascript:;" style="visibility:hidden;"><img id="plaintiffDocumentImportFileUpload_ClearBoxTImg" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;"></a></td><td id="plaintiffDocumentImportFileUpload_BrowseT" class="dxBB dxucBrowseButton_MaterialCompact"><a tabindex="-1" href="javascript:;">Browse...</a></td>
+			</tr><tr id="plaintiffDocumentImportFileUpload_ErrRRT" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr><tr class="dxucSR" style="display:none;">
+				<td colspan="3" style="font:0;height:2px;"></td>
+			</tr><tr id="plaintiffDocumentImportFileUpload_FI0">
+				<td id="plaintiffDocumentImportFileUpload_TextBox0" savedclass="dxTB dxucTextBox_MaterialCompact dx-al" savedstyle="width:100%;border-right-style:Solid;border-right-width:0px;" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact" style="border-right-width: 0px; width: 100%;"><input id="plaintiffDocumentImportFileUpload_TextBox0_Input" class="dxTI" type="file" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;" multiple=""><input id="plaintiffDocumentImportFileUpload_TextBox0_FakeInput" class="dxTF dxucEditArea_MaterialCompact" type="text" readonly="readonly" tabindex="-1" savedstyle="background-color:Transparent;border-width:0px;" style="background-color: transparent; border-width: 0px;"></td><td id="plaintiffDocumentImportFileUpload_ClearBox0" savedstyle="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;" savedclass="dxCB dxucTextBox_MaterialCompact" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB" style="border-left-width: 0px; border-right-width: 0px;"><a href="javascript:;" style="visibility:hidden;"><img id="plaintiffDocumentImportFileUpload_ClearBox0Img" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;"></a></td><td id="plaintiffDocumentImportFileUpload_Browse0" class="dxBB dxucBrowseButton_MaterialCompact"><a tabindex="-1" href="javascript:;">Browse...</a></td>
+			</tr><tr id="plaintiffDocumentImportFileUpload_ErrR0" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr><tr id="plaintiffDocumentImportFileUpload_AddUploadR">
+				<td colspan="3" style="font:0;height:13px;"></td>
+			</tr><tr id="plaintiffDocumentImportFileUpload_AddUploadPanelR">
+				<td class="dx-al" colspan="3"><table>
+					<tbody><tr>
+						<td id="plaintiffDocumentImportFileUpload_Upload" class="dxucButton_MaterialCompact dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact"><a href="javascript:;" saveddisabledstateitemcolor="[object Object]" tabindex="-1" unselectable="on" style="color: inherit;">Upload</a></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><table id="plaintiffDocumentImportFileUpload_ProgressPanel" style="width:100%;display:none;">
+			<tbody><tr>
+				<td style="vertical-align:middle;"><table style="width:100%;">
+					<tbody><tr>
+						<td><table class="dxucProgressBar_MaterialCompact" id="plaintiffDocumentImportFileUpload_UCProgress" style="width:100%;border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxPBMainCell"><div id="plaintiffDocumentImportFileUpload_UCProgress_DI" class="dxucProgressBarIndicator_MaterialCompact" style="width:0%;">
+
+								</div><table style="width:100%;margin-top:0px;">
+									<tbody><tr>
+										<td id="plaintiffDocumentImportFileUpload_UCProgress_VIC" class="dx" style="text-align:Center;vertical-align:Middle;"><div class="dxpbVC">
+											0%
+										</div></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table><script id="dxss_1455464727" data-executed="true">
+<!--
+ASPx.AddDisabledItems('plaintiffDocumentImportFileUpload_UCProgress',[[[''],[''],['VIC']]]);
+ASPx.createControl(ASPxClientProgressBarBase,'plaintiffDocumentImportFileUpload_UCProgress','',{'uniqueID':'plaintiffDocumentImportFileUpload$UCProgress','minimum':0,'maximum':100,'position':0,'displayMode':0,'displayFormat':'{0:0.##}','hasOwner':false});
+
+//-->
+</script></td>
+					</tr><tr>
+						<td style="font:0;height:13px;"></td>
+					</tr><tr>
+						<td class="dx-ac"><table>
+							<tbody><tr>
+								<td id="plaintiffDocumentImportFileUpload_Cancel" class="dxucButton_MaterialCompact dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact"><a href="javascript:;" saveddisabledstateitemcolor="[object Object]" tabindex="-1" unselectable="on" style="color: inherit;">Cancel</a></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><div id="plaintiffDocumentImportFileUpload_CErr" class="dxucErrorCell_MaterialCompact" style="padding-top:13px;display:none;">
+			Common error text is displayed here
+		</div><table id="plaintiffDocumentImportFileUpload_PlatformErrorPanel" class="dxucSilverlightPluginLinkPanel_MaterialCompact" style="display:none;">
+			<tbody><tr>
+				<td>Please use a browser with HTML5 support; or install <a href="https://go.microsoft.com/fwlink/?LinkID=149156">Microsoft Silverlight v3 or later</a> to view this content and have an ability to upload files.</td>
+			</tr>
+		</tbody></table><ul id="plaintiffDocumentImportFileUpload_FileList" class="dxucFileList" style="list-style-type: none; display: none;">
+			<li id="plaintiffDocumentImportFileUpload_FileRT" style="display:none;"><div class="dxucNameCell">
+				<div>
+					<span class="dxucFileListItem_MaterialCompact"></span>
+				</div>
+			</div><div class="dxRB dxucButton_MaterialCompact">
+				<a tabindex="-1" href="javascript:;">Remove</a>
+			</div><div class="dxucBarCell">
+				<table class="dxucProgressBar_MaterialCompact dxucFL-Progress" id="plaintiffDocumentImportFileUpload_FL_Progress" style="height:6px;width:100%;border-collapse:separate;display:none;">
+					<tbody><tr>
+						<td class="dxPBMainCell"><div id="plaintiffDocumentImportFileUpload_FL_Progress_DI" class="dxucProgressBarIndicator_MaterialCompact" style="width:0%;">
+
+						</div></td>
+					</tr>
+				</tbody></table><script id="dxss_1206747266" data-executed="true">
+<!--
+ASPx.AddDisabledItems('plaintiffDocumentImportFileUpload_FL_Progress',[[[''],[''],['VIC']]]);
+ASPx.createControl(ASPxClientProgressBarBase,'plaintiffDocumentImportFileUpload_FL_Progress','',{'uniqueID':'plaintiffDocumentImportFileUpload$FL_Progress','clientVisible':false,'minimum':0,'maximum':100,'position':0,'displayMode':2,'customDisplayFormat':'','displayFormat':'{0:0.##}','hasOwner':false});
+
+//-->
+</script>
+			</div></li>
+		</ul></td>
+	</tr>
+</tbody><input type="hidden" name="plaintiffDocumentImportFileUpload_DXMVCUploadControl"></table><iframe id="plaintiffDocumentImportFileUpload_UploadIframe" title="No user content" name="plaintiffDocumentImportFileUpload_UploadIframe" style="overflow:hidden;border:0;position:absolute;display:none;z-index:100000;filter:progid:DXImageTransform.Microsoft.Alpha(Style=0, Opacity=0);">
+
+</iframe><script id="dxss_1745415202" data-executed="true">
+<!--
+ASPx.AddHoverItems('plaintiffDocumentImportFileUpload',[[['dxucBrowseButtonHover_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddPressedItems('plaintiffDocumentImportFileUpload',[[['dxucBrowseButtonPressed_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddDisabledItems('plaintiffDocumentImportFileUpload',[[['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],[''],['Add','Upload','Cancel','Remove0']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['TextBox0'],['','_FakeInput']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['ClearBox0'],,[[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]],['Img']],[['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],[''],['Browse0']]]);
+ASPx.createControl(MVCxClientUploadControl,'plaintiffDocumentImportFileUpload','',{'stateObject':{'inputCount':1},'fileInputSpacing':'2px','generalErrorText':'File upload failed due to an external error','callbackResultErrorText':'The web server returned unexpected response.','uploadWasCanceledErrorText':'File upload was canceled.','selectedSeveralFilesText':'{0} files are selected for upload','nullText':'No file chosen','nullTextItem':{'textBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact','cssText':'border-right-width:0px;width:100%;'},'editArea':{'cssText':'background-color:Transparent;border-width:0px;'},'clearBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB','cssText':'border-left-width:0px;border-right-width:0px;'}},'validationSettings':{'maxFileSize':524288000,'multiSelectionErrorText':'Attention! \r\n\r\n{0} files are invalid and will not be uploaded. Possible reasons are: they exceed the allowed file size ({1}), their extensions are not allowed, or their filenames contain invalid characters. These files have been removed from the selection: \r\n\r\n{2}','invalidWindowsFileNameErrorText':'The file name contains invalid characters.','maxFileSizeErrorText':'You have exceeded the maximum file size of 500MB for Medical Records or 300MB for all other document types.'},'progressHandlerPage':'/ASPxUploadProgressHandlerPage.ashx','uploadingKey':'45c10c4c7948ae9f7b02cd214a592c04','uploadProcessingEnabled':true,'advancedModeEnabled':true,'slUploadHelperUrl':'/DXR.axd?r=1_135-SZRsu','enableFileList':true,'enableMultiSelect':true,'tooManyFilesErrorText':'Too many files are selected. Reduce the number of selected files and try again.','enableDragAndDrop':true,'dropZoneText':'Drop file(s) here','settings':'bYmKDBJEOadUXt3lkMrg7U6U1sbfEaCdpQ088B2MN8RBIjPQVgMJq8x1vNuYcpIrc4dxezKH1ZZeqZ1ZvtWG5bRvwe0nbWv7Kw0fkiAYl0bWgOWQAsfHy1wYvyAB9ddupOoKO0tHs40wioaU301FUYIBrNiCiA/Q4l0W9SUWtm6eSGp2JYMN3XdjIQyjjs81WCM5oGITSSZCi8D6QAYsig6Je75uFDaysZA2b7N6llg=','templateDisabledTextBoxItem':{'element':'TextBoxT','postfixes':['','_FakeInput'],'imageUrls':[''],'imagePostfixes':[''],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload'},'templateDisabledClearBoxItem':{'element':'ClearBoxT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload','imageObjs':[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]},'templateHoveredBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonHover_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload','imageObjs':[]},'templatePressedBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonPressed_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload','imageObjs':[]},'templateDisabledBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload','imageObjs':[]},'templateDisabledRemoveItem':{'element':'RemoveT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],'cssText':[''],'name':'plaintiffDocumentImportFileUpload','imageObjs':[]},'callbackUrl':'/Import/UploadPlaintiffDocuments?controlID=plaintiffDocumentImportFileUpload'},{'FilesUploadComplete':fileDocImportUploadCompleteEvent,'FilesUploadStart':fileDocImportUploadStarted,'TextChanged':onPlaintiffDocumentImportTextChanged,'ValidationErrorOccurred':onPlaintiffDocumentImportValidationErrorOccurred});
+
+//-->
+</script></td>
+									</tr><tr>
+										<td class="dxflHALSys dxflVATSys dxflBHelpTextSys dxflHelpText_MaterialCompact"><span>Please do not exit out of the browser during the upload process to avoid losing data.</span></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1618157904" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientFormLayout,'flPlaintiffDocumentImport','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'chkConfidentialDocs','path':'0_0','associatedNestedExtensionName':null},{'name':'plaintiffDocumentImportFileUpload','path':'0_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,0_20,0_16,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_24,0_28,0_32,0_56,0_50,0_53,0_47"><input type="hidden" name="DXMVCEditorsValues" value="{&quot;chkConfidentialDocs&quot;:false}"></form>    </div>
+    <div style="flex: 1;">
+
+    </div>
+</div>
+
+<div style="padding-top: 10px; padding-right: 30px; display: flex;">
+    <div style="flex: 3; overflow-y:auto">
+        <div class="dxpnlControl_MaterialCompact" id="cbPlaintiffDocumentImportPartial" style="width:100%;display:none;">
+<div class="dxflFormLayout_MaterialCompact" id="flPlaintiffDocumentImportReview" style="height:100%;width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flPlaintiffDocumentImportReview_0" class="dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Plaintiff Document Import Review</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;padding-bottom:4px;">
+					<tbody><tr>
+						<td id="flPlaintiffDocumentImportReview_0_0" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flPlaintiffDocumentImportReview_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of plaintiff documents imported:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="ImportedDocCount"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flPlaintiffDocumentImportReview_0_1" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flPlaintiffDocumentImportReview_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of exceptions:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="FailedDocImportCount"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1474141257" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flPlaintiffDocumentImportReview','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'','path':'0_0','associatedNestedExtensionName':null},{'name':'','path':'0_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+</div><table id="cbPlaintiffDocumentImportPartial_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbPlaintiffDocumentImportPartial_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbPlaintiffDocumentImportPartial_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_468228427" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbPlaintiffDocumentImportPartial','',{'callBack':function(arg) { ; },'clientVisible':false,'hideContentOnCallback':false,'callbackUrl':'/Import/GetPlaintiffDocumentImportInformation'},{'BeginCallback':OnBeginDocumentImportPartialCallback});
+
+//-->
+</script>
+
+    </div>
+</div>
+
+<div class="mt-4">
+    <h2>Plaintiff Page Reference Import</h2>
+    <p><b>Use this section to bulk import references for Medical Records.</b></p><p>
+
+    </p><p>Per CMO 35, you can comply with the requirement of supplying evidence of diagnosis by providing a page reference.</p>
+
+    <p>
+        To add a page reference to a document, you will need the document ID. This document ID can be found in the Plaintiff Documents Report.
+    </p>
+<form action="/Import/Documents" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flImportPlaintiffPageReference">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportPlaintiffPageReference_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflChildInLastRowSys" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="width:650px;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Start Page Reference Import</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportPlaintiffPageReference_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_PlaintiffPageReference" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_PlaintiffPageReferenceImg"><span class="dx-vam">Download Plaintiff Page Reference Template</span></a><script id="dxss_1315151677" data-executed="true">
+<!--
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_PlaintiffPageReference','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportPlaintiffPageReferenceTemplate'});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flImportPlaintiffPageReference_0_1" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" style="width:50%;" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="width:100%;">
+<span class="dxeBase_MaterialCompact" id="lbFileSelection">Select the file you would like to import:</span>
+						</div></td>
+					</tr><tr>
+						<td id="flImportPlaintiffPageReference_0_2" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<table class="dxuc-root dxucControl_MaterialCompact" id="ucFileSelection" style="width:100%;">
+	<tbody><tr>
+		<td style="width:100%;vertical-align:top;"><table id="ucFileSelection_UploadInputs" class="dxucInputs_MaterialCompact" style="width:100%;border-collapse:separate;">
+			<tbody><tr id="ucFileSelection_FIT" style="display:none;">
+				<td id="ucFileSelection_TextBoxT" class="dxTB dxucTextBox_MaterialCompact dx-al" style="width:100%;border-right-style:Solid;border-right-width:0px;"><input id="ucFileSelection_TextBoxT_Input" class="dxTI" type="file" name="ucFileSelection_TextBoxT_Input" accept=".xlsx" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;"><input id="ucFileSelection_TextBoxT_FakeInput" class="dxTF dxucEditArea_MaterialCompact" type="text" readonly="readonly" tabindex="-1" style="background-color:Transparent;border-width:0px;width:100%;"></td><td id="ucFileSelection_ClearBoxT" class="dxCB dxucTextBox_MaterialCompact" style="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;"><a href="javascript:;" style="visibility:hidden;"><img id="ucFileSelection_ClearBoxTImg" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;"></a></td><td id="ucFileSelection_BrowseT" class="dxBB dxucBrowseButton_MaterialCompact"><a tabindex="-1" href="javascript:;">Browse...</a></td>
+			</tr><tr id="ucFileSelection_ErrRRT" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr><tr class="dxucSR" style="display:none;">
+				<td colspan="3" style="font:0;height:2px;"></td>
+			</tr><tr id="ucFileSelection_FI0">
+				<td id="ucFileSelection_TextBox0" savedclass="dxTB dxucTextBox_MaterialCompact dx-al" savedstyle="width:100%;border-right-style:Solid;border-right-width:0px;" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact" style="border-right-width: 0px; width: 100%;"><input id="ucFileSelection_TextBox0_Input" class="dxTI" type="file" name="ucFileSelection_TextBox0_Input" accept=".xlsx" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;"><input id="ucFileSelection_TextBox0_FakeInput" class="dxTF dxucEditArea_MaterialCompact" type="text" readonly="readonly" tabindex="-1" savedstyle="background-color:Transparent;border-width:0px;width:100%;" style="background-color: transparent; border-width: 0px; width: 100%;"></td><td id="ucFileSelection_ClearBox0" savedstyle="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;" savedclass="dxCB dxucTextBox_MaterialCompact" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB" style="border-left-width: 0px; border-right-width: 0px;"><a href="javascript:;" style="visibility:hidden;"><img id="ucFileSelection_ClearBox0Img" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;"></a></td><td id="ucFileSelection_Browse0" class="dxBB dxucBrowseButton_MaterialCompact"><a tabindex="-1" href="javascript:;">Browse...</a></td>
+			</tr><tr id="ucFileSelection_ErrR0" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr>
+		</tbody></table><table id="ucFileSelection_ProgressPanel" style="width:100%;display:none;">
+			<tbody><tr>
+				<td style="vertical-align:middle;"><table style="width:100%;">
+					<tbody><tr>
+						<td><table class="dxucProgressBar_MaterialCompact" id="ucFileSelection_UCProgress" style="width:100%;border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxPBMainCell"><div id="ucFileSelection_UCProgress_DI" class="dxucProgressBarIndicator_MaterialCompact" style="width:0%;">
+
+								</div><table style="width:100%;margin-top:0px;">
+									<tbody><tr>
+										<td id="ucFileSelection_UCProgress_VIC" class="dx" style="text-align:Center;vertical-align:Middle;"><div class="dxpbVC">
+											0%
+										</div></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table><script id="dxss_1206856935" data-executed="true">
+<!--
+ASPx.AddDisabledItems('ucFileSelection_UCProgress',[[[''],[''],['VIC']]]);
+ASPx.createControl(ASPxClientProgressBarBase,'ucFileSelection_UCProgress','',{'uniqueID':'ucFileSelection$UCProgress','minimum':0,'maximum':100,'position':0,'displayMode':0,'displayFormat':'{0:0.##}','hasOwner':false});
+
+//-->
+</script></td>
+					</tr><tr>
+						<td style="font:0;height:13px;"></td>
+					</tr><tr>
+						<td class="dx-ac"><table>
+							<tbody><tr>
+								<td id="ucFileSelection_Cancel" class="dxucButton_MaterialCompact dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact"><a href="javascript:;" saveddisabledstateitemcolor="[object Object]" tabindex="-1" unselectable="on" style="color: inherit;">Cancel</a></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><div id="ucFileSelection_CErr" class="dxucErrorCell_MaterialCompact" style="padding-top:13px;display:none;">
+			Common error text is displayed here
+		</div></td>
+	</tr>
+</tbody><input type="hidden" name="ucFileSelection_DXMVCUploadControl"></table><iframe id="ucFileSelection_UploadIframe" title="No user content" name="ucFileSelection_UploadIframe" style="overflow:hidden;border:0;position:absolute;display:none;z-index:100000;filter:progid:DXImageTransform.Microsoft.Alpha(Style=0, Opacity=0);">
+
+</iframe><script id="dxss_2046174057" data-executed="true">
+<!--
+ASPx.AddHoverItems('ucFileSelection',[[['dxucBrowseButtonHover_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddPressedItems('ucFileSelection',[[['dxucBrowseButtonPressed_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddDisabledItems('ucFileSelection',[[['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],[''],['Add','Upload','Cancel','Remove0']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['TextBox0'],['','_FakeInput']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['ClearBox0'],,[[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]],['Img']],[['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],[''],['Browse0']]]);
+ASPx.createControl(MVCxClientUploadControl,'ucFileSelection','',{'stateObject':{'inputCount':1},'fileInputSpacing':'2px','generalErrorText':'File upload failed due to an external error','callbackResultErrorText':'The web server returned unexpected response.','uploadWasCanceledErrorText':'File upload was canceled.','selectedSeveralFilesText':'{0} files are selected for upload','nullText':'No file chosen','nullTextItem':{'textBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact','cssText':'border-right-width:0px;width:100%;'},'editArea':{'cssText':'background-color:Transparent;border-width:0px;width:100%;'},'clearBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB','cssText':'border-left-width:0px;border-right-width:0px;'}},'validationSettings':{'invalidWindowsFileNameErrorText':'The file name contains invalid characters.','allowedFileExtensions':['.xlsx'],'multiSelectionErrorText':'Attention! \r\n\r\n{0} files are invalid and will not be uploaded. Possible reasons are: they exceed the allowed file size ({1}), their extensions are not allowed, or their filenames contain invalid characters. These files have been removed from the selection: \r\n\r\n{2}','maxFileSizeErrorText':'Maximum file size is 300MB','notAllowedFileExtensionErrorText':'File Type not allowed. Please upload an excel spreadsheet.','maxFileSize':314572800},'progressHandlerPage':'/ASPxUploadProgressHandlerPage.ashx','uploadingKey':'e954912d9a5e669496c2a8b733acd858','uploadProcessingEnabled':true,'advancedModeEnabled':true,'slUploadHelperUrl':'/DXR.axd?r=1_135-SZRsu','autoModeEnabled':true,'settings':'vAqOiAv1IVZJyzVFxHomtuCxvj+pxsEb9AkwnOETpVqNEW6xuo/YFtLsbPTMbuJmdiyu5pmlYeI1RQ5A/M9jaHkMBdJ40BKOz5bEWno3hVEqHwjVUwtbZfEA3URv3A0WOiZ0AWKK7+f95AI2PDXKieqjhMrtckyIHSMPZ5Kp2eKa1YKJ7lxEfie1uC3Fp51cPcDuVaj3flJ2VWzwrL0/kA==','autoStart':true,'templateDisabledTextBoxItem':{'element':'TextBoxT','postfixes':['','_FakeInput'],'imageUrls':[''],'imagePostfixes':[''],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection'},'templateDisabledClearBoxItem':{'element':'ClearBoxT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]},'templateHoveredBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonHover_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templatePressedBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonPressed_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templateDisabledBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templateDisabledRemoveItem':{'element':'RemoveT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'callbackUrl':'/Import/StartFileImport?controlID=ucFileSelection'},{'FilesUploadComplete':OnFileUploadComplete,'FilesUploadStart':OnFileUploadStart});
+
+//-->
+</script>
+						</div></td>
+					</tr>
+				</tbody></table>
+			</div></td><td data-left="689" class="dxflChildInFirstRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1920723053" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportPlaintiffPageReference','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'btnDownloadTemplate_PlaintiffPageReference','path':'0_0','associatedNestedExtensionName':null},{'name':'lbFileSelection','path':'0_1','associatedNestedExtensionName':null},{'name':'ucFileSelection','path':'0_2','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,0_20,0_16,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_24,0_28,0_32,0_56,0_50,0_53,0_47"></form></div>
+
+
+<div id="popDocumentImportLoading_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="popDocumentImportLoading_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="popDocumentImportLoading_PWH-1T">Plaintiff Document Import Processing</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="popDocumentImportLoading_PWC-1">
+				Please wait while the plaintiff documents are being uploaded. This window will close when the uploads are completed. <br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgLoadingDocUpload" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="popDocumentImportLoading_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_88500582" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'popDocumentImportLoading','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s,e) {s.UpdatePosition();}});
+
+//-->
+</script>
+
+<div id="pcScanLoadingModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcScanLoadingModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcScanLoadingModal_PWH-1T">Import Processing</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcScanLoadingModal_PWC-1">
+				<p class="text-justify">Please wait while we quickly scan your file. This window will close when the scan is completed.</p> <br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgScanLoading" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcScanLoadingModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_797409356" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcScanLoadingModal','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcProcessLoadingModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcProcessLoadingModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcProcessLoadingModal_PWH-1T">Import Processing</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcProcessLoadingModal_PWC-1">
+				<p class="text-justify">Please wait while your file is being imported into the system. This window will close when the import processing is completed.</p> <br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgProcessLoading" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcProcessLoadingModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1654646854" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcProcessLoadingModal','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportErrorModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header dxpc-withBtn" id="pcImportErrorModal_PWH-1">
+			<div class="dxpc-closeBtn" id="pcImportErrorModal_HCB-1">
+				<img class="dxWeb_pcCloseButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportErrorModal_PWH-1T">Import Error</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportErrorModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportError">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportError_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p>The imported file <b>''</b> has a record count of <b>0</b>, which exceeds the maximum amount of records able to be processed of <b>0</b>.</p>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_2073425516" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportError','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportErrorModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportErrorModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportErrorModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportErrorModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1675400226" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcImportErrorModal',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcImportErrorModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'CloseButton','closeOnEscape':true,'popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportErrorModalCallback'},{'EndCallback':OnEndImportErrorModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportConfirmationModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcImportConfirmationModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportConfirmationModal_PWH-1T">Import Confirmation</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportConfirmationModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportConfirmation">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportConfirmation_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p class="text-justify">Are you sure you want to import <b>0</b> record(s) for <b>''</b>?</p>
+			</div></td>
+		</tr><tr>
+			<td id="flImportConfirmation_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flImportConfirmation_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportNo" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportNo_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportNo_I" class="dxb-hb" value="No" type="button" name="btnImportNo">
+		</div><span class="dx-vam">No</span>
+	</div>
+</div><script id="dxss_1571219152" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportNo',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportNo',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportNo',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportNo',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportNo','',{'useSubmitBehavior':false},{'Click':OnImportNoButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flImportConfirmation_1_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportYes" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportYes_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportYes_I" class="dxb-hb" value="Yes" type="button" name="btnImportYes">
+		</div><span class="dx-vam">Yes</span>
+	</div>
+</div><script id="dxss_1618086600" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportYes',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportYes',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportYes',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportYes',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportYes','',{'useSubmitBehavior':false},{'Click':OnImportYesButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1843853901" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportConfirmation','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null},{'name':'','path':'1','items':[{'name':'btnImportNo','path':'1_0','associatedNestedExtensionName':null},{'name':'btnImportYes','path':'1_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportConfirmationModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportConfirmationModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportConfirmationModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportConfirmationModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_116320860" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcImportConfirmationModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportConfirmationModalCallback'},{'EndCallback':OnEndImportConfirmationModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportProcessingDetailsModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcImportProcessingDetailsModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportProcessingDetailsModal_PWH-1T">Import Alert</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportProcessingDetailsModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportProcessingDetails">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportProcessingDetails_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p class="text-justify">While processing your import, <b>0</b> warning(s) were found that require your attention. Do you still wish to proceed?</p>
+			</div></td>
+		</tr><tr>
+			<td id="flImportProcessingDetails_1" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa" style="width:600px;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxgvHSDC">
+			<div style="width:600px;overflow:hidden;">
+				<table id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_DXHeaderTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+					<tbody><tr class="dxgvArm">
+						<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+					</tr><tr id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_DXHeadersRow0">
+						<td id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Row #</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Message</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><div class="dxgvCSD" style="height:200px;width:600px;overflow-x:hidden;overflow-y:auto;">
+			<table id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+				<tbody><tr class="dxgvArm">
+					<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+				</tr><tr id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+					<td class="dxgv" colspan="3"><div>
+						No data to display
+					</div></td>
+				</tr>
+			</tbody></table>
+		</div><table id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1194975820" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'groupLevelState':{},'callbackState':'85CvN5iVeiWCVEHV3zPkxZV3Gp1TgzjJSZLpUrpDNrN1GxRgkhPSCxOdWr3JpdTmMgunhqSrvltn2E/vLTpCPec+2wQ2Gi/vF0UzCcWkDEnUd4T86srI5tCLjItUuFywj+DjfoO+Zzq+8YQJR3Wi9HuvbKtQU9g0i8jqQWHrfUwdMXhD57ZyvLmhAW3jH3gxNY5JSpk8ve/4hOgFh44gQzeHbBTrxnTMatqgduM/lBndRR3OMTbOQ7ZrD7d09+sr','scrollState':null,'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':-1,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'vertScroll':2,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'RowNumber',0,,,,0,,,,,0,0],[1,,,'Message',0,,,,1,,,,,0,0],[2,,,'ValidationType',0,,,,2,,,,,0,0]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'editingItemVisibleIndex':-1});
+ASPxClientGridBase.PostponeInitialize('gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="3"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+
+			</div></td>
+		</tr><tr>
+			<td id="flImportProcessingDetails_2" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flImportProcessingDetails_2_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportCancel" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportCancel_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportCancel_I" class="dxb-hb" value="Cancel" type="button" name="btnImportCancel">
+		</div><span class="dx-vam">Cancel</span>
+	</div>
+</div><script id="dxss_1932269424" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportCancel',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportCancel',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportCancel',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportCancel',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportCancel','',{'useSubmitBehavior':false},{'Click':OnImportCancelButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flImportProcessingDetails_2_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportProceed" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportProceed_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportProceed_I" class="dxb-hb" value="Proceed" type="button" name="btnImportProceed">
+		</div><span class="dx-vam">Proceed</span>
+	</div>
+</div><script id="dxss_1424314282" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportProceed',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportProceed',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportProceed',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportProceed',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportProceed','',{'useSubmitBehavior':false},{'Click':OnImportProceedButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1617617251" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportProcessingDetails','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null},{'name':'ImportWarnings','path':'1','associatedNestedExtensionName':null},{'name':'','path':'2','items':[{'name':'btnImportCancel','path':'2_0','associatedNestedExtensionName':null},{'name':'btnImportProceed','path':'2_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportProcessingDetailsModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportProcessingDetailsModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportProcessingDetailsModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportProcessingDetailsModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1440790204" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcImportProcessingDetailsModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportProcessingDetailsModalCallback'},{'EndCallback':OnEndImportProcessingDetailsModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportSummaryModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="height:600px;width:575px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header dxpc-withBtn" id="pcImportSummaryModal_PWH-1">
+			<div class="dxpc-closeBtn" id="pcImportSummaryModal_HCB-1">
+				<img class="dxIcon_actions_close_16x16devav" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportSummaryModal_PWH-1T">Import Summary</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportSummaryModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportSummary" style="height:100%;width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportSummary_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Import Results</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportSummary_0_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Status:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact text-danger" id="lblImportStatus">Unsuccessful</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_1" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import Name:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportName"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_2" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_2_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import User:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportUser"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_3" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_3_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Start Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateStarted">1/1/0001 12:00:00.000 AM</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_4" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_4_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">End Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateEnded">1/1/0001 12:00:00.000 AM</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_5" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_5_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Time Elapsed:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblElapsedTime">0ms</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_6" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_6_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Expected Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblExpectedRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_7" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_7_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Valid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblValidRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_8" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_8_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Invalid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblInvalidRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_9" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_9_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Validation Messages:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblErrorCount">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr><tr>
+			<td id="flImportSummary_1" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;width:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;width:100%;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Validation Summary</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportSummary_1_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_1_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3" style="width:600px;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxgvHSDC">
+			<div style="width:600px;overflow:hidden;">
+				<table id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_DXHeaderTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+					<tbody><tr class="dxgvArm">
+						<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+					</tr><tr id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_DXHeadersRow0">
+						<td id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Row #</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Message</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><div class="dxgvCSD" style="height:200px;width:600px;overflow-x:hidden;overflow-y:auto;">
+			<table id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+				<tbody><tr class="dxgvArm">
+					<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+				</tr><tr id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+					<td class="dxgv" colspan="3"><div>
+						No data to display
+					</div></td>
+				</tr>
+			</tbody></table>
+		</div><table id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1521597030" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'groupLevelState':{},'callbackState':'u+bLgO/AqW1TIJxbTB4vvfg2Qq/1IY686aw9vvlrOMPHDt0vNPUKIz7ThmlYA0Sw8EvxiEN2NwBgdFsEUcyAMJT367fIqnZg3CI7Z8tWgVye6AZw1mkeO8MEcc6MlOE/SHn6K1/e32wJ60QDWQhWbBEXBDkFK4eQf0YW8lSEgWudRNTGoAX2lZpPoB6fiTpPeewn2xpRXEfFPx1K44QZ0UCnDK6aibOijS+A44HKEhoQawwcdwkOnWYD0gfFWvSe','scrollState':null,'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':-1,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'vertScroll':2,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'RowNumber',0,,,,0,,,,,0,0],[1,,,'Message',0,,,,1,,,,,0,0],[2,,,'ValidationType',0,,,,2,,,,,0,0]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'editingItemVisibleIndex':-1});
+ASPxClientGridBase.PostponeInitialize('gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="3"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+</td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1103498247" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportSummary','',null,null,null,{'items':[{'name':'importResultsGrp','path':'0','items':[{'name':'lblImportStatus','path':'0_0','associatedNestedExtensionName':null},{'name':'lblImportName','path':'0_1','associatedNestedExtensionName':null},{'name':'lblImportUser','path':'0_2','associatedNestedExtensionName':null},{'name':'lblDateStarted','path':'0_3','associatedNestedExtensionName':null},{'name':'lblDateEnded','path':'0_4','associatedNestedExtensionName':null},{'name':'lblElapsedTime','path':'0_5','associatedNestedExtensionName':null},{'name':'lblExpectedRecords','path':'0_6','associatedNestedExtensionName':null},{'name':'lblValidRecords','path':'0_7','associatedNestedExtensionName':null},{'name':'lblInvalidRecords','path':'0_8','associatedNestedExtensionName':null},{'name':'lblErrorCount','path':'0_9','associatedNestedExtensionName':null}]},{'name':'validationGrp','path':'1','items':[{'name':'','path':'1_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportSummaryModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportSummaryModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportSummaryModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportSummaryModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1140587711" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcImportSummaryModal',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcImportSummaryModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'CloseButton','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':575,'widthFromServer':true,'height':600,'autoUpdatePosition':true,'callbackUrl':'/Import/OnImportSummaryModalCallback'},{'EndCallback':OnEndImportSummaryModalCallback});
+
+//-->
+</script>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

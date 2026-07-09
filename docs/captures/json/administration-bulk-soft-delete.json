@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T19:55:35.373Z",
+  "title": "Bulk Soft Delete",
+  "url": "https://uat.afffmdlportal.com/Admin/BulkSoftDelete",
+  "screenshot": "administration-bulk-soft-delete.png",
+  "html": "administration-bulk-soft-delete.html",
+  "width": 1440,
+  "height": 929,
+  "viewportWidth": 1440,
+  "viewportHeight": 929,
+  "screenshotSha256": "de6e6116746bd5aa93141d79ec3e43e34d0a39a654d2ba508586f605566e2076"
+}

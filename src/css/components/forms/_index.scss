@@ -1,0 +1,10 @@
+// Form components — Figma Forms frame (6229:2473).
+// Loaded from main.scss via @use "components/forms".
+@forward "input-field";
+@forward "checkbox";
+@forward "fieldset";
+@forward "form-control-group";
+@forward "radio";
+@forward "file-upload";
+@forward "textarea";
+@forward "toggle-field";

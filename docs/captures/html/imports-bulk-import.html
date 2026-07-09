@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html class="dxChrome dxMacOSPlatform dxWebKitFamily dxBrowserVersion-148 dxTheme-MaterialCompact js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" savedpadding-top="[object Object]" savedpadding-bottom="[object Object]" style="padding-top: 96px; padding-bottom: 41px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Bulk Import</title>
+
+        <!-- Google tag (gtag.js) -->
+        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-12B88VJM6V"></script>
+        <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-12B88VJM6V');</script>
+    <link rel="stylesheet" href="/DXR.axd?r=0_2067,1_66,1_67,0_2070,0_20,0_16,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_24,0_28,0_32,0_56,0_50,0_53,0_47-SZRsu&amp;p=573b1aec">
+    <script id="dxis_664406351" src="/DXR.axd?r=1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1-SZRsu"></script>
+
+    <!--Vue.js lib files-->
+    <script src="/Scripts/lib/vue/vue.min.js"></script>
+    <script src="/Scripts/lib/vuex/vuex.js"></script>
+    <!--Custom Vue.js components-->
+    <script src="/Scripts/Vue/Components/customGridView.js"></script>
+    <script src="/Scripts/Vue/Components/modalPopup.js"></script>
+
+    <link href="/Content/Stylesheets/Site.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customMobileGrid.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/portal.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/customGridView.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Stylesheets/modalPopup.css" rel="stylesheet" type="text/css">
+    <link href="/Content/Bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/fontawesome.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/regular.css" rel="stylesheet" type="text/css">
+    <link href="/Content/fontawesome/css/solid.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20data-codex-favicon-badge%3D%22codex-favicon-badge%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cimage%20href%3D%22data%3Aimage%2Fbmp%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABp0lEQVR4nOyWMUvDQBTH311itamziHRS0dbVQVzUigUp4taptoqgBVG6iQhiBl0UhCodtChKcekqOEmrg4MfQNBJcXK1Qito73yxDiJt4S4l6ZAf4d6Rl%2BT9eby8exRshoLNqGCC3GF0yLDj8cwdSCKdAc6BEEVJEkpTuq5Lf0f6xevjWAxVGBkYHPM%2BR0ASAhLkU%2BF24tIeOUDX763XkvurPzRzXgBBpDLAW7T1P8ENOt0ldRUkEM7A1cl8t1Iu3%2BO27Z%2FrgwIbGF3IPIEAwn8BLTMfll%2Bymo8z4kMjJECqBhqJ7Y3IEdD8Z8FNOupnQC%2BIYMFy42JkKhA%2FfQAzAjD4HpoeDhJQfoBrsO4j9Zy5o9lpNJMgz0QuPRcCGQHZbNhFCeyCSQjw5OX%2BSiuICuh48yQw7X1gnl5NKyzVctasATzv33FdgwbACRRr%2BZxW7AhonlacT8c2sSZ1sAIOG4HFsy1jSyrBI17UYvRsD1gABi1%2BMuYPxjMvtCJI3bEqeCUeaCql2z9icL4fxlnuFqzvCXhashGVM5rAfi00SDZMAVWWnU74DQAA%2F%2F9h9g3vAAAABklEQVQDAGLIbR6SrbuXAAAAAElFTkSuQmCC%22%20width%3D%2232%22%20height%3D%2232%22%20opacity%3D%220.3%22%20%2F%3E%3Cpath%20d%3D%22M3.04536%204.45259C2.7582%203.60299%203.60299%202.7582%204.45259%203.04536L14.1828%206.33403C15.1637%206.66558%2015.0872%208.08006%2014.0715%208.39045L10.2994%209.54319C9.93919%209.65327%209.65327%209.93919%209.54319%2010.2994L8.39046%2014.0715C8.08007%2015.0872%206.66558%2015.1637%206.33404%2014.1828L3.04536%204.45259Z%22%20fill%3D%22black%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22%20paint-order%3D%22stroke%20fill%22%20transform%3D%22translate(-2%20-2)%20scale(2.1)%22%20%2F%3E%3C%2Fsvg%3E" data-codex-favicon-badge="true" data-codex-original-favicon-href="/Content/Images/favicon.ico">
+<style></style><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+<body>
+    <div id="HeaderPane_EB" class="dxpnl-bar dxpnl-edge t dxpnlControl_MaterialCompact headerPane bar" style="background-color:#003057;">
+	<div class="dxpnl-bar-tmpl dxpnl-np">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+    <div class="templateTitle">
+        <a href="/">AFFF MDL Portal</a>
+    </div>
+
+	</div><div id="HeaderPane_EBB" class="dxpnl-btn dxpnl-fp">
+		<img id="HeaderPane_EBBI" class="dxWeb_pnlExpand_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="">
+	</div>
+</div><div class="dxpnlControl_MaterialCompact headerPane panel dxpnl-edge t" id="HeaderPane" style="background-color: rgb(0, 48, 87); top: 0px;" savedtop="[object Object]">
+
+<style>
+    
+    .loginControl
+    {
+        color: #FFFFFF;
+        margin: 24px 25px 12px;
+        margin-left: auto;
+        white-space:nowrap;
+        font-size: 12px;
+    }
+    .loginControl a
+    {
+        color: #FFFFFF;
+        text-decoration: none;
+        border-bottom: dashed 1px black;
+        display: inline-block;
+    }
+</style>
+        <div class="d-flex flex-row">
+            <div class="templateTitle" style="width:65%">
+                
+<style>
+    .templateTitle a {
+        text-decoration: none;
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        display: flex;
+        flex-direction: column;
+        max-width:fit-content;
+        width: 90%;
+    }
+
+    .templateMainTitle {
+        font-size: 24px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        white-space: nowrap;
+    }
+
+    .templateSubTitle {
+        text-decoration: none;
+        font-size: 15px;
+        font-family: var(--header-font);
+        color: var(--header-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="d-flex align-items-center">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="height: 28px; margin: 0px 12px 0px 0px;">
+    <a href="/">
+        <div class="templateMainTitle">
+            AFFF MDL Portal
+        </div>
+        <div class="templateSubTitle">
+            In re: Aqueous Film-Forming Foams Products Liability Litigation (MDL 2873)
+        </div>
+    </a>
+</div>
+
+            </div>
+            <div id="flash-message" style="float:left;display:none"></div>
+            <div class="loginControl">
+                     Welcome jeffrey.schram@eisneramper.com 
+     |
+<a href="/Account/LogOff">Logout</a>
+            </div>
+        </div>
+    <div class="headerMenu" style="background-color:#003057">
+        <div class="dxmLite_MaterialCompact dxm-ltr">
+	<div class="dxm-main dxm-horizontal headerMenu" id="HeaderMenu" style="width: 100%;">
+		<ul class="dx dxm-image-l dxm-noImages">
+			<li class="dxm-item" id="HeaderMenu_DXI0_" style="min-width: 65px;"><a class="dxm-content dxm-hasText dx" href="/" id="HeaderMenu_DXI0_T"><span class="dx-vam dxm-contentText">Home</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI1_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI1_" style="min-width: 129px;"><a class="dxm-content dxm-hasText dx" href="/Announcements/" id="HeaderMenu_DXI1_T"><span class="dx-vam dxm-contentText">Announcements</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI2_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI2_" style="min-width: 139px;"><a class="dxm-content dxm-hasText dx" href="/PortalDocuments/" target="_blank" id="HeaderMenu_DXI2_T"><span class="dx-vam dxm-contentText">Portal Documents</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI3_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI3_" style="min-width: 78px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI3_T">
+				<span class="dx-vam dxm-contentText">Security</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI4_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI4_" style="min-width: 116px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI4_T">
+				<span class="dx-vam dxm-contentText">Administration</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI5_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI5_" style="min-width: 121px;"><a class="dxm-content dxm-hasText dx" href="/FactSheet/Search" id="HeaderMenu_DXI5_T"><span class="dx-vam dxm-contentText">Plaintiff Search</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI6_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI6_" style="min-width: 96px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI6_T">
+				<span class="dx-vam dxm-contentText">Extensions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI7_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI7_" style="min-width: 77px;"><a class="dxm-content dxm-hasText dx" href="/Report/" id="HeaderMenu_DXI7_T"><span class="dx-vam dxm-contentText">Reports</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI8_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI8_" style="min-width: 74px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI8_T">
+				<span class="dx-vam dxm-contentText">Imports</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI9_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI9_" style="min-width: 104px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI9_T">
+				<span class="dx-vam dxm-contentText">Bulk Actions</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI10_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI10_" style="min-width: 59px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI10_T">
+				<span class="dx-vam dxm-contentText">Audit</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI11_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI11_" style="min-width: 60px;"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI11_T">
+				<span class="dx-vam dxm-contentText">Case</span>
+			</div></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" id="HeaderMenu_DXI12_IS" savedheight="[object Object]"><b></b></li><li class="dxm-item" id="HeaderMenu_DXI12_" style="min-width: 97px;"><a class="dxm-content dxm-hasText dx" href="/ContactUs/" id="HeaderMenu_DXI12_T"><span class="dx-vam dxm-contentText">Contact Us</span></a></li><li class="dxm-separator" style="padding-left: 0px; padding-right: 0px; height: 34px;" savedheight="[object Object]"><b></b></li>
+		</ul>
+	</div><b class="dx-clear"></b><div id="HeaderMenu_DXM3_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME3_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI3i0_"><a class="dxm-content dxm-hasText dx" href="/Security/" id="HeaderMenu_DXI3i0_T"><span class="dx-vam dxm-contentText">User Management</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI3i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI3i1_"><a class="dxm-content dxm-hasText dx" href="/Security/RoleManagement/" id="HeaderMenu_DXI3i1_T"><span class="dx-vam dxm-contentText">Role Management</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM4_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME4_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI4i0_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmAdmin" id="HeaderMenu_DXI4i0_T"><span class="dx-vam dxm-contentText">Law Firm Administration</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i1_"><a class="dxm-content dxm-hasText dx" href="/Admin/LawFirmUserApproval" id="HeaderMenu_DXI4i1_T"><span class="dx-vam dxm-contentText">Law Firm Approval</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i2_"><a class="dxm-content dxm-hasText dx" href="/Admin/Announcements" id="HeaderMenu_DXI4i2_T"><span class="dx-vam dxm-contentText">Announcements Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i3_"><a class="dxm-content dxm-hasText dx" href="/Admin/Milestones" id="HeaderMenu_DXI4i3_T"><span class="dx-vam dxm-contentText">Case Milestones</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i4_"><a class="dxm-content dxm-hasText dx" href="/Admin/AllocationInfo" id="HeaderMenu_DXI4i4_T"><span class="dx-vam dxm-contentText">Allocation Info</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i5_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i5_"><a class="dxm-content dxm-hasText dx" href="/Admin/PortalDocumentAdmin" id="HeaderMenu_DXI4i5_T"><span class="dx-vam dxm-contentText">Portal Document Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i6_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i6_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimFormAdmin" id="HeaderMenu_DXI4i6_T"><span class="dx-vam dxm-contentText">Claim Form Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i7_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i7_"><a class="dxm-content dxm-hasText dx" href="/Admin/TimeExpenseStatusAdmin" id="HeaderMenu_DXI4i7_T"><span class="dx-vam dxm-contentText">Time &amp; Expense Status Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i8_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i8_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkClaimReview" id="HeaderMenu_DXI4i8_T"><span class="dx-vam dxm-contentText">Bulk Claim Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i9_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i9_"><a class="dxm-content dxm-hasText dx" href="/Admin/ClaimImport" id="HeaderMenu_DXI4i9_T"><span class="dx-vam dxm-contentText">Bulk Claim Import</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i10_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i10_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkSoftDelete" id="HeaderMenu_DXI4i10_T"><span class="dx-vam dxm-contentText">Bulk Soft Delete</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI4i11_II"></li><li class="dxm-item" id="HeaderMenu_DXI4i11_"><a class="dxm-content dxm-hasText dx" href="/Admin/BulkUpdateLitigationStatus" id="HeaderMenu_DXI4i11_T"><span class="dx-vam dxm-contentText">Bulk Litigation Status</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM6_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME6_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI6i0_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionRequest" id="HeaderMenu_DXI6i0_T"><span class="dx-vam dxm-contentText">Claim Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i1_"><a class="dxm-content dxm-hasText dx" href="/Extension/ClaimExtensionReview" id="HeaderMenu_DXI6i1_T"><span class="dx-vam dxm-contentText">Claim Extension Review</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i2_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionRequest" id="HeaderMenu_DXI6i2_T"><span class="dx-vam dxm-contentText">Plaintiff Extension Request</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI6i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI6i3_"><a class="dxm-content dxm-hasText dx" href="/Extension/PlaintiffExtensionReview" id="HeaderMenu_DXI6i3_T"><span class="dx-vam dxm-contentText">Plaintiff Extension Review</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM8_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME8_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI8i0_"><a class="dxm-content dxm-hasText dx" href="/Import/Plaintiff" id="HeaderMenu_DXI8i0_T"><span class="dx-vam dxm-contentText">Plaintiff</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i1_II"></li><li class="dxm-item dxm-selected" id="HeaderMenu_DXI8i1_"><div class="dxm-content dxm-hasText" id="HeaderMenu_DXI8i1_T">
+					<span class="dx-vam dxm-contentText">Details</span>
+				</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i2_"><a class="dxm-content dxm-hasText dx" href="/Import/Documents" id="HeaderMenu_DXI8i2_T"><span class="dx-vam dxm-contentText">Documents</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i3_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i3_"><a class="dxm-content dxm-hasText dx" href="/Import/Defense" id="HeaderMenu_DXI8i3_T"><span class="dx-vam dxm-contentText">Defense</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI8i4_II"></li><li class="dxm-item" id="HeaderMenu_DXI8i4_"><a class="dxm-content dxm-hasText dx" href="/Import/Logs" id="HeaderMenu_DXI8i4_T"><span class="dx-vam dxm-contentText">Logs</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM9_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME9_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI9i0_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkAmend" id="HeaderMenu_DXI9i0_T"><span class="dx-vam dxm-contentText">Bulk Amend</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i1_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard/BulkSubmission" id="HeaderMenu_DXI9i1_T"><span class="dx-vam dxm-contentText">Bulk Submission</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI9i2_II"></li><li class="dxm-item" id="HeaderMenu_DXI9i2_"><a class="dxm-content dxm-hasText dx" href="/FSBulkOperationsWizard" id="HeaderMenu_DXI9i2_T"><span class="dx-vam dxm-contentText">Bulk E-Signature Request</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM10_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME10_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI10i0_"><a class="dxm-content dxm-hasText dx" href="/Audit/" id="HeaderMenu_DXI10i0_T"><span class="dx-vam dxm-contentText">System Audit</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI10i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI10i1_"><a class="dxm-content dxm-hasText dx" href="/Audit/EmailLog" id="HeaderMenu_DXI10i1_T"><span class="dx-vam dxm-contentText">Email Log</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div><div id="HeaderMenu_DXM11_" style="z-index: 20002; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup" id="HeaderMenu_DXME11_">
+			<ul class="dx dxm-noImages dxm-gutter">
+				<li class="dxm-item" id="HeaderMenu_DXI11i0_"><a class="dxm-content dxm-hasText dx" href="/Case/ClaimAdmin" id="HeaderMenu_DXI11i0_T"><span class="dx-vam dxm-contentText">Claim Admin</span></a><b class="dx-clear"></b></li><li class="dxm-spacing" id="HeaderMenu_DXI11i1_II"></li><li class="dxm-item" id="HeaderMenu_DXI11i1_"><a class="dxm-content dxm-hasText dx" href="/Case/WorkflowAdmin" id="HeaderMenu_DXI11i1_T"><span class="dx-vam dxm-contentText">Workflow Admin</span></a><b class="dx-clear"></b></li>
+			</ul>
+		</div>
+	</div>
+</div><script id="dxss_14774220" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderMenu',[[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_','DXI3_','DXI3i0_','DXI3i1_','DXI4_','DXI4i0_','DXI4i1_','DXI4i2_','DXI4i3_','DXI4i4_','DXI4i5_','DXI4i6_','DXI4i7_','DXI4i8_','DXI4i9_','DXI4i10_','DXI4i11_','DXI5_','DXI6_','DXI6i0_','DXI6i1_','DXI6i2_','DXI6i3_','DXI7_','DXI8_','DXI8i0_','DXI8i2_','DXI8i3_','DXI8i4_','DXI9_','DXI9i0_','DXI9i1_','DXI9i2_','DXI10_','DXI10i0_','DXI10i1_','DXI11_','DXI11i0_','DXI11i1_','DXI12_'],['','T']],[[''],[''],['DXME3_','DXMBC3_','DXME4_','DXMBC4_','DXME6_','DXMBC6_','DXME8_','DXMBC8_','DXME9_','DXMBC9_','DXME10_','DXMBC10_','DXME11_','DXMBC11_']],[[''],[''],['DXI8i1_'],['','T']]]);
+ASPx.createControl(MVCxClientMenu,'HeaderMenu','',{'stateObject':{'itemsInfo':'Bw0HAAIAAgRIb21lAgAHAAcBAgACDUFubm91bmNlbWVudHMCAAcABwICAAIQUG9ydGFsIERvY3VtZW50cwIABwAHAwIAAghTZWN1cml0eQIABwIHAAIAAg9Vc2VyIE1hbmFnZW1lbnQCAAcABwECAAIPUm9sZSBNYW5hZ2VtZW50AgAHAAcEAgACDkFkbWluaXN0cmF0aW9uAgAHDAcAAgACF0xhdyBGaXJtIEFkbWluaXN0cmF0aW9uAgAHAAcBAgACEUxhdyBGaXJtIEFwcHJvdmFsAgAHAAcCAgACE0Fubm91bmNlbWVudHMgQWRtaW4CAAcABwMCAAIPQ2FzZSBNaWxlc3RvbmVzAgAHAAcEAgACD0FsbG9jYXRpb24gSW5mbwIABwAHBQIAAhVQb3J0YWwgRG9jdW1lbnQgQWRtaW4CAAcABwYCAAIQQ2xhaW0gRm9ybSBBZG1pbgIABwAHBwIAAhtUaW1lICYgRXhwZW5zZSBTdGF0dXMgQWRtaW4CAAcABwgCAAIRQnVsayBDbGFpbSBSZXZpZXcCAAcABwkCAAIRQnVsayBDbGFpbSBJbXBvcnQCAAcABwoCAAIQQnVsayBTb2Z0IERlbGV0ZQIABwAHCwIAAhZCdWxrIExpdGlnYXRpb24gU3RhdHVzAgAHAAcFAgACEFBsYWludGlmZiBTZWFyY2gCAAcABwYCAAIKRXh0ZW5zaW9ucwIABwQHAAIAAhdDbGFpbSBFeHRlbnNpb24gUmVxdWVzdAIABwAHAQIAAhZDbGFpbSBFeHRlbnNpb24gUmV2aWV3AgAHAAcCAgACG1BsYWludGlmZiBFeHRlbnNpb24gUmVxdWVzdAIABwAHAwIAAhpQbGFpbnRpZmYgRXh0ZW5zaW9uIFJldmlldwIABwAHBwIAAgdSZXBvcnRzAgAHAAcIAgACB0ltcG9ydHMCAAcFBwACAAIJUGxhaW50aWZmAgAHAAcBAgACB0RldGFpbHMCAAcABwICAAIJRG9jdW1lbnRzAgAHAAcDAgACB0RlZmVuc2UCAAcABwQCAAIETG9ncwIABwAHCQIAAgxCdWxrIEFjdGlvbnMCAAcDBwACAAIKQnVsayBBbWVuZAIABwAHAQIAAg9CdWxrIFN1Ym1pc3Npb24CAAcABwICAAIYQnVsayBFLVNpZ25hdHVyZSBSZXF1ZXN0AgAHAAcKAgACBUF1ZGl0AgAHAgcAAgACDFN5c3RlbSBBdWRpdAIABwAHAQIAAglFbWFpbCBMb2cCAAcABwsCAAIEQ2FzZQIABwIHAAIAAgtDbGFpbSBBZG1pbgIABwAHAQIAAg5Xb3JrZmxvdyBBZG1pbgIABwAHDAIAAgpDb250YWN0IFVzAgAHAA=='},'renderData':{'':[[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12]],'3':[[0],[1]],'4':[[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11]],'6':[[0],[1],[2],[3]],'8':[[0],1,[2],[3],[4]],'9':[[0],[1],[2]],'10':[[0],[1]],'11':[[0],[1]]}});
+
+//-->
+</script>
+    </div>
+
+</div><script id="dxss_1617918754" data-executed="true">
+<!--
+ASPx.AddHoverItems('HeaderPane',[[['dxpnl-btnHover'],[''],['EBB']]]);
+ASPx.AddPressedItems('HeaderPane',[[['dxpnl-btnPressed'],[''],['EBB']]]);
+ASPx.AddSelectedItems('HeaderPane',[[['dxpnl-expanded expandedPanel'],[''],['']],[['dxpnl-expanded'],[''],['EB']],[['dxpnl-btnSelected'],[''],['EBB']]]);
+ASPx.createControl(ASPxClientPanel,'HeaderPane','',{'collapseWindowWidth':500,'animationType':'fade','expandEffect':'PopupToBottom'});
+
+//-->
+</script>
+
+    <script type="text/javascript">
+        function updateHeaderMenuOrientation(){
+            if(!window.HeaderMenu) return;
+            var orientation = HeaderPane.IsExpandable() ? 'Vertical' : 'Horizontal';
+            if(orientation !== HeaderMenu.GetOrientation())
+                HeaderMenu.SetOrientation(orientation);
+        }
+        var collection = ASPxClientControl.GetControlCollection();
+        collection.ControlsInitialized.AddHandler(updateHeaderMenuOrientation);
+        collection.BrowserWindowResized.AddHandler(updateHeaderMenuOrientation);
+
+        $.fn.flashMessage = function (options) {
+            var target = this;
+            options = $.extend({}, options, { timeout: 5000 });
+            if (!options.message) {
+                options.message = getFlashMessageFromCookie();
+                options.isWarning = getFlashMessageSeverityFromCookie();
+                deleteFlashMessageCookie();
+            }
+            if (options.message) {
+                if (typeof options.message === "string") {
+                    target.html("<span>" + options.message + "</span>");
+                } else {
+                    target.empty().append(options.message);
+                }
+            }
+
+            //console.log("Is warning: " + options.isWarning);
+            if (options.isWarning === 'True') {
+                //console.log("target background color is: " + target.css("background-color") )
+                target.css("background-color", "#F22E2E");
+            }
+            else
+            {
+                target.css("background-color", "#a4c3f4");
+            }
+
+            if (target.children().length === 0) return;
+
+            target.fadeIn().one("click", function () {
+                $(this).fadeOut();
+            });
+
+            if (options.timeout > 0) {
+                setTimeout(function () { target.fadeOut(); }, options.timeout);
+            }
+
+            return this;
+
+            function getFlashMessageFromCookie() {
+                return $.cookie("MTPFlashMessage");
+            }
+
+            function getFlashMessageSeverityFromCookie() {
+                return $.cookie("MTPFlashMessageBad");
+            }
+
+            function deleteFlashMessageCookie() {
+                $.cookie("MTPFlashMessage", null, { path: '/' });
+                $.cookie("MTPFlashMessageBad", null, { path: '/' });
+            }
+        };
+
+        function showFlashIfPopulated() {
+            if ($.cookie("MTPFlashMessage") != undefined && $.cookie("MTPFlashMessage") != "null") {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage();
+            }
+            else {
+            }
+        }
+
+        function hideFlashIfEmpty() {
+            if ($.cookie("MTPFlashMessage") == "null") {
+                $('#flash-message').hide();
+            }
+
+        MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+        }
+
+        // shows the flash message when it is triggered on file upload complete
+        function showFlashMessageForFileUploadComplete(callbackData) {
+            const { message, error, isError } = JSON.parse(callbackData);
+
+            if (message) {
+                $('#flash-message').show();
+                $('#flash-message').flashMessage({ message: `${message}${isError === 'True' ? ` Error message: "${error}"` : ""}`, isWarning: isError });
+            }
+        }
+
+        function viewClaimDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewClaimPackageDoc(s, e, docId) {
+            var url = '/Claim/ViewClaimPackageDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPortalDoc(s, e, docId) {
+            var url = '/PortalDocuments/ViewPortalDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewLawFirmDoc(s, e, docId) {
+            var url = '/Admin/ViewLawFirmDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewPFSDoc(s, e, docId) {
+            var url = '/FactSheet/ViewPFSDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e) {
+            var url = '/TimeExpense/ViewExpenseDocument';
+            window.location.href = url;
+        }
+
+        function viewExpenseDoc(s, e, docId) {
+            var url = '/TimeExpense/ViewExpenseDocument?docId=DOCID'.replace("DOCID", docId);
+            window.location.href = url;
+        }
+
+        function GetElementById(id) {
+            return document.querySelector('#' + id);
+        }
+
+        function SetElementValue(elemId, value) {
+            GetElementById(elemId).value = value;
+        }
+    </script>
+
+    <div class="dxpnlControl_MaterialCompact mainContentPane" id="MainPane">
+	
+
+
+    <div class="contentPane">
+        
+        
+
+<script type="text/javascript">
+
+    const MAX_IMPORT_RECORD_COUNT = 50_000;
+    const PROCESS_STATUS_FAILED = 0;
+    const PROCESS_STATUS_NEEDS_APPROVAL = 1;
+    const PROCESS_STATUS_SUCCESS = 2;
+
+    let selectedImporttypeId = null;
+
+    // File Uploading Callbacks
+    function OnFileUploadStart(s, e) {
+        pcScanLoadingModal.Show();
+    }
+
+    function OnFileUploadComplete(s, e) {
+        pcScanLoadingModal.Hide();
+
+        // Get summary from upload callback
+        const summary = JSON.parse(e.callbackData);
+        console.log(summary);
+
+        // Show import error modal
+        if (summary.RecordCount > MAX_IMPORT_RECORD_COUNT) {
+            // Show error pop-up for import
+            if (!pcImportErrorModal.InCallback())
+                pcImportErrorModal.PerformCallback();
+
+            return;
+        }
+
+        // Show confirmation pop-up for import
+        if (!pcImportConfirmationModal.InCallback())
+            pcImportConfirmationModal.PerformCallback();
+    }
+
+    // Modal Popup Callbacks
+    function OnEndImportErrorModalCallback(s, e) {
+        s.Show();
+    }
+
+    function OnEndImportConfirmationModalCallback(s, e) {
+        s.Show();
+    }
+
+    function OnEndImportProcessingDetailsModalCallback(s, e) {
+        pcProcessLoadingModal.Hide();
+        s.Show();
+    }
+
+    function OnEndImportSummaryModalCallback(s, e) {
+        pcProcessLoadingModal.Hide();
+        s.Show();
+    }
+
+    function OnImportCancelButtonClicked(s, e) {
+        pcImportProcessingDetailsModal.Hide();
+    }
+
+    async function OnImportProceedButtonClicked(s, e) {
+        pcImportProcessingDetailsModal.Hide();
+
+        try {
+            pcProcessLoadingModal.Show();
+
+            const response = await fetch(`SaveProcessedRecords?importTypeId=${selectedImporttypeId}`, {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const result = await response.json();
+            if (!result.Success) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            // Display post-import summary
+            if (!pcImportSummaryModal.InCallback())
+                pcImportSummaryModal.PerformCallback();
+        }
+        catch (error) {
+            alert("An error occurred while trying to process your import. Please try again.");
+
+            console.error(error);
+            pcProcessLoadingModal.Hide();
+        }
+    }
+
+    function OnImportNoButtonClicked(s, e) {
+        pcImportConfirmationModal.Hide();
+    }
+
+    async function OnImportYesButtonClicked(s, e) {
+        pcImportConfirmationModal.Hide();
+
+        try {
+            pcProcessLoadingModal.Show();
+
+            const response = await fetch(`ProcessUploadedFile?importTypeId=${selectedImporttypeId}`, {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const result = await response.json();
+            if (!result.Success) {
+                alert("An error occurred while trying to process your import. Please try again.");
+                pcProcessLoadingModal.Hide();
+                return;
+            }
+
+            const data = result.Data;
+            if (data.ProcessStatus === PROCESS_STATUS_NEEDS_APPROVAL) {
+                // Display warnings on modal
+                if (!pcImportProcessingDetailsModal.InCallback())
+                    pcImportProcessingDetailsModal.PerformCallback();
+
+            } else {
+                // Display post-import summary
+                if (!pcImportSummaryModal.InCallback())
+                    pcImportSummaryModal.PerformCallback();
+            }
+        }
+        catch (error) {
+            alert("An error occurred while trying to process your import. Please try again.");
+
+            console.error(error);
+            pcProcessLoadingModal.Hide();
+        }
+    }
+
+    function MoveToElement(elementId) {
+        const anchor = document.createElement("a");
+        anchor.href = `#${elementId}`;
+        document.body.appendChild(anchor);
+        anchor.click();
+
+        document.body.removeChild(anchor);
+    }
+
+    function StartImport(importTypeId) {
+        // Set the selected import type id
+        selectedImporttypeId = importTypeId;
+
+        // Show the upload control
+        const visibleIndex = gvImportTemplates.keys.findIndex(id => id == importTypeId);
+        gvImportTemplates.GetRowValues(visibleIndex, "ImportName", (importName) => {
+            lbFileSelection.SetText(`Select file to import ${importName}.`);
+            ucFileSelection.SetEnabled(true);
+            flImportSelect.SetVisible(true);
+
+            MoveToElement("lbFileSelection");
+        });
+    }
+
+</script>
+
+<div class="mt-2">
+
+    <h2>Plaintiff Details Bulk Import</h2>
+    <br>
+    <p>
+        This import tool will help you import data in bulk&nbsp;for Plaintiff Profile Forms and Plaintiff Fact Sheets.&nbsp;These imports require the Plaintiff(s)
+        to already be registered in the portal. Each import template has an instructions tab that serves as a guide. To perform an import, download the
+        respective template, complete the template with all required data fields, click the 'Start Import' button, and confirm that you are importing the
+        correct template. Allow a few moments for the portal to properly import the file.
+    </p>
+
+<form action="/Import/Details" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flImportTemplates" style="width:70%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportTemplates_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Import Template Selection</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportTemplates_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<table class="dxgvControl_MaterialCompact dxgv dxgvAdD" id="gvImportTemplates" style="width:100%;border-collapse:separate;">
+	<tbody><tr>
+		<td><div id="gvImportTemplates_DXAHeaderPanel" class="dxgvAdaptiveHeaderPanel_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvImportTemplates',event);" style="display:none;">
+			<div id="gvImportTemplates_DXADHeader" class="dxgvADH" style="display:none;">
+				<table>
+					<tbody><tr class="dxgvADHTR">
+						<td></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><table id="gvImportTemplates_DXMainTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvImportTemplates',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvImportTemplates_DXHeadersRow0">
+				<td id="gvImportTemplates_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import Template</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvImportTemplates_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>PPF Section</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvImportTemplates_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>PFS Section</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvImportTemplates_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Download Template</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvImportTemplates_col4" class="dxgvHeader_MaterialCompact" style="width:5%;border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>&nbsp;</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvImportTemplates_DXADRow" class="dxgvAdaptiveDetailRow_MaterialCompact dxgvADR" style="display:none;">
+				<td class="dxgv dxgvAdaptiveDetailCell_MaterialCompact" colspan="5"></td>
+			</tr><tr id="gvImportTemplates_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Initial (PPF Data)</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Multiple</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell0_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Initial (PPF Data)" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Initial (PPF Data)Img"><span class="dx-vam">Download</span></a><script id="dxss_573578611" data-executed="true">
+<!--
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Initial (PPF Data)','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportInitialPPFDataImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell0_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Initial (PPF Data)" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Initial (PPF Data)_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Initial (PPF Data)_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Initial (PPF Data)">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1081367812" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Initial (PPF Data)',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Initial (PPF Data)',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Initial (PPF Data)',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Initial (PPF Data)',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Initial (PPF Data)','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(1)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Initial (PFS Data)</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Multiple</td><td id="gvImportTemplates_tccell1_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Initial (PFS Data)" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Initial (PFS Data)Img"><span class="dx-vam">Download</span></a><script id="dxss_407426785" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Initial (PFS Data)','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportInitialPFSDataImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell1_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Initial (PFS Data)" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Initial (PFS Data)_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Initial (PFS Data)_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Initial (PFS Data)">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_169316993" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Initial (PFS Data)',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Initial (PFS Data)',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Initial (PFS Data)',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Initial (PFS Data)',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Initial (PFS Data)','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(7)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Prior Residence</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">II.12</td><td id="gvImportTemplates_tccell2_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Prior Residence" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Prior ResidenceImg"><span class="dx-vam">Download</span></a><script id="dxss_2094207162" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Prior Residence','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportPriorResidenceImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell2_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Prior Residence" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Prior Residence_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Prior Residence_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Prior Residence">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_2030670452" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Prior Residence',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Prior Residence',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Prior Residence',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Prior Residence',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Prior Residence','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(8)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow3" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Military Service</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">II.13.b</td><td id="gvImportTemplates_tccell3_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Military Service" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Military ServiceImg"><span class="dx-vam">Download</span></a><script id="dxss_1585774030" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Military Service','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportMilitaryServiceImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell3_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Military Service" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Military Service_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Military Service_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Military Service">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1287861369" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Military Service',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Military Service',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Military Service',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Military Service',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Military Service','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(9)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow4" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Fire Service</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">II.14.a</td><td id="gvImportTemplates_tccell4_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Fire Service" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Fire ServiceImg"><span class="dx-vam">Download</span></a><script id="dxss_586937256" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Fire Service','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportFireServiceImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell4_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Fire Service" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Fire Service_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Fire Service_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Fire Service">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1138788310" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Fire Service',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Fire Service',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Fire Service',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Fire Service',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Fire Service','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(10)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow5" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Address of Contaminated Water</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I.A.1</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.16.a</td><td id="gvImportTemplates_tccell5_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Address of Contaminated Water" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Address of Contaminated WaterImg"><span class="dx-vam">Download</span></a><script id="dxss_1564112010" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Address of Contaminated Water','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportAddressOfContaminatedWaterImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell5_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Address of Contaminated Water" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Address of Contaminated Water_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Address of Contaminated Water_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Address of Contaminated Water">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_597298861" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Address of Contaminated Water',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Address of Contaminated Water',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Address of Contaminated Water',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Address of Contaminated Water',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Address of Contaminated Water','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(6)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow6" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Location and Product Information for Contaminated Water Exposure</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I. A.4</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.16.d</td><td id="gvImportTemplates_tccell6_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Location and Product Information for Contaminated Water Exposure" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Location and Product Information for Contaminated Water ExposureImg"><span class="dx-vam">Download</span></a><script id="dxss_474473526" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Location and Product Information for Contaminated Water Exposure','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportWaterExposureProductInformationImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell6_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Location and Product Information for Contaminated Water Exposure" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Location and Product Information for Contaminated Water Exposure_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Location and Product Information for Contaminated Water Exposure_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Location and Product Information for Contaminated Water Exposure">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_824845190" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Location and Product Information for Contaminated Water Exposure',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Location and Product Information for Contaminated Water Exposure',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Location and Product Information for Contaminated Water Exposure',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Location and Product Information for Contaminated Water Exposure',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Location and Product Information for Contaminated Water Exposure','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(5)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow7" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Address of Direct Exposure</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I.B.1</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.17.c</td><td id="gvImportTemplates_tccell7_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Address of Direct Exposure" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Address of Direct ExposureImg"><span class="dx-vam">Download</span></a><script id="dxss_1571245699" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Address of Direct Exposure','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportDirectExposureAddressHistoryImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell7_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Address of Direct Exposure" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Address of Direct Exposure_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Address of Direct Exposure_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Address of Direct Exposure">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1397586793" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Address of Direct Exposure',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Address of Direct Exposure',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Address of Direct Exposure',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Address of Direct Exposure',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Address of Direct Exposure','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(4)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow8" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Direct Exposure Product Information</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I.B.3</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.17.e</td><td id="gvImportTemplates_tccell8_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Direct Exposure Product Information" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Direct Exposure Product InformationImg"><span class="dx-vam">Download</span></a><script id="dxss_1422013624" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Direct Exposure Product Information','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportDirectExposureProductInformationImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell8_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Direct Exposure Product Information" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Direct Exposure Product Information_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Direct Exposure Product Information_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Direct Exposure Product Information">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1369510148" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Direct Exposure Product Information',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Direct Exposure Product Information',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Direct Exposure Product Information',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Direct Exposure Product Information',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Direct Exposure Product Information','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(3)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow9" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Medical Provider Information (PPF Data)</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">II.D</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell9_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Medical Provider Information (PPF Data)" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Medical Provider Information (PPF Data)Img"><span class="dx-vam">Download</span></a><script id="dxss_1516413655" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Medical Provider Information (PPF Data)','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportMedicalProviderPPFImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell9_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Medical Provider Information (PPF Data)" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Medical Provider Information (PPF Data)_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Medical Provider Information (PPF Data)_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Medical Provider Information (PPF Data)">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_634672789" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Medical Provider Information (PPF Data)',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Medical Provider Information (PPF Data)',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Medical Provider Information (PPF Data)',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Medical Provider Information (PPF Data)',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Medical Provider Information (PPF Data)','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(2)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow10" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Medical Provider Information (PFS Data)</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">IV.21</td><td id="gvImportTemplates_tccell10_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Medical Provider Information (PFS Data)" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Medical Provider Information (PFS Data)Img"><span class="dx-vam">Download</span></a><script id="dxss_174345855" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Medical Provider Information (PFS Data)','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportMedicalProviderPFSImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell10_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Medical Provider Information (PFS Data)" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Medical Provider Information (PFS Data)_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Medical Provider Information (PFS Data)_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Medical Provider Information (PFS Data)">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_2118632876" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Medical Provider Information (PFS Data)',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Medical Provider Information (PFS Data)',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Medical Provider Information (PFS Data)',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Medical Provider Information (PFS Data)',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Medical Provider Information (PFS Data)','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(11)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow11" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Persons with Knowledge of Alleged Exposure</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">IV.23</td><td id="gvImportTemplates_tccell11_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Persons with Knowledge of Alleged Exposure" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Persons with Knowledge of Alleged ExposureImg"><span class="dx-vam">Download</span></a><script id="dxss_989321213" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Persons with Knowledge of Alleged Exposure','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportPersonsWithKnowledgeExposureImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell11_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Persons with Knowledge of Alleged Exposure" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Persons with Knowledge of Alleged Exposure_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Persons with Knowledge of Alleged Exposure_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Persons with Knowledge of Alleged Exposure">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_42048863" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Persons with Knowledge of Alleged Exposure',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Persons with Knowledge of Alleged Exposure',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Persons with Knowledge of Alleged Exposure',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Persons with Knowledge of Alleged Exposure',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Persons with Knowledge of Alleged Exposure','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(12)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow12" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">SDWIS ID</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I.A.1</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.16.a</td><td id="gvImportTemplates_tccell12_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_SDWIS ID" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_SDWIS IDImg"><span class="dx-vam">Download</span></a><script id="dxss_905035784" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_SDWIS ID','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportSDWISTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell12_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_SDWIS ID" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_SDWIS ID_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_SDWIS ID_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_SDWIS ID">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_724985658" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_SDWIS ID',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_SDWIS ID',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_SDWIS ID',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_SDWIS ID',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_SDWIS ID','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(16)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow13" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Update Address of Contaminated Water</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">I.A.1</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">III.16.a</td><td id="gvImportTemplates_tccell13_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Update Address of Contaminated Water" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Update Address of Contaminated WaterImg"><span class="dx-vam">Download</span></a><script id="dxss_1657421516" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Update Address of Contaminated Water','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportUpdateAddressOfContaminatedWaterImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell13_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Update Address of Contaminated Water" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Update Address of Contaminated Water_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Update Address of Contaminated Water_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Update Address of Contaminated Water">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_744954756" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Update Address of Contaminated Water',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Update Address of Contaminated Water',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Update Address of Contaminated Water',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Update Address of Contaminated Water',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Update Address of Contaminated Water','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(17)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow14" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">CMO 37 Ticket Update Plaintiff Import</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell14_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_CMO 37 Ticket Update Plaintiff Import" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_CMO 37 Ticket Update Plaintiff ImportImg"><span class="dx-vam">Download</span></a><script id="dxss_1593087941" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_CMO 37 Ticket Update Plaintiff Import','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportCMOPlaintiffUpdateTicketImportTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell14_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_CMO 37 Ticket Update Plaintiff Import" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_CMO 37 Ticket Update Plaintiff Import_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_CMO 37 Ticket Update Plaintiff Import_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_CMO 37 Ticket Update Plaintiff Import">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1917506218" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_CMO 37 Ticket Update Plaintiff Import',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_CMO 37 Ticket Update Plaintiff Import',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_CMO 37 Ticket Update Plaintiff Import',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_CMO 37 Ticket Update Plaintiff Import',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_CMO 37 Ticket Update Plaintiff Import','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(19)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow15" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">CMO 37 Noncompliance 3 Response Import</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell15_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_CMO 37 Noncompliance 3 Response Import" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_CMO 37 Noncompliance 3 Response ImportImg"><span class="dx-vam">Download</span></a><script id="dxss_1358405270" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_CMO 37 Noncompliance 3 Response Import','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportCMONoncompliance3ResponseTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell15_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_CMO 37 Noncompliance 3 Response Import" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_CMO 37 Noncompliance 3 Response Import_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_CMO 37 Noncompliance 3 Response Import_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_CMO 37 Noncompliance 3 Response Import">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_132795325" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_CMO 37 Noncompliance 3 Response Import',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_CMO 37 Noncompliance 3 Response Import',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_CMO 37 Noncompliance 3 Response Import',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_CMO 37 Noncompliance 3 Response Import',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_CMO 37 Noncompliance 3 Response Import','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(21)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow16" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">CMO 37 Noncompliance 4 Response Import</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell16_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_CMO 37 Noncompliance 4 Response Import" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_CMO 37 Noncompliance 4 Response ImportImg"><span class="dx-vam">Download</span></a><script id="dxss_1520079062" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_CMO 37 Noncompliance 4 Response Import','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportCMONoncompliance4ResponseTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell16_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_CMO 37 Noncompliance 4 Response Import" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_CMO 37 Noncompliance 4 Response Import_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_CMO 37 Noncompliance 4 Response Import_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_CMO 37 Noncompliance 4 Response Import">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_1557427513" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_CMO 37 Noncompliance 4 Response Import',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_CMO 37 Noncompliance 4 Response Import',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_CMO 37 Noncompliance 4 Response Import',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_CMO 37 Noncompliance 4 Response Import',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_CMO 37 Noncompliance 4 Response Import','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(22)});
+
+//-->
+</script></td>
+			</tr><tr id="gvImportTemplates_DXDataRow17" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+				<td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;">N/A</td><td id="gvImportTemplates_tccell17_3" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_Dual Representation Update Import" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_Dual Representation Update ImportImg"><span class="dx-vam">Download</span></a><script id="dxss_461794742" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_Dual Representation Update Import','',{'useSubmitBehavior':false,'submitUrl':'/Import/ExportDualRepresentationUpdateTemplate'});
+
+//-->
+</script></td><td id="gvImportTemplates_tccell17_4" class="dxgv" style="padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;border-right-width:0px;border-bottom-width:0px;"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnStartImport_Dual Representation Update Import" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnStartImport_Dual Representation Update Import_CD">
+		<div class="dxb-hbc">
+			<input id="btnStartImport_Dual Representation Update Import_I" class="dxb-hb" value="Start Import" type="button" name="btnStartImport_Dual Representation Update Import">
+		</div><span class="dx-vam">Start Import</span>
+	</div>
+</div><script id="dxss_373109258" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnStartImport_Dual Representation Update Import',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnStartImport_Dual Representation Update Import',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnStartImport_Dual Representation Update Import',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnStartImport_Dual Representation Update Import',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnStartImport_Dual Representation Update Import','',{'useSubmitBehavior':false},{'Click':(s, e) => StartImport(23)});
+
+//-->
+</script></td>
+			</tr>
+		</tbody></table><table id="gvImportTemplates_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvImportTemplates_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvImportTemplates_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvImportTemplates_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportTemplates_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportTemplates_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportTemplates_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportTemplates_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_2142888708" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvImportTemplates','',{'callBack':function(arg) { ; },'stateObject':{'keys':['1','7','8','9','10','6','5','4','3','2','11','12','16','17','19','21','22','23'],'callbackState':'iSZuNlN7bQ13d7vtVe4SctTsCa195iQxqH/EVrEDQwo4wa466gVtiNy1LfzO6H0qq8gKHv4NRRQ6pPzsx7NYQv6QQ1p+3yXUidciGGLfgBkTpwVRDvB3fIzOzYLt2x+u99McYcEs4nCQn9ob0N3UP8tLWSp6XnNoz9xIhwTx0DnpNqRorJ5k6FpuQAJlF3Zulyq2jBRTk4168oO/Ic/QYD32tEMXkjollnNOBVPphdEJ+bawwsc21CvH4O2p+jvapXfgQq7sdE6zeniU1y0IVQ==','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':18,'pageRowSize':10,'pageIndex':-1,'pageCount':2,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'ImportName',,,,,0],[1,,,'PPFSection',,,,,1],[2,,,'PFSSection',,,,,2],[3,,,,0,,,,3,,,,,0],[4,,,,0,,,,4,,,,,0]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'adaptiveColumnsOrder':[4,3,2,1,0],'editingItemVisibleIndex':-1,'callbackUrl':'/Import/OnImportTemplatesCallback','keyName':'Id'},null,null,{'adaptiveModeInfo':{'adaptivityMode':2,'hideDataCellsWindowInnerWidth':0,'adaptiveDetailColumnCount':1,'allowTextTruncationInAdaptiveMode':{'0':false,'1':false,'2':false,'3':false,'4':false},'allowHideDataCellsByColumnMinWidth':false,'allowOnlyOneAdaptiveDetailExpanded':false}});
+ASPxClientGridBase.PostponeInitialize('gvImportTemplates',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="5" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'cssText':'padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;','className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'cssText':'padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;','className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'cssText':'padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;','className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+						</div></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1770449616" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientFormLayout,'flImportTemplates','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'','path':'0_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script><br>
+<div class="dxflFormLayout_MaterialCompact" id="flImportSelect" style="display:none;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportSelect_0" class="dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="width:650px;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Import Processing</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportSelect_0_0" class="dxflGroupCell_MaterialCompact" style="width:50%;"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="width:100%;">
+<span class="dxeBase_MaterialCompact" id="lbFileSelection">Select file to import:</span><script id="dxss_568498213" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientLabel,'lbFileSelection','',{'scStates':4,'scPostfix':'MaterialCompact'});
+
+//-->
+</script>
+						</div></td>
+					</tr><tr>
+						<td id="flImportSelect_0_1" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<table class="dxuc-root dxucControl_MaterialCompact" id="ucFileSelection" style="width:100%;">
+	<tbody><tr>
+		<td style="width:100%;vertical-align:top;"><table id="ucFileSelection_UploadInputs" class="dxucInputs_MaterialCompact" style="width:100%;border-collapse:separate;">
+			<tbody><tr id="ucFileSelection_FIT" style="display:none;">
+				<td id="ucFileSelection_TextBoxT" class="dxTB dxucTextBox_MaterialCompact dx-al" style="width:100%;border-right-style:Solid;border-right-width:0px;"><input id="ucFileSelection_TextBoxT_Input" class="dxTI" type="file" name="ucFileSelection_TextBoxT_Input" accept=".xlsx" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;"><input id="ucFileSelection_TextBoxT_FakeInput" class="dxTF dxucEditArea_MaterialCompact" type="text" readonly="readonly" tabindex="-1" style="background-color:Transparent;border-width:0px;width:100%;"></td><td id="ucFileSelection_ClearBoxT" class="dxCB dxucTextBox_MaterialCompact" style="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;"><a href="javascript:;" style="visibility:hidden;"><img id="ucFileSelection_ClearBoxTImg" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;"></a></td><td id="ucFileSelection_BrowseT" class="dxBB dxucBrowseButton_MaterialCompact"><a tabindex="-1" href="javascript:;">Browse...</a></td>
+			</tr><tr id="ucFileSelection_ErrRRT" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr><tr class="dxucSR" style="display:none;">
+				<td colspan="3" style="font:0;height:2px;"></td>
+			</tr><tr id="ucFileSelection_FI0">
+				<td id="ucFileSelection_TextBox0" savedclass="dxTB dxucTextBox_MaterialCompact dx-al" savedstyle="width:100%;border-right-style:Solid;border-right-width:0px;" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact" style="border-right-width: 0px; width: 100%;"><input id="ucFileSelection_TextBox0_Input" class="dxTI" type="file" name="ucFileSelection_TextBox0_Input" accept=".xlsx" style="position:absolute;filter:alpha(opacity=0);opacity:0;top:-5000px;z-index:29999;" disabled=""><input id="ucFileSelection_TextBox0_FakeInput" class="dxTF dxucEditArea_MaterialCompact dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact" type="text" readonly="readonly" tabindex="-1" savedstyle="background-color:Transparent;border-width:0px;width:100%;" disabled="" style="background-color: transparent; border-width: 0px; width: 100%;"></td><td id="ucFileSelection_ClearBox0" savedstyle="border-left-style:Solid;border-left-width:0px;border-right-style:Solid;border-right-width:0px;" savedclass="dxCB dxucTextBox_MaterialCompact" class="dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact" style="border-left-width: 0px; border-right-width: 0px;"><a href="javascript:;" style="visibility: hidden; color: inherit;" saveddisabledstateitemcolor="[object Object]"><img id="ucFileSelection_ClearBox0Img" title="Clear selection" class="dxWeb_ucClearButton_MaterialCompact dxWeb_ucClearButtonDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Clear selection" style="display:inline;" saveddisabledstateitemsrc="/DXR.axd?r=1_87-SZRsu" saveddisabledstateitemclassname="dxWeb_ucClearButton_MaterialCompact"></a></td><td id="ucFileSelection_Browse0" class="dxBB dxucBrowseButton_MaterialCompact dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact"><a tabindex="-1" href="javascript:;" saveddisabledstateitemcolor="[object Object]" unselectable="on" style="color: inherit;">Browse...</a></td>
+			</tr><tr id="ucFileSelection_ErrR0" style="display:none;">
+				<td class="dxucErrorCell_MaterialCompact" colspan="3"></td>
+			</tr>
+		</tbody></table><table id="ucFileSelection_ProgressPanel" style="width:100%;display:none;">
+			<tbody><tr>
+				<td style="vertical-align:middle;"><table style="width:100%;">
+					<tbody><tr>
+						<td><table class="dxucProgressBar_MaterialCompact" id="ucFileSelection_UCProgress" style="width:100%;border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxPBMainCell"><div id="ucFileSelection_UCProgress_DI" class="dxucProgressBarIndicator_MaterialCompact" style="width:0%;">
+
+								</div><table style="width:100%;margin-top:0px;">
+									<tbody><tr>
+										<td id="ucFileSelection_UCProgress_VIC" class="dx" style="text-align:Center;vertical-align:Middle;"><div class="dxpbVC">
+											0%
+										</div></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table><script id="dxss_1206856935" data-executed="true">
+<!--
+ASPx.AddDisabledItems('ucFileSelection_UCProgress',[[[''],[''],['VIC']]]);
+ASPx.createControl(ASPxClientProgressBarBase,'ucFileSelection_UCProgress','',{'uniqueID':'ucFileSelection$UCProgress','minimum':0,'maximum':100,'position':0,'displayMode':0,'displayFormat':'{0:0.##}','hasOwner':false});
+
+//-->
+</script></td>
+					</tr><tr>
+						<td style="font:0;height:13px;"></td>
+					</tr><tr>
+						<td class="dx-ac"><table>
+							<tbody><tr>
+								<td id="ucFileSelection_Cancel" class="dxucButton_MaterialCompact dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact"><a href="javascript:;" saveddisabledstateitemcolor="[object Object]" tabindex="-1" unselectable="on" style="color: inherit;">Cancel</a></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table><div id="ucFileSelection_CErr" class="dxucErrorCell_MaterialCompact" style="padding-top:13px;display:none;">
+			Common error text is displayed here
+		</div></td>
+	</tr>
+</tbody><input type="hidden" name="ucFileSelection_DXMVCUploadControl"></table><iframe id="ucFileSelection_UploadIframe" title="No user content" name="ucFileSelection_UploadIframe" style="overflow:hidden;border:0;position:absolute;display:none;z-index:100000;filter:progid:DXImageTransform.Microsoft.Alpha(Style=0, Opacity=0);">
+
+</iframe><script id="dxss_1733062339" data-executed="true">
+<!--
+ASPx.AddHoverItems('ucFileSelection',[[['dxucBrowseButtonHover_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddPressedItems('ucFileSelection',[[['dxucBrowseButtonPressed_MaterialCompact'],[''],['Browse0']]]);
+ASPx.AddDisabledItems('ucFileSelection',[[['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],[''],['Add','Upload','Cancel','Remove0']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['TextBox0'],['','_FakeInput']],[['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],[''],['ClearBox0'],,[[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]],['Img']],[['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],[''],['Browse0']]]);
+ASPx.createControl(MVCxClientUploadControl,'ucFileSelection','',{'clientEnabled':false,'stateObject':{'inputCount':1},'fileInputSpacing':'2px','generalErrorText':'File upload failed due to an external error','callbackResultErrorText':'The web server returned unexpected response.','uploadWasCanceledErrorText':'File upload was canceled.','selectedSeveralFilesText':'{0} files are selected for upload','nullText':'No file chosen','nullTextItem':{'textBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact','cssText':'border-right-width:0px;width:100%;'},'editArea':{'cssText':'background-color:Transparent;border-width:0px;width:100%;'},'clearBox':{'className':'dxucTextBox_MaterialCompact dxucNullText_MaterialCompact dxCB','cssText':'border-left-width:0px;border-right-width:0px;'}},'validationSettings':{'invalidWindowsFileNameErrorText':'The file name contains invalid characters.','allowedFileExtensions':['.xlsx'],'multiSelectionErrorText':'Attention! \r\n\r\n{0} files are invalid and will not be uploaded. Possible reasons are: they exceed the allowed file size ({1}), their extensions are not allowed, or their filenames contain invalid characters. These files have been removed from the selection: \r\n\r\n{2}','maxFileSizeErrorText':'Maximum file size is 300MB','notAllowedFileExtensionErrorText':'File Type not allowed. Please upload an excel spreadsheet.','maxFileSize':314572800},'progressHandlerPage':'/ASPxUploadProgressHandlerPage.ashx','uploadingKey':'45225806da50a0db9c056bdda7f699c0','uploadProcessingEnabled':true,'advancedModeEnabled':true,'slUploadHelperUrl':'/DXR.axd?r=1_135-SZRsu','autoModeEnabled':true,'settings':'MiZnuV/1431/ECx2pyaGe9OAKJK8yYFzHBjLt5lNKPMI9ovi9vpKmlhJPfK+nzMt0jng3iqgVqL4VK7qPpFI+thVwP7B6Dq2n5xzhq2M+juOUjA7xuV6AdzMJVlCmEeMv0tdi7n96nGH/gKFLfOqcU0eULIFm+9r+6m830qemSTR7XAtni//hBjIXrg9HjYAhaNZnFizmS+58+uZ3RgQhA==','autoStart':true,'templateDisabledTextBoxItem':{'element':'TextBoxT','postfixes':['','_FakeInput'],'imageUrls':[''],'imagePostfixes':[''],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection'},'templateDisabledClearBoxItem':{'element':'ClearBoxT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucTextBoxDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[{'spriteCssClass':'dxWeb_ucClearButtonDisabled_MaterialCompact'}]},'templateHoveredBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonHover_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templatePressedBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucBrowseButtonPressed_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templateDisabledBrowseItem':{'element':'BrowseT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucBrowseButtonDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'templateDisabledRemoveItem':{'element':'RemoveT','postfixes':[''],'imagePostfixes':['Img'],'className':['dxucDisabled_MaterialCompact dxucButtonDisabled_MaterialCompact'],'cssText':[''],'name':'ucFileSelection','imageObjs':[]},'callbackUrl':'/Import/StartFileImport?controlID=ucFileSelection'},{'FilesUploadComplete':OnFileUploadComplete,'FilesUploadStart':OnFileUploadStart});
+
+//-->
+</script>
+						</div></td>
+					</tr>
+				</tbody></table>
+			</div></td><td></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_539426650" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportSelect','',{'clientVisible':false},null,null,{'items':[{'name':'','path':'0','items':[{'name':'lbFileSelection','path':'0_0','associatedNestedExtensionName':null},{'name':'ucFileSelection','path':'0_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,0_20,0_16,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_24,0_28,0_32,0_56,0_50,0_53,0_47"></form>
+
+</div>
+
+<div id="pcScanLoadingModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcScanLoadingModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcScanLoadingModal_PWH-1T">Import Processing</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcScanLoadingModal_PWC-1">
+				<p class="text-justify">Please wait while we quickly scan your file. This window will close when the scan is completed.</p> <br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgScanLoading" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcScanLoadingModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_797409356" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcScanLoadingModal','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcProcessLoadingModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcProcessLoadingModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcProcessLoadingModal_PWH-1T">Import Processing</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcProcessLoadingModal_PWC-1">
+				<p class="text-justify">Please wait while your file is being imported into the system. This window will close when the import processing is completed.</p> <br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgProcessLoading" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcProcessLoadingModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1654646854" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcProcessLoadingModal','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportErrorModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header dxpc-withBtn" id="pcImportErrorModal_PWH-1">
+			<div class="dxpc-closeBtn" id="pcImportErrorModal_HCB-1">
+				<img class="dxWeb_pcCloseButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportErrorModal_PWH-1T">Import Error</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportErrorModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportError">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportError_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p>The imported file <b>''</b> has a record count of <b>0</b>, which exceeds the maximum amount of records able to be processed of <b>0</b>.</p>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_2073425516" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportError','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportErrorModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportErrorModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportErrorModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportErrorModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1675400226" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcImportErrorModal',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcImportErrorModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'CloseButton','closeOnEscape':true,'popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportErrorModalCallback'},{'EndCallback':OnEndImportErrorModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportConfirmationModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcImportConfirmationModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportConfirmationModal_PWH-1T">Import Confirmation</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportConfirmationModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportConfirmation">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportConfirmation_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p class="text-justify">Are you sure you want to import <b>0</b> record(s) for <b>''</b>?</p>
+			</div></td>
+		</tr><tr>
+			<td id="flImportConfirmation_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flImportConfirmation_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportNo" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportNo_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportNo_I" class="dxb-hb" value="No" type="button" name="btnImportNo">
+		</div><span class="dx-vam">No</span>
+	</div>
+</div><script id="dxss_1571219152" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportNo',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportNo',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportNo',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportNo',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportNo','',{'useSubmitBehavior':false},{'Click':OnImportNoButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flImportConfirmation_1_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportYes" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportYes_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportYes_I" class="dxb-hb" value="Yes" type="button" name="btnImportYes">
+		</div><span class="dx-vam">Yes</span>
+	</div>
+</div><script id="dxss_1618086600" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportYes',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportYes',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportYes',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportYes',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportYes','',{'useSubmitBehavior':false},{'Click':OnImportYesButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1843853901" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportConfirmation','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null},{'name':'','path':'1','items':[{'name':'btnImportNo','path':'1_0','associatedNestedExtensionName':null},{'name':'btnImportYes','path':'1_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportConfirmationModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportConfirmationModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportConfirmationModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportConfirmationModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_116320860" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcImportConfirmationModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportConfirmationModalCallback'},{'EndCallback':OnEndImportConfirmationModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportProcessingDetailsModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcImportProcessingDetailsModal_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportProcessingDetailsModal_PWH-1T">Import Alert</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportProcessingDetailsModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportProcessingDetails">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportProcessingDetails_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<p class="text-justify">While processing your import, <b>0</b> warning(s) were found that require your attention. Do you still wish to proceed?</p>
+			</div></td>
+		</tr><tr>
+			<td id="flImportProcessingDetails_1" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb" style="width:600px;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxgvHSDC">
+			<div style="width:600px;overflow:hidden;">
+				<table id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_DXHeaderTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+					<tbody><tr class="dxgvArm">
+						<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+					</tr><tr id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_DXHeadersRow0">
+						<td id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Row #</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Message</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><div class="dxgvCSD" style="height:200px;width:600px;overflow-x:hidden;overflow-y:auto;">
+			<table id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+				<tbody><tr class="dxgvArm">
+					<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+				</tr><tr id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+					<td class="dxgv" colspan="3"><div>
+						No data to display
+					</div></td>
+				</tr>
+			</tbody></table>
+		</div><table id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1669698901" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'groupLevelState':{},'callbackState':'ilZo6jCN+bk+M3zq0rh4K915Wc3gReNrtB5/k3yGJbkx1NRlq0El1Cqe+HHTR0m36jAETUpriVt7LQaPN7UnGp/oDbXNy4+GRxjv64NgbKDbYkda8Q5XbfUHq818duSGyPIQsOsJ2VmPcRdJP0Pp64PytRcemXownqfb8pnrTGDZeLXKg4dRmQMI8BE/yxK8ZuJ1gcslwda+OlPYRRoOupmOwT3V0jqqrydk9lcwT0CifItsmMUZZ6ILv55rUHeb','scrollState':null,'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':-1,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'vertScroll':2,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'RowNumber',0,,,,0,,,,,0,0],[1,,,'Message',0,,,,1,,,,,0,0],[2,,,'ValidationType',0,,,,2,,,,,0,0]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'editingItemVisibleIndex':-1});
+ASPxClientGridBase.PostponeInitialize('gvValidationDetails_6a6581d6-54de-4aef-8ace-a82d77ff32fb',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="3"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+
+			</div></td>
+		</tr><tr>
+			<td id="flImportProcessingDetails_2" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flImportProcessingDetails_2_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportCancel" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportCancel_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportCancel_I" class="dxb-hb" value="Cancel" type="button" name="btnImportCancel">
+		</div><span class="dx-vam">Cancel</span>
+	</div>
+</div><script id="dxss_1932269424" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportCancel',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportCancel',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportCancel',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportCancel',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportCancel','',{'useSubmitBehavior':false},{'Click':OnImportCancelButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flImportProcessingDetails_2_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportProceed" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnImportProceed_CD">
+		<div class="dxb-hbc">
+			<input id="btnImportProceed_I" class="dxb-hb" value="Proceed" type="button" name="btnImportProceed">
+		</div><span class="dx-vam">Proceed</span>
+	</div>
+</div><script id="dxss_1424314282" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnImportProceed',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnImportProceed',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnImportProceed',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnImportProceed',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnImportProceed','',{'useSubmitBehavior':false},{'Click':OnImportProceedButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1617617251" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportProcessingDetails','',null,null,null,{'items':[{'name':'ImportText','path':'0','associatedNestedExtensionName':null},{'name':'ImportWarnings','path':'1','associatedNestedExtensionName':null},{'name':'','path':'2','items':[{'name':'btnImportCancel','path':'2_0','associatedNestedExtensionName':null},{'name':'btnImportProceed','path':'2_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportProcessingDetailsModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportProcessingDetailsModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportProcessingDetailsModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportProcessingDetailsModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1440790204" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcImportProcessingDetailsModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true,'callbackUrl':'/Import/OnImportProcessingDetailsModalCallback'},{'EndCallback':OnEndImportProcessingDetailsModalCallback,'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcImportSummaryModal_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="height:600px;width:575px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header dxpc-withBtn" id="pcImportSummaryModal_PWH-1">
+			<div class="dxpc-closeBtn" id="pcImportSummaryModal_HCB-1">
+				<img class="dxIcon_actions_close_16x16devav" src="/DXR.axd?r=1_87-SZRsu" alt="Close">
+			</div><div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcImportSummaryModal_PWH-1T">Import Summary</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcImportSummaryModal_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flImportSummary" style="height:100%;width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flImportSummary_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Import Results</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportSummary_0_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Status:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact text-danger" id="lblImportStatus">Unsuccessful</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_1" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import Name:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportName"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_2" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_2_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import User:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportUser"></span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_3" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_3_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Start Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateStarted">1/1/0001 12:00:00.000 AM</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_4" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_4_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">End Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateEnded">1/1/0001 12:00:00.000 AM</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_5" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_5_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Time Elapsed:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblElapsedTime">0ms</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_6" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_6_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Expected Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblExpectedRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_7" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_7_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Valid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblValidRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_8" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_8_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Invalid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblInvalidRecords">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="flImportSummary_0_9" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_9_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Validation Messages:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblErrorCount">0</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr><tr>
+			<td id="flImportSummary_1" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;width:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;width:100%;">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Validation Summary</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flImportSummary_1_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_1_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4" style="width:600px;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxgvHSDC">
+			<div style="width:600px;overflow:hidden;">
+				<table id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_DXHeaderTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+					<tbody><tr class="dxgvArm">
+						<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+					</tr><tr id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_DXHeadersRow0">
+						<td id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Row #</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Message</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td><td id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;cursor:default;"><table style="width:100%;">
+							<tbody><tr>
+								<td>Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><div class="dxgvCSD" style="height:200px;width:600px;overflow-x:hidden;overflow-y:auto;">
+			<table id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4',event);" style="width:100%;empty-cells:show;table-layout:fixed;overflow:hidden;">
+				<tbody><tr class="dxgvArm">
+					<td style="width:10%;"></td><td style="width:65%;"></td><td style="width:15%;"></td>
+				</tr><tr id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+					<td class="dxgv" colspan="3"><div>
+						No data to display
+					</div></td>
+				</tr>
+			</tbody></table>
+		</div><table id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1802625408" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'groupLevelState':{},'callbackState':'JeOJeOGSnubIChTHT6EM1ti+4ztNQK9yWgv4UdsD/7rJYh9YXqMq1zwQfvgOaAK+/bALR01l6s+jylNK79FdJFWSpVJlyOU5T6CFv1IsZWRBr+yJITt7kFJUAihWXz60NFmr2sS/0We4yKLizYCto69kEL2YH/jgXzy3B/64VEPFX1r+P/p5vhmKSJceh6gy8VQThVTW9nPA4azm4frAB6w++r4utJbsGekMGpIHnAQNvuIYbWlps6QEL7Wj4POV','scrollState':null,'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':-1,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'vertScroll':2,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'RowNumber',0,,,,0,,,,,0,0],[1,,,'Message',0,,,,1,,,,,0,0],[2,,,'ValidationType',0,,,,2,,,,,0,0]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'editingItemVisibleIndex':-1});
+ASPxClientGridBase.PostponeInitialize('gvValidationDetails_44c435ce-a7cc-4982-9d3d-7bb1be1e10d4',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="3"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+</td>
+							</tr>
+						</tbody></table></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1103498247" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flImportSummary','',null,null,null,{'items':[{'name':'importResultsGrp','path':'0','items':[{'name':'lblImportStatus','path':'0_0','associatedNestedExtensionName':null},{'name':'lblImportName','path':'0_1','associatedNestedExtensionName':null},{'name':'lblImportUser','path':'0_2','associatedNestedExtensionName':null},{'name':'lblDateStarted','path':'0_3','associatedNestedExtensionName':null},{'name':'lblDateEnded','path':'0_4','associatedNestedExtensionName':null},{'name':'lblElapsedTime','path':'0_5','associatedNestedExtensionName':null},{'name':'lblExpectedRecords','path':'0_6','associatedNestedExtensionName':null},{'name':'lblValidRecords','path':'0_7','associatedNestedExtensionName':null},{'name':'lblInvalidRecords','path':'0_8','associatedNestedExtensionName':null},{'name':'lblErrorCount','path':'0_9','associatedNestedExtensionName':null}]},{'name':'validationGrp','path':'1','items':[{'name':'','path':'1_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcImportSummaryModal_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="pcImportSummaryModal_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="pcImportSummaryModal_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="pcImportSummaryModal_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1140587711" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcImportSummaryModal',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcImportSummaryModal','',{'callBack':function(arg) { ; },'popupAnimationType':'fade','closeAction':'CloseButton','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':575,'widthFromServer':true,'height':600,'autoUpdatePosition':true,'callbackUrl':'/Import/OnImportSummaryModalCallback'},{'EndCallback':OnEndImportSummaryModalCallback});
+
+//-->
+</script>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+</div>
+
+    <div class="dxpnlControl_MaterialCompact footerPane panel dxpnl-edge b" id="FooterPane">
+<div class="footerMenu">
+    <img src="/Content/Images/EA Logo.png" alt="EA Logo" style="width: 20px; height: 20px; margin: 0px 20px;">
+</div>
+<div class="copyright">
+    <span class="dxeBase_MaterialCompact">© 2026 EisnerAmper</span>
+    
+</div>
+</div><script id="dxss_215181112" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientPanel,'FooterPane','',{'hideWindowWidth':500});
+
+//-->
+</script>
+
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/modernizr-2.6.2.js" type="text/javascript"></script>
+    <script src="/Scripts/Bootstrap/bootstrap.js" type="text/javascript"></script>
+
+
+
+</body><div id="codex-agent-overlay-root" data-codex-agent-overlay-root="true"></div></html>

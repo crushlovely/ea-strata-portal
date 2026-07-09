@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T19:55:35.100Z",
+  "title": "Bulk Litigation Status",
+  "url": "https://uat.afffmdlportal.com/Admin/BulkUpdateLitigationStatus",
+  "screenshot": "administration-bulk-litigation-status.png",
+  "html": "administration-bulk-litigation-status.html",
+  "width": 1440,
+  "height": 929,
+  "viewportWidth": 1440,
+  "viewportHeight": 929,
+  "screenshotSha256": "61c31da0549fa9dd96efcc67497cafcaaee15d600f977e67c1d2f4689583321b"
+}

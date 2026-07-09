@@ -1,0 +1,855 @@
+---
+layout: layouts/base.njk
+title: "Role Management"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+
+<script type="text/javascript">
+    var selectedUserRole = null;
+    function UserRoleSelectionChanged(s, e) {
+        cbpRolePermEdit.SetVisible(true);
+        btnSaveUserRole.SetVisible(true);
+        btnCopyUserRole.SetVisible(true);
+        btnDeleteUserRole.SetVisible(true);
+        selectedUserRole = s.GetSelectedValues();
+        if (!cbpRolePermEdit.InCallback())
+            cbpRolePermEdit.PerformCallback();
+    }
+
+    function NewUserRoleClick(s, e) {
+        cbpRolePermEdit.SetVisible(true);
+        btnSaveUserRole.SetVisible(true);
+        btnCopyUserRole.SetVisible(false);
+        btnDeleteUserRole.SetVisible(false);
+        selectedUserRole = 0; //Pass 0 to indicate to the callback function new user role
+        if (!cbpRolePermEdit.InCallback())
+            cbpRolePermEdit.PerformCallback();
+    }
+
+    function OnBeginRolePermEditCallback(s, e) {
+        e.customArgs["selectedUserRole"] = selectedUserRole;
+        selectedUserRole = null;
+    }
+
+    function OnEndRolePermEditCallback(s, e) {
+        //Permissions_Account.SelectAll();
+        if (selectedUserRole != null) {
+            cbpRolePermEdit.PerformCallback();
+        }
+    }
+
+    //Prompt user to save changes before creating new role to prevent lost edits
+    function NewUserCheckIfSavedUpdates(s, e) {
+        //Don't prompt if no edits could have been made: after initial page load
+        if (btnSaveUserRole.GetVisible() === true) {
+            if (confirm('Please make sure you save changes made to user role before creating a new user role. Continuing will delete all unsaved changes. Do you wish to continue?')) {
+                NewUserRoleClick();
+            }
+        }
+        else {
+            NewUserRoleClick();
+        }
+    }
+
+</script>
+
+<h2>Role Management</h2>
+
+
+<form action="/Security/RoleManagement/" method="post" novalidate="novalidate"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnNewRole" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnNewRole_CD">
+		<div class="dxb-hbc">
+			<input id="btnNewRole_I" class="dxb-hb" value="Create New User Role" type="button" name="btnNewRole">
+		</div><span class="dx-vam">Create New User Role</span>
+	</div>
+</div><script id="dxss_680290183" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnNewRole',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnNewRole',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnNewRole',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnNewRole',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientButton,'btnNewRole','',{'useSubmitBehavior':false},{'Click':NewUserCheckIfSavedUpdates});
+
+//-->
+</script>    <div style="width:1000px; padding-top:5px">
+        <div style="float:left; width:250px">
+            <input type="hidden" name="lbUserRole$State" id="lbUserRole_State" value="{&amp;quot;CustomCallback&amp;quot;:&amp;quot;&amp;quot;}"><table class="dxeListBox_MaterialCompact dxeFocused_MaterialCompact dxh0" id="lbUserRole" style="height:700px;width:250px;border-collapse:separate;margin-bottom:10px;">
+	<tbody><tr>
+		<td><div id="lbUserRole_D" class="dxlbd" style="height: 696px; width: 250px; overflow: hidden auto;"><div id="lbUserRoleLBVSTC" style="overflow: hidden; width: 100%; height: 465px;"><div id="lbUserRoleVirtualScrollTopSpacer" style="height: 0px;"></div>
+			<input id="lbUserRole_VI" type="hidden" name="lbUserRole" value="1"><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+				<tbody><tr id="lbUserRole_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+				</tr>
+			</tbody></table><table id="lbUserRole_LBT" style="width:100%;border-collapse:separate;" class="">
+
+			<tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI0T0" class="dxeListBoxItem_MaterialCompact  dxeListBoxItemSelected_MaterialCompact">Administrator</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI1T0" class="dxeListBoxItem_MaterialCompact">Law Firm Admin</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI2T0" class="dxeListBoxItem_MaterialCompact">Law Firm User - Full Access - EXTERNAL</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI3T0" class="dxeListBoxItem_MaterialCompact">Defendant Reviewer</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI4T0" class="dxeListBoxItem_MaterialCompact">Plaintiffs' Leadership</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI5T0" class="dxeListBoxItem_MaterialCompact">Plaintiff Access</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI6T0" class="dxeListBoxItem_MaterialCompact">Law Firm Admin - Full Access</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI7T0" class="dxeListBoxItem_MaterialCompact">Law Firm User + Add Plaintiff Permission - EXTERNAL</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI8T0" class="dxeListBoxItem_MaterialCompact">Law Firm User</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI9T0" class="dxeListBoxItem_MaterialCompact">Law Firm User - Full Access - INTERNAL</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI10T0" class="dxeListBoxItem_MaterialCompact">Law Firm Admin_Bulk Submit</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI11T0" class="dxeListBoxItem_MaterialCompact">Defendant - Read Only</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI12T0" class="dxeListBoxItem_MaterialCompact">Law Firm Admin_Bulk Signature Request</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI13T0" class="dxeListBoxItem_MaterialCompact">Defendant Reviewer_Defense Law Firm Test</td>
+				</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+					<td id="lbUserRole_LBI14T0" class="dxeListBoxItem_MaterialCompact">Defendant - Read Only_CMO 37</td>
+				</tr></table>
+		</div></div><div class="dxKBSW">
+			<input id="lbUserRole_KBS" class="dxKBSI dx-position-fixed valid" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;" autocomplete="off" aria-invalid="false">
+		</div></td>
+	</tr>
+</tbody></table><script id="dxss_417757362" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'lbUserRole','',{'scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'width':'250px','height':'700px','hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':'1','text':'Administrator'},{'value':'3','text':'Law Firm Admin'},{'value':'4','text':'Law Firm User - Full Access - EXTERNAL'},{'value':'5','text':'Defendant Reviewer'},{'value':'6','text':'Plaintiffs\' Leadership'},{'value':'7','text':'Plaintiff Access'},{'value':'9','text':'Law Firm Admin - Full Access'},{'value':'10','text':'Law Firm User + Add Plaintiff Permission - EXTERNAL'},{'value':'11','text':'Law Firm User'},{'value':'12','text':'Law Firm User - Full Access - INTERNAL'},{'value':'14','text':'Law Firm Admin_Bulk Submit'},{'value':'15','text':'Defendant - Read Only'},{'value':'16','text':'Law Firm Admin_Bulk Signature Request'},{'value':'17','text':'Defendant Reviewer_Defense Law Firm Test'},{'value':'18','text':'Defendant - Read Only_CMO 37'}]},{'SelectedIndexChanged':UserRoleSelectionChanged},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+        </div>
+
+        <div style="margin-left:250px; padding-left:10px;">
+
+            <div style="float:right">
+                <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnSaveUserRole" style="user-select: none;">
+	<div class="dxb" id="btnSaveUserRole_CD">
+		<div class="dxb-hbc">
+			<input id="btnSaveUserRole_I" class="dxb-hb" value="Save User Role" type="submit" name="btnSaveUserRole">
+		</div><span class="dx-vam">Save User Role</span>
+	</div>
+</div><script id="dxss_58403877" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSaveUserRole',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSaveUserRole',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSaveUserRole',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSaveUserRole',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnSaveUserRole','',{'autoPostBack':true,'clientVisible':false,'validationGroup':'SaveUserRole','submitUrl':'/Security/SaveUserRole'});
+
+//-->
+</script>
+
+                <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnCopyUserRole" style="user-select: none;">
+	<div class="dxb" id="btnCopyUserRole_CD">
+		<div class="dxb-hbc">
+			<input id="btnCopyUserRole_I" class="dxb-hb" value="Copy User Role" type="submit" name="btnCopyUserRole">
+		</div><span class="dx-vam">Copy User Role</span>
+	</div>
+</div><script id="dxss_933615659" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCopyUserRole',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCopyUserRole',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCopyUserRole',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnCopyUserRole',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCopyUserRole','',{'autoPostBack':true,'clientVisible':false,'submitUrl':'/Security/CopyUserRole'});
+
+//-->
+</script>
+
+                <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnDeleteUserRole" style="user-select: none;">
+	<div class="dxb" id="btnDeleteUserRole_CD">
+		<div class="dxb-hbc">
+			<input id="btnDeleteUserRole_I" class="dxb-hb" value="Delete User Role" type="submit" name="btnDeleteUserRole">
+		</div><span class="dx-vam">Delete User Role</span>
+	</div>
+</div><script id="dxss_559645350" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnDeleteUserRole',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnDeleteUserRole',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnDeleteUserRole',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnDeleteUserRole',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnDeleteUserRole','',{'autoPostBack':true,'clientVisible':false,'submitUrl':'/Security/DeleteUserRole'},{'Click':function(s,e) { e.processOnServer = confirm('This action will delete the user role from the system.');}});
+
+//-->
+</script>
+            </div>
+            <br>
+
+            <div class="dxpnlControl_MaterialCompact" id="cbpRolePermEdit" style=""><table id="RoleName_ET" class="dxeValidDynEditorTable dxeRoot_MaterialCompact" style="margin-bottom:10px;">
+	<tbody><tr>
+		<td id="RoleName_CapC" class="dxeCaptionHALSys dxeCaptionVATSys dxeTextEditCTypeSys dxeCLTSys dxeCaptionCell_MaterialCompact"><label class="dxeCaption_MaterialCompact" for="RoleName_I">Role Name:</label><em class="dxeRequiredMark_MaterialCompact">*</em></td><td class="dxeFakeEmptyCell"></td>
+	</tr><tr>
+		<td id="RoleName_CC"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="RoleName" style="width:300px;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="RoleName_I" name="RoleName" onchange="ASPx.EValueChanged('RoleName')" value="Administrator" type="text" maxlength="250" autocomplete="off"></td>
+			</tr>
+		</tbody></table></td><td id="RoleName_EC" class="dxeErrorCell_MaterialCompact dxeErrorFrame_MaterialCompact dxeErrorFrameSys dxeErrorCellSys dxeNoBorderLeft" style="vertical-align:middle;white-space:nowrap;display:none;white-space:nowrap;"><table style="width:100%;">
+			<tbody><tr>
+				<td><img id="RoleName_EI" title="Invalid value" class="dxEditors_edtError_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Invalid value"></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1773413740" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(ASPxClientTextBox,'RoleName','',{'captionPosition':'Top','validationGroup':'SaveUserRole','customValidationEnabled':true,'isValid':true,'errorText':'Invalid value','validationPatterns':[new ASPx.RequiredFieldValidationPattern('Role Name is Required')],'isErrorFrameRequired':true,'display':'Dynamic','errorDisplayMode':'i','errorImageIsAssigned':true,'controlCellStyles':{'cssClass':'dxeErrorFrame_MaterialCompact dxeErrorFrameSys dxeNoBorderRight dxeControlsCell_MaterialCompact','style':''}},null,null,{'decorationStyles':[{'key':'I','className':'dxeInvalid_MaterialCompact','cssText':''},{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script><table id="RoleDesc_ET" class="dxeRoot_MaterialCompact" style="margin-bottom:10px;">
+	<tbody><tr>
+		<td id="RoleDesc_CapC" class="dxeCaptionHALSys dxeCaptionVATSys dxeMemoCTypeSys dxeCLTSys dxeCaptionCell_MaterialCompact"><label class="dxeCaption_MaterialCompact" for="RoleDesc_I">Description:</label></td>
+	</tr><tr>
+		<td id="RoleDesc_CC"><table class="dxeMemoSys dxeMemo_MaterialCompact" id="RoleDesc" style="width:500px;border-collapse:separate;">
+			<tbody><tr>
+				<td style="width:100%;"><textarea class="dxeMemoEditArea_MaterialCompact dxeMemoEditAreaSys" maxlength="2000" id="RoleDesc_I" name="RoleDesc" onchange="ASPx.EValueChanged('RoleDesc')" style="height:100%;width:100%;" autocomplete="off">Administrator</textarea></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1806458672" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientMemo,'RoleDesc','',{'captionPosition':'Top'},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script><table class="dxeBase_MaterialCompact dxeTAR" id="LawFirmRole">
+	<tbody><tr>
+		<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="LawFirmRole_S_D"><span class="dxKBSW"><input id="LawFirmRole_S" class="dxKBSI" name="LawFirmRole" data-val-required="The LawFirmRole field is required." data-val="true" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label>Law Firm Assignable Role</label></td>
+	</tr>
+</tbody></table><script id="dxss_579607827" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'LawFirmRole','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact','']},null,null,{'decorationStyles':[]});
+
+//-->
+</script><table class="dxeBase_MaterialCompact dxeTAR" id="PlaintiffRole">
+	<tbody><tr>
+		<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUnchecked_MaterialCompact" id="PlaintiffRole_S_D"><span class="dxKBSW"><input id="PlaintiffRole_S" class="dxKBSI" name="PlaintiffRole" data-val-required="The PlaintiffRole field is required." data-val="true" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label>Plaintiff Access Role</label></td>
+	</tr>
+</tbody></table><script id="dxss_801470016" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBox,'PlaintiffRole','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact','']},null,null,{'decorationStyles':[]});
+
+//-->
+</script><h3>Permissions:</h3><div style="overflow-y:scroll; height:450px"><h4>System Administration</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_System Administration', event)" id="hlDesc_System Administration" style="cursor:pointer;">Permission Details</a><script id="dxss_727069065" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_System Administration','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/1', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_System Administration" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_System Administration_VI" type="hidden" name="Permissions_System Administration" value="1|0"><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxChecked_MaterialCompact" id="Permissions_System Administration_RB0_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB0_I" class="dxKBSI dx-position-fixed" name="Permissions_System Administration$RB0" value="C" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Do Everything</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB6_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB6_I" class="dxKBSI" name="Permissions_System Administration$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add/Edit Announcements</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB1_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB1_I" class="dxKBSI" name="Permissions_System Administration$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Portal Documents</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB7">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB7_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB7_I" class="dxKBSI" name="Permissions_System Administration$RB7" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Case Milestones</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB2_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB2_I" class="dxKBSI" name="Permissions_System Administration$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Portal Documents</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB8">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB8_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB8_I" class="dxKBSI" name="Permissions_System Administration$RB8" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Allocation Info</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB3_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB3_I" class="dxKBSI" name="Permissions_System Administration$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Law Firm Profile</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB9">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB9_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB9_I" class="dxKBSI" name="Permissions_System Administration$RB9" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Announcements</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB4_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB4_I" class="dxKBSI" name="Permissions_System Administration$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Law Firm Profile</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB10">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB10_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB10_I" class="dxKBSI" name="Permissions_System Administration$RB10" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Time and Expense Status Admin</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_System Administration_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_System Administration_RB5_I_D"><span class="dxKBSW"><input id="Permissions_System Administration_RB5_I" class="dxKBSI" name="Permissions_System Administration$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Approve Law Firm Access Requests</label></td>
+					</tr>
+				</tbody></table></td><td></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_667891229" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_System Administration','',{'savedSelectedIndex':0,'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[0]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Do Everything',1,''],['Edit Portal Documents',2,''],['View Portal Documents',3,''],['Edit Law Firm Profile',6,''],['View Law Firm Profile',21,''],['Approve Law Firm Access Requests',27,''],['Add/Edit Announcements',28,''],['Edit Case Milestones',29,''],['Edit Allocation Info',30,''],['View Announcements',31,''],['View Time and Expense Status Admin',71,'']]});
+
+//-->
+</script><h4>Account</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Account', event)" id="hlDesc_Account" style="cursor:pointer;">Permission Details</a><script id="dxss_1496211842" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Account','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/2', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Account" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Account_VI" type="hidden" name="Permissions_Account" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Account_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Account_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Account_RB0_I" class="dxKBSI dx-position-fixed" name="Permissions_Account$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Manage All User Profiles</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Account_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Account_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Account_RB1_I" class="dxKBSI" name="Permissions_Account$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Manage Firm User Profiles</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1096093688" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Account','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Manage All User Profiles',4,''],['Manage Firm User Profiles',5,'']]});
+
+//-->
+</script><h4>Claims</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Claims', event)" id="hlDesc_Claims" style="cursor:pointer;">Permission Details</a><script id="dxss_605370479" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Claims','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/3', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Claims" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Claims_VI" type="hidden" name="Permissions_Claims" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB0_I" class="dxKBSI dx-position-fixed" name="Permissions_Claims$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Search Claims</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB7">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB7_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB7_I" class="dxKBSI" name="Permissions_Claims$RB7" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View/Edit Test Claim Checkbox</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB1_I" class="dxKBSI" name="Permissions_Claims$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Claims</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB8">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB8_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB8_I" class="dxKBSI" name="Permissions_Claims$RB8" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Advanced Claim Search</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB2_I" class="dxKBSI" name="Permissions_Claims$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Claim Note</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB9">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB9_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB9_I" class="dxKBSI" name="Permissions_Claims$RB9" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Test Claims</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB3_I" class="dxKBSI" name="Permissions_Claims$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit/Delete Claim Note</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB10">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB10_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB10_I" class="dxKBSI" name="Permissions_Claims$RB10" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Litigation Statuses</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB4_I" class="dxKBSI" name="Permissions_Claims$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Enter New Claim</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB11">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB11_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB11_I" class="dxKBSI" name="Permissions_Claims$RB11" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Litigation Statuses</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB5_I" class="dxKBSI" name="Permissions_Claims$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Claim Request Extensions</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB12">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB12_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB12_I" class="dxKBSI" name="Permissions_Claims$RB12" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Claims - All Firms</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB6_I" class="dxKBSI" name="Permissions_Claims$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Claim Review Extensions</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claims_RB13">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claims_RB13_I_D"><span class="dxKBSW"><input id="Permissions_Claims_RB13_I" class="dxKBSI" name="Permissions_Claims$RB13" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Full PII</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1911867428" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Claims','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Search Claims',7,''],['Edit Claims',8,''],['Add Claim Note',16,''],['Edit/Delete Claim Note',17,''],['Enter New Claim',22,''],['Claim Request Extensions',24,''],['Claim Review Extensions',25,''],['View/Edit Test Claim Checkbox',26,''],['View Advanced Claim Search',32,''],['View Test Claims',33,''],['View Litigation Statuses',35,''],['Edit Litigation Statuses',36,''],['View Claims - All Firms',68,''],['View Full PII',69,'']]});
+
+//-->
+</script><h4>Claim Review</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Claim Review', event)" id="hlDesc_Claim Review" style="cursor:pointer;">Permission Details</a><script id="dxss_1608385861" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Claim Review','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/4', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Claim Review" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Claim Review_VI" type="hidden" name="Permissions_Claim Review" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB0_I" class="dxKBSI" name="Permissions_Claim Review$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Review Claims</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB4_I" class="dxKBSI" name="Permissions_Claim Review$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Undo Finalized Claim Review</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB1_I" class="dxKBSI" name="Permissions_Claim Review$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Undo Reviewed Item - Same User</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB5_I" class="dxKBSI" name="Permissions_Claim Review$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Review Document - Same Firm Claim</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB2_I" class="dxKBSI" name="Permissions_Claim Review$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Undo Reviewed Item - Any User</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB6_I" class="dxKBSI" name="Permissions_Claim Review$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Review Document - Any Firm Claim</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB3_I" class="dxKBSI" name="Permissions_Claim Review$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Finalize Claim Review</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Claim Review_RB7">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Claim Review_RB7_I_D"><span class="dxKBSW"><input id="Permissions_Claim Review_RB7_I" class="dxKBSI" name="Permissions_Claim Review$RB7" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Claim Review Read Only</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1302585553" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Claim Review','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Review Claims',9,''],['Undo Reviewed Item - Same User',10,''],['Undo Reviewed Item - Any User',11,''],['Finalize Claim Review',12,''],['Undo Finalized Claim Review',13,''],['Add Review Document - Same Firm Claim',14,''],['Add Review Document - Any Firm Claim',15,''],['Claim Review Read Only',34,'']]});
+
+//-->
+</script><h4>Reporting</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Reporting', event)" id="hlDesc_Reporting" style="cursor:pointer;">Permission Details</a><script id="dxss_2003009340" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Reporting','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/5', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Reporting" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Reporting_VI" type="hidden" name="Permissions_Reporting" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB0_I" class="dxKBSI" name="Permissions_Reporting$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Reports - Same Firm</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB4_I" class="dxKBSI" name="Permissions_Reporting$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Plaintiff Reports</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB1_I" class="dxKBSI" name="Permissions_Reporting$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Reports - All Firms</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB5_I" class="dxKBSI" name="Permissions_Reporting$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Defendant Reports</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB2_I" class="dxKBSI" name="Permissions_Reporting$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Administrative Reports</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB6_I" class="dxKBSI" name="Permissions_Reporting$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Plaintiff Leadership Reports</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB3_I" class="dxKBSI" name="Permissions_Reporting$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Lien Reports</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Reporting_RB7">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Reporting_RB7_I_D"><span class="dxKBSW"><input id="Permissions_Reporting_RB7_I" class="dxKBSI" name="Permissions_Reporting$RB7" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Reports with Full PII</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1956397685" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Reporting','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['View Reports - Same Firm',18,''],['View Reports - All Firms',19,''],['View Administrative Reports',20,''],['View Lien Reports',23,''],['View Plaintiff Reports',56,''],['View Defendant Reports',57,''],['View Plaintiff Leadership Reports',61,''],['View Reports with Full PII',70,'']]});
+
+//-->
+</script><h4>Plaintiff Fact Sheet</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Plaintiff Fact Sheet', event)" id="hlDesc_Plaintiff Fact Sheet" style="cursor:pointer;">Permission Details</a><script id="dxss_1614630455" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Plaintiff Fact Sheet','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/6', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Plaintiff Fact Sheet" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Plaintiff Fact Sheet_VI" type="hidden" name="Permissions_Plaintiff Fact Sheet" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB0_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Search Plaintiff Fact Sheets</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB10">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB10_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB10_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB10" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Plaintiff Fact Sheets - All Firms</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB1_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Plaintiff Fact Sheets</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB11">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB11_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB11_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB11" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View/Edit Plaintiff Information</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB2_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Enter New Fact Sheets</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB12">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB12_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB12_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB12" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Plaintiffs</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB3_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View/Edit Test Fact Sheets Checkbox</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB13">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB13_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB13_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB13" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Plaintiff Request Extensions</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB4_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Test Fact Sheets</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB14">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB14_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB14_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB14" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Plaintiff Review Extensions</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB5_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Litigation Statuses</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB15">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB15_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB15_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB15" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Plaintiff Request Amendment</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB6_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Litigation Statuses</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB16">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB16_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB16_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB16" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Bulk Send Verification</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB7">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB7_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB7_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB7" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View PFS Deficiency Statuses</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB17">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB17_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB17_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB17" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Bulk Submission</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB8">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB8_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB8_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB8" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit PFS Deficiency Statuses</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB18">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB18_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB18_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB18" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Plaintiff Audit Log &amp; Recent Plaintiff Updates</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB9">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB9_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB9_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB9" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Not Submitted Fact Sheets</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet_RB19">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet_RB19_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet_RB19_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet$RB19" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Bulk Update Litigation Status</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_166665343" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Plaintiff Fact Sheet','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Search Plaintiff Fact Sheets',37,''],['Edit Plaintiff Fact Sheets',38,''],['Enter New Fact Sheets',40,''],['View/Edit Test Fact Sheets Checkbox',41,''],['View Test Fact Sheets',42,''],['View Litigation Statuses',43,''],['Edit Litigation Statuses',44,''],['View PFS Deficiency Statuses',59,''],['Edit PFS Deficiency Statuses',60,''],['View Not Submitted Fact Sheets',63,''],['View Plaintiff Fact Sheets - All Firms',67,''],['View/Edit Plaintiff Information',72,''],['Add Plaintiffs',76,''],['Plaintiff Request Extensions',77,''],['Plaintiff Review Extensions',78,''],['Plaintiff Request Amendment',79,''],['Bulk Send Verification',80,''],['Bulk Submission',81,''],['View Plaintiff Audit Log & Recent Plaintiff Updates',82,''],['Bulk Update Litigation Status',84,'']]});
+
+//-->
+</script><h4>Plaintiff Fact Sheet Review</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Plaintiff Fact Sheet Review', event)" id="hlDesc_Plaintiff Fact Sheet Review" style="cursor:pointer;">Permission Details</a><script id="dxss_914577160" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Plaintiff Fact Sheet Review','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/7', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Plaintiff Fact Sheet Review" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Plaintiff Fact Sheet Review_VI" type="hidden" name="Permissions_Plaintiff Fact Sheet Review" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB0_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Review Note Comment</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB4_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Finalize Fact Sheet Review</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB1_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Review Notes Page</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB5_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Undo Finalized Fact Sheet Review</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB2_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add Review Note</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB6_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Review Fact Sheet</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Plaintiff Fact Sheet Review_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Plaintiff Fact Sheet Review_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Plaintiff Fact Sheet Review_RB3_I" class="dxKBSI" name="Permissions_Plaintiff Fact Sheet Review$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Edit Review Note Status</label></td>
+					</tr>
+				</tbody></table></td><td></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_924957526" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Plaintiff Fact Sheet Review','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Add Review Note Comment',39,''],['View Review Notes Page',45,''],['Add Review Note',46,''],['Edit Review Note Status',47,''],['Finalize Fact Sheet Review',48,''],['Undo Finalized Fact Sheet Review',49,''],['Review Fact Sheet',58,'']]});
+
+//-->
+</script><h4>Common Benefit</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Common Benefit', event)" id="hlDesc_Common Benefit" style="cursor:pointer;">Permission Details</a><script id="dxss_495136567" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Common Benefit','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/8', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Common Benefit" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Common Benefit_VI" type="hidden" name="Permissions_Common Benefit" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB0_I" class="dxKBSI" name="Permissions_Common Benefit$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Search Time and Expense Entries</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB4_I" class="dxKBSI" name="Permissions_Common Benefit$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add External Review Note</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB1_I" class="dxKBSI" name="Permissions_Common Benefit$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Add/Edit Time and Expense Entries</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB5">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB5_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB5_I" class="dxKBSI" name="Permissions_Common Benefit$RB5" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Internal Review Note</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB2_I" class="dxKBSI" name="Permissions_Common Benefit$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Review Time and Expense Entries</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB6">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB6_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB6_I" class="dxKBSI" name="Permissions_Common Benefit$RB6" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Time and Expense Entries - All Firms</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Common Benefit_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Common Benefit_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Common Benefit_RB3_I" class="dxKBSI" name="Permissions_Common Benefit$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Undo Time and Expense Entry Review</label></td>
+					</tr>
+				</tbody></table></td><td></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_377929574" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Common Benefit','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Search Time and Expense Entries',50,''],['Add/Edit Time and Expense Entries',51,''],['Review Time and Expense Entries',52,''],['Undo Time and Expense Entry Review',53,''],['Add External Review Note',54,''],['View Internal Review Note',55,''],['View Time and Expense Entries - All Firms',66,'']]});
+
+//-->
+</script><h4>General System Access</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_General System Access', event)" id="hlDesc_General System Access" style="cursor:pointer;">Permission Details</a><script id="dxss_361806149" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_General System Access','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/9', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_General System Access" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_General System Access_VI" type="hidden" name="Permissions_General System Access" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_General System Access_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_General System Access_RB0_I_D"><span class="dxKBSW"><input id="Permissions_General System Access_RB0_I" class="dxKBSI" name="Permissions_General System Access$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Home Screen</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_General System Access_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_General System Access_RB1_I_D"><span class="dxKBSW"><input id="Permissions_General System Access_RB1_I" class="dxKBSI" name="Permissions_General System Access$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Contact Us</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1035092965" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_General System Access','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['View Home Screen',62,''],['View Contact Us',75,'']]});
+
+//-->
+</script><h4>Imports</h4><a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hlDesc_Imports', event)" id="hlDesc_Imports" style="cursor:pointer;">Permission Details</a><script id="dxss_282953832" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientHyperLink,'hlDesc_Imports','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { window.open('/Security/PermissionDetails/10', '_blank', 'width=700,height=800');}});
+
+//-->
+</script><table class="dxeCheckBoxList_MaterialCompact" id="Permissions_Imports" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="Permissions_Imports_VI" type="hidden" name="Permissions_Imports" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Imports_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Imports_RB0_I_D"><span class="dxKBSW"><input id="Permissions_Imports_RB0_I" class="dxKBSI" name="Permissions_Imports$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Bulk Plaintiff Import</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Imports_RB3">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Imports_RB3_I_D"><span class="dxKBSW"><input id="Permissions_Imports_RB3_I" class="dxKBSI" name="Permissions_Imports$RB3" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Bulk Import Logs</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Imports_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Imports_RB1_I_D"><span class="dxKBSW"><input id="Permissions_Imports_RB1_I" class="dxKBSI" name="Permissions_Imports$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Bulk Document Import</label></td>
+					</tr>
+				</tbody></table></td><td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Imports_RB4">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Imports_RB4_I_D"><span class="dxKBSW"><input id="Permissions_Imports_RB4_I" class="dxKBSI" name="Permissions_Imports$RB4" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Bulk Defense Imports</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="Permissions_Imports_RB2">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class="dxWeb_edtCheckBoxUnchecked_MaterialCompact dxICheckBox_MaterialCompact dxichSys dx-not-acc" id="Permissions_Imports_RB2_I_D"><span class="dxKBSW"><input id="Permissions_Imports_RB2_I" class="dxKBSI" name="Permissions_Imports$RB2" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">View Bulk Details Import</label></td>
+					</tr>
+				</tbody></table></td><td></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_724535458" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientCheckBoxList,'Permissions_Imports','',{'imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['View Bulk Plaintiff Import',64,''],['View Bulk Document Import',65,''],['View Bulk Details Import',73,''],['View Bulk Import Logs',74,''],['View Bulk Defense Imports',83,'']]});
+
+//-->
+</script></div>
+
+<input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="1"></div><table id="cbpRolePermEdit_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpRolePermEdit_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpRolePermEdit_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1767146713" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpRolePermEdit','',{'callBack':function(arg) { ; },'clientVisible':false,'hideContentOnCallback':false,'callbackUrl':'/Security/cbpRolePermEditPartial'},{'BeginCallback':OnBeginRolePermEditCallback,'EndCallback':OnEndRolePermEditCallback});
+
+//-->
+</script>
+
+<input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="">
+        </div>
+    </div>
+<input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47"><input type="hidden" name="DXMVCEditorsValues" value="{&quot;lbUserRole&quot;:[&quot;1&quot;],&quot;RoleName&quot;:&quot;Administrator&quot;,&quot;RoleDesc&quot;:&quot;Administrator&quot;,&quot;LawFirmRole&quot;:false,&quot;PlaintiffRole&quot;:false,&quot;Permissions_System Administration&quot;:[1],&quot;Permissions_Account&quot;:[],&quot;Permissions_Claims&quot;:[],&quot;Permissions_Claim Review&quot;:[],&quot;Permissions_Reporting&quot;:[],&quot;Permissions_Plaintiff Fact Sheet&quot;:[],&quot;Permissions_Plaintiff Fact Sheet Review&quot;:[],&quot;Permissions_Common Benefit&quot;:[],&quot;Permissions_General System Access&quot;:[],&quot;Permissions_Imports&quot;:[]}"></form>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

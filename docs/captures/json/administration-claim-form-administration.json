@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T19:55:36.335Z",
+  "title": "Claim Form Administration",
+  "url": "https://uat.afffmdlportal.com/Admin/ClaimFormAdmin",
+  "screenshot": "administration-claim-form-administration.png",
+  "html": "administration-claim-form-administration.html",
+  "width": 1440,
+  "height": 929,
+  "viewportWidth": 1440,
+  "viewportHeight": 929,
+  "screenshotSha256": "2876c295608dd332f084276afccb7e385368636dd4e15f27ca9d6b4be9b45207"
+}

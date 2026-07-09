@@ -1,0 +1,1343 @@
+---
+layout: layouts/base.njk
+title: "Home"
+---
+{% raw %}
+<div class="contentPane">
+
+  <div class="page-header page-header--center">
+    <h1>All Law Firms Dashboard</h1>
+    <p>The information, or data, presented below is related to All Law Firms and their respective AFFF MDL
+      Plaintiffs.</p>
+  </div>
+
+
+  <!-- <style>
+    @media screen and (-ms-high-contrast:active),
+    (-ms-high-contrast:none) {
+      .grid-page {
+        display: -ms-grid;
+        -ms-grid-columns: 46vw 1vw 44vw;
+        -ms-grid-rows: 75px 75px 400px 325px 425px 100px;
+        justify-content: center;
+        grid-row-gap: 10px;
+        grid-column-gap: 0vw;
+      }
+
+      .grid-container {
+        display: -ms-grid;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        -ms-grid-row: 3;
+        -ms-grid-columns: 21vw 1vw 19vw 1vw 19vw 1vw 19vw;
+        -ms-grid-rows: 140px 24px 140px;
+        align-items: center;
+        margin-bottom: 25px;
+        transform: translateX(-10px);
+      }
+
+      .gridstackedboxbig {
+        width: 21vw;
+        height: 304px;
+        display: block;
+        background-color: #f5f5f5;
+        border: 1px solid #003057;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 3;
+        -ms-grid-column: 1;
+        text-decoration: inherit;
+      }
+
+      #welcome {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        margin-bottom: 15px;
+      }
+
+      #subtext {
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        margin-bottom: 10px;
+      }
+
+      #csgrid {
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+      }
+
+      #rcupdates {
+        -ms-grid-row: 4;
+        -ms-grid-row-span: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        align-self: right;
+        left: 4.5vw;
+      }
+
+      #milestones {
+        -ms-grid-row: 4;
+        -ms-grid-column: 2;
+        height: 315px;
+      }
+
+      #announcement {
+        -ms-grid-row: 5;
+        -ms-grid-column: 2;
+        height: 480px;
+      }
+
+      .grid-section-announce-mile {
+        width: 39vw;
+        position: relative;
+        float: left;
+        left: 0.5vw;
+        border: solid thin;
+        border-color: #003057;
+      }
+    }
+
+    @supports (-ms-ime-align:auto) and (not (position:sticky)) {
+      .grid-page {
+        display: -ms-grid;
+        -ms-grid-columns: 46vw 1vw 44vw;
+        -ms-grid-rows: 75px 75px 400px 325px 425px 100px;
+        justify-content: center;
+        grid-row-gap: 10px;
+      }
+
+      .grid-container {
+        display: -ms-grid;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        -ms-grid-row: 3;
+        -ms-grid-columns: 21vw 1vw 19vw 1vw 19vw 1vw 19vw;
+        -ms-grid-rows: 140px 24px 140px;
+        align-items: center;
+        margin-bottom: 25px;
+        transform: translateX(-10px);
+      }
+
+      .gridstackedboxbig {
+        width: 21vw;
+        height: 304px;
+        display: block;
+        background-color: #f5f5f5;
+        border: 1px solid #003057;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 3;
+        -ms-grid-column: 1;
+        //border: 1px solid #003057;
+        text-decoration: inherit;
+      }
+
+      #welcome {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        margin-bottom: 15px;
+      }
+
+      #subtext {
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+        margin-bottom: 10px;
+      }
+
+      #csgrid {
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 3;
+      }
+
+      #rcupdates {
+        -ms-grid-row: 4;
+        -ms-grid-row-span: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        align-self: right;
+        left: 4.5vw;
+      }
+
+      #milestones {
+        -ms-grid-row: 4;
+        -ms-grid-column: 3;
+        height: 315px;
+      }
+
+      #announcement {
+        -ms-grid-row: 5;
+        -ms-grid-column: 3;
+        height: 480px;
+      }
+
+      .grid-section-announce-mile {
+        width: 39vw;
+        position: relative;
+        left: -0.5vw;
+        float: left;
+        border: solid thin;
+        border-color: #003057;
+      }
+
+      .grid-section-claim {
+        width: 41vw;
+        height: 801px;
+        left: 5vw;
+        position: relative;
+        float: right;
+        align-items: right;
+        border-top: solid thin;
+        border-color: #003057;
+      }
+    }
+
+    @supports (display: grid) {
+      .grid-page {
+        display: grid;
+        grid-template-columns: 46vw 44vw;
+        grid-template-rows: 75px 75px 400px 325px 425px 100px;
+        justify-content: center;
+        grid-row-gap: 10px;
+        grid-column-gap: 1vw;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: 21vw 19vw 19vw 19vw;
+        grid-gap: 20px;
+        grid-column-gap: 1vw;
+        align-items: center;
+        margin-bottom: 25px;
+        transform: translateX(-10px);
+      }
+
+      #welcome {
+        grid-row: 1;
+        grid-column: 1 / 4;
+      }
+
+      #subtext {
+        grid-row: 2;
+        grid-column: 1/4;
+      }
+
+      #csgrid {
+        grid-row: 3;
+        grid-column: 1/4;
+      }
+
+      #rcupdates {
+        grid-row: 4/5;
+        grid-column: 1 / -2;
+        align-self: right;
+      }
+
+      #milestones {
+        grid-row: 4;
+        grid-column: 2;
+        height: 315px;
+      }
+
+      #announcement {
+        grid-row: 5;
+        grid-column: 2;
+        height: 480px;
+      }
+
+      .gridstackedboxbig {
+        width: 21vw;
+        height: 304px;
+        background-color: #f5f5f5;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+        grid-row: 1 / span 2;
+        border: 1px solid #003057;
+        text-decoration: inherit;
+      }
+    }
+
+    .grid-section-claim {
+      width: 41vw;
+      height: 801px;
+      left: 5vw;
+      position: relative;
+      float: right;
+      align-items: right;
+      border-top: solid thin;
+      border-color: #003057;
+    }
+
+    .grid-section-announce-mile {
+      width: 39vw;
+      position: relative;
+      float: left;
+      border: solid thin;
+      border-color: #003057;
+    }
+
+    .gridstackedboxsmall {
+      width: 19vw;
+      display: block;
+      height: 140px;
+      text-align: center;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+      border: 1px solid #003057;
+      text-decoration: inherit;
+    }
+
+    .stackedboxstats {
+      display: flex;
+      width: 100%;
+      color: #003057;
+      font-size: 48px;
+      background-color: white;
+      justify-content: center;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .stackedboxstats:hover {
+      background-color: #003057;
+      color: white;
+      border-bottom: solid thin;
+      border-bottom-color: white;
+    }
+
+    .stackedboxtext {
+      display: flex;
+      width: 100%;
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      background-color: #003057;
+      justify-content: center;
+      font-family: inherit;
+    }
+
+    .flexchildclaim {
+      width: 40vw;
+      height: 806px;
+      font-family: inherit;
+      float: left;
+    }
+
+    .flexchildannounce {
+      width: 39vw;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
+      font-family: inherit;
+      background-color: white;
+    }
+
+    .flexgchildannounce {
+      max-width: 38.9vw;
+      min-height: 134px;
+      border-bottom: solid thin;
+      border-bottom-color: #dfdfdf;
+      font-family: inherit;
+      color: #636060;
+      position: relative;
+    }
+
+    .flexgchildannounce #effective-date {
+      padding-top: 3px;
+      position: absolute;
+      bottom: 5px;
+    }
+
+    .flexgchildannounce p {
+      font-size: 14px;
+      margin-left: 7px;
+      padding-right: 10px;
+      margin-bottom: 35px;
+    }
+
+    .flexgmilestone {
+      min-width: 39vw;
+      max-width: 39vw;
+      min-height: 55px;
+      max-height: 65px;
+      border-bottom: solid thin;
+      border-bottom-color: #dfdfdf;
+      font-family: inherit;
+      font-size: 15px;
+      color: #636060;
+      position: relative;
+      padding-top: 4px;
+    }
+
+    .flexgmilestone p {
+      position: absolute;
+      left: 7px;
+      top: 15px;
+      font-size: 15px;
+      text-wrap: normal;
+      margin-right: 1px;
+    }
+
+    u.mile-text {
+      font-size: 18px;
+      padding-top: 7px;
+      text-align: center;
+      margin-left: 7px;
+    }
+
+    .flexsmallheadertext {
+      font-size: 13px;
+      color: #636060;
+      font-family: inherit;
+      border-bottom: solid thin;
+      border-bottom-color: #dfdfdf;
+    }
+
+    .smallbutton {
+      text-decoration: inherit;
+      border: solid thin;
+      padding: 4px;
+      border-radius: 5px;
+      border-color: #7D818C;
+      background-color: #003057;
+      color: white;
+    }
+
+    .smallbutton:hover {
+      border-width: 1.5px;
+    }
+
+    .sectionHeader {
+      color: #58595b;
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-left: 10px;
+      height: 50px;
+      line-height: 50px;
+      background-color: #F5F5F5;
+      text-align: left;
+      font-size: 15px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+      border-bottom: solid thin #003057;
+    }
+
+    @media all and (max-width: 1350px) {
+      .grid-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 25px;
+        flex-flow: column nowrap;
+      }
+
+      #welcome {
+        align-items: center;
+        clear: both;
+        margin-bottom: 15px;
+      }
+
+      .grid-section-claim {
+        float: none;
+        align-items: center;
+        clear: both;
+        left: 0vw;
+        margin-bottom: 2vh;
+        min-width: 605px;
+        height: auto;
+      }
+
+      .grid-section-announce-mile {
+        float: none;
+        min-width: 605px;
+        width: 605px;
+        justify-content: center;
+        align-items: center;
+        clear: both;
+        left: 0vw;
+      }
+
+      .flexchildannounce {
+        clear: both;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flexchildclaim {
+        clear: both;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flexgmilestone {
+        min-width: 603px;
+      }
+
+      .flexgchildannounce {
+        min-width: 588px;
+        margin-right: 20px;
+      }
+
+      .flex-center {
+        flex-flow: column wrap;
+      }
+
+      #announcement {
+        transform: translateY(20px);
+      }
+
+      #rcGrid {
+        min-width: 605px;
+      }
+
+      #rc-header {
+        width: 595px;
+      }
+
+      #rcupdates {
+        left: 0vw;
+        min-width: 605px;
+      }
+    }
+  </style> -->
+
+  <!-- *REMOVED <div class="flex-center"> -->
+  <!-- *REMOVED <div class="grid-page"> -->
+
+  <!--Tab Control-->
+  <div id="csgrid" class="flex-center">
+    <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc" id="pcPFSAndOrCBSStatusTabView">
+      <ul class="dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer" id="pcPFSAndOrCBSStatusTabView_TC">
+        <li class="dxtc-leftIndent">&nbsp;</li>
+        <li class="dxtc-tab dxtc-lead" style="display:none;" id="pcPFSAndOrCBSStatusTabView_T0"><a class="dxtc-link"
+            id="pcPFSAndOrCBSStatusTabView_T0T"><span class="dx-vam">Plaintiff Links</span></a></li>
+        <li class="dxtc-activeTab dxtc-lead dxtc-psi" id="pcPFSAndOrCBSStatusTabView_AT0" style="height: 37px;"><a
+            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_AT0T"><span class="dx-vam">Plaintiff Links</span></a>
+        </li>
+        <li class="dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T0S">&nbsp;</li>
+        <li class="dxtc-tab dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T1" style="height: 37px;"><a class="dxtc-link"
+            id="pcPFSAndOrCBSStatusTabView_T1T"><span class="dx-vam">Time Entry Links</span></a></li>
+        <li class="dxtc-activeTab" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT1"><a class="dxtc-link"
+            id="pcPFSAndOrCBSStatusTabView_AT1T"><span class="dx-vam">Time Entry Links</span></a></li>
+        <li class="dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T1S">&nbsp;</li>
+        <li class="dxtc-tab dxtc-last dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T2" style="height: 37px;"><a
+            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_T2T"><span class="dx-vam">Expense Entry
+              Links</span></a></li>
+        <li class="dxtc-activeTab dxtc-last" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT2"><a
+            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_AT2T"><span class="dx-vam">Expense Entry
+              Links</span></a></li>
+        <li class="dxtc-rightIndent">&nbsp;</li>
+      </ul>
+      <div class="dxtc-content" id="pcPFSAndOrCBSStatusTabView_CC">
+        <div id="pcPFSAndOrCBSStatusTabView_C0">
+          <div>
+
+
+            <!-- <style>
+                  .total-fs {
+                    grid-column: 1 / 2;
+                    -ms-grid-column: 1;
+                  }
+
+                  .unsubmitted-fs {
+                    grid-row: 1;
+                    grid-column: 2 / 3;
+                    -ms-grid-column: 3;
+                    -ms-grid-row: 1;
+                  }
+
+                  .pending-fs {
+                    grid-row: 2;
+                    grid-column: 2 / 3;
+                    -ms-grid-column: 3;
+                    -ms-grid-row: 3;
+                  }
+
+                  .incomplete-fs {
+                    grid-row: 1;
+                    grid-column: 3 / 4;
+                    -ms-grid-column: 3;
+                    -ms-grid-row: 1;
+                  }
+
+                  .in-review-fs {
+                    grid-row: 2;
+                    grid-column: 3 / 4;
+                    -ms-grid-column: 5;
+                    -ms-grid-row: 3;
+                  }
+
+                  pending-amendment-fs {
+                    grid-row: 1;
+                    grid-column: 4/5;
+                    -ms-grid-column: 7;
+                    -ms-grid-row: 1;
+                  }
+
+                  .complete-fs {
+                    grid-row: 2;
+                    grid-column: 4 / 5;
+                    -ms-grid-column: 7;
+                    -ms-grid-row: 3;
+                  }
+                </style> -->
+
+            <div class="flex-center">
+              <div class="grid-container" style="margin-left: auto; margin-right: auto;">
+                <a href="/FactSheet/Search" class="gridstackedboxbig total-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 252px;font-size: 88px">
+                      <p class="flex-center" style="">61,396</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 52px;text-decoration: inherit">
+                    <p class="flex-center" style="">Total Plaintiffs</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=1" class="gridstackedboxsmall unsubmitted-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">47,103</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Not Submitted</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=2" class="gridstackedboxsmall pending-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">14,074</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Submitted: Pending Review</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=4|7" class="gridstackedboxsmall incomplete-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">102</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Submitted: Returned Deficient</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=3" class="gridstackedboxsmall in-review-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">88</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Submitted: In Review</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=6" class="gridstackedboxsmall pending-amendment-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">27</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Submitted: Pending Amendment</p>
+                  </div>
+                </a>
+                <a href="/FactSheet/Search?cs=5" class="gridstackedboxsmall complete-fs">
+                  <div style="text-decoration: inherit">
+                    <div class="stackedboxstats" style="height: 100px;">
+                      <p class="flex-center" style="">2</p>
+                    </div>
+                  </div>
+                  <div class="stackedboxtext" style="height: 40px;">
+                    <p class="flex-center" style="">Review Complete</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div><b class="dx-clear"></b>
+    <script id="dxss_836405937" data-executed="true">
+          < !-
+        ASPx.AddHoverItems('pcPFSAndOrCBSStatusTabView', [[['dxtc-tabHover', ''], ['', ''], ['T0'], ['', 'T']], [['dxtc-activeTabHover', ''], ['', ''], ['AT0'], ['', 'T']]]);
+      ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+      ASPx.createControl(MVCxClientPageControl, 'pcPFSAndOrCBSStatusTabView', '', { 'stateObject': { 'tabsInfo': 'BwEHAAIAAg9QbGFpbnRpZmYgTGlua3M=' }, 'emptyHeight': true, 'emptyWidth': true }, null, null, { 'tabs': [['', , , , ,]] });
+
+      //-->
+    </script>
+  </div>
+
+  <!-- Datagrid -->
+  <div id="rcupdates" class="grid-section-claim" style="margin-bottom: 35px;">
+    <!-- * Changed HTML <p id="rc-header" class="sectionHeader" style="border-left: solid thin #003057; border-right: solid thin #003057; ">
+      <span>Recent Plaintiff Updates</span>
+    </p> -->
+    <div class="sectionHeader">
+      <h2>Recent Plaintiff Updates</h2>
+    </div>
+    <div id="rcGrid" style="border: solid thin #003057; border-top: none;">
+      <table class="data-table-outter dxgvControl_MaterialCompact dxgv dxgvAdD" id="pfsGridView"
+        style="width:100%;border-collapse:separate;">
+        <tbody>
+          <tr>
+            <td>
+              <div id="pfsGridView_DXAHeaderPanel" class="dxgvAdaptiveHeaderPanel_MaterialCompact"
+                oncontextmenu="return ASPx.GVContextMenu('pfsGridView',event);" style="display:none;">
+                <div id="pfsGridView_DXADHeader" class="dxgvADH" style="display:none;">
+                  <table>
+                    <tbody>
+                      <tr class="dxgvADHTR">
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <table id="pfsGridView_DXMainTable" class="data-table dxgvTable_MaterialCompact dxgvRBB"
+                oncontextmenu="return ASPx.GVContextMenu('pfsGridView',event);" style="width:100%;empty-cells:show;">
+                <tbody>
+                  <tr id="pfsGridView_DXHeadersRow0">
+                    <td id="pfsGridView_col0" class="dxgvHeader_MaterialCompact"
+                      style="border-top-width:0px;border-left-width:0px;">
+                      <table style="width:100%;">
+                        <tbody>
+                          <tr>
+                            <td>Plaintiff #</td>
+                            <td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td id="pfsGridView_col1" class="dxgvHeader_MaterialCompact"
+                      style="border-top-width:0px;border-left-width:0px;">
+                      <table style="width:100%;">
+                        <tbody>
+                          <tr>
+                            <td>Plaintiff Name</td>
+                            <td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td id="pfsGridView_col2" class="dxgvHeader_MaterialCompact"
+                      style="width:100px;border-top-width:0px;border-left-width:0px;">
+                      <table style="width:100%;">
+                        <tbody>
+                          <tr>
+                            <td>User</td>
+                            <td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td id="pfsGridView_col3" class="dxgvHeader_MaterialCompact"
+                      style="border-top-width:0px;border-left-width:0px;">
+                      <table style="width:100%;">
+                        <tbody>
+                          <tr>
+                            <td>Action</td>
+                            <td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td id="pfsGridView_col4" class="dxgvHeader_MaterialCompact"
+                      style="width:17%;border-top-width:0px;border-left-width:0px;border-right-width:0px;">
+                      <table style="width:100%;">
+                        <tbody>
+                          <tr>
+                            <td>Timestamp</td>
+                            <td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXADRow" class="dxgvAdaptiveDetailRow_MaterialCompact dxgvADR"
+                    style="display:none;">
+                    <td class="dxgv dxgvAdaptiveDetailCell_MaterialCompact" colspan="5"></td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell0_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_0', event)" id="hl_0"
+                        style="text-decoration:underline;cursor:pointer;">AFFF231400</a>
+                      <script id="dxss_1719802942" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_0', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/de5be14f-ecc0-4c18-98e5-a62ad61803e4', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Su, Runaround</td>
+                    <td id="pfsGridView_tccell0_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_0', event)" id="hL_0"
+                        style="text-decoration:underline;cursor:pointer;">ANunez@gunster.com</a>
+                      <script id="dxss_1406571405" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_0', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/49718?u=ANunez%40gunster.com', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 4:48:28 PM</td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell1_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_1', event)" id="hl_1"
+                        style="text-decoration:underline;cursor:pointer;">AFFF141993</a>
+                      <script id="dxss_1796677518" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_1', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/d9dfc11c-9209-4509-aab9-2bd0f312db91', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Sue, Bobby</td>
+                    <td id="pfsGridView_tccell1_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_1', event)" id="hL_1"
+                        style="text-decoration:underline;cursor:pointer;">ANunez@gunster.com</a>
+                      <script id="dxss_1416890889" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_1', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/49717?u=ANunez%40gunster.com', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 4:48:28 PM</td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell2_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_2', event)" id="hl_2"
+                        style="text-decoration:underline;cursor:pointer;">AFFF141993</a>
+                      <script id="dxss_1964136035" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_2', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/d9dfc11c-9209-4509-aab9-2bd0f312db91', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Sue, Bobby</td>
+                    <td id="pfsGridView_tccell2_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_2', event)" id="hL_2"
+                        style="text-decoration:underline;cursor:pointer;">C.Wood</a>
+                      <script id="dxss_1809035433" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_2', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/49717?u=C.Wood', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 3:22:37 PM</td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow3" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell3_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_3', event)" id="hl_3"
+                        style="text-decoration:underline;cursor:pointer;">AFFF122943</a>
+                      <script id="dxss_2135162693" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_3', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/b01ef070-f0d5-4b95-acc5-fcf9925626ab', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPPF,
+                      AdamTestNineHundredThree</td>
+                    <td id="pfsGridView_tccell3_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_3', event)" id="hL_3"
+                        style="text-decoration:underline;cursor:pointer;">PlaintiffExtensionNotification Test</a>
+                      <script id="dxss_372677398" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_3', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/36973?u=PlaintiffExtensionNotification%20Test', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:25:41 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow4" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell4_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_4', event)" id="hl_4"
+                        style="text-decoration:underline;cursor:pointer;">AFFF062985</a>
+                      <script id="dxss_1586386075" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_4', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/d6a939de-ed12-4013-ae37-fef1677d1d37', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPPF,
+                      AdamTestOneThousandFourHundredNinetySix</td>
+                    <td id="pfsGridView_tccell4_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_4', event)" id="hL_4"
+                        style="text-decoration:underline;cursor:pointer;">PlaintiffExtensionNotification Test</a>
+                      <script id="dxss_1518526686" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_4', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/37566?u=PlaintiffExtensionNotification%20Test', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:25:41 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow5" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell5_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_5', event)" id="hl_5"
+                        style="text-decoration:underline;cursor:pointer;">AFFF176969</a>
+                      <script id="dxss_493409066" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_5', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/eec99541-0ea0-4af2-8df7-0021ae700997', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPFS,
+                      AdamTestOneThousandEightHundredNinetyEight</td>
+                    <td id="pfsGridView_tccell5_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_5', event)" id="hL_5"
+                        style="text-decoration:underline;cursor:pointer;">PlaintiffExtensionNotification Test</a>
+                      <script id="dxss_305604549" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_5', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/35968?u=PlaintiffExtensionNotification%20Test', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:25:41 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow6" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell6_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_6', event)" id="hl_6"
+                        style="text-decoration:underline;cursor:pointer;">AFFF239682</a>
+                      <script id="dxss_485364256" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_6', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/773939ad-d071-41ca-b818-001e20fea1a6', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPFS,
+                      AdamTestNineHundredSeventyNine</td>
+                    <td id="pfsGridView_tccell6_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_6', event)" id="hL_6"
+                        style="text-decoration:underline;cursor:pointer;">PlaintiffExtensionNotification Test</a>
+                      <script id="dxss_787652414" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_6', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/35049?u=PlaintiffExtensionNotification%20Test', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:25:41 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow7" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell7_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_7', event)" id="hl_7"
+                        style="text-decoration:underline;cursor:pointer;">AFFF122943</a>
+                      <script id="dxss_1093534513" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_7', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/b01ef070-f0d5-4b95-acc5-fcf9925626ab', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPPF,
+                      AdamTestNineHundredThree</td>
+                    <td id="pfsGridView_tccell7_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_7', event)" id="hL_7"
+                        style="text-decoration:underline;cursor:pointer;">GeliannyTest3</a>
+                      <script id="dxss_809274892" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_7', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/36973?u=GeliannyTest3', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:25:09 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow8" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell8_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_8', event)" id="hl_8"
+                        style="text-decoration:underline;cursor:pointer;">AFFF062985</a>
+                      <script id="dxss_1104449927" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_8', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/d6a939de-ed12-4013-ae37-fef1677d1d37', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">BulkSubmissionPPF,
+                      AdamTestOneThousandFourHundredNinetySix</td>
+                    <td id="pfsGridView_tccell8_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_8', event)" id="hL_8"
+                        style="text-decoration:underline;cursor:pointer;">GeliannyTest3</a>
+                      <script id="dxss_30907336" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_8', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/37566?u=GeliannyTest3', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/18/2026 10:06:44 AM
+                    </td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow9" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell9_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_9', event)" id="hl_9"
+                        style="text-decoration:underline;cursor:pointer;">AFFF000079</a>
+                      <script id="dxss_165068217" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_9', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/c92f7a54-6d16-4954-9e1a-898d6bd67e42', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff 76, Test</td>
+                    <td id="pfsGridView_tccell9_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;"><a
+                        class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_9', event)" id="hL_9"
+                        style="text-decoration:underline;cursor:pointer;">GeliannyTest3</a>
+                      <script id="dxss_324324692" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_9', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/79?u=GeliannyTest3', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/17/2026 8:42:26 PM</td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow10" class="dxgvDataRow_MaterialCompact" style="">
+                    <td id="pfsGridView_tccell10_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;">
+                      <a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_10', event)" id="hl_10"
+                        style="text-decoration:underline;cursor:pointer;">AFFF000073</a>
+                      <script id="dxss_442814316" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_10', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/69ef2bc2-63ab-4198-ab88-e0233f83d231', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff 70, Test</td>
+                    <td id="pfsGridView_tccell10_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;">
+                      <a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_10', event)" id="hL_10"
+                        style="text-decoration:underline;cursor:pointer;">GeliannyTest3</a>
+                      <script id="dxss_481453308" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_10', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/73?u=GeliannyTest3', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/17/2026 8:42:26 PM</td>
+                  </tr>
+                  <tr id="pfsGridView_DXDataRow11" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+                    <td id="pfsGridView_tccell11_0" class="dxgv" style="border-left-width:0px;border-right-width:0px;">
+                      <a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hl_11', event)" id="hl_11"
+                        style="text-decoration:underline;cursor:pointer;">AFFF000080</a>
+                      <script id="dxss_1988259448" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hl_11', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/FactSheet/PFS/254fc6e5-0094-4c49-914f-16c56f751910', "_blank"); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff 77, Test</td>
+                    <td id="pfsGridView_tccell11_2" class="dxgv" style="border-left-width:0px;border-right-width:0px;">
+                      <a class="dxeHyperlink_MaterialCompact" onclick="return ASPx.SEClick('hL_11', event)" id="hL_11"
+                        style="text-decoration:underline;cursor:pointer;">GeliannyTest3</a>
+                      <script id="dxss_743742229" data-executed="true">
+                            < !-
+                          ASPx.createControl(ASPxClientHyperLink, 'hL_11', '', { 'scStates': 4, 'scPostfix': 'MaterialCompact' }, { 'Click': function (s, e) { window.open('/Claim/ClaimHistory/80?u=GeliannyTest3', '_blank', 'width=1200,height=900'); } });
+
+                        //-->
+                      </script>
+                    </td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">Plaintiff Discovery Form
+                      Updated</td>
+                    <td class="dxgv" style="border-left-width:0px;border-right-width:0px;">6/17/2026 8:42:26 PM</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="dxgvPagerBottomPanel_MaterialCompact">
+                <div class="dxpLite_MaterialCompact" id="pfsGridView_DXPagerBottom"
+                  style="display: inline-block; float: none;">
+                  <b class="dxp-lead dxp-summary">Page 1 of 42 (500 items)</b><b id="pfsGridView_DXPagerBottom_PBP"
+                    class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact"
+                      src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b class="dxp-num dxp-current">1</b><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN1');">2</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN2');">3</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN3');">4</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN4');">5</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN5');">6</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN6');">7</a><b class="dxp-ellip">…</b><a
+                    class="dxp-num" onclick="ASPx.GVPagerOnClick('pfsGridView','PN39');">40</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN40');">41</a><a class="dxp-num"
+                    onclick="ASPx.GVPagerOnClick('pfsGridView','PN41');">42</a><a id="pfsGridView_DXPagerBottom_PBN"
+                    class="dxp-button dxp-bi" onclick="ASPx.GVPagerOnClick('pfsGridView','PBN');"><img
+                      class="dxWeb_pNext_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></a>
+                </div><b class="dx-clear"></b>
+                <script id="dxss_778148792" data-executed="true">
+                      < !-
+                    ASPx.AddHoverItems('pfsGridView_DXPagerBottom', [[['dxp-hoverButton'], [''], ['PBN']]]);
+                  ASPx.RemoveHoverItems('pfsGridView_DXPagerBottom', [[['PBP']]]);
+                  ASPx.createControl(ASPxClientPager, 'pfsGridView_DXPagerBottom', '', { 'uniqueID': 'pfsGridView$DXPagerBottom', 'hasOwnerControl': true, 'requireInlineLayout': true, 'enableAdaptivity': true, 'pageSizeItems': [{ 'text': '10', 'value': '10' }, { 'text': '20', 'value': '20' }, { 'text': '50', 'value': '50' }, { 'text': '100', 'value': '100' }, { 'text': '200', 'value': '200' }], 'pageSizeSelectedItem': { 'text': '12', 'value': 12 } }, { 'pageSizeChanged': function (s, e) { ASPx.GVPagerOnClick('pfsGridView', e.value); } });
+
+                  //-->
+                </script>
+              </div>
+              <table id="pfsGridView_LP" class="dxgvLoadingPanel_MaterialCompact"
+                style="left:0px;top:0px;z-index:30000;display:none;">
+                <tbody>
+                  <tr>
+                    <td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft"
+                        src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td>
+                    <td class="dx" style="padding-left:0px;"><span id="pfsGridView_TL">Loading…</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="pfsGridView_LD" class="dxgvLoadingDiv_MaterialCompact"
+                style="display:none;z-index:29999;position:absolute;">
+
+              </div><img id="pfsGridView_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact"
+                src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow"
+                style="position:absolute;visibility:hidden;top:-100px;"><img id="pfsGridView_IADU"
+                class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow"
+                style="position:absolute;visibility:hidden;top:-100px;"><img id="pfsGridView_IADL"
+                class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow"
+                style="position:absolute;visibility:hidden;top:-100px;"><img id="pfsGridView_IADR"
+                class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow"
+                style="position:absolute;visibility:hidden;top:-100px;"><img id="pfsGridView_IDHF"
+                class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide"
+                style="position:absolute;visibility:hidden;top:-100px;">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <script id="dxss_92843302" data-executed="true">
+            < !-
+          ASPx.createControl(MVCxClientGridView, 'pfsGridView', '', { 'callBack': function (arg) { ; }, 'stateObject': { 'lastMultiSelectIndex': -1, 'keys': ['545691', '545688', '545683', '545682', '545680', '545678', '545676', '545674', '545671', '545667', '545666', '545668'], 'callbackState': 'kcKi6IETea11ZLQGl7Wr+0uwaljGIvULQHWdb7yxW3rIzrgwcI7PvQj/KGMYyHVr11+pMCfaKaF1JEN6LygtOT+NAY8ZeK9S52zik1S1ptui9L1axcM+oYxXO2BF3n2pq0NMtDp3+ettxaA4ou4bjiW/b92hjhodo3KmA3htwZYgGeSgveBNbnhIAbqSgfjHRRnA2FtU7RMIPxMwrZQa3YHqBq2X11kXU6CStBiCyczOPZtvu/x9uQSrPUC4EFj8M+xPNsKHAli0JiAaiitzJlzLF4QD9PJmPoh2UB2BdXI=', 'groupLevelState': {}, 'selection': '' }, 'callBacksEnabled': true, 'pageRowCount': 12, 'pageRowSize': 12, 'pageIndex': 0, 'pageCount': 42, 'selectedWithoutPageRowCount': 0, 'visibleStartIndex': 0, 'focusedRowIndex': -1, 'allowFocusedRow': false, 'allowSelectByItemClick': true, 'allowSelectSingleRowOnly': false, 'callbackOnFocusedRowChanged': false, 'callbackOnSelectionChanged': false, 'editState': 0, 'editItemVisibleIndex': -1, 'searchPanelFilter': '', 'allowDelete': true, 'allowEdit': true, 'allowInsert': true, 'columnProp': [[0, , , 'FactSheetNumber', , , , , 0], [1, , , 'FullName', , , , , 1], [2, , , 'User', , , , , 2], [3, , , 'AuditTypeName', , , , , 3], [4, , , 'DateEntered', , 3, , , 4]], 'shouldScrollToNewRow': false, 'editMode': 2, 'indentColumnCount': 0, 'allowChangeColumnHierarchy': false, 'allowMultiColumnAutoFilter': false, 'adaptiveColumnsOrder': [4, 3, 2, 1, 0], 'editingItemVisibleIndex': -1, 'callbackUrl': '/Home/gvFactSheetUpdatesPartial', 'keyName': 'Id' }, null, null, { 'adaptiveModeInfo': { 'adaptivityMode': 2, 'hideDataCellsWindowInnerWidth': 0, 'adaptiveDetailColumnCount': 1, 'allowTextTruncationInAdaptiveMode': { '0': false, '1': false, '2': false, '3': false, '4': false }, 'allowHideDataCellsByColumnMinWidth': false, 'allowOnlyOneAdaptiveDetailExpanded': false } });
+        ASPxClientGridBase.PostponeInitialize('pfsGridView', ({ 'commandButtonIDs': [], 'styleInfo': { 'ei': '<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="5" style="border-right-width:0px;"></td>\r\n</tr>', 'fc': { 'className': 'dxgvFocusedCell_MaterialCompact' }, 'sc': { 'className': 'dxgvSelectedCell_MaterialCompact' }, 'bec': { 'className': 'dxgvBatchEditCell_MaterialCompact dxgv' }, 'bemc': { 'className': 'dxgvBatchEditModifiedCell_MaterialCompact dxgv' }, 'bemergmc': { 'className': 'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv' }, 'bedi': { 'className': 'dxgvBatchEditDeletedItem_MaterialCompact dxgv' }, 'sel': { 'className': 'dxgvSelectedRow_MaterialCompact' }, 'fi': { 'className': 'dxgvFocusedRow_MaterialCompact' }, 'fgi': { 'className': 'dxgvFocusedGroupRow_MaterialCompact' }, 'beni': { 'className': 'dxgvBatchEditNewItem_MaterialCompact dxgv' } } }));
+
+        //-->
+      </script>
+    </div>
+  </div>
+
+  <!-- Announcements-->
+  <!-- * Updated announcement markup removed style -->
+  <div id="announcement" class="grid-section-announce-mile">
+    <div class="sectionHeader">
+      <!-- *ADDED h2 -->
+      <h2>Recent Announcements</h2>
+      <div style="font-size: 12px; float: right; margin-right: 10px;">
+        <a class="smallbutton" href="/Announcements" style="">See All</a>
+      </div>
+    </div>
+
+    <!-- * Removed Style <div id="announce-scroll-panel" style="height: 737px !important; overflow: auto;"> -->
+    <div id="announce-scroll-panel">
+      <div class="announcement flexgchildannounce">
+        <div class="announcement__header">
+          <h3 class="announcement__title">Informational: Description box update</h3>
+          <p class="announcement__date">Posted on 3/10/2026</p>
+        </div>
+        <div class="announcement__content">
+          <p>Test</p>
+        </div>
+      </div>
+
+      <div class="announcement flexgchildannounce">
+        <div class="announcement__header">
+          <h3 class="announcement__title">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders</h3>
+          <p class="announcement__date">Posted on 2/20/2026</p>
+        </div>
+        <div class="announcement__content">
+          <ul>
+            <li>You can find an updated <strong>User Guide</strong> on the Portal Documents tab.</li>
+            <li><strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a
+              hard
+              refresh.<br>
+              <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> +
+              <code>F5</code><br>
+              <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>.
+            </li>
+          </ul>
+          <p><strong style="color: #003057; font-weight: bold; font-size: 15px;">Bulk E-Signature Verification
+              Requests</strong></p>
+          <p>You can now send E-Signature Verification Requests to up to 500 plaintiffs at once using the Bulk Actions
+            tab. Only plaintiffs with no outstanding items will be eligible for bulk signature. Please refer to Section
+            V.
+            Adding a Plaintiff to the Portal – G. Completing a Verification (page 23) in the User Guide.</p>
+          <p><strong style="color: #003057; font-weight: bold; font-size: 15px;">Reminders</strong></p>
+          <ul>
+            <li>Documents can be uploaded in bulk regardless of Plaintiff status.</li>
+            <li>SDWIS IDs can be updated via Import.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="announcement flexgchildannounce">
+        <div class="announcement__header">
+          <h3 class="announcement__title">Reminders: test</h3>
+          <p class="announcement__date">Posted on 11/14/2025</p>
+        </div>
+        <div class="announcement__content">
+          <h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;">Important Maintenance
+            Notice</h2>
+          <p>The AFFF MDL Portal will offline for scheduled maintenance beginning <strong>Friday, November 14th at 5:00
+              pm
+              CST</strong>. The portal will be back online no later than Monday, November 17th at 8:00 am CST. We will
+            post an announcement once maintenance is complete and the portal is accessible.</p>
+        </div>
+        <!-- * Updated announcement markup
+      <div class="flexgchildannounce" style="">
+        <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
+          <u style="font-size: 18px">Informational: Description box update</u>
+          <sub style="font-size:14px; margin-left:4px;">Posted on 3/10/2026</sub>
+        </div>
+        <p>Test</p>
+        <i id="effective-date" style="margin-left:7px;">Effective as of 3/9/2026</i>
+      </div>
+      <div class="flexgchildannounce" style="">
+        <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
+          <u style="font-size: 18px">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders</u>
+          <sub style="font-size:14px; margin-left:4px;">Posted on 2/20/2026</sub>
+        </div>
+        <p></p>
+        <div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+
+
+          <ul style="margin-top: 4px; margin-bottom: 16px;">
+
+            <li>
+
+              You can find an updated <strong>User Guide</strong> on the Portal Documents tab.
+
+            </li>
+
+            <li style="margin-top: 4px;">
+
+              <strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a
+              hard refresh.<br>
+
+              <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> +
+              <code>F5</code>
+
+              <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>.
+
+            </li>
+
+          </ul>
+
+
+
+
+
+
+
+          <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"> Bulk
+            E-Signature Verification Requests </p>
+
+          <p style="margin-bottom: 6px;">
+
+            You can now send E-Signature Verification Requests to up to 500 plaintiffs at once using the Bulk
+            Actions tab. Only plaintiffs with no outstanding items will be eligible for bulk signature. Please refer
+            to Section V. Adding a Plaintiff to the Portal – G. Completing a Verification (page 23) in the User
+            Guide </p>
+
+
+
+
+
+          <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">
+            Reminders </p>
+
+
+
+          <ul style="margin-top: 4px; margin-bottom: 16px;">
+
+            <li>Documents can be uploaded in bulk regardless of Plaintiff status.
+
+            </li>
+
+
+
+            <li> SDWIS IDs can be updated via Import
+
+            </li>
+
+
+
+
+
+          </ul>
+        </div>
+        <p></p>
+      </div>
+      <div class="flexgchildannounce" style="">
+        <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
+          <u style="font-size: 18px">Reminders: test</u>
+          <sub style="font-size:14px; margin-left:4px;">Posted on 11/14/2025</sub>
+        </div>
+        <p></p>
+        <div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+          <h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;">
+            Important Maintenance Notice
+          </h2>
+
+          <p style="margin-bottom: 6px;">
+            The AFFF MDL Portal will offline for scheduled maintenance beginning <strong>Friday, November 14th at
+              5:00 pm CST</strong>. The portal will be back online no later than Monday, November 17th at 8:00 am
+            CST. We will post an announcement once maintenance is complete and the portal is accessible.
+          </p>
+
+        </div>
+        <p></p>
+      </div> -->
+      </div>
+    </div>
+    <!-- *REMOVED <div style="height: 50px;"></div> -->
+    <!-- *REMOVED </div> -->
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+    function (s, e) {
+      showFlashIfPopulated();
+    }
+  );
+</script>
+{% endraw %}

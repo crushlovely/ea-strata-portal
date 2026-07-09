@@ -1,0 +1,89 @@
+// STRATA Link — Figma component set 6387:102681.
+// Variants: Intent=Primary/Secondary, State=Default/Hover/Focus/Active/Disabled.
+// Underlined uppercase text link; colors come from the
+// --link-{intent}-{state}-text/border theme variables
+// (variables/_02_theme.scss); states map to interaction pseudo-classes.
+// The underline is a border-bottom (not text-decoration) per the design.
+// Typography is namespaced (t.link) because this file's own `link` mixin
+// would collide with the link text-style mixin under `as *`.
+@use "typography" as t;
+
+// ---------------------------------------------------------------- base
+
+@mixin link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @include t.link;
+  text-transform: uppercase;
+  text-decoration: none;
+  word-break: normal;
+  cursor: pointer;
+
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+// ---------------------------------------------------------------- intents
+
+// One state's colors: text + underline.
+@mixin -link-colors($intent, $state) {
+  color: var(--link-#{$intent}-#{$state}-text);
+  border-bottom-color: var(--link-#{$intent}-#{$state}-border);
+}
+
+// Full interactive set for an intent. Disabled uses [aria-disabled] since
+// anchors have no :disabled.
+@mixin link-intent($intent) {
+  @include -link-colors($intent, default);
+
+  &:hover {
+    @include -link-colors($intent, hover);
+  }
+
+  &:focus-visible {
+    @include -link-colors($intent, focus);
+    outline: 2px solid var(--link-#{$intent}-focus-outline);
+    outline-offset: 1px;
+  }
+
+  &:active {
+    @include -link-colors($intent, active);
+  }
+
+  &[aria-disabled="true"] {
+    @include -link-colors($intent, disabled);
+  }
+}
+
+@mixin link-primary {
+  @include link-intent(primary);
+}
+
+@mixin link-secondary {
+  @include link-intent(secondary);
+}
+
+// ---------------------------------------------------------------- classes
+
+.link {
+  @include link;
+  @include link-primary;
+
+  &--secondary {
+    @include link-secondary;
+  }
+}
+
+// App selectors
+
+a {
+  @include link;
+  @include link-primary;
+
+  &--secondary {
+    @include link-secondary;
+  }
+}

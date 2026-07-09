@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-06-22T19:38:23.362Z",
+  "title": "Login",
+  "url": "https://uat.afffmdlportal.com/Account/Login?ReturnUrl=%2f",
+  "screenshot": "login.png",
+  "html": "login.html",
+  "width": 1440,
+  "height": 873,
+  "viewportWidth": 1440,
+  "viewportHeight": 873,
+  "screenshotSha256": "cfce74e2144028952dfcaee8d9e964a731cac05e572e753ccb24ff6c663d6ec0"
+}

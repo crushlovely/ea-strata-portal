@@ -1,0 +1,6 @@
+// Design-system fonts, loaded via Google Fonts. Variable-font ranges: the
+// design system uses in-between weights (375, 650) that only the variable
+// versions of these families provide. This must be the first @use in
+// main.scss so the @import lands at the top of the compiled CSS, where
+// browsers require it.
+@import url("https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300..700&family=Fraunces:opsz,wght@9..144,300..700&family=Raleway:wght@300..700&display=swap");

@@ -1,0 +1,38 @@
+// STRATA Data Grid Row Cell — Figma component set 6387:103265.
+// Variants: Content=Text (6387:103264), Link (6387:103266), Buttons
+// (6387:104482, simple-button actions), Button (6394:110033), Checkbox
+// (6387:103271). Link/button/checkbox content is styled by the link, button,
+// and checkbox components — this cell only provides the box.
+@use "typography" as *;
+
+@mixin data-grid-row-cell {
+  // Content=Text (default)
+  align: left;
+  padding: var(--spacing-xs);
+  overflow: clip;
+  @include data-grid-cell;
+  color: var(--data-grid-body-text);
+  background-color: var(--data-grid-row-bg);
+  border-bottom: 1px solid var(--data-grid-border);
+  vertical-align: top;
+  word-break: break-word;
+}
+
+@mixin data-grid-row-cell-controls {
+  // Content=Buttons/Button/Checkbox: centered controls, tighter padding
+  align-items: center;
+  gap: var(--spacing-xxs);
+  padding: var(--spacing-xs);
+}
+
+// ---------------------------------------------------------------- classes
+
+.data-grid-row-cell {
+  @include data-grid-row-cell;
+
+  &--controls {
+    @include data-grid-row-cell-controls;
+  }
+}
+
+// App selectors

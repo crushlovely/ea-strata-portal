@@ -1,0 +1,252 @@
+---
+layout: layouts/base.njk
+title: "Time & Expense Status Admin"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+<script>
+    Model = {"SearchFilterKey":0,"SearchFilterValue":null,"Statuses":[{"EntryStatusId":1,"StatusName":"Not Submitted"},{"EntryStatusId":2,"StatusName":"Submitted: Pending Review"},{"EntryStatusId":3,"StatusName":"In Review"},{"EntryStatusId":4,"StatusName":"Review Pending: Incomplete Items"},{"EntryStatusId":5,"StatusName":"Review Complete: Approved"},{"EntryStatusId":6,"StatusName":"Review Complete: Denied"}],"ReviewStatuses":[{"EntryStatusId":4,"StatusName":"Review Pending: Incomplete Items"},{"EntryStatusId":5,"StatusName":"Review Complete: Approved"},{"EntryStatusId":6,"StatusName":"Review Complete: Denied"}],"NewStatus":null,"OverrideReason":null,"ExternalReviewNotes":null};
+    baseUrl = "/";
+</script>
+
+<script type="text/javascript" src="/Scripts/Pages/timeexpensestatusadmin.js" defer=""></script>
+
+<style>
+    .page-center-section {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .pastebox {
+        display: inline-flex;
+        gap: 10px;
+        font-family: monospace;
+        line-height: 21px;
+        border-radius: 2px;
+        border-color: #808080;
+        padding: 10px 10px 10px 10px;
+        overflow-y: scroll;
+    }
+
+    textarea {
+        line-height: 21px;
+        overflow-y: hidden;
+        padding: 0;
+        float: left
+    }
+
+
+    textarea.withlines {
+        font-size: 9pt;
+        background-attachment: local;
+        background-repeat: no-repeat;
+        padding-left: 35px;
+        padding-top: 10px;
+        border-color: #ccc;
+        line-height: 16px;
+        text-align: left;
+        background-image: url(/Content/Images/linenumbers.png);
+        overflow-wrap: normal;
+        width: 100%;
+    }
+
+    input.back-button {
+        width: 1em;
+        height: 1em;
+        background-image: url(/Content/Images/back.png);
+        background-size: contain;
+        background-color: unset;
+        border: none;
+        float: left;
+    }
+
+    input.filter-button {
+        width: 1em;
+        height: 1em;
+        background-image: url(/Content/Images/filter.png);
+        background-size: contain;
+        background-color: unset;
+        border: none;
+    }
+
+    img.wait {
+        object-fit: scale-down;
+        height: 2em;
+    }
+
+    .table-cell-equivalence td {
+        width: 19em;
+    }
+
+    .table-cell-equivalence input {
+        width: 100%;
+        min-width: 6em;
+    }
+
+    .table-cell-equivalence select {
+        width: 100%;
+        min-width: 6em;
+    }
+
+    .text-dark {
+        color: #343a40;
+    }
+
+    .text-muted {
+        color: #6c757d; /* You can adjust the color value to match the desired shade of gray */
+    }
+
+    .text-center {
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+
+    .fw-bold {
+        font-weight: bold;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        .btn:hover {
+            text-decoration: none;
+        }
+
+        .btn:focus {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .btn.disabled,
+        .btn:disabled {
+            opacity: 0.65;
+        }
+
+    .btn-primary {
+        background: #012F47;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #1a4359;
+        }
+
+        .btn-primary:disabled {
+            background: #668290;
+        }
+
+    .btn-default:hover {
+        background: #33586b;
+        color: white;
+    }
+
+    .btn-link {
+        color: #012F47;
+    }
+
+    .search-btn {
+        width: 15rem;
+    }
+</style>
+
+<h2>Time &amp; Expense Status Admin</h2>
+
+<p>Use this screen to make time and expense updates</p>
+<p>
+    The manual adjustment done here is outside of the normal workflow for time and expense entries. Please use this screen if you are sure you want
+    to override the normal workflow and manual adjust the time and expense status. You may also use this screen to add an external review note to the
+    selected entries.
+</p>
+
+<div id="customDiv" class="page page-center-section"><div><section><h5>Select the entries that require an update</h5> <div class="mb-2"><div class="d-table-row"><div class="d-table-cell"><label class="fw-bold">Search By</label></div> <div class="px-2"></div> <div class="d-table-cell"><select class="text-muted"><option value="0" class="text-dark">Select Search Filter</option> <option value="1" class="text-dark">Entry Number</option> <option value="2" class="text-dark">Entry Status</option></select></div> <div class="px-2"></div> <div class="d-table-cell"><select style="display: none;"><option value="1">
+                                Not Submitted
+                            </option><option value="2">
+                                Submitted: Pending Review
+                            </option><option value="3">
+                                In Review
+                            </option><option value="4">
+                                Review Pending: Incomplete Items
+                            </option><option value="5">
+                                Review Complete: Approved
+                            </option><option value="6">
+                                Review Complete: Denied
+                            </option></select></div></div></div> <div class="mb-2" style="display: none;"><div class="d-table-row"><div class="d-table-cell"><textarea placeholder="Paste field search criteria" class="pastebox withlines"></textarea></div></div></div> <div><img src="/Content/Images/spinner.gif" class="wait" style="display: none;"> <input type="button" value="Search Entries" class="btn btn-primary search-btn" style="display: none;"> <input type="button" value="Search All Entries" class="btn btn-primary search-btn"></div></section> <section><div id="ClaimStatusAdminSearch" class="custom-grid-view"><div class="grid-actions"><!----></div> <table class="custom-table grid-table"><thead><tr><th><input type="checkbox" style="display: none;"></th> <th><span class="">
+                            Entry Number
+                        </span> <input type="button" class="filter-button"></th><th><span class="">
+                            Entry Status
+                        </span> <input type="button" class="filter-button"></th><th><span class="">
+                            Created By
+                        </span> <input type="button" class="filter-button"></th></tr> <tr style="display: none;"><th></th> <th><input type="text" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"></th><th><input type="text" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"></th><th><input type="text" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"> <input type="text" class="halfwidth" style="display: none;"></th></tr></thead> <tbody></tbody> <tfoot style="display: none;"><tr><td colspan="4"><input type="button" value="←" style="display: none;">
+                        &nbsp;&nbsp;&nbsp;
+                        Page
+                        <select></select>
+                        of 0
+                        &nbsp;&nbsp;&nbsp;
+                        Show
+                        <select><option>10</option> <option>25</option> <option>50</option> <option>75</option> <option>100</option> <option>250</option></select>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="button" value="→" style="display: none;"></td></tr></tfoot></table></div></section> <section style="display: none;"><table class="w-100"><tbody><tr><td colspan="5" class="text-center"><label class="fw-bold">Total Rows Selected: 0</label></td></tr></tbody></table> <h5>Specify the status change and reason.</h5> <div class="mb-3"><div class="pb-1"><label class="fw-bold">New Entry Status</label></div> <div><select><option value="[object Object]">
+                            Not Submitted
+                        </option><option value="[object Object]">
+                            Submitted: Pending Review
+                        </option><option value="[object Object]">
+                            In Review
+                        </option><option value="[object Object]">
+                            Review Pending: Incomplete Items
+                        </option><option value="[object Object]">
+                            Review Complete: Approved
+                        </option><option value="[object Object]">
+                            Review Complete: Denied
+                        </option></select></div></div> <div class="mb-3"><div class="pb-1"><label class="fw-bold">Status Adjustment Reason</label></div> <textarea placeholder="" class="form-text form-control mb-3"></textarea></div> <div class="mb-3" style="display: none;"><div class="pb-1"><label class="fw-bold">External Review Notes</label></div> <textarea placeholder="" class="form-text form-control mb-3"></textarea></div> <div><input type="button" disabled="disabled" value="Preview Update" class="btn btn-primary search-btn"></div></section></div> <div style="display: none;"><section><div id="ClaimStatusUpdatePreview" class="custom-grid-view"><div class="grid-actions"><button disabled="disabled" class="export-button">Export to CSV</button></div> <table class="custom-table grid-table"><thead><tr><!----> <th><span class="">
+                            Entry Number
+                        </span> <!----></th><th><span class="">
+                            Created By
+                        </span> <!----></th><th><span class="">
+                            Current Entry Status
+                        </span> <!----></th><th><span class="">
+                            New Entry Status
+                        </span> <!----></th></tr> <!----></thead> <tbody></tbody> <tfoot style="display: none;"><tr><td colspan="5"><input type="button" value="←" style="display: none;">
+                        &nbsp;&nbsp;&nbsp;
+                        Page
+                        <select></select>
+                        of 0
+                        &nbsp;&nbsp;&nbsp;
+                        Show
+                        <select><option>10</option> <option>25</option> <option>50</option> <option>75</option> <option>100</option> <option>250</option></select>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="button" value="→" style="display: none;"></td></tr></tfoot></table></div></section> <section><table class="table-cell-equivalence"><tbody><tr><td colspan="5" class="text-center"><span class="fw-bold">0 records will be updated</span></td></tr> <tr><td></td> <td><button type="button" class="btn btn-primary search-btn"><strong>← Back</strong></button></td> <td></td> <td><img src="/Content/Images/spinner.gif" class="wait" style="display: none;"> <button type="button" class="btn btn-primary search-btn"><strong>Update Records</strong></button></td> <td></td></tr></tbody></table></section></div> <div class="modal-overlay" style="display: none;"><div class="modal-content"><div><h3 class="red">Error</h3> <p class="red"></p></div> <div class="modal-confirmation"><input type="button" value="Close" class="btn"></div></div></div> <div class="modal-overlay" style="display: none;"><div class="modal-content"><div><h3 class="green">Success</h3> <p>
+                0 claim(s) successfully transitioned to the entry status of
+                <strong>""</strong>.
+            </p></div> <div class="modal-confirmation"><input type="button" value="Close" class="btn"></div></div></div></div>
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

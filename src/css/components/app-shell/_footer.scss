@@ -1,0 +1,23 @@
+@use "typography" as *;
+// STRATA Footer — Figma component
+@mixin footer {
+  // default variant
+  background-color: var(--bg-site-footer);
+  padding: var(--spacing-xxs) var(--spacing-md);
+  .footerMenu {
+    display: none;
+  }
+  .copyright {
+    @include small-text;
+    color: var(--text-site-footer);
+    text-align: center;
+    @media (min-width: 894px) {
+      text-align: right;
+    }
+  }
+}
+
+// App selector for footer component
+#FooterPane {
+  @include footer;
+}
