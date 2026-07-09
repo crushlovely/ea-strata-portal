@@ -1,0 +1,253 @@
+// STRATA Button — Figma component set 6192:208
+// ("Primary, secondary, outline, and danger buttons with default, hover, and
+// disabled states.")
+// Variants: Intent=Primary/Secondary/Outline/Danger/Simple,
+// Size=Large/Medium/Small, State=Default/Hover/Focus/Active/Disabled.
+// All colors come from the --btn-{intent}-{state}-{prop} theme variables
+// (variables/_02_theme.scss); states map to interaction pseudo-classes.
+// The bg/bg2 pairs render as a radial gradient (center -> edge), matching the
+// baked SVG gradient fills in the Figma component. On interaction states, an
+// intent-specific wave SVG fades in over the gradient via the ::before layer.
+@use "typography" as *;
+@use "backgrounds" as *;
+
+// ---------------------------------------------------------------- base
+
+@mixin button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xxs);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  @include btn;
+  white-space: nowrap;
+  word-break: break-word;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 0; // stacking context so the ::before wave sits behind the text
+  transition:
+    background-image 6s ease-in-out,
+    border-color 0.4s ease-in-out;
+
+  // Decorative wave layer. Painted behind the button text but above the
+  // gradient (which lives on the element background). Opacity is toggled
+  // per interaction state; the URL is set per intent in -button-wave().
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 509px auto;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.45s ease-in-out;
+    pointer-events: none;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
+
+// ---------------------------------------------------------------- sizes
+
+@mixin button-large {
+  height: 2.875rem; // 46px
+  padding: var(--spacing-xs) var(--spacing-md);
+}
+
+@mixin button-medium {
+  height: 2.875rem; // 46px
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+@mixin button-small {
+  height: 1.875rem; // 30px
+  padding: var(--spacing-xxs) var(--spacing-xs);
+}
+
+// ---------------------------------------------------------------- intents
+
+// One state's colors: background gradient, border, text. The gradient is
+// painted on the element background; the wave (interaction states only) is
+// faded in via ::before opacity.
+@mixin -button-colors($intent, $state) {
+  color: var(--btn-#{$intent}-#{$state}-text);
+  border-color: var(--btn-#{$intent}-#{$state}-border);
+  background-image: radial-gradient(
+    ellipse at center,
+    var(--btn-#{$intent}-#{$state}-bg) 0%,
+    var(--btn-#{$intent}-#{$state}-bg2) 100%
+  );
+
+  &::before {
+    opacity: if(index((hover, focus, active), $state), 0.5, 0);
+  }
+}
+
+// Sets the intent-specific wave image once for the whole intent (it doesn't
+// change between states — only its opacity does).
+@mixin -button-wave($intent) {
+  &::before {
+    background-image: url("/images/BG-Wave-#{$intent}.svg");
+  }
+}
+
+// Full interactive set for an intent. Disabled uses :disabled and
+// [aria-disabled] so it works for <button> and legacy anchor markup alike.
+@mixin button-intent($intent) {
+  @include -button-wave($intent);
+  @include -button-colors($intent, default);
+
+  &:hover {
+    @include -button-colors($intent, hover);
+  }
+
+  &:focus-visible {
+    @include -button-colors($intent, focus);
+    outline: 2px solid var(--btn-#{$intent}-focus-outline);
+    outline-offset: 1px;
+  }
+
+  &:active {
+    @include -button-colors($intent, active);
+    filter: brightness(0.8);
+    scale: 0.98;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @include -button-colors($intent, disabled);
+  }
+}
+
+@mixin button-primary {
+  @include button-intent(primary);
+}
+
+@mixin button-secondary {
+  @include button-intent(secondary);
+}
+
+@mixin button-outline {
+  @include button-intent(outline);
+}
+
+@mixin button-danger {
+  @include button-intent(danger);
+}
+
+@mixin button-simple {
+  @include button-intent(simple);
+}
+
+// ---------------------------------------------------------------- classes
+
+.button {
+  @include button;
+  @include button-medium;
+  @include button-primary;
+
+  &--large {
+    @include button-large;
+  }
+
+  &--small {
+    @include button-small;
+  }
+
+  &--secondary {
+    @include button-secondary;
+  }
+
+  &--outline {
+    @include button-outline;
+  }
+
+  &--danger {
+    @include button-danger;
+  }
+
+  &--simple {
+    @include button-simple;
+  }
+}
+
+// Icon color comes from bg-icon-mask (backgrounds.scss) over the neutral
+// /images/icons/ SVGs — currentColor, so icons follow the button text color
+// through every intent and state.
+.button--icon-before {
+  flex-direction: row-reverse;
+  &::after {
+    content: "";
+    display: block;
+    width: 1.25rem; // 20px
+    height: 1.25rem; // 20px
+  }
+}
+.button--icon-after {
+  &::after {
+    content: "";
+    display: block;
+    width: 1.25rem; // 20px
+    height: 1.25rem; // 20px
+  }
+}
+.button--icon-file {
+  &::after {
+    @include bg-icon-mask("File");
+  }
+}
+.button--icon-calendar {
+  &::after {
+    @include bg-icon-mask("Calendar");
+  }
+}
+.button--icon-file-xls {
+  &::after {
+    @include bg-icon-mask("FileXLS");
+  }
+}
+.button--icon-upload-simple {
+  &::after {
+    @include bg-icon-mask("UploadSimple");
+  }
+}
+
+// App selectors
+
+// Global
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  @include button;
+  @include button-medium;
+  @include button-primary;
+  &[aria-disabled="true"] {
+    @include -button-colors(primary, disabled);
+  }
+  &:hover {
+    @include -button-colors(primary, hover);
+  }
+  &:focus-visible {
+    @include -button-colors(primary, focus);
+  }
+  &:active {
+    @include -button-colors(primary, active);
+  }
+  &:disabled {
+    @include -button-colors(primary, disabled);
+  }
+}
+
+.smallbutton {
+  @include button;
+  @include button-small;
+  @include button-secondary;
+}

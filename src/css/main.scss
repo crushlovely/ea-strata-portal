@@ -2,6 +2,13 @@
 @use "variables/01_color_primitives" as *;
 @use "variables/02_theme" as *;
 @use "variables/03_viewport" as *;
+@use "backgrounds";
+@use "typography";
+@use "layout-util";
 @use "base";
-@use "header";
-@use "footer";
+@use "components/button";
+@use "components/link";
+@use "components/app-shell";
+@use "components/content";
+@use "components/forms";
+@use "components/data-grids";

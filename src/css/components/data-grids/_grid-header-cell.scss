@@ -1,0 +1,42 @@
+// STRATA Grid Header Cell — Figma component set 6192:346
+// ("Data grid column header cell").
+// Variants: Sortable=False (6192:341), True (6192:343, + funnel icon),
+// Checkbox (6337:93951, select-all checkbox instead of a label).
+@use "typography" as *;
+
+@mixin grid-header-cell {
+  // Sortable=False (default)
+  align-items: center;
+  padding: var(--spacing-xs);
+  @include data-grid-header;
+  color: var(--data-grid-header-text);
+  background-color: var(--data-grid-header-bg);
+  border-bottom: 1px solid var(--data-grid-header-border);
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+@mixin grid-header-cell-sortable {
+  // Sortable=True: label + 12px funnel icon
+  gap: var(--spacing-xxs);
+  cursor: pointer;
+
+  svg,
+  img {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+// ---------------------------------------------------------------- classes
+
+.grid-header-cell {
+  @include grid-header-cell;
+
+  &--sortable {
+    @include grid-header-cell-sortable;
+  }
+}
+
+// App selectors

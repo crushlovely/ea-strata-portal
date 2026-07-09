@@ -1,0 +1,234 @@
+// Typography mixins and classes — generated from the Figma "Viewport"
+// variable collection: one mixin + class per group that has a font-family
+// variable, referencing the CSS variables from _03_viewport.scss (so they
+// pick up the responsive Tablet/Desktop overrides automatically).
+// Do not hand-edit; re-sync from Figma instead. See /skills/figma-var-to-scss.md.
+
+@mixin heading1 {
+  font-family: var(--heading1-font-family);
+  font-size: var(--heading1-font-size);
+  line-height: var(--heading1-line-height);
+  font-weight: var(--heading1-font-weight);
+}
+.heading1 {
+  @include heading1;
+}
+
+@mixin heading2 {
+  font-family: var(--heading2-font-family);
+  font-size: var(--heading2-font-size);
+  line-height: var(--heading2-line-height);
+  font-weight: var(--heading2-font-weight);
+}
+.heading2 {
+  @include heading2;
+}
+
+@mixin heading3 {
+  font-family: var(--heading3-font-family);
+  font-size: var(--heading3-font-size);
+  line-height: var(--heading3-line-height);
+  font-weight: var(--heading3-font-weight);
+}
+.heading3 {
+  @include heading3;
+}
+
+@mixin heading4 {
+  font-family: var(--heading4-font-family);
+  font-size: var(--heading4-font-size);
+  line-height: var(--heading4-line-height);
+  font-weight: var(--heading4-font-weight);
+}
+.heading4 {
+  @include heading4;
+}
+
+@mixin heading5 {
+  font-family: var(--heading5-font-family);
+  font-size: var(--heading5-font-size);
+  line-height: var(--heading5-line-height);
+  font-weight: var(--heading5-font-weight);
+}
+.heading5 {
+  @include heading5;
+}
+
+@mixin heading6 {
+  font-family: var(--heading6-font-family);
+  font-size: var(--heading6-font-size);
+  line-height: var(--heading6-line-height);
+  font-weight: var(--heading6-font-weight);
+  letter-spacing: var(--heading6-letter-spacing);
+  text-transform: var(--heading6-text-transform);
+}
+.heading6 {
+  @include heading6;
+}
+
+@mixin body {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-weight: var(--body-font-weight);
+}
+.body {
+  @include body;
+}
+
+@mixin large-text {
+  font-family: var(--large-text-font-family);
+  font-size: var(--large-text-font-size);
+  line-height: var(--large-text-line-height);
+  font-weight: var(--large-text-font-weight);
+}
+.large-text {
+  @include large-text;
+}
+
+@mixin small-text {
+  font-family: var(--small-text-font-family);
+  font-size: var(--small-text-font-size);
+  line-height: var(--small-text-line-height);
+  font-weight: var(--small-text-font-weight);
+}
+.small-text {
+  @include small-text;
+}
+@mixin small-text-set {
+  * {
+    @include small-text;
+  }
+  ul,
+  ol {
+    padding-left: 1em;
+  }
+  & > * + * {
+    margin-top: 1em !important;
+  }
+}
+
+@mixin btn {
+  font-family: var(--btn-font-family);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  font-weight: var(--btn-font-weight);
+  letter-spacing: var(--btn-letter-spacing);
+  text-transform: var(--btn-text-transform);
+}
+.btn {
+  @include btn;
+}
+
+@mixin eyebrow-label {
+  font-family: var(--eyebrow-label-font-family);
+  font-size: var(--eyebrow-label-font-size);
+  line-height: var(--eyebrow-label-line-height);
+  font-weight: var(--eyebrow-label-font-weight);
+  letter-spacing: var(--eyebrow-label-letter-spacing);
+  text-transform: var(--eyebrow-label-text-transform);
+}
+.eyebrow-label {
+  @include eyebrow-label;
+}
+
+@mixin form-ui-label-text {
+  font-family: var(--form-ui-label-text-font-family);
+  font-size: var(--form-ui-label-text-font-size);
+  line-height: var(--form-ui-label-text-line-height);
+  font-weight: var(--form-ui-label-text-font-weight);
+}
+.form-ui-label-text {
+  @include form-ui-label-text;
+}
+
+@mixin form-ui-input-text {
+  font-family: var(--form-ui-input-text-font-family);
+  font-size: var(--form-ui-input-text-font-size);
+  line-height: var(--form-ui-input-text-line-height);
+  font-weight: var(--form-ui-input-text-font-weight);
+}
+.form-ui-input-text {
+  @include form-ui-input-text;
+}
+
+@mixin form-ui-hint-text {
+  font-family: var(--form-ui-hint-text-font-family);
+  font-size: var(--form-ui-hint-text-font-size);
+  line-height: var(--form-ui-hint-text-line-height);
+  font-weight: var(--form-ui-hint-text-font-weight);
+}
+.form-ui-hint-text {
+  @include form-ui-hint-text;
+}
+
+@mixin data-grid-title {
+  font-family: var(--data-grid-title-font-family);
+  font-size: var(--data-grid-title-font-size);
+  line-height: var(--data-grid-title-line-height);
+  font-weight: var(--data-grid-title-font-weight);
+}
+.data-grid-title {
+  @include data-grid-title;
+}
+
+@mixin data-grid-header {
+  font-family: var(--data-grid-header-font-family);
+  font-size: var(--data-grid-header-font-size);
+  line-height: var(--data-grid-header-line-height);
+  font-weight: var(--data-grid-header-font-weight);
+  letter-spacing: var(--data-grid-header-letter-spacing);
+  text-transform: var(--data-grid-header-text-transform);
+}
+.data-grid-header {
+  @include data-grid-header;
+}
+
+@mixin data-grid-cell {
+  font-family: var(--data-grid-cell-font-family);
+  font-size: var(--data-grid-cell-font-size);
+  line-height: var(--data-grid-cell-line-height);
+  font-weight: var(--data-grid-cell-font-weight);
+}
+.data-grid-cell {
+  @include data-grid-cell;
+}
+
+@mixin data-grid-meta {
+  font-family: var(--data-grid-meta-font-family);
+  font-size: var(--data-grid-meta-font-size);
+  line-height: var(--data-grid-meta-line-height);
+  font-weight: var(--data-grid-meta-font-weight);
+}
+.data-grid-meta {
+  @include data-grid-meta;
+}
+
+@mixin btn-simple-simple {
+  font-family: var(--btn-simple-simple-font-family);
+  font-size: var(--btn-simple-simple-font-size);
+  line-height: var(--btn-simple-simple-line-height);
+  font-weight: var(--btn-simple-simple-font-weight);
+  letter-spacing: var(--btn-simple-simple-letter-spacing);
+}
+.btn-simple-simple {
+  @include btn-simple-simple;
+}
+
+@mixin link {
+  font-family: var(--link-font-family);
+  font-size: var(--link-font-size);
+  line-height: var(--link-line-height);
+  font-weight: var(--link-font-weight);
+}
+.link {
+  @include link;
+}
+
+// Hand-maintained (not from Figma variables — keep when re-syncing):
+// Fraunces variable-font axes used by all display/heading text in the design.
+@mixin wonk {
+  font-variation-settings:
+    "SOFT" 0,
+    "WONK" 1;
+}

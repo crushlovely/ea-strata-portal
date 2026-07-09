@@ -1,0 +1,26 @@
+// default is spacing-sm, but we can override with modifier classes
+.blocks {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+.blocks--xxs {
+  gap: var(--spacing-xxs);
+}
+.blocks--xs {
+  gap: var(--spacing-xs);
+}
+.blocks--sm {
+  gap: var(--spacing-sm);
+}
+.blocks--md {
+  gap: var(--spacing-md);
+}
+.blocks--lg {
+  gap: var(--spacing-lg);
+}
+.blocks--xl {
+  gap: var(--spacing-xl);
+}
+.blocks--0 {
+  gap: 0;
+}

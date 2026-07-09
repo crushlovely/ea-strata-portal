@@ -1,0 +1,527 @@
+---
+layout: layouts/base.njk
+title: "Claim Form Admin"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+
+
+<script type="text/javascript">
+    function getEnhancementTypeID(s, e, enhID) {
+        enhancementId = enhID;
+        e.customArgs["EnhancementId"] = enhancementId;
+        gvEnhOptions.PerformCallback();
+    }
+    function BeginDetailRowCallback(s, e)
+    {
+        e.customArgs["EnhancementId"] = enhancementId;
+    }
+    function ClearClaimData(s, e)
+    {
+        if(confirm("This will permanently delete all Claims and records relating to Claims. This action cannot be undone. Are you sure you wish to continue?"))
+        {
+            if (!cbpClearClaimData.InCallback())
+                cbpClearClaimData.PerformCallback();
+        }
+    }
+    function OnBeginClearDataCallback(s, e)
+    {
+        e.customArgs["clear"] = true;
+    }
+    function OnEndClearDataCallback(s, e)
+    {
+        gvInjuryTypes.Refresh();
+        gvEnhancementQuestions.Refresh();
+    }
+</script>
+
+
+
+    <meta name="viewport" content="width=device-width">
+    <title>Claim Form Admin</title>
+
+
+    <h2>Claim Form Administration</h2>
+    <p>Use the grids below to add, update, or delete any injury types/enhancement questions for AFFF MDL.</p>
+    <p>Some operations can only be performed before claims or claim responses have been added to the system.</p>
+
+    <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc" id="tcClaimFormAdmin">
+	<ul class="dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer" id="tcClaimFormAdmin_TC">
+		<li class="dxtc-leftIndent">&nbsp;</li><li class="dxtc-tab dxtc-lead" style="display:none;" id="tcClaimFormAdmin_T0"><a class="dxtc-link" id="tcClaimFormAdmin_T0T"><span class="dx-vam">Injury Types</span></a></li><li class="dxtc-activeTab dxtc-lead dxtc-psi" id="tcClaimFormAdmin_AT0" style="height: 37px;"><a class="dxtc-link" id="tcClaimFormAdmin_AT0T"><span class="dx-vam">Injury Types</span></a></li><li class="dxtc-spacer" id="tcClaimFormAdmin_T0S">&nbsp;</li><li class="dxtc-tab dxtc-psi" id="tcClaimFormAdmin_T1" style="height: 37px;"><a class="dxtc-link" id="tcClaimFormAdmin_T1T"><span class="dx-vam">Enhancement Questions</span></a></li><li class="dxtc-activeTab" style="display:none;" id="tcClaimFormAdmin_AT1"><a class="dxtc-link" id="tcClaimFormAdmin_AT1T"><span class="dx-vam">Enhancement Questions</span></a></li><li class="dxtc-spacer" id="tcClaimFormAdmin_T1S">&nbsp;</li><li class="dxtc-tab dxtc-last dxtc-psi" id="tcClaimFormAdmin_T2" style="height: 37px;"><a class="dxtc-link" id="tcClaimFormAdmin_T2T"><span class="dx-vam">Clear Claim Data</span></a></li><li class="dxtc-activeTab dxtc-last" style="display:none;" id="tcClaimFormAdmin_AT2"><a class="dxtc-link" id="tcClaimFormAdmin_AT2T"><span class="dx-vam">Clear Claim Data</span></a></li><li class="dxtc-rightIndent">&nbsp;</li>
+	</ul><div class="dxtc-content" id="tcClaimFormAdmin_CC">
+		<div id="tcClaimFormAdmin_C0">
+			<div>
+
+<table class="dxgvControl_MaterialCompact dxgv" id="gvInjuryTypes" style="border-collapse:separate;">
+	<tbody><tr>
+		<td><div id="gvInjuryTypes_grouppanel" class="dxgvGroupPanel_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvInjuryTypes',event);">
+			Drag a column header here to group by that column
+		</div><table id="gvInjuryTypes_DXMainTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvInjuryTypes',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvInjuryTypes_DXHeadersRow0">
+				<td id="gvInjuryTypes_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td> </td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvInjuryTypes_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Injury Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvInjuryTypes_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Injury Order</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvInjuryTypes_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Show On Claim Form?</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvInjuryTypes_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvInjuryTypes_DXFREditorcol1" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvInjuryTypes_DXFREditorcol1_I" name="gvInjuryTypes$DXFREditorcol1" onchange="ASPx.EValueChanged('gvInjuryTypes_DXFREditorcol1')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_556626193" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvInjuryTypes_DXFREditorcol1','',{'uniqueID':'gvInjuryTypes$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvInjuryTypes',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvInjuryTypes',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvInjuryTypes',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Right;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvInjuryTypes_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvInjuryTypes_DXFREditorcol2_I" name="gvInjuryTypes$DXFREditorcol2" onchange="ASPx.ETextChanged('gvInjuryTypes_DXFREditorcol2')" type="text" autocomplete="off"></td><td id="gvInjuryTypes_DXFREditorcol2_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvInjuryTypes_DXFREditorcol2', event)" style="-webkit-user-select:none;"><img id="gvInjuryTypes_DXFREditorcol2_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td><div id="gvInjuryTypes_DXFREditorcol2_B-2" class="dxeButton dxeButtonEditButton_MaterialCompact dxeSpinIncButton_MaterialCompact" onclick="ASPx.BEClick('gvInjuryTypes_DXFREditorcol2',-2)" style="-webkit-user-select:none;">
+							<img id="gvInjuryTypes_DXFREditorcol2_B-2Img" class="dxEditors_edtSpinEditIncrementImage_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="+">
+						</div><div id="gvInjuryTypes_DXFREditorcol2_B-3" class="dxeButton dxeButtonEditButton_MaterialCompact dxeSpinDecButton_MaterialCompact" onclick="ASPx.BEClick('gvInjuryTypes_DXFREditorcol2',-3)" style="-webkit-user-select:none;">
+							<img id="gvInjuryTypes_DXFREditorcol2_B-3Img" class="dxEditors_edtSpinEditDecrementImage_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="-">
+						</div></td>
+					</tr>
+				</tbody></table><script id="dxss_1248029435" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvInjuryTypes_DXFREditorcol2',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100']],[['dxeButtonEditButtonHover_MaterialCompact dxeSpinIncButtonHover_MaterialCompact'],[''],['B-2']],[['dxeButtonEditButtonHover_MaterialCompact dxeSpinDecButtonHover_MaterialCompact'],[''],['B-3']]]);
+ASPx.RemoveHoverItems('gvInjuryTypes_DXFREditorcol2',[[['B-1']],[['B-4']]]);
+ASPx.AddPressedItems('gvInjuryTypes_DXFREditorcol2',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100']],[['dxeButtonEditButtonPressed_MaterialCompact dxeSpinIncButtonPressed_MaterialCompact'],[''],['B-2']],[['dxeButtonEditButtonPressed_MaterialCompact dxeSpinDecButtonPressed_MaterialCompact'],[''],['B-3']]]);
+ASPx.RemovePressedItems('gvInjuryTypes_DXFREditorcol2',[[['B-1']],[['B-4']]]);
+ASPx.AddDisabledItems('gvInjuryTypes_DXFREditorcol2',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-2','B-3'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtSpinEditIncrementImageDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtSpinEditDecrementImageDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('gvInjuryTypes_DXFREditorcol2',[[['B-1','B-4'],]]);
+ASPx.createControl(ASPxClientSpinEdit,'gvInjuryTypes_DXFREditorcol2','',{'uniqueID':'gvInjuryTypes$DXFREditorcol2','scStates':2,'scPostfix':'MaterialCompact','heightCorrectionRequired':true,'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The number must be in the range {0}...{1}', 'The number must be greater than or equal to {0}', 'The number must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'number':null,'lockValueChanged':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvInjuryTypes',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvInjuryTypes', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Center;border-right-width:0px;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvInjuryTypes_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvInjuryTypes_DXFREditorcol3_VI" name="gvInjuryTypes_DXFREditorcol3_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvInjuryTypes_DXFREditorcol3_I" name="gvInjuryTypes$DXFREditorcol3" onchange="ASPx.ETextChanged('gvInjuryTypes_DXFREditorcol3')" type="text" autocomplete="off"></td><td id="gvInjuryTypes_DXFREditorcol3_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvInjuryTypes_DXFREditorcol3', event)"><img id="gvInjuryTypes_DXFREditorcol3_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvInjuryTypes_DXFREditorcol3_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvInjuryTypes_DXFREditorcol3_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvInjuryTypes_DXFREditorcol3_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvInjuryTypes_DXFREditorcol3_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvInjuryTypes_DXFREditorcol3_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvInjuryTypes_DXFREditorcol3_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvInjuryTypes_DXFREditorcol3_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvInjuryTypes_DXFREditorcol3_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvInjuryTypes_DXFREditorcol3_DDD_L_VI" type="hidden" name="gvInjuryTypes$DXFREditorcol3$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvInjuryTypes_DXFREditorcol3_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvInjuryTypes_DXFREditorcol3_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvInjuryTypes_DXFREditorcol3_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_698597980" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvInjuryTypes_DXFREditorcol3_DDD_L','',{'uniqueID':'gvInjuryTypes$DXFREditorcol3$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':true,'text':'Checked'},{'value':false,'text':'Unchecked'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvInjuryTypes_DXFREditorcol3', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvInjuryTypes_DXFREditorcol3', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_2011918371" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvInjuryTypes_DXFREditorcol3_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvInjuryTypes_DXFREditorcol3_DDD','',{'uniqueID':'gvInjuryTypes$DXFREditorcol3$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvInjuryTypes_DXFREditorcol3', e); }});
+
+//-->
+</script><script id="dxss_1065899190" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvInjuryTypes_DXFREditorcol3',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvInjuryTypes_DXFREditorcol3',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvInjuryTypes_DXFREditorcol3',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvInjuryTypes_DXFREditorcol3','',{'uniqueID':'gvInjuryTypes$DXFREditorcol3','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvInjuryTypes',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvInjuryTypes', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvInjuryTypes_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgv" colspan="4" style="border-bottom-width:0px;"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><table id="gvInjuryTypes_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvInjuryTypes_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvInjuryTypes_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvInjuryTypes_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvInjuryTypes_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvInjuryTypes_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvInjuryTypes_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvInjuryTypes_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_540746620" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvInjuryTypes','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'callbackState':'44DNbk3KW+dohMAYp+WZFRRK5kNoTb/PBjPUw3S7ifIVDEby5FWuBx43o4buyXTHwhaSne7ewRnQk62WsXG59DgPBorlMoFSfmZglSHcDtuPaNcRRXQP72L5A9kE5aeuYjiXUCsgdy0IYooyxZmjn8jFHD4cc4Ui6uiEfF3H8fDxqiUOhhx8rJpHCyjomKdBa6kbNhZl6/1BAcdXHbpEEcRdl9CJKEsx/xdGwqu6dCOdTEKOV48H72goEQJbBhw0xXhLlEWTDaBsiNDB9lMXEEI0CEtvqNPokP3FcNa1eJZdpRFM2bNFpq2Q6iAAYRH2','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'confirmDelete':'Confirm Delete?','editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'InjuryName',,,,,1],[2,,,'InjuryOrder',,,,,2],[3,,,'ShowOnClaimForm',,,,,3]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/Admin/gvClaimFormAdminInjuryTypesPartial','addNewItemUrl':'/Admin/gvClaimFormAdminInjuryTypesPartialAddNew','updateItemUrl':'/Admin/gvClaimFormAdminInjuryTypesPartialUpdate','deleteItemUrl':'/Admin/gvClaimFormAdminInjuryTypesPartialDelete','keyName':'Id'});
+ASPxClientGridBase.PostponeInitialize('gvInjuryTypes',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="4" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+			</div>
+		</div><div style="display:none;" id="tcClaimFormAdmin_C1">
+			<div>
+
+<table class="dxgvControl_MaterialCompact dxgv" id="gvEnhancementQuestions" style="border-collapse:separate;">
+	<tbody><tr>
+		<td><div id="gvEnhancementQuestions_grouppanel" class="dxgvGroupPanel_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvEnhancementQuestions',event);">
+			Drag a column header here to group by that column
+		</div><table id="gvEnhancementQuestions_DXMainTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvEnhancementQuestions',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvEnhancementQuestions_DXHeadersRow0">
+				<td class="dxgvHeader_MaterialCompact" style="width:0.1%;border-top-width:0px;border-left-width:0px;cursor:default;"><img class="dxGridView_gvDetailExpandedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="" style="visibility:hidden;"></td><td id="gvEnhancementQuestions_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td> </td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Enhancement Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Question</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Question Order</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Allow Multiselect</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Show Question On Claim Form</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Show Header On Claim Form</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvEnhancementQuestions_col8" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Enhancement Mod Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvEnhancementQuestions_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvEnhancementQuestions_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol2_I" name="gvEnhancementQuestions$DXFREditorcol2" onchange="ASPx.EValueChanged('gvEnhancementQuestions_DXFREditorcol2')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1997848236" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvEnhancementQuestions_DXFREditorcol2','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvEnhancementQuestions',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvEnhancementQuestions',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvEnhancementQuestions_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol3_I" name="gvEnhancementQuestions$DXFREditorcol3" onchange="ASPx.EValueChanged('gvEnhancementQuestions_DXFREditorcol3')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1673259694" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvEnhancementQuestions_DXFREditorcol3','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvEnhancementQuestions',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvEnhancementQuestions',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Right;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol4" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol4_I" name="gvEnhancementQuestions$DXFREditorcol4" onchange="ASPx.ETextChanged('gvEnhancementQuestions_DXFREditorcol4')" type="text" autocomplete="off"></td><td id="gvEnhancementQuestions_DXFREditorcol4_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvEnhancementQuestions_DXFREditorcol4', event)" style="-webkit-user-select:none;"><img id="gvEnhancementQuestions_DXFREditorcol4_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td><div id="gvEnhancementQuestions_DXFREditorcol4_B-2" class="dxeButton dxeButtonEditButton_MaterialCompact dxeSpinIncButton_MaterialCompact" onclick="ASPx.BEClick('gvEnhancementQuestions_DXFREditorcol4',-2)" style="-webkit-user-select:none;">
+							<img id="gvEnhancementQuestions_DXFREditorcol4_B-2Img" class="dxEditors_edtSpinEditIncrementImage_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="+">
+						</div><div id="gvEnhancementQuestions_DXFREditorcol4_B-3" class="dxeButton dxeButtonEditButton_MaterialCompact dxeSpinDecButton_MaterialCompact" onclick="ASPx.BEClick('gvEnhancementQuestions_DXFREditorcol4',-3)" style="-webkit-user-select:none;">
+							<img id="gvEnhancementQuestions_DXFREditorcol4_B-3Img" class="dxEditors_edtSpinEditDecrementImage_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="-">
+						</div></td>
+					</tr>
+				</tbody></table><script id="dxss_1050751099" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol4',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100']],[['dxeButtonEditButtonHover_MaterialCompact dxeSpinIncButtonHover_MaterialCompact'],[''],['B-2']],[['dxeButtonEditButtonHover_MaterialCompact dxeSpinDecButtonHover_MaterialCompact'],[''],['B-3']]]);
+ASPx.RemoveHoverItems('gvEnhancementQuestions_DXFREditorcol4',[[['B-1']],[['B-4']]]);
+ASPx.AddPressedItems('gvEnhancementQuestions_DXFREditorcol4',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100']],[['dxeButtonEditButtonPressed_MaterialCompact dxeSpinIncButtonPressed_MaterialCompact'],[''],['B-2']],[['dxeButtonEditButtonPressed_MaterialCompact dxeSpinDecButtonPressed_MaterialCompact'],[''],['B-3']]]);
+ASPx.RemovePressedItems('gvEnhancementQuestions_DXFREditorcol4',[[['B-1']],[['B-4']]]);
+ASPx.AddDisabledItems('gvEnhancementQuestions_DXFREditorcol4',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-2','B-3'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtSpinEditIncrementImageDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtSpinEditDecrementImageDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('gvEnhancementQuestions_DXFREditorcol4',[[['B-1','B-4'],]]);
+ASPx.createControl(ASPxClientSpinEdit,'gvEnhancementQuestions_DXFREditorcol4','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol4','scStates':2,'scPostfix':'MaterialCompact','heightCorrectionRequired':true,'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The number must be in the range {0}...{1}', 'The number must be greater than or equal to {0}', 'The number must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'number':null,'lockValueChanged':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvEnhancementQuestions', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Center;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol5" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvEnhancementQuestions_DXFREditorcol5_VI" name="gvEnhancementQuestions_DXFREditorcol5_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol5_I" name="gvEnhancementQuestions$DXFREditorcol5" onchange="ASPx.ETextChanged('gvEnhancementQuestions_DXFREditorcol5')" type="text" autocomplete="off"></td><td id="gvEnhancementQuestions_DXFREditorcol5_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvEnhancementQuestions_DXFREditorcol5', event)"><img id="gvEnhancementQuestions_DXFREditorcol5_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvEnhancementQuestions_DXFREditorcol5_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvEnhancementQuestions_DXFREditorcol5_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvEnhancementQuestions_DXFREditorcol5_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvEnhancementQuestions_DXFREditorcol5_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol5_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvEnhancementQuestions_DXFREditorcol5_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvEnhancementQuestions_DXFREditorcol5_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvEnhancementQuestions_DXFREditorcol5_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvEnhancementQuestions_DXFREditorcol5_DDD_L_VI" type="hidden" name="gvEnhancementQuestions$DXFREditorcol5$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvEnhancementQuestions_DXFREditorcol5_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvEnhancementQuestions_DXFREditorcol5_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvEnhancementQuestions_DXFREditorcol5_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_1106991526" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvEnhancementQuestions_DXFREditorcol5_DDD_L','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol5$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':true,'text':'Checked'},{'value':false,'text':'Unchecked'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvEnhancementQuestions_DXFREditorcol5', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvEnhancementQuestions_DXFREditorcol5', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_2106451837" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol5_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvEnhancementQuestions_DXFREditorcol5_DDD','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol5$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvEnhancementQuestions_DXFREditorcol5', e); }});
+
+//-->
+</script><script id="dxss_1577011235" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol5',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvEnhancementQuestions_DXFREditorcol5',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvEnhancementQuestions_DXFREditorcol5',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvEnhancementQuestions_DXFREditorcol5','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol5','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvEnhancementQuestions', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Center;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol6" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvEnhancementQuestions_DXFREditorcol6_VI" name="gvEnhancementQuestions_DXFREditorcol6_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol6_I" name="gvEnhancementQuestions$DXFREditorcol6" onchange="ASPx.ETextChanged('gvEnhancementQuestions_DXFREditorcol6')" type="text" autocomplete="off"></td><td id="gvEnhancementQuestions_DXFREditorcol6_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvEnhancementQuestions_DXFREditorcol6', event)"><img id="gvEnhancementQuestions_DXFREditorcol6_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvEnhancementQuestions_DXFREditorcol6_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvEnhancementQuestions_DXFREditorcol6_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvEnhancementQuestions_DXFREditorcol6_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvEnhancementQuestions_DXFREditorcol6_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol6_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvEnhancementQuestions_DXFREditorcol6_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvEnhancementQuestions_DXFREditorcol6_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvEnhancementQuestions_DXFREditorcol6_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvEnhancementQuestions_DXFREditorcol6_DDD_L_VI" type="hidden" name="gvEnhancementQuestions$DXFREditorcol6$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvEnhancementQuestions_DXFREditorcol6_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvEnhancementQuestions_DXFREditorcol6_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvEnhancementQuestions_DXFREditorcol6_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_80816748" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvEnhancementQuestions_DXFREditorcol6_DDD_L','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol6$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':true,'text':'Checked'},{'value':false,'text':'Unchecked'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvEnhancementQuestions_DXFREditorcol6', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvEnhancementQuestions_DXFREditorcol6', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_1433251563" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol6_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvEnhancementQuestions_DXFREditorcol6_DDD','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol6$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvEnhancementQuestions_DXFREditorcol6', e); }});
+
+//-->
+</script><script id="dxss_1842859192" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol6',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvEnhancementQuestions_DXFREditorcol6',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvEnhancementQuestions_DXFREditorcol6',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvEnhancementQuestions_DXFREditorcol6','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol6','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvEnhancementQuestions', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Center;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol7" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvEnhancementQuestions_DXFREditorcol7_VI" name="gvEnhancementQuestions_DXFREditorcol7_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol7_I" name="gvEnhancementQuestions$DXFREditorcol7" onchange="ASPx.ETextChanged('gvEnhancementQuestions_DXFREditorcol7')" type="text" autocomplete="off"></td><td id="gvEnhancementQuestions_DXFREditorcol7_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvEnhancementQuestions_DXFREditorcol7', event)"><img id="gvEnhancementQuestions_DXFREditorcol7_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvEnhancementQuestions_DXFREditorcol7_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvEnhancementQuestions_DXFREditorcol7_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvEnhancementQuestions_DXFREditorcol7_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvEnhancementQuestions_DXFREditorcol7_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol7_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvEnhancementQuestions_DXFREditorcol7_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvEnhancementQuestions_DXFREditorcol7_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvEnhancementQuestions_DXFREditorcol7_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvEnhancementQuestions_DXFREditorcol7_DDD_L_VI" type="hidden" name="gvEnhancementQuestions$DXFREditorcol7$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvEnhancementQuestions_DXFREditorcol7_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvEnhancementQuestions_DXFREditorcol7_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvEnhancementQuestions_DXFREditorcol7_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_529502746" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvEnhancementQuestions_DXFREditorcol7_DDD_L','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol7$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':true,'text':'Checked'},{'value':false,'text':'Unchecked'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvEnhancementQuestions_DXFREditorcol7', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvEnhancementQuestions_DXFREditorcol7', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_281542833" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol7_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvEnhancementQuestions_DXFREditorcol7_DDD','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol7$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvEnhancementQuestions_DXFREditorcol7', e); }});
+
+//-->
+</script><script id="dxss_704685165" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol7',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvEnhancementQuestions_DXFREditorcol7',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvEnhancementQuestions_DXFREditorcol7',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvEnhancementQuestions_DXFREditorcol7','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol7','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvEnhancementQuestions', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Left;border-right-width:0px;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol8" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvEnhancementQuestions_DXFREditorcol8_VI" name="gvEnhancementQuestions_DXFREditorcol8_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvEnhancementQuestions_DXFREditorcol8_I" name="gvEnhancementQuestions$DXFREditorcol8" onchange="ASPx.ETextChanged('gvEnhancementQuestions_DXFREditorcol8')" type="text" autocomplete="off"></td><td id="gvEnhancementQuestions_DXFREditorcol8_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvEnhancementQuestions_DXFREditorcol8', event)"><img id="gvEnhancementQuestions_DXFREditorcol8_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvEnhancementQuestions_DXFREditorcol8_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvEnhancementQuestions_DXFREditorcol8_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvEnhancementQuestions_DXFREditorcol8_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvEnhancementQuestions_DXFREditorcol8_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvEnhancementQuestions_DXFREditorcol8_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvEnhancementQuestions_DXFREditorcol8_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvEnhancementQuestions_DXFREditorcol8_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvEnhancementQuestions_DXFREditorcol8_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvEnhancementQuestions_DXFREditorcol8_DDD_L_VI" type="hidden" name="gvEnhancementQuestions$DXFREditorcol8$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvEnhancementQuestions_DXFREditorcol8_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvEnhancementQuestions_DXFREditorcol8_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvEnhancementQuestions_DXFREditorcol8_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_855768732" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvEnhancementQuestions_DXFREditorcol8_DDD_L','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol8$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':1,'text':'Enhancer'},{'value':2,'text':'Detractor'},{'value':3,'text':'Other'},{'value':4,'text':'No Calculation'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvEnhancementQuestions_DXFREditorcol8', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvEnhancementQuestions_DXFREditorcol8', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_2055117207" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol8_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvEnhancementQuestions_DXFREditorcol8_DDD','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol8$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvEnhancementQuestions_DXFREditorcol8', e); }});
+
+//-->
+</script><script id="dxss_1881740734" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvEnhancementQuestions_DXFREditorcol8',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvEnhancementQuestions_DXFREditorcol8',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvEnhancementQuestions_DXFREditorcol8',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvEnhancementQuestions_DXFREditorcol8','',{'uniqueID':'gvEnhancementQuestions$DXFREditorcol8','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvEnhancementQuestions',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvEnhancementQuestions', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvEnhancementQuestions_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;border-bottom-width:0px;">&nbsp;</td><td class="dxgv" colspan="8" style="border-bottom-width:0px;"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><table id="gvEnhancementQuestions_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvEnhancementQuestions_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvEnhancementQuestions_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvEnhancementQuestions_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvEnhancementQuestions_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvEnhancementQuestions_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvEnhancementQuestions_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvEnhancementQuestions_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1870827126" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvEnhancementQuestions','',{'callBack':function(arg) { ; },'stateObject':{'lastMultiSelectIndex':-1,'keys':[],'callbackState':'V6LIRUWmjHJSCU+0rJmcgso4iosxa4laCyAESAMDGDQa6akrdESk/V0CBlQREwi+AvP0HxVRxkYIIjfngxut/qJ998Fs1fRK9hRWd87oacxHr4mX9wxqJVN5vFuoQdHXIu1puiPqbDKmOKnCPWgMNTfCWscelXCG7lsCOmrwEkIgZkCuSy/57zFYrmrKznnG9kxfPfNKcL3D/VorgtLoQ93M/D9PJfxMPnJe54k7PxGLlw4DHlcivwWYYPoQlLqnJndBvDZrDbo9ig1x1bVbTaIvAzBOhSuaYCVCiNbVECDLqeQkEFs39wQueIUi/qqDFtpGAYlZmE9kdu79Om8674JcE/0vuDoJyOFDN9/oNez6ACBo+uf9LJXEOli3YSR4','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':true,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'confirmDelete':'Confirm Delete?','editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,0,,'Id',,,,,,,,,,,,,1],[2,,,'EnhancementName',,,,,1],[3,,,'Question',,,,,2],[4,,,'QuestionOrder',,,,,3],[5,,,'AllowMultiselect',,,,,4],[6,,,'ShowQuestionOnClaimForm',,,,,5],[7,,,'ShowHeaderOnClaimForm',,,,,6],[8,,,'EnhancementModTypeId',,,,,7]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':1,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'hasDetailRows':true,'editingItemVisibleIndex':-1,'callbackUrl':'/Admin/gvClaimFormAdminEnhancementsPartial','addNewItemUrl':'/Admin/gvClaimFormAdminEnhancementsPartialAddNew','updateItemUrl':'/Admin/gvClaimFormAdminEnhancementsPartialUpdate','deleteItemUrl':'/Admin/gvClaimFormAdminEnhancementsPartialDelete','keyName':'Id'});
+ASPxClientGridBase.PostponeInitialize('gvEnhancementQuestions',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgv" data-colSpan="8" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+			</div>
+		</div><div style="display:none;" id="tcClaimFormAdmin_C2">
+			<div>
+<div class="dxpnlControl_MaterialCompact" id="cbpClearClaimData" style="height:100%;width:100%;">
+<div title="This button will permenantly delete all Claim Data that currently exists in the database and CANNOT be undone." class="dxbButton_MaterialCompact reportButtons dxbButtonSys dxbTSys" id="btnClearClaimData" style="align-content:center;float:left;-webkit-user-select:none;">
+	<div class="dxb" id="btnClearClaimData_CD">
+		<div class="dxb-hbc">
+			<input id="btnClearClaimData_I" title="This button will permenantly delete all Claim Data that currently exists in the database and CANNOT be undone." class="dxb-hb" value="Clear Claim Data" type="button" name="btnClearClaimData">
+		</div><img class="dxIcon_actions_clear_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnClearClaimDataImg"><span class="dx-vam">Clear Claim Data</span>
+	</div>
+</div><script id="dxss_863549703" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnClearClaimData',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnClearClaimData',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnClearClaimData',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_actions_clear_16x16_disabled'}]],['Img']]]);
+ASPx.AddSelectedItems('btnClearClaimData',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnClearClaimData','',{'useSubmitBehavior':false},{'Click':function(s,e) { ClearClaimData(); }});
+
+//-->
+</script><img title="Click this icon to view details of the Clear Claim Data button." class="dxeImage_MaterialCompact" id="imgClearClaimDataHelp" onclick="return ASPx.SEClick('imgClearClaimDataHelp', event)" src="/Content/Images/InfoIcon_32x32.jpg" alt="" style="cursor:pointer;float:left;"><script id="dxss_1952035706" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientImage,'imgClearClaimDataHelp','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { alert("The Clear Claim Data button will permanently delete all records for Claims. This requires all Claims that are in the system to be marked as Deleted."); }});
+
+//-->
+</script>
+</div><table id="cbpClearClaimData_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpClearClaimData_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpClearClaimData_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1557608452" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpClearClaimData','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/Admin/cbpClearClaimDataPartial'},{'BeginCallback':OnBeginClearDataCallback,'EndCallback':OnEndClearDataCallback});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><b class="dx-clear"></b><script id="dxss_153154623" data-executed="true">
+<!--
+ASPx.AddHoverItems('tcClaimFormAdmin',[[['dxtc-tabHover',''],['',''],['T0','T1','T2'],['','T']],[['dxtc-activeTabHover',''],['',''],['AT0','AT1','AT2'],['','T']]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientPageControl,'tcClaimFormAdmin','',{'stateObject':{'tabsInfo':'BwMHAAIAAgxJbmp1cnkgVHlwZXMHAQIAAhVFbmhhbmNlbWVudCBRdWVzdGlvbnMHAgIAAhBDbGVhciBDbGFpbSBEYXRh'},'emptyHeight':true,'emptyWidth':true},null,null,{'tabs':[['',,,,,],['',,,,,],['',,,,,]]});
+
+//-->
+</script>
+
+    <p>Use the template export button bellow to export an excel claim import document with headers that match the data that is required on the claim form:</p>
+
+    <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnTemplateExport" style="-webkit-user-select:none;">
+	<div class="dxb" id="btnTemplateExport_CD">
+		<div class="dxb-hbc">
+			<input id="btnTemplateExport_I" class="dxb-hb" value="Claim Import Template Export" type="button" name="btnTemplateExport">
+		</div><img class="dxIcon_export_export_16x16 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnTemplateExportImg"><span class="dx-vam">Claim Import Template Export</span>
+	</div>
+</div><script id="dxss_1911120796" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnTemplateExport',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnTemplateExport',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnTemplateExport',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnTemplateExport','',{'useSubmitBehavior':false,'submitUrl':'/Admin/ExportClaimExcelTemplate'});
+
+//-->
+</script>
+
+
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

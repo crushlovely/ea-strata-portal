@@ -32,10 +32,7 @@
   );
   --bg-trans: light-dark(var(--palette-white), #181f25e5);
   --bg-striped: light-dark(var(--palette-white), #ffffff08);
-  --bg-site-header: light-dark(
-    var(--palette-black),
-    var(--palette-black-medium)
-  );
+  --bg-site-header: light-dark(var(--palette-black), var(--palette-black));
   --bg-site-footer: light-dark(var(--palette-beige), var(--palette-gray));
   --bg-card: light-dark(var(--palette-white-80), var(--palette-gray));
 
@@ -67,7 +64,7 @@
   );
 
   // border
-  --border-default: light-dark(#0000001f, #ffffff24);
+  --border-default: light-dark(rgba(0, 0, 0, 0.2), #ffffff24);
   --border-full: light-dark(var(--palette-black), var(--palette-white));
   --border-accent: light-dark(var(--palette-leather), var(--palette-gold));
 
@@ -103,7 +100,7 @@
     var(--palette-black)
   );
   --form-ui-primary-default-input-border: light-dark(
-    #0000001f,
+    #d5d4d0,
     var(--palette-gray)
   );
   --form-ui-primary-default-input-accent: light-dark(
@@ -131,16 +128,16 @@
     var(--palette-black)
   );
   --form-ui-primary-hover-input-border: light-dark(
-    var(--palette-forest-green-dark),
-    var(--palette-forest-green-dark)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-hover-input-accent: light-dark(
-    var(--palette-forest-green-dark),
-    var(--palette-forest-green-dark)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-hover-input-outline: light-dark(
-    var(--palette-forest-green),
-    var(--palette-forest-green)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-hover-label-text: light-dark(
     var(--palette-black),
@@ -159,16 +156,16 @@
     var(--palette-black)
   );
   --form-ui-primary-focus-input-border: light-dark(
-    var(--palette-forest-green-dark),
-    var(--palette-forest-green-dark)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-focus-input-accent: light-dark(
-    var(--palette-forest-green-dark),
-    var(--palette-forest-green-dark)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-focus-input-outline: light-dark(
-    var(--palette-forest-green),
-    var(--palette-forest-green)
+    var(--palette-gold),
+    var(--palette-gold-light)
   );
   --form-ui-primary-focus-label-text: light-dark(
     var(--palette-black),

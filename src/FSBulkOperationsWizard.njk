@@ -1,0 +1,1492 @@
+---
+layout: layouts/base.njk
+title: "Bulk E-Signature Request"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<style>
+    /*.container {
+        display: flex;
+        align-items: flex-start;
+        font-family: monospace;
+    }
+
+    .line-numbers {
+        background-color: #f0f0f0;
+        font-size: 1rem;
+        line-height: 1.0rem;
+        padding: 3px 5px 5px 5px;
+        text-align: right;
+        user-select: none;
+        border-right: 1px solid #ccc;
+        overflow: hidden;*/ /* Prevent scrolling in the line-numbers div */
+        /*height: 10rem;*/ /* Match the height of the textarea */
+    /*}
+
+    .line-numbers span {
+        display: block;
+    }*/
+
+    .pastebox {
+        display: inline-flex;
+        gap: 10px;
+        font-family: monospace;
+        line-height: 21px;
+        border-radius: 2px;
+        border-color: #808080;
+        padding: 10px 10px 10px 10px;
+        overflow-y: scroll;
+    }
+
+    .withlines {
+        font-size: 9pt;
+        background-attachment: local;
+        background-repeat: no-repeat;
+        padding-left: 35px;
+        padding-top: 10px;
+        border-color: #ccc;
+        line-height: 16px;
+        text-align: left;
+        background-image: url(/Content/Images/linenumbers.png);
+        overflow-wrap: normal;
+    }
+
+    #pbOperationProcessing_ctl01_VIC{
+        text-align:center !important
+    }
+</style>
+
+<script type="text/javascript" src="/Scripts/Pages/FSBulkOperationsWizard/fsBulkOperationsWizard.js?ts=1782158912"></script>
+<script type="text/javascript" src="/Scripts/Pages/FSBulkOperationsWizard/fsBulkOperationsWizardSignatureRequest.js?ts=1782158912"></script>
+
+<br>
+<div class="mt-5">
+    
+<div class="dxpnlControl_MaterialCompact" id="cbpBulkOperationsWizard">
+<div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc" id="pcBulkOperationsWizard">
+	<ul class="dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer" id="pcBulkOperationsWizard_TC">
+		<li class="dxtc-leftIndent">&nbsp;</li><li class="dxtc-tab dxtc-lead dxtcLiteDisabled_MaterialCompact" style="display:none;" id="pcBulkOperationsWizard_T0" savedonclick="[object Object]" savedcursor="[object Object]"><a class="dxtc-link" id="pcBulkOperationsWizard_T0T" saveddisabledstateitemcolor="[object Object]" savedhref="[object Object]" savedcursor="[object Object]" style="color: inherit;"><span class="dx-vam">Entry Selection</span></a></li><li class="dxtc-activeTab dxtc-lead dxtcLiteDisabled_MaterialCompact dxtc-psi" id="pcBulkOperationsWizard_AT0" savedonclick="[object Object]" savedcursor="[object Object]" style="height: 37px;"><a class="dxtc-link" id="pcBulkOperationsWizard_AT0T" saveddisabledstateitemcolor="[object Object]" style="color: inherit;"><span class="dx-vam">Entry Selection</span></a></li><li class="dxtc-spacer" id="pcBulkOperationsWizard_T0S">&nbsp;</li><li class="dxtc-tab dxtcLiteDisabled_MaterialCompact dxtc-psi" id="pcBulkOperationsWizard_T1" savedonclick="[object Object]" savedcursor="[object Object]" style="height: 37px;"><a class="dxtc-link" id="pcBulkOperationsWizard_T1T" saveddisabledstateitemcolor="[object Object]" savedhref="[object Object]" savedcursor="[object Object]" style="color: inherit;"><span class="dx-vam">Selection Preview</span></a></li><li class="dxtc-activeTab dxtcLiteDisabled_MaterialCompact" style="display:none;" id="pcBulkOperationsWizard_AT1" savedonclick="[object Object]" savedcursor="[object Object]"><a class="dxtc-link" id="pcBulkOperationsWizard_AT1T" saveddisabledstateitemcolor="[object Object]" style="color: inherit;"><span class="dx-vam">Selection Preview</span></a></li><li class="dxtc-spacer" id="pcBulkOperationsWizard_T1S">&nbsp;</li><li class="dxtc-tab dxtc-last dxtcLiteDisabled_MaterialCompact dxtc-psi" id="pcBulkOperationsWizard_T2" savedonclick="[object Object]" savedcursor="[object Object]" style="height: 37px;"><a class="dxtc-link" id="pcBulkOperationsWizard_T2T" saveddisabledstateitemcolor="[object Object]" savedhref="[object Object]" savedcursor="[object Object]" style="color: inherit;"><span class="dx-vam">Operation Complete</span></a></li><li class="dxtc-activeTab dxtc-last dxtcLiteDisabled_MaterialCompact" style="display:none;" id="pcBulkOperationsWizard_AT2" savedonclick="[object Object]" savedcursor="[object Object]"><a class="dxtc-link" id="pcBulkOperationsWizard_AT2T" saveddisabledstateitemcolor="[object Object]" style="color: inherit;"><span class="dx-vam">Operation Complete</span></a></li><li class="dxtc-rightIndent">&nbsp;</li>
+	</ul><div class="dxtc-content" id="pcBulkOperationsWizard_CC">
+		<div id="pcBulkOperationsWizard_C0">
+			<div>
+<div class="dxpnlControl_MaterialCompact" id="cbpEntrySelection">
+<div style="display: flex; align-items: center;">
+<h2 style="margin-top: 0rem">Select FactSheets to Send Document Signature Request</h2>
+<img class="dxeImage_MaterialCompact" id="signatureRequestHelp" onclick="return ASPx.SEClick('signatureRequestHelp', event)" src="/Content/Images/InfoIcon_32x32.jpg" alt="" style="cursor:pointer;transform:translateX(12px) translateY(-8px);"><script id="dxss_638284349" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientImage,'signatureRequestHelp','signatureRequestInfo',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':DisplaySignatureRequestInfoPop});
+
+//-->
+</script></div>
+<p style="margin: 0rem">Select a filter option under the <b>Search By</b> dropdown, or click the <b>Search All Entries</b> button.</p>
+<br>
+<div style="margin-top: 1.5rem">
+<style>
+    .searchValuesContainer {
+        display: flex;
+        align-items: flex-start;
+        font-family: monospace;
+    }
+
+    .lineNumbersContainer {
+        background-color: #f0f0f0;
+        font-size: 1rem;
+        line-height: 1.0rem;
+        padding: 3px 5px 5px 5px;
+        text-align: right;
+        user-select: none;
+        border-right: 1px solid #ccc;
+        overflow: hidden; /* Prevent scrolling in the line-numbers div */
+        height: 10rem; /* Match the height of the textarea */
+    }
+
+    .lineNumbersContainer span {
+        display: block;
+    }
+
+    #pasteFilterTextArea {
+        height: 10rem;
+        font-size: 1rem;
+        line-height: 1.0rem;
+        resize: none;
+    }
+</style>
+
+<div>
+
+    <table id="cbSearchFilter_ET" class="dxeRoot_MaterialCompact">
+	<tbody><tr>
+		<td id="cbSearchFilter_CapC" class="dxeCaptionHALSys dxeCaptionVATSys dxeTextEditCTypeSys dxeCLLSys dxeCaptionCell_MaterialCompact"><label class="dxeCaption_MaterialCompact" for="cbSearchFilter_I" style="font-weight:bold;">Search By:</label></td><td id="cbSearchFilter_CC"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeFocused_MaterialCompact dxh0" id="cbSearchFilter" style="width:250px;">
+			<tbody><tr>
+				<td style="display:none;"><input id="cbSearchFilter_VI" name="cbSearchFilter_VI" type="hidden" value="0"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="cbSearchFilter_I" name="cbSearchFilter" onchange="ASPx.ETextChanged('cbSearchFilter')" value="(None)" type="text" autocomplete="off"></td><td id="cbSearchFilter_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact  dxRippleTargetExternal" style="-webkit-user-select:none;"><img id="cbSearchFilter_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+			</tr>
+		</tbody></table><div id="cbSearchFilter_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index: 10000; visibility: hidden; width: 250px; height: 97px; display: none; position: absolute; left: 116.148px; top: 351.398px; overflow: visible;">
+			<div class="dxpc-mainDiv dxdd-list dxpc-shadow" style="left: 0px; top: 0px;">
+				<div class="dxpc-contentWrapper" style="display: table; height: 97px;">
+					<div class="dxpc-content" id="cbSearchFilter_DDD_PWC-1" style="display: table-cell;">
+						<table class="dxeListBox_MaterialCompact" id="cbSearchFilter_DDD_L" style="border-collapse: separate; height: 0px; width: 248px;">
+							<tbody><tr>
+								<td style="vertical-align:Top;"><div id="cbSearchFilter_DDD_L_D" class="dxlbd" style="width: 248px; overflow: hidden auto; padding-right: 0px; height: 93px;"><div id="cbSearchFilter_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 93px;"><div id="cbSearchFilter_DDD_LVirtualScrollTopSpacer" style="height: 0px;"></div>
+									<input id="cbSearchFilter_DDD_L_VI" type="hidden" name="cbSearchFilter$DDD$L" value="0"><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+										<tbody><tr id="cbSearchFilter_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+										</tr>
+									</tbody></table><table id="cbSearchFilter_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+									<tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI0T0" class="dxeListBoxItem_MaterialCompact">(None)</td>
+										</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI1T0" class="dxeListBoxItem_MaterialCompact  dxeListBoxItemSelected_MaterialCompact">Plaintiff Number</td>
+										</tr><tr class="dxeListBoxItemRow_MaterialCompact">
+											<td id="cbSearchFilter_DDD_L_LBI2T0" class="dxeListBoxItem_MaterialCompact">Law Firm Client ID</td>
+										</tr></table>
+								</div></div></td>
+							</tr>
+						</tbody></table><script id="dxss_627742904" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'cbSearchFilter_DDD_L','',{'uniqueID':'cbSearchFilter$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'savedSelectedIndex':0,'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':null,'text':'(None)'},{'value':0,'text':'Plaintiff Number'},{'value':1,'text':'Law Firm Client ID'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('cbSearchFilter', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('cbSearchFilter', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+					</div>
+				</div>
+			</div>
+		</div><script id="dxss_197579632" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbSearchFilter_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'cbSearchFilter_DDD','',{'uniqueID':'cbSearchFilter$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('cbSearchFilter', e); }});
+
+//-->
+</script></td>
+	</tr>
+</tbody></table><script id="dxss_2091232018" data-executed="true">
+<!--
+ASPx.AddHoverItems('cbSearchFilter',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('cbSearchFilter',[[['B-100']]]);
+ASPx.AddPressedItems('cbSearchFilter',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('cbSearchFilter',[[['B-100']]]);
+ASPx.AddDisabledItems('cbSearchFilter',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('cbSearchFilter',[[['B-100'],]]);
+ASPx.createControl(MVCxClientComboBox,'cbSearchFilter','',{'scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'(None)'},'nullText':'Select Search Filter','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true},{'SelectedIndexChanged':OnBulkSearchFilterValueChanged},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+
+    <div class="dxpnlControl_MaterialCompact my-4" id="tbPasteFilter" style="">
+<p id="searchHelpText" class="my-2">Enter or paste the Plaintiff Numbers below to apply the filter.</p>
+<div class="searchValuesContainer">
+<div class="lineNumbersContainer" id="lineNumbers"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+<textarea id="pasteFilterTextArea" wrap="off" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
+</div>
+
+</div><script id="dxss_2126580247" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientPanel,'tbPasteFilter','',{'clientVisible':false});
+
+//-->
+</script>
+
+    <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnSearch" style="user-select: none;">
+	<div class="dxb" id="btnSearch_CD">
+		<div class="dxb-hbc">
+			<input id="btnSearch_I" class="dxb-hb" value="Search Plaintiffs" type="button" name="btnSearch">
+		</div><span class="dx-vam">Search Plaintiffs</span>
+	</div>
+</div><script id="dxss_2045566830" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSearch',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSearch',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSearch',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSearch',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'btnSearch','',{'clientVisible':false,'useSubmitBehavior':false},{'Click':OnBulkSearchButtonClicked});
+
+//-->
+</script>
+</div>
+<script>
+    function updateLineNumbers() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+
+        const lines = textArea.value.split('\n').length < 10 ? 10 : textArea.value.split('\n').length;
+        lineNumbers.innerHTML = '';
+
+        for (let i = 1; i <= lines; i++) {
+            const lineNumber = document.createElement('span');
+            lineNumber.textContent = i;
+            lineNumbers.appendChild(lineNumber);
+        }
+    }
+
+    function syncScroll() {
+        const textArea = document.getElementById('pasteFilterTextArea');
+        const lineNumbers = document.getElementById('lineNumbers');
+        lineNumbers.scrollTop = textArea.scrollTop;
+    }
+
+    // Initialize line numbers on page load
+    updateLineNumbers();
+</script>
+
+<div class="dxbButton_MaterialCompact mt-4 dxbButtonSys dxbTSys" id="btnSearchAllEntries" style="user-select: none; display: none;">
+	<div class="dxb" id="btnSearchAllEntries_CD">
+		<div class="dxb-hbc">
+			<input id="btnSearchAllEntries_I" class="dxb-hb" value="Search All Entries" type="button" name="btnSearchAllEntries">
+		</div><span class="dx-vam">Search All Entries</span>
+	</div>
+</div><script id="dxss_1418294448" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnSearchAllEntries',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnSearchAllEntries',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnSearchAllEntries',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnSearchAllEntries',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnSearchAllEntries','',{'useSubmitBehavior':false},{'Click':OnSearchAllEntriesButtonClicked});
+
+//-->
+</script></div>
+<br>
+<table class="dxgvControl_MaterialCompact dxgv" id="gvWizardGrid_EntrySelection" style="width:100%;border-collapse:separate;">
+	<tbody><tr>
+		<td><table id="gvWizardGrid_EntrySelection_DXTitle" style="width:100%;">
+			<tbody><tr>
+				<td id="gvWizardGrid_EntrySelection_tcTitle" class="dxgvTitlePanel_MaterialCompact"><span class="dxeBase_MaterialCompact dxeDisabled_MaterialCompact" id="lblTotalRowsSelected" savedonclick="[object Object]" savedhtmlfor="[object Object]">Total Rows Selected: 0</span><script id="dxss_1554252266" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientLabel,'lblTotalRowsSelected','',{'clientEnabled':false,'scStates':4,'scPostfix':'MaterialCompact'});
+
+//-->
+</script></td>
+			</tr>
+		</tbody></table><table id="gvWizardGrid_EntrySelection_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvWizardGrid_EntrySelection',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvWizardGrid_EntrySelection_DXHeadersRow0">
+				<td id="gvWizardGrid_EntrySelection_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td> </td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Number</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm Client ID</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Email</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Status</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Active Request</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col8" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Requested</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col9" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_EntrySelection_col10" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvWizardGrid_EntrySelection_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol1" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol1_I" name="gvWizardGrid_EntrySelection$DXFREditorcol1" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol1')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1298645805" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol1','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol2_I" name="gvWizardGrid_EntrySelection$DXFREditorcol2" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol2')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1459314835" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol2','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol3_I" name="gvWizardGrid_EntrySelection$DXFREditorcol3" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol3')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_125197997" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol3','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol4" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol4_I" name="gvWizardGrid_EntrySelection$DXFREditorcol4" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol4')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_661810195" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol4','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol4','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol5" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol5_I" name="gvWizardGrid_EntrySelection$DXFREditorcol5" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol5')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_978819117" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol5','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol5','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol6" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol6_I" name="gvWizardGrid_EntrySelection$DXFREditorcol6" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol6')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1779141523" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol6','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol6','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol7" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol7_I" name="gvWizardGrid_EntrySelection$DXFREditorcol7" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol7')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_194628691" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol7','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol7','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol8" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol8_I" name="gvWizardGrid_EntrySelection$DXFREditorcol8" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol8')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_165046509" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol8','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol8','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol9" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol9_I" name="gvWizardGrid_EntrySelection$DXFREditorcol9" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol9')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1805675821" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol9','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol9','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="border-right-width:0px;"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_EntrySelection_DXFREditorcol10" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_EntrySelection_DXFREditorcol10_I" name="gvWizardGrid_EntrySelection$DXFREditorcol10" onchange="ASPx.EValueChanged('gvWizardGrid_EntrySelection_DXFREditorcol10')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1381844965" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_EntrySelection_DXFREditorcol10','',{'uniqueID':'gvWizardGrid_EntrySelection$DXFREditorcol10','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_EntrySelection',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_EntrySelection',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_EntrySelection',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvWizardGrid_EntrySelection_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgv" colspan="11"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><div class="dxmodalSys">
+			<div id="gvWizardGrid_EntrySelection_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+				<div class="dxpc-mainDiv dxpc-hf">
+					<div class="dxpc-contentWrapper">
+						<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvWizardGrid_EntrySelection_DXHFP_PWC-1">
+							&nbsp;&nbsp;
+						</div>
+					</div><div class="dxpc-footer" id="gvWizardGrid_EntrySelection_DXHFP_PWF-1">
+						<div class="dxpc-footerContent">
+							<table id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_P">
+								<tbody><tr>
+									<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O_I" class="dxb-hb" value="OK" type="button" name="gvWizardGrid_EntrySelection$DXHFP$TPCFCm1$O">
+											</div><span class="dx-vam">OK</span>
+										</div>
+									</div><script id="dxss_1649405732" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O','',{'uniqueID':'gvWizardGrid_EntrySelection$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvWizardGrid_EntrySelection');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+									</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C_I" class="dxb-hb" value="Cancel" type="button" name="gvWizardGrid_EntrySelection$DXHFP$TPCFCm1$C">
+											</div><span class="dx-vam">Cancel</span>
+										</div>
+									</div><script id="dxss_6617482" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C','',{'uniqueID':'gvWizardGrid_EntrySelection$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvWizardGrid_EntrySelection');}});
+
+//-->
+</script></td>
+								</tr>
+							</tbody></table>
+						</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+					</div>
+				</div>
+			</div>
+		</div><div id="gvWizardGrid_EntrySelection_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+		</div><table id="gvWizardGrid_EntrySelection_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_EntrySelection_DXHFP_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_EntrySelection_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+		</div><script id="dxss_1074888952" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_EntrySelection_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvWizardGrid_EntrySelection_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvWizardGrid_EntrySelection$DXHFP','cpButtonPanelID':'gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_P','cpOkButtonID':'gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_O','cpCancelButtonID':'gvWizardGrid_EntrySelection_DXHFP_TPCFCm1_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+			<div class="dxpLite_MaterialCompact" id="gvWizardGrid_EntrySelection_DXPagerBottom" style="width: 100%; min-width: 388px; display: inline-block; float: none;">
+				<b class="dxp-lead dxp-summary">No data to paginate</b><b id="gvWizardGrid_EntrySelection_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b id="gvWizardGrid_EntrySelection_DXPagerBottom_PBN" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pNextDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></b><b class="dxp-spacer" style="width: 0px;">&nbsp;</b>
+			<div class="dxp-right" style="border-width: 0px; padding: 0px; margin: 0px"><b class="dxp-pageSizeItem"><span class="dx"><label for="gvWizardGrid_EntrySelection_DXPagerBottom_PSI">Page size:</label></span><span id="gvWizardGrid_EntrySelection_DXPagerBottom_PSB" class="dxp-comboBox" onmousedown="ASPx.POnPageSizeClick('gvWizardGrid_EntrySelection_DXPagerBottom', event)" style="margin-left:4px;"><input id="gvWizardGrid_EntrySelection_DXPagerBottom_PSI" type="text" readonly="readonly" value="50" onkeydown="ASPx.POnPageSizeKeyDown('gvWizardGrid_EntrySelection_DXPagerBottom', event)" onblur="ASPx.POnPageSizeBlur('gvWizardGrid_EntrySelection_DXPagerBottom', event)" style="border-width:0px;"><span id="gvWizardGrid_EntrySelection_DXPagerBottom_DDB" class="dxp-dropDownButton"><img id="gvWizardGrid_EntrySelection_DXPagerBottom_DDBImg" class="dxWeb_pPopOut_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></span></span></b></div></div><b class="dx-clear"></b><div class="dxmLite_MaterialCompact dxm-ltr">
+				<div id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP" style="z-index: 20000; display: none; position: absolute;">
+					<div class="dxm-popupMain dxm-shadow dxm-popup" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXME_">
+						<ul class="dx dxm-noImages">
+							<li class="dxm-item dxm-selected" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI0_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI0_T">
+								<span class="dx-vam dxm-contentText">50</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI1_II"></li><li class="dxm-item" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI1_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI1_T">
+								<span class="dx-vam dxm-contentText">100</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI2_II"></li><li class="dxm-item" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI2_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_EntrySelection_DXPagerBottom_PSP_DXI2_T">
+								<span class="dx-vam dxm-contentText">500</span>
+							</div><b class="dx-clear"></b></li>
+						</ul>
+					</div>
+				</div>
+			</div><script id="dxss_1361829707" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_EntrySelection_DXPagerBottom_PSP',[[[''],[''],['DXME_']],[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddSelectedItems('gvWizardGrid_EntrySelection_DXPagerBottom_PSP',[[['dxm-selected',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddDisabledItems('gvWizardGrid_EntrySelection_DXPagerBottom_PSP',[[['dxm-disabled'],[''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.createControl(ASPxClientPopupMenu,'gvWizardGrid_EntrySelection_DXPagerBottom_PSP','',{'uniqueID':'gvWizardGrid_EntrySelection$DXPagerBottom$PSP','renderData':{'':[[0],[1],[2]]},'allowSelectItem':true,'selectedItemIndexPath':'0','popupElementIDList':['gvWizardGrid_EntrySelection_DXPagerBottom_PSB'],'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'ItemClick':function(s,e) { ASPx.POnPageSizePopupItemClick('gvWizardGrid_EntrySelection_DXPagerBottom', e.item); }},null,{'items':[{'name':'50'},{'name':'100'},{'name':'500'}]});
+
+//-->
+</script><script id="dxss_1822704429" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_EntrySelection_DXPagerBottom',[[['dxp-hoverComboBox'],[''],['PSB']],[['dxp-hoverDropDownButton'],[''],['DDB']]]);
+ASPx.RemoveHoverItems('gvWizardGrid_EntrySelection_DXPagerBottom',[[['PBP','PBN']]]);
+ASPx.AddPressedItems('gvWizardGrid_EntrySelection_DXPagerBottom',[[['dxp-pressedComboBox'],[''],['PSB']],[['dxp-pressedDropDownButton'],[''],['DDB']]]);
+ASPx.createControl(ASPxClientPager,'gvWizardGrid_EntrySelection_DXPagerBottom','',{'uniqueID':'gvWizardGrid_EntrySelection$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'pageSizeItems':[{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'500','value':'500'}],'pageSizeSelectedItem':{'text':'50','value':50}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvWizardGrid_EntrySelection',e.value); }});
+
+//-->
+</script>
+		</div><table id="gvWizardGrid_EntrySelection_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_EntrySelection_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_EntrySelection_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvWizardGrid_EntrySelection_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_EntrySelection_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_EntrySelection_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_EntrySelection_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_EntrySelection_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_738330079" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvWizardGrid_EntrySelection','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'callbackState':'acoIorqInltNcEXXcsJ/23GS94A7YlITgW+zwecW0esGN4/dCUq87IpG6Xm26hTtcXgZ23M1Ljl6QX6gKDGe1zAMG+2+XzhesppncyOHxZxjVRpvdIKFn1GIRwnYUsQsSxAxWqCSQsOihG49dlJnZaINPJ9c3EQBGEVA7+otoXZ1FWWz2Xa750523mYTzcFa4k6oIn2rH1wE71Bc/HURoEjfT/UFv0zacNXvfTjckNhYu0kTdRDQab4awS1oFOR0f0WIIR4qx32ot6aGZ4IK7mJPX86vG6XJpGrcseYEa00thoW3HbCYkfLCUY9uXPATgIsmAO+Am/OKvNaW8lWZaRu9gi3FYHZ3V7ZYhyboN0/P9nDLE7N9XOF2hmQXQJDINXniV7066Gq/totEObV52pcczwvS/Rg6a0G40qXfpw8=','groupLevelState':{},'selection':''},'cpViewState':'EntrySelection','cpSelectedRecords':[],'cpMaxRowSelection':500,'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':50,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'checkBoxImageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact','dxWeb_edtCheckBoxGrayed_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxGrayedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'FactSheetNumber',,2,,,1],[2,,,'PlaintiffName',,2,,,2],[3,,,'LawFirmClientId',,2,,,3],[4,,,'EmailAddress',,2,,,4],[5,,,'LawFirm',,2,,,5],[6,,,'PlaintiffStatus',,2,,,6],[7,,,'ActiveRequest',,2,,,7],[8,,,'DateRequested',,2,,,8],[9,,,'SignedDocument',,2,,,9],[10,,,'DateSignedDocument',,2,,,10],[11,0,,'HasEmail',,,,,,,,,,,,,1]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/FSBulkOperationsWizard/gvWizardGrid?bulkOperationType=RequestDocumentSignature&viewState=EntrySelection','keyName':'FactSheetId'},{'BeginCallback':OnGridBeginCallback,'SelectionChanged':OnGridSelectionChanged});
+ASPxClientGridBase.PostponeInitialize('gvWizardGrid_EntrySelection',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="11" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+<div style="margin-top: 1.5rem">
+<div class="dxflFormLayout_MaterialCompact" id="flEntrySelectionNavigation" style="width:15%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flEntrySelectionNavigation_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flEntrySelectionNavigation_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys dxbDisabled_MaterialCompact" id="btnPreviewSend" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnPreviewSend_CD">
+		<div class="dxb-hbc">
+			<input id="btnPreviewSend_I" class="dxb-hb" value="Preview" type="button" name="btnPreviewSend" disabled="">
+		</div><span class="dx-vam">Preview</span>
+	</div>
+</div><script id="dxss_2097583961" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnPreviewSend',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnPreviewSend',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnPreviewSend',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnPreviewSend',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnPreviewSend','',{'clientEnabled':false,'useSubmitBehavior':false},{'Click':OnSignaturePreviewSendButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1528644028" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flEntrySelectionNavigation','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'btnPreviewSend','path':'0_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script></div>
+<div id="pcSelectionErrors_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcSelectionErrors_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flSelectionErrors" style="width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flSelectionErrors_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="text-center"><p><b>Alert</b></p></div>
+<div class="text-justify" style="color:darkred; text-align: justify;"><p>No email address on file for one or more selected plaintiffs. Please ensure that all selected plaintiffs have a valid email address.</p></div>
+<br><hr>
+
+			</div></td>
+		</tr><tr>
+			<td id="flSelectionErrors_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flSelectionErrors_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnOkSelectionErrors" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnOkSelectionErrors_CD">
+		<div class="dxb-hbc">
+			<input id="btnOkSelectionErrors_I" class="dxb-hb" value="Ok" type="button" name="btnOkSelectionErrors">
+		</div><span class="dx-vam">Ok</span>
+	</div>
+</div><script id="dxss_780116962" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnOkSelectionErrors',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnOkSelectionErrors',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnOkSelectionErrors',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnOkSelectionErrors',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnOkSelectionErrors','',{'useSubmitBehavior':false},{'Click':(s, e) => pcSelectionErrors.Hide()});
+
+//-->
+</script>
+					</div></td><td></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1476809625" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flSelectionErrors','',null,null,null,{'items':[{'name':'SelectionErrors','path':'0','associatedNestedExtensionName':null},{'name':'','path':'1','items':[{'name':'btnOkSelectionErrors','path':'1_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcSelectionErrors_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1510721207" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcSelectionErrors','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script><div id="pcSignatureRequestInfoPop_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcSignatureRequestInfoPop_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flSignatureRequestInfo" style="width:100%;">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flSignatureRequestInfo_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div style="text-align: justify"><p>Plaintiffs will show below if one of the following is true: (1) a signature request has not been sent or (2) a signature request has been sent but has not been completed. If no signature request has been sent, this action will send one to the plaintiff. If a signature request has already been sent, this action will send a reminder. Note: Reminders for a given plaintiff cannot be sent more than once per hour.</p>
+<p>The ‘Email’ column below will display the plaintiff’s email address unless an alternate email address was entered on an active request.</p>
+</div>
+<br><hr>
+
+			</div></td>
+		</tr><tr>
+			<td id="flSignatureRequestInfo_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flSignatureRequestInfo_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnCloseSignatureRequestInfoPop" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnCloseSignatureRequestInfoPop_CD">
+		<div class="dxb-hbc">
+			<input id="btnCloseSignatureRequestInfoPop_I" class="dxb-hb" value="Ok" type="button" name="btnCloseSignatureRequestInfoPop">
+		</div><span class="dx-vam">Ok</span>
+	</div>
+</div><script id="dxss_1083882740" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCloseSignatureRequestInfoPop',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCloseSignatureRequestInfoPop',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCloseSignatureRequestInfoPop',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnCloseSignatureRequestInfoPop',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCloseSignatureRequestInfoPop','',{'useSubmitBehavior':false},{'Click':function(s, e) { pcSignatureRequestInfoPop.Hide(); }});
+
+//-->
+</script>
+					</div></td><td></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1039484644" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flSignatureRequestInfo','',null,null,null,{'items':[{'name':'SignatureRequestInfo','path':'0','associatedNestedExtensionName':null},{'name':'','path':'1','items':[{'name':'btnCloseSignatureRequestInfoPop','path':'1_0','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcSignatureRequestInfoPop_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1028407013" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcSignatureRequestInfoPop',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(MVCxClientPopupControl,'pcSignatureRequestInfoPop','',{'popupAnimationType':'fade','closeAction':'CloseButton','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script>
+</div><table id="cbpEntrySelection_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpEntrySelection_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpEntrySelection_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1183732133" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpEntrySelection','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/FSBulkOperationsWizard/OnTabChanged?bulkOperationType=RequestDocumentSignature&viewState=EntrySelection'},{'EndCallback':OnEntrySelectionCallbackPanelEndCallback});
+
+//-->
+</script>
+			</div>
+		</div><div style="display:none;" id="pcBulkOperationsWizard_C1">
+			<div>
+<div class="dxpnlControl_MaterialCompact" id="cbpSelectionPreview">
+<h2 style="margin-top: 0rem">Preview: Send Document Signature Request</h2>
+<p style="margin: 0rem">Review your selected entries and then click the <b>Send Document Signature Request(s)</b> button below.</p>
+<br>
+<table class="dxgvControl_MaterialCompact dxgv" id="gvWizardGrid_SelectionPreview" style="width:100%;border-collapse:separate;">
+	<tbody><tr>
+		<td><table id="gvWizardGrid_SelectionPreview_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvWizardGrid_SelectionPreview',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvWizardGrid_SelectionPreview_DXHeadersRow0">
+				<td id="gvWizardGrid_SelectionPreview_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Number</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm Client ID</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Email</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Status</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Active Request</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Requested</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col8" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_SelectionPreview_col9" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvWizardGrid_SelectionPreview_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol0" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol0_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol0" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol0')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1249783941" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol0','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol0','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol1" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol1_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol1" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol1')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1672269477" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol1','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol2_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol2" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol2')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_2029659973" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol2','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol3_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol3" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol3')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_145888357" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol3','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol4" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol4_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol4" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol4')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1947215611" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol4','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol4','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol5" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol5_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol5" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol5')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1524730075" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol5','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol5','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol6" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol6_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol6" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol6')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1167339579" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol6','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol6','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol7" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol7_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol7" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol7')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1243856101" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol7','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol7','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol8" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol8_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol8" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol8')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1079135109" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol8','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol8','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="border-right-width:0px;"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol9" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_SelectionPreview_DXFREditorcol9_I" name="gvWizardGrid_SelectionPreview$DXFREditorcol9" onchange="ASPx.EValueChanged('gvWizardGrid_SelectionPreview_DXFREditorcol9')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1501620645" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_SelectionPreview_DXFREditorcol9','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXFREditorcol9','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_SelectionPreview',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_SelectionPreview',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_SelectionPreview',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvWizardGrid_SelectionPreview_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgv" colspan="10"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><div class="dxmodalSys">
+			<div id="gvWizardGrid_SelectionPreview_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+				<div class="dxpc-mainDiv dxpc-hf">
+					<div class="dxpc-contentWrapper">
+						<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvWizardGrid_SelectionPreview_DXHFP_PWC-1">
+							&nbsp;&nbsp;
+						</div>
+					</div><div class="dxpc-footer" id="gvWizardGrid_SelectionPreview_DXHFP_PWF-1">
+						<div class="dxpc-footerContent">
+							<table id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_P">
+								<tbody><tr>
+									<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O_I" class="dxb-hb" value="OK" type="button" name="gvWizardGrid_SelectionPreview$DXHFP$TPCFCm1$O">
+											</div><span class="dx-vam">OK</span>
+										</div>
+									</div><script id="dxss_916405688" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvWizardGrid_SelectionPreview');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+									</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C_I" class="dxb-hb" value="Cancel" type="button" name="gvWizardGrid_SelectionPreview$DXHFP$TPCFCm1$C">
+											</div><span class="dx-vam">Cancel</span>
+										</div>
+									</div><script id="dxss_681640070" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvWizardGrid_SelectionPreview');}});
+
+//-->
+</script></td>
+								</tr>
+							</tbody></table>
+						</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+					</div>
+				</div>
+			</div>
+		</div><div id="gvWizardGrid_SelectionPreview_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+		</div><table id="gvWizardGrid_SelectionPreview_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_SelectionPreview_DXHFP_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_SelectionPreview_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+		</div><script id="dxss_1934485416" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_SelectionPreview_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvWizardGrid_SelectionPreview_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvWizardGrid_SelectionPreview$DXHFP','cpButtonPanelID':'gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_P','cpOkButtonID':'gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_O','cpCancelButtonID':'gvWizardGrid_SelectionPreview_DXHFP_TPCFCm1_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+			<div class="dxpLite_MaterialCompact" id="gvWizardGrid_SelectionPreview_DXPagerBottom" style="width: 100%; display: inline-block; float: none;">
+				<b class="dxp-lead dxp-summary">No data to paginate</b><b id="gvWizardGrid_SelectionPreview_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b id="gvWizardGrid_SelectionPreview_DXPagerBottom_PBN" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pNextDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></b><b class="dxp-spacer">&nbsp;</b><b class="dxp-pageSizeItem"><span class="dx"><label for="gvWizardGrid_SelectionPreview_DXPagerBottom_PSI">Page size:</label></span><span id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSB" class="dxp-comboBox" onmousedown="ASPx.POnPageSizeClick('gvWizardGrid_SelectionPreview_DXPagerBottom', event)" style="margin-left:4px;"><input id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSI" type="text" readonly="readonly" value="50" onkeydown="ASPx.POnPageSizeKeyDown('gvWizardGrid_SelectionPreview_DXPagerBottom', event)" onblur="ASPx.POnPageSizeBlur('gvWizardGrid_SelectionPreview_DXPagerBottom', event)" style="border-width:0px;"><span id="gvWizardGrid_SelectionPreview_DXPagerBottom_DDB" class="dxp-dropDownButton"><img id="gvWizardGrid_SelectionPreview_DXPagerBottom_DDBImg" class="dxWeb_pPopOut_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></span></span></b>
+			</div><b class="dx-clear"></b><div class="dxmLite_MaterialCompact dxm-ltr">
+				<div id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP" style="z-index: 20000; display: none; position: absolute;">
+					<div class="dxm-popupMain dxm-shadow dxm-popup" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXME_">
+						<ul class="dx dxm-noImages">
+							<li class="dxm-item dxm-selected" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI0_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI0_T">
+								<span class="dx-vam dxm-contentText">50</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI1_II"></li><li class="dxm-item" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI1_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI1_T">
+								<span class="dx-vam dxm-contentText">100</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI2_II"></li><li class="dxm-item" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI2_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_SelectionPreview_DXPagerBottom_PSP_DXI2_T">
+								<span class="dx-vam dxm-contentText">500</span>
+							</div><b class="dx-clear"></b></li>
+						</ul>
+					</div>
+				</div>
+			</div><script id="dxss_349808795" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_SelectionPreview_DXPagerBottom_PSP',[[[''],[''],['DXME_']],[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddSelectedItems('gvWizardGrid_SelectionPreview_DXPagerBottom_PSP',[[['dxm-selected',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddDisabledItems('gvWizardGrid_SelectionPreview_DXPagerBottom_PSP',[[['dxm-disabled'],[''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.createControl(ASPxClientPopupMenu,'gvWizardGrid_SelectionPreview_DXPagerBottom_PSP','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXPagerBottom$PSP','renderData':{'':[[0],[1],[2]]},'allowSelectItem':true,'selectedItemIndexPath':'0','popupElementIDList':['gvWizardGrid_SelectionPreview_DXPagerBottom_PSB'],'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'ItemClick':function(s,e) { ASPx.POnPageSizePopupItemClick('gvWizardGrid_SelectionPreview_DXPagerBottom', e.item); }},null,{'items':[{'name':'50'},{'name':'100'},{'name':'500'}]});
+
+//-->
+</script><script id="dxss_749913003" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_SelectionPreview_DXPagerBottom',[[['dxp-hoverComboBox'],[''],['PSB']],[['dxp-hoverDropDownButton'],[''],['DDB']]]);
+ASPx.RemoveHoverItems('gvWizardGrid_SelectionPreview_DXPagerBottom',[[['PBP','PBN']]]);
+ASPx.AddPressedItems('gvWizardGrid_SelectionPreview_DXPagerBottom',[[['dxp-pressedComboBox'],[''],['PSB']],[['dxp-pressedDropDownButton'],[''],['DDB']]]);
+ASPx.createControl(ASPxClientPager,'gvWizardGrid_SelectionPreview_DXPagerBottom','',{'uniqueID':'gvWizardGrid_SelectionPreview$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'pageSizeItems':[{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'500','value':'500'}],'pageSizeSelectedItem':{'text':'50','value':50}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvWizardGrid_SelectionPreview',e.value); }});
+
+//-->
+</script>
+		</div><table id="gvWizardGrid_SelectionPreview_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_SelectionPreview_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_SelectionPreview_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvWizardGrid_SelectionPreview_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_SelectionPreview_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_SelectionPreview_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_SelectionPreview_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_SelectionPreview_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_2003619814" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvWizardGrid_SelectionPreview','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'callbackState':'8ny+GkiOSa84euB0W1mQlXk1el24Rdz74UGgIf+XpOO0f/4nzf4p+6lLrxlf0vD17YV7oOw8b+XskB8XcFfD1MSVie6jO7GK3bGTIUhB08lPaCmYDXfqAC/zdvnxJIWyT8AJcDGuqTHJ0sVnw9zekFP093MrNYUwgoH5FUFQg+0LP5UkVqu5ZUDoYbsAvin0wusD0J9JmO0QuqfVgWS4TDq6grWD6HJ0spPjYAfe+YR59r1tPFkdvON5v4xQcrBTX+tFU3A+1wE8zRxlra2K0S1k1jK7idYRY6xM58BWzGDq94K+5tTWRYWVs5DUFnzod3NvOCGFzweK2E7VQS3vb0BF0OPbj3RKBNOTg6xDqVtiPZDAP+ocaR+DxHp2D9ZZsQz9JgfNiDoiq1tbTRJ3AA==','groupLevelState':{},'selection':''},'cpViewState':'SelectionPreview','cpSelectedRecords':[],'cpMaxRowSelection':500,'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':50,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'FactSheetNumber',,2,,,0],[1,,,'PlaintiffName',,2,,,1],[2,,,'LawFirmClientId',,2,,,2],[3,,,'EmailAddress',,2,,,3],[4,,,'LawFirm',,2,,,4],[5,,,'PlaintiffStatus',,2,,,5],[6,,,'ActiveRequest',,2,,,6],[7,,,'DateRequested',,2,,,7],[8,,,'SignedDocument',,2,,,8],[9,,,'DateSignedDocument',,2,,,9]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/FSBulkOperationsWizard/gvWizardGrid?bulkOperationType=RequestDocumentSignature&viewState=SelectionPreview','keyName':'FactSheetId'},{'BeginCallback':OnGridBeginCallback});
+ASPxClientGridBase.PostponeInitialize('gvWizardGrid_SelectionPreview',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="10" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+<div style="margin-top: 1.5rem">
+<div class="dxflFormLayout_MaterialCompact" id="flSelectionPreviewNavigation">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flSelectionPreviewNavigation_0" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flSelectionPreviewNavigation_0_0" class="dxflHACSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnBackSelectionPreview" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnBackSelectionPreview_CD">
+		<div class="dxb-hbc">
+			<input id="btnBackSelectionPreview_I" class="dxb-hb" value="Back" type="button" name="btnBackSelectionPreview">
+		</div><span class="dx-vam">Back</span>
+	</div>
+</div><script id="dxss_1024863728" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnBackSelectionPreview',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnBackSelectionPreview',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnBackSelectionPreview',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnBackSelectionPreview',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnBackSelectionPreview','',{'useSubmitBehavior':false},{'Click':OnBackSelectionPreviewButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flSelectionPreviewNavigation_0_1" class="dxflHACSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnExecuteOperation" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnExecuteOperation_CD">
+		<div class="dxb-hbc">
+			<input id="btnExecuteOperation_I" class="dxb-hb" value="Send Document Signature Request(s)" type="button" name="btnExecuteOperation">
+		</div><span class="dx-vam">Send Document Signature Request(s)</span>
+	</div>
+</div><script id="dxss_604612720" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnExecuteOperation',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnExecuteOperation',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnExecuteOperation',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnExecuteOperation',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnExecuteOperation','',{'useSubmitBehavior':false},{'Click':OnExecuteOperationButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1355999729" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flSelectionPreviewNavigation','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'btnBackSelectionPreview','path':'0_0','associatedNestedExtensionName':null},{'name':'btnExecuteOperation','path':'0_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script></div>
+<div id="pcSelectionPreviewApproval_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcSelectionPreviewApproval_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcSelectionPreviewApproval_PWH-1T">Send Document Signature Request(s)</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcSelectionPreviewApproval_PWC-1">
+				<div class="dxflFormLayout_MaterialCompact" id="flPreviewApproval">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flPreviewApproval_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+<div class="text-justify">
+<p>Are you sure you want to send <b>0</b> e-signature request email(s) to plaintiff(s)?</p>
+<p style="color:#aa0000"><b>This cannot be undone.</b></p>
+<hr>
+<p style="margin-top:10px"><b>Please note:</b> This action only sends a request for e-signature. You will need to submit the form after the signed document is returned to the portal.</p>
+</div>
+
+			</div></td>
+		</tr><tr>
+			<td id="flPreviewApproval_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flPreviewApproval_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnCancelApproval" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnCancelApproval_CD">
+		<div class="dxb-hbc">
+			<input id="btnCancelApproval_I" class="dxb-hb" value="Cancel" type="button" name="btnCancelApproval">
+		</div><span class="dx-vam">Cancel</span>
+	</div>
+</div><script id="dxss_179349488" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnCancelApproval',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnCancelApproval',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnCancelApproval',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnCancelApproval',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnCancelApproval','',{'useSubmitBehavior':false},{'Click':OnCancelApprovalButtonClicked});
+
+//-->
+</script>
+					</div></td><td id="flPreviewApproval_1_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnApproveOperation" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnApproveOperation_CD">
+		<div class="dxb-hbc">
+			<input id="btnApproveOperation_I" class="dxb-hb" value="Proceed" type="button" name="btnApproveOperation">
+		</div><span class="dx-vam">Proceed</span>
+	</div>
+</div><script id="dxss_2125648848" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnApproveOperation',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnApproveOperation',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnApproveOperation',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnApproveOperation',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnApproveOperation','',{'useSubmitBehavior':false},{'Click':(s, e) => OnApproveOperationButtonClicked('/FSBulkOperationsWizard/ExecuteOperation',1,2)});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_1588178622" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flPreviewApproval','',null,null,null,{'items':[{'name':'SelectionPreviewApproval','path':'0','associatedNestedExtensionName':null},{'name':'','path':'1','items':[{'name':'btnCancelApproval','path':'1_0','associatedNestedExtensionName':null},{'name':'btnApproveOperation','path':'1_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><div id="pcSelectionPreviewApproval_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_1617027841" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcSelectionPreviewApproval','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s, e) { s.UpdatePosition(); }});
+
+//-->
+</script>
+</div><table id="cbpSelectionPreview_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpSelectionPreview_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpSelectionPreview_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1303938771" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpSelectionPreview','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/FSBulkOperationsWizard/OnTabChanged?bulkOperationType=RequestDocumentSignature&viewState=SelectionPreview'});
+
+//-->
+</script>
+
+<div id="pcOperationProcessing_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="width:500px;z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxpc-shadow">
+		<div class="dxpc-header" id="pcOperationProcessing_PWH-1">
+			<div class="dxpc-headerContent">
+				<span class="dxpc-headerText dx-vam" id="pcOperationProcessing_PWH-1T">Sending Emails: Document Signature Request</span>
+			</div><b class="dx-clear"></b>
+		</div><div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="pcOperationProcessing_PWC-1">
+				Please wait while the Document Signature Requests are being processed. This window will close when the processes are completed. <br><br>Estimated time (2 seconds per document): <span id="etaTime"></span><br><br><div style="text-align:center"><img class="dxeImage_MaterialCompact" id="imgLoading2" src="/Content/Images/loading.gif" alt="" style="height:100px;width:100px;"></div>
+			</div>
+		</div>
+	</div>
+</div><div id="pcOperationProcessing_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><script id="dxss_6646762" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientPopupControl,'pcOperationProcessing','',{'popupAnimationType':'fade','closeAction':'None','popupHorizontalAlign':'WindowCenter','popupVerticalAlign':'WindowCenter','modal':true,'width':500,'widthFromServer':true},{'Shown':function(s,e) {s.UpdatePosition(); EstimateTimeForSignature(); }});
+
+//-->
+</script>
+
+			</div>
+		</div><div style="display:none;" id="pcBulkOperationsWizard_C2">
+			<div>
+<div class="dxpnlControl_MaterialCompact" id="cbpOperationComplete">
+<h2 style="margin-top: 0rem">Operation Complete: Send Document Signature Request</h2>
+<br>
+<form action="/FSBulkOperationsWizard" method="post"><table class="dxgvControl_MaterialCompact dxgv" id="gvWizardGrid_OperationComplete" style="width:100%;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxmLite_MaterialCompact dxm-ltr">
+			<div class="dxm-main dxm-horizontal dxm-noWrap dxctToolbar_MaterialCompact dxct-sys dxgvCTTop dxmtb" id="gvWizardGrid_OperationComplete_DXCTMenu0" style="width:100%;text-align:Left;">
+				<ul class="dx dxm-image-l">
+					<li title="Export to CSV" class="dxm-item dxm-noSubMenu dxct-if" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI0_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI0_T">
+						<img title="Export to CSV" class="dxGridView_CTExportCsv_MaterialCompact dxm-image dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI0_Img"><span title="Export to CSV" class="dx-vam dxm-contentText">Export to CSV</span>
+					</div></li><li class="dxm-spacing" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI1_II"></li><li title="Export to XLS" class="dxm-item dxm-noSubMenu dxct-il" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI1_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI1_T">
+						<img title="Export to XLS" class="dxGridView_CTExportXls_MaterialCompact dxm-image dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI1_Img"><span title="Export to XLS" class="dx-vam dxm-contentText">Export to XLS</span>
+					</div></li><li class="dxm-spacing dxm-amis" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI2_II"></li><li class="dxm-item dxm-dropDownMode dxm-noImage dxm-ami dxct-if dxct-il" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI2_"><div class="dxm-content" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI2_T">
+						<span class="dx-vam dxm-contentText">&nbsp;</span>
+					</div><div class="dxm-popOut" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI2_P">
+						<img class="dxWeb_mAdaptiveMenu_MaterialCompact dxm-pImage" src="/DXR.axd?r=1_87-SZRsu" alt="..." id="gvWizardGrid_OperationComplete_DXCTMenu0_DXI2_PImg">
+					</div></li>
+				</ul>
+			</div><b class="dx-clear"></b><div id="gvWizardGrid_OperationComplete_DXCTMenu0_DXM2_" style="z-index: 20000; display: none; position: absolute;">
+				<div class="dxm-shadow dxm-popup dxmtb dxm-am" id="gvWizardGrid_OperationComplete_DXCTMenu0_DXME2_">
+					<ul class="dx dxm-gutter">
+
+					</ul>
+				</div>
+			</div>
+		</div><script id="dxss_1604194547" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXCTMenu0',[[['dxm-hovered','',''],['','',''],['DXI0_','DXI1_','DXI2_'],['','P','T'],[[{'spriteCssClass':'dxGridView_CTExportCsvHover_MaterialCompact'}],[{'spriteCssClass':'dxGridView_CTExportXlsHover_MaterialCompact'}],[null,null]],['Img','PImg']],[[''],[''],['DXME2_','DXMBC2_']]]);
+ASPx.AddDisabledItems('gvWizardGrid_OperationComplete_DXCTMenu0',[[['dxm-disabled'],[''],['DXI0_','DXI1_','DXI2_'],['','P','T'],[[{'spriteCssClass':'dxGridView_CTExportCsvDisabled_MaterialCompact'}],[{'spriteCssClass':'dxGridView_CTExportXlsDisabled_MaterialCompact'}],[null,null]],['Img','PImg']]]);
+ASPx.createControl(ASPxClientGridToolbar,'gvWizardGrid_OperationComplete_DXCTMenu0','',{'uniqueID':'gvWizardGrid_OperationComplete$DXCTMenu0','cpItemsProps':{'commands':{'0':'ExportToCsv','1':'ExportToXls'},'ibpv':[]},'renderData':{'':[[0],[1],[2]]}},{'ItemClick':function(s,e){ASPx.GCmdToolbarMenuItemClick('gvWizardGrid_OperationComplete',s,e)}},null,{'items':[{'name':'ExportToCsv'},{'name':'ExportToXls'},{}],'adaptiveModeData':2});
+
+//-->
+</script><table id="gvWizardGrid_OperationComplete_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvWizardGrid_OperationComplete',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvWizardGrid_OperationComplete_DXHeadersRow0">
+				<td id="gvWizardGrid_OperationComplete_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Number</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm Client ID</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Email</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Law Firm</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Plaintiff Status</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Active Request</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Requested</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col8" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvWizardGrid_OperationComplete_col9" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Signed</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvWizardGrid_OperationComplete_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol0" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol0_I" name="gvWizardGrid_OperationComplete$DXFREditorcol0" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol0')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1844767667" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol0','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol0','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol1" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol1_I" name="gvWizardGrid_OperationComplete$DXFREditorcol1" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol1')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_80913193" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol1','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol2_I" name="gvWizardGrid_OperationComplete$DXFREditorcol2" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol2')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_831025029" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol2','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol3_I" name="gvWizardGrid_OperationComplete$DXFREditorcol3" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol3')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_945588127" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol3','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol4" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol4_I" name="gvWizardGrid_OperationComplete$DXFREditorcol4" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol4')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_13617739" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol4','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol4','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol5" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol5_I" name="gvWizardGrid_OperationComplete$DXFREditorcol5" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol5')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1912063121" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol5','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol5','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol6" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol6_I" name="gvWizardGrid_OperationComplete$DXFREditorcol6" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol6')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1632792339" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol6','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol6','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol7" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol7_I" name="gvWizardGrid_OperationComplete$DXFREditorcol7" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol7')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_885561801" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol7','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol7','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol8" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol8_I" name="gvWizardGrid_OperationComplete$DXFREditorcol8" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol8')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1022361315" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol8','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol8','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="border-right-width:0px;"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvWizardGrid_OperationComplete_DXFREditorcol9" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvWizardGrid_OperationComplete_DXFREditorcol9_I" name="gvWizardGrid_OperationComplete$DXFREditorcol9" onchange="ASPx.EValueChanged('gvWizardGrid_OperationComplete_DXFREditorcol9')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_903319545" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvWizardGrid_OperationComplete_DXFREditorcol9','',{'uniqueID':'gvWizardGrid_OperationComplete$DXFREditorcol9','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvWizardGrid_OperationComplete',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvWizardGrid_OperationComplete',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvWizardGrid_OperationComplete',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvWizardGrid_OperationComplete_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgv" colspan="10"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><div class="dxmodalSys">
+			<div id="gvWizardGrid_OperationComplete_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+				<div class="dxpc-mainDiv dxpc-hf">
+					<div class="dxpc-contentWrapper">
+						<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvWizardGrid_OperationComplete_DXHFP_PWC-1">
+							&nbsp;&nbsp;
+						</div>
+					</div><div class="dxpc-footer" id="gvWizardGrid_OperationComplete_DXHFP_PWF-1">
+						<div class="dxpc-footerContent">
+							<table id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_P">
+								<tbody><tr>
+									<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O_I" class="dxb-hb" value="OK" type="button" name="gvWizardGrid_OperationComplete$DXHFP$TPCFCm1$O">
+											</div><span class="dx-vam">OK</span>
+										</div>
+									</div><script id="dxss_2109272636" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O','',{'uniqueID':'gvWizardGrid_OperationComplete$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvWizardGrid_OperationComplete');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+									</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C_CD">
+											<div class="dxb-hbc">
+												<input id="gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C_I" class="dxb-hb" value="Cancel" type="button" name="gvWizardGrid_OperationComplete$DXHFP$TPCFCm1$C">
+											</div><span class="dx-vam">Cancel</span>
+										</div>
+									</div><script id="dxss_717418054" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C','',{'uniqueID':'gvWizardGrid_OperationComplete$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvWizardGrid_OperationComplete');}});
+
+//-->
+</script></td>
+								</tr>
+							</tbody></table>
+						</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+					</div>
+				</div>
+			</div>
+		</div><div id="gvWizardGrid_OperationComplete_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+		</div><table id="gvWizardGrid_OperationComplete_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_OperationComplete_DXHFP_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_OperationComplete_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+		</div><script id="dxss_1389679064" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvWizardGrid_OperationComplete_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvWizardGrid_OperationComplete$DXHFP','cpButtonPanelID':'gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_P','cpOkButtonID':'gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_O','cpCancelButtonID':'gvWizardGrid_OperationComplete_DXHFP_TPCFCm1_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+			<div class="dxpLite_MaterialCompact" id="gvWizardGrid_OperationComplete_DXPagerBottom" style="width: 100%; display: inline-block; float: none;">
+				<b class="dxp-lead dxp-summary">No data to paginate</b><b id="gvWizardGrid_OperationComplete_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b id="gvWizardGrid_OperationComplete_DXPagerBottom_PBN" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pNextDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></b><b class="dxp-spacer">&nbsp;</b><b class="dxp-pageSizeItem"><span class="dx"><label for="gvWizardGrid_OperationComplete_DXPagerBottom_PSI">Page size:</label></span><span id="gvWizardGrid_OperationComplete_DXPagerBottom_PSB" class="dxp-comboBox" onmousedown="ASPx.POnPageSizeClick('gvWizardGrid_OperationComplete_DXPagerBottom', event)" style="margin-left:4px;"><input id="gvWizardGrid_OperationComplete_DXPagerBottom_PSI" type="text" readonly="readonly" value="50" onkeydown="ASPx.POnPageSizeKeyDown('gvWizardGrid_OperationComplete_DXPagerBottom', event)" onblur="ASPx.POnPageSizeBlur('gvWizardGrid_OperationComplete_DXPagerBottom', event)" style="border-width:0px;"><span id="gvWizardGrid_OperationComplete_DXPagerBottom_DDB" class="dxp-dropDownButton"><img id="gvWizardGrid_OperationComplete_DXPagerBottom_DDBImg" class="dxWeb_pPopOut_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></span></span></b>
+			</div><b class="dx-clear"></b><div class="dxmLite_MaterialCompact dxm-ltr">
+				<div id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP" style="z-index: 20000; display: none; position: absolute;">
+					<div class="dxm-popupMain dxm-shadow dxm-popup" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXME_">
+						<ul class="dx dxm-noImages">
+							<li class="dxm-item dxm-selected" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI0_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI0_T">
+								<span class="dx-vam dxm-contentText">50</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI1_II"></li><li class="dxm-item" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI1_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI1_T">
+								<span class="dx-vam dxm-contentText">100</span>
+							</div><b class="dx-clear"></b></li><li class="dxm-spacing" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI2_II"></li><li class="dxm-item" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI2_"><div class="dxm-content dxm-hasText" id="gvWizardGrid_OperationComplete_DXPagerBottom_PSP_DXI2_T">
+								<span class="dx-vam dxm-contentText">500</span>
+							</div><b class="dx-clear"></b></li>
+						</ul>
+					</div>
+				</div>
+			</div><script id="dxss_130517517" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXPagerBottom_PSP',[[[''],[''],['DXME_']],[['dxm-hovered',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddSelectedItems('gvWizardGrid_OperationComplete_DXPagerBottom_PSP',[[['dxm-selected',''],['',''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.AddDisabledItems('gvWizardGrid_OperationComplete_DXPagerBottom_PSP',[[['dxm-disabled'],[''],['DXI0_','DXI1_','DXI2_'],['','T']]]);
+ASPx.createControl(ASPxClientPopupMenu,'gvWizardGrid_OperationComplete_DXPagerBottom_PSP','',{'uniqueID':'gvWizardGrid_OperationComplete$DXPagerBottom$PSP','renderData':{'':[[0],[1],[2]]},'allowSelectItem':true,'selectedItemIndexPath':'0','popupElementIDList':['gvWizardGrid_OperationComplete_DXPagerBottom_PSB'],'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'ItemClick':function(s,e) { ASPx.POnPageSizePopupItemClick('gvWizardGrid_OperationComplete_DXPagerBottom', e.item); }},null,{'items':[{'name':'50'},{'name':'100'},{'name':'500'}]});
+
+//-->
+</script><script id="dxss_2132334361" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvWizardGrid_OperationComplete_DXPagerBottom',[[['dxp-hoverComboBox'],[''],['PSB']],[['dxp-hoverDropDownButton'],[''],['DDB']]]);
+ASPx.RemoveHoverItems('gvWizardGrid_OperationComplete_DXPagerBottom',[[['PBP','PBN']]]);
+ASPx.AddPressedItems('gvWizardGrid_OperationComplete_DXPagerBottom',[[['dxp-pressedComboBox'],[''],['PSB']],[['dxp-pressedDropDownButton'],[''],['DDB']]]);
+ASPx.createControl(ASPxClientPager,'gvWizardGrid_OperationComplete_DXPagerBottom','',{'uniqueID':'gvWizardGrid_OperationComplete$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'pageSizeItems':[{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'500','value':'500'}],'pageSizeSelectedItem':{'text':'50','value':50}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvWizardGrid_OperationComplete',e.value); }});
+
+//-->
+</script>
+		</div><table id="gvWizardGrid_OperationComplete_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvWizardGrid_OperationComplete_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvWizardGrid_OperationComplete_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvWizardGrid_OperationComplete_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_OperationComplete_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_OperationComplete_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_OperationComplete_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvWizardGrid_OperationComplete_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1585239315" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvWizardGrid_OperationComplete','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'callbackState':'drNo0OSnwVQAUDK0nvX7n3G0CZEh7FzY36vyhxfk56eDiE770wt73yELWLQsaPGYEW0BsQVnMtymV+MZIkV7Xm5FpfkDClPGboIP6GC6jlk1CKbk3g+5G9zlGs1nq+KirMas/HrU358b/UPkRo9KoBxiJ4aCVRes3VQpGacbXoNz/NFPQl6EGGwYvJkk87D4fjEfbtvtbnfYnijCS07QZMU+F0XcCtEThXH6qyiiu8s6IHmUhga+AeeOFy4Zu7mbLgrhI1zD5IcK+s+ey9lEDtTCo120jjm6RHAzzfeOMXewVUUiY1D8WupNmSJKxm6BmbMVyydXqtk7jur48OiTAKxMbNWb9bfq5MIDXwt00eYF92ApbM5Q4YK1U8dD0CTb4b5YFlwT6jqe5iZxHUXS8g==','groupLevelState':{},'selection':''},'cpViewState':'OperationComplete','cpSelectedRecords':[],'cpMaxRowSelection':500,'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':50,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'toolbarsProp':[[0,]],'columnProp':[[0,,,'FactSheetNumber',,2,,,0],[1,,,'PlaintiffName',,2,,,1],[2,,,'LawFirmClientId',,2,,,2],[3,,,'EmailAddress',,2,,,3],[4,,,'LawFirm',,2,,,4],[5,,,'PlaintiffStatus',,2,,,5],[6,,,'ActiveRequest',,2,,,6],[7,,,'DateRequested',,2,,,7],[8,,,'SignedDocument',,2,,,8],[9,,,'DateSignedDocument',,2,,,9]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/FSBulkOperationsWizard/gvWizardGrid?bulkOperationType=RequestDocumentSignature&viewState=OperationComplete','keyName':'FactSheetId'},{'BeginCallback':OnGridBeginCallback});
+ASPxClientGridBase.PostponeInitialize('gvWizardGrid_OperationComplete',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="10" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+<input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1,1_252"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47"><input type="hidden" name="DXMVCEditorsValues" value="{&quot;gvWizardGrid_OperationComplete_DXFREditorcol0&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol1&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol2&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol3&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol4&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol5&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol6&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol7&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol8&quot;:null,&quot;gvWizardGrid_OperationComplete_DXFREditorcol9&quot;:null}"></form><div style="margin-top: 1.5rem">
+<div class="dxflFormLayout_MaterialCompact" id="flOperationCompleteNavigation">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flOperationCompleteNavigation_0" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+				<tbody><tr>
+					<td id="flOperationCompleteNavigation_0_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnHome" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnHome_CD">
+		<div class="dxb-hbc">
+			<input id="btnHome_I" class="dxb-hb" value="Home" type="button" name="btnHome">
+		</div><span class="dx-vam">Home</span>
+	</div>
+</div><script id="dxss_1757948014" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnHome',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnHome',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnHome',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnHome',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnHome','',{'useSubmitBehavior':false},{'Click':(s, e) => OnHomeButtonClicked('/')});
+
+//-->
+</script>
+					</div></td><td id="flOperationCompleteNavigation_0_1" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+<div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnBackToBulkOperationSelection" style="width:100%;-webkit-user-select:none;">
+	<div class="dxb" id="btnBackToBulkOperationSelection_CD">
+		<div class="dxb-hbc">
+			<input id="btnBackToBulkOperationSelection_I" class="dxb-hb" value="Back To Operation Selection" type="button" name="btnBackToBulkOperationSelection">
+		</div><span class="dx-vam">Back To Operation Selection</span>
+	</div>
+</div><script id="dxss_190503712" data-executed="true">
+<!--
+ASPx.AddHoverItems('btnBackToBulkOperationSelection',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('btnBackToBulkOperationSelection',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('btnBackToBulkOperationSelection',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('btnBackToBulkOperationSelection',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'btnBackToBulkOperationSelection','',{'useSubmitBehavior':false},{'Click':OnBackToOperationSelectionButtonClicked});
+
+//-->
+</script>
+					</div></td>
+				</tr>
+			</tbody></table></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_406516098" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientFormLayout,'flOperationCompleteNavigation','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'btnHome','path':'0_0','associatedNestedExtensionName':null},{'name':'btnBackToBulkOperationSelection','path':'0_1','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script></div>
+
+</div><table id="cbpOperationComplete_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpOperationComplete_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpOperationComplete_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_594567635" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpOperationComplete','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/FSBulkOperationsWizard/OnTabChanged?bulkOperationType=RequestDocumentSignature&viewState=OperationComplete'});
+
+//-->
+</script>
+
+			</div>
+		</div>
+	</div>
+</div><b class="dx-clear"></b><script id="dxss_505138213" data-executed="true">
+<!--
+ASPx.AddHoverItems('pcBulkOperationsWizard',[[['dxtc-tabHover',''],['',''],['T0','T1','T2'],['','T']],[['dxtc-activeTabHover',''],['',''],['AT0','AT1','AT2'],['','T']]]);
+ASPx.AddDisabledItems('pcBulkOperationsWizard',[[['dxtcLiteDisabled_MaterialCompact',''],['',''],['T0','AT0','T1','AT1','T2','AT2'],['','T']]]);
+ASPx.createControl(MVCxClientPageControl,'pcBulkOperationsWizard','',{'stateObject':{'tabsInfo':'BwMHAAIRdGFiRW50cnlTZWxlY3Rpb24CD0VudHJ5IFNlbGVjdGlvbgcBAhN0YWJTZWxlY3Rpb25QcmV2aWV3AhFTZWxlY3Rpb24gUHJldmlldwcCAhR0YWJPcGVyYXRpb25Db21wbGV0ZQIST3BlcmF0aW9uIENvbXBsZXRl'},'emptyHeight':true,'emptyWidth':true},null,null,{'tabs':[['tabEntrySelection',,false,,,],['tabSelectionPreview',,false,,,],['tabOperationComplete',,false,,,]]});
+
+//-->
+</script>
+</div><table id="cbpBulkOperationsWizard_LP" class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="cbpBulkOperationsWizard_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="cbpBulkOperationsWizard_LD" class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_108167270" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientCallbackPanel,'cbpBulkOperationsWizard','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/FSBulkOperationsWizard/cbpBulkOperationsWizard'});
+
+//-->
+</script>
+</div>
+
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

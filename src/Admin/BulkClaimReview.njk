@@ -1,0 +1,447 @@
+---
+layout: layouts/base.njk
+title: "Bulk Claim Review"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<script type="text/javascript">
+    var selectedOptions = [];
+    var chkBoxes = [];
+    var owBoxes = [];
+    var statusBoxes = [];
+    var statusCtrl = null;
+    var reviewerUser = null;
+    var enhId = null;
+    var reviewStatus = null;
+    var reviewComment = null;
+    var overwrite = false;
+    var fxParam = 0;
+    var qCount = 0;
+    var transCount = 0;
+
+    function AddCheckedToList(checked, optionId)
+    {
+        if (checked == true)
+        {
+            selectedOptions.push(optionId);
+        }
+        else if(checked == false)
+        {
+            if(selectedOptions.includes(optionId))
+            {
+                selectedOptions.splice(selectedOptions.indexOf(optionId), 1);
+            }
+        }
+        //in CSE declaration, enable A/I & OW
+    }
+    function AddToBulkQueue(enhanceId, rs)
+    {
+        SetEnhId(enhanceId);
+        reviewStatus = rs;
+        fxParam = 1;
+        if (enhId == enhanceId)
+        {
+            if (AnyChecked()) {
+                if (!cbpBulkClaimReviews.InCallback()) {
+                    cbpBulkClaimReviews.PerformCallback();
+                }
+            }
+        }
+    }
+    function SubmitBulkReview(s,e)
+    {
+        fxParam = 2;
+        if (!cbpBulkClaimReviews.InCallback()) {
+            cbpBulkClaimReviews.PerformCallback();
+        }
+    }
+    function ClearQueue()
+    {
+        fxParam = 3;
+        if (!cbpBulkClaimReviews.InCallback()) {
+            cbpBulkClaimReviews.PerformCallback();
+        }
+    }
+    function BulkTransition(s,e)
+    {
+        statusBoxes = BulkTransitionCBList.GetSelectedValues();
+        fxParam = 4;
+        if (!cbpBulkClaimReviews.InCallback()) {
+            cbpBulkClaimReviews.PerformCallback();
+        }
+    }
+    function OnBeginBulkReviewCallback(s,e)
+    {
+        e.customArgs["EnhId"] = enhId;
+        e.customArgs["reviewStatus"] = reviewStatus;
+        e.customArgs["reviewComment"] = reviewComment;
+        e.customArgs["reviewer"] = reviewerUser;
+        e.customArgs["overwrite"] = overwrite;
+        e.customArgs["function"] = fxParam;
+        if (fxParam == 4)
+            e.customArgs["selected"] = statusBoxes;
+        else
+            e.customArgs["selected"] = selectedOptions;
+
+        enhId = null;
+        selectedOptions = [];
+        reviewStatus = null;
+        reviewComment = null;
+        overwrite = false;
+    }
+    function OnEndBulkReviewCallback(s,e)
+    {
+        if(fxParam == 1)
+        {
+            qCount++;
+            SetLabelText(qCount);
+            gvBulkReview.CollapseAllDetailRows();
+            SubmitClearButtonState();
+        }
+        else if(fxParam == 2) //submit bulk review queue
+        {
+            qCount = 0;
+            SetLabelText(0);
+            reviewerUser = null;
+            SelectedReviewer.SetValue(null);
+            gvBulkReview.CollapseAllDetailRows();
+            SubmitClearButtonState();
+        }
+        else if (fxParam == 3) //clear bulk queue
+        {
+            qCount = 0;
+            SetLabelText(0);
+            SubmitClearButtonState();
+        }
+        else if(fxParam == 4) //bulk transition
+        {
+            SubmitClearButtonState();
+            TransitionButtonLabelState(s,e);
+        }
+        fxParam = 0;
+    }
+    function ChkBoxState(s,e)
+    {
+        if (reviewerUser != null && chkBoxes != [])
+        {
+            for(var i = 0; i < chkBoxes.length; i++)
+            {
+                chkBoxes[i].SetEnabled(true);
+            }
+        }
+    }
+    function TransitionButtonLabelState(s,e)
+    {
+        $.ajax({
+            cache: false,
+            url: '/Admin/UpdateBulkReviewView',
+            data: {
+                transitionCount: transCount
+            }, success: function(data){
+                statusBoxes = [];
+                transCount = data.tCount;
+                BulkTransitionClaims.SetEnabled(transCount > 0 && statusBoxes != []);
+                BulkTransitionCount.SetText("Claims to Transition: "+transCount);
+                BulkTransitionCBList.SetEnabled(transCount > 0);
+                statusCtrl.UnselectAll();
+            },
+            error: function(data){
+
+            }
+        });
+    }
+    function SubmitClearButtonState()
+    {
+        if(qCount > 0)
+        {
+            SubmitBulkReviews.SetEnabled(true);
+            ClearBulkQueue.SetEnabled(true);
+        }
+        else
+        {
+            SubmitBulkReviews.SetEnabled(false);
+            ClearBulkQueue.SetEnabled(false);
+        }
+    }
+    function SetEnhId(enhanceId)
+    {
+        enhId = enhanceId;
+    }
+    function SetLabelText(count)
+    {
+        BulkQueueCount.SetText("Reviews in Queue: " + count);
+    }
+    function AnyChecked()
+    {
+        if (selectedOptions.length != 0 && reviewerUser != null)
+            return true;
+        else
+            return false;
+    }
+
+</script>
+
+
+
+    <meta name="viewport" content="width=device-width">
+    <title>Bulk Claim Review</title>
+
+
+    <h2>Bulk Claim Review Administration</h2>
+    <p>Use this screen to review AFFF MDL Claims in bulk.</p>
+    <h4>Select a user to be the reviewer for all bulk reviews submitted.</h4>
+
+        
+<div class="dxflFormLayout_MaterialCompact dx-wrap" id="flBulkReview">
+	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+		<tbody><tr>
+			<td id="flBulkReview_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflHeadingLineGroupBoxSys dxflGroupBoxSys dxflWithCaptionSys">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Bulk Transition Controls</span><div class="dxflHLSys">
+
+				</div><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flBulkReview_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflChildInLastRowSys" colspan="2" rowspan="2" data-left="39"><table class="dxflCLLSys dxflItemSys dxflCheckBoxListItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><label class="dxflCaption_MaterialCompact" for="BulkTransitionCBList_RB0_I"></label></td><td class="dxflNestedControlCell_MaterialCompact"><table class="dxeCheckBoxList_MaterialCompact dxeDisabled_MaterialCompact" id="BulkTransitionCBList" style="border-collapse:separate;">
+	<tbody><tr>
+		<td class="dxe"><input id="BulkTransitionCBList_VI" type="hidden" name="BulkTransitionCBList" disabled="disabled" value=""><table>
+			<tbody><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="BulkTransitionCBList_RB0">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact" id="BulkTransitionCBList_RB0_I_D"><span class="dxKBSW"><input id="BulkTransitionCBList_RB0_I" class="dxKBSI dx-position-fixed" name="BulkTransitionCBList$RB0" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;" savedtabindex="[object Object]" tabindex="-1"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Submitted: Pending Eligibility Review</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr>
+				<td><table class="dxeBase_MaterialCompact dxeTAR" id="BulkTransitionCBList_RB1">
+					<tbody><tr>
+						<td class="dxichCellSys"><span class=" dxICheckBox_MaterialCompact dxichSys dx-not-acc dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact" id="BulkTransitionCBList_RB1_I_D"><span class="dxKBSW"><input id="BulkTransitionCBList_RB1_I" class="dxKBSI" name="BulkTransitionCBList$RB1" value="U" type="text" readonly="readonly" style="border-width:0;width:0;height:0;padding:0;margin:0;background-color:transparent;display:block;opacity:0;" savedtabindex="[object Object]" tabindex="-1"></span></span></td><td class="dxichTextCellSys"><label class="dx-wrap">Accepted: Pending Claim Package Review</label></td>
+					</tr>
+				</tbody></table></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table><script id="dxss_1801719043" data-executed="true">
+<!--
+ASPx.AddDisabledItems('BulkTransitionCBList',[[['dxeDisabled_MaterialCompact'],[''],['','RB0','RB1']]]);
+ASPx.createControl(ASPxClientCheckBoxList,'BulkTransitionCBList','',{'clientEnabled':false,'scStates':2,'scPostfix':'MaterialCompact','imageProperties':{'4':['dxWeb_edtCheckBoxChecked_MaterialCompact','dxWeb_edtCheckBoxUnchecked_MaterialCompact'],'8':['dxWeb_edtCheckBoxCheckedDisabled_MaterialCompact','dxWeb_edtCheckBoxUncheckedDisabled_MaterialCompact']},'icbFocusedStyle':['dxICBFocused_MaterialCompact',''],'initSelectedIndices':[]},{'Init':function(s,e) { statusCtrl = s; },'SelectedIndexChanged':function(s,e) { statusBoxes = s.GetSelectedValues(); BulkTransitionClaims.SetEnabled(statusBoxes.length > 0); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}],'items':[['Submitted: Pending Eligibility Review',2,''],['Accepted: Pending Claim Package Review',8,'']]});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_0_1" class="dxflHALSys dxflVABSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflChildInLastRowSys" data-left="403.3671875"><table class="dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><label class="dxflCaption_MaterialCompact" for="BulkTransitionClaims_I"></label></td><td class="dxflNestedControlCell_MaterialCompact"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys dxbDisabled_MaterialCompact" id="BulkTransitionClaims" style="-webkit-user-select:none;">
+	<div class="dxb" id="BulkTransitionClaims_CD">
+		<div class="dxb-hbc">
+			<input id="BulkTransitionClaims_I" class="dxb-hb" value="Bulk Transition" type="button" name="BulkTransitionClaims" disabled="">
+		</div><span class="dx-vam">Bulk Transition</span>
+	</div>
+</div><script id="dxss_1017066769" data-executed="true">
+<!--
+ASPx.AddHoverItems('BulkTransitionClaims',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('BulkTransitionClaims',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('BulkTransitionClaims',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('BulkTransitionClaims',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(MVCxClientButton,'BulkTransitionClaims','',{'clientEnabled':false,'useSubmitBehavior':false},{'Click':function(s,e) { BulkTransition(); }});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_0_2" class="dxflHALSys dxflVABSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflChildInLastRowSys" data-left="599.796875"><table class="dxflCLLSys dxflItemSys dxflImageItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><span id="flBulkReview_0_2_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><img title="Click here to get details on the Bulk Transition function." class="dxeImage_MaterialCompact" id="imgBulkTransitionHelp" onclick="return ASPx.SEClick('imgBulkTransitionHelp', event)" src="/Content/Images/InfoIcon_32x32.jpg" alt="" style="cursor:pointer;transform:translateX(-20px) translateY(5px);"><script id="dxss_1508347558" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientImage,'imgBulkTransitionHelp','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Click':function(s,e) { alert('The Bulk Transition button will move all Claims in the selected Claim Status(es) to their respective "In Review" statuses. If the button is not enabled then there are no Claims to transition.'); }});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_0_3" class="dxflHARSys dxflVABSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflLastChildInRowSys dxflChildInLastRowSys" data-left="667.796875"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><span id="flBulkReview_0_3_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="BulkTransitionCount">Claims to Transition: 0</span><script id="dxss_320527263" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientLabel,'BulkTransitionCount','',{'scStates':4,'scPostfix':'MaterialCompact'});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td data-left="403.3671875" class="dxflChildInLastRowSys"></td><td data-left="599.796875" class="dxflChildInLastRowSys"></td><td data-left="667.796875" class="dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr><tr>
+			<td id="flBulkReview_1" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflHeadingLineGroupBoxSys dxflGroupBoxSys dxflWithCaptionSys">
+				<span class="dxflGroupBoxCaption_MaterialCompact">Bulk Review Controls</span><div class="dxflHLSys">
+
+				</div><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+					<tbody><tr>
+						<td id="flBulkReview_1_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflChildInLastRowSys" data-left="39"><table class="dxflCLLSys dxflItemSys dxflTextEditItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 62px; min-width: 62px;"><label class="dxflCaption_MaterialCompact" for="SelectedReviewer_I">Reviewer:</label></td><td class="dxflNestedControlCell_MaterialCompact"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeNullText_MaterialCompact dxh0" id="SelectedReviewer" style="float:left;" savedspellcheck="[object Object]" spellcheck="false">
+	<tbody><tr>
+		<td style="display:none;"><input id="SelectedReviewer_VI" name="SelectedReviewer_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0" id="SelectedReviewer_I" name="SelectedReviewer" readonly="readonly" onchange="ASPx.ETextChanged('SelectedReviewer')" value="Select a Reviewer" type="text" style="cursor:default;" savedspellcheck="[object Object]" spellcheck="false" autocomplete="off"></td><td id="SelectedReviewer_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="SelectedReviewer_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+	</tr>
+</tbody></table><div id="SelectedReviewer_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="SelectedReviewer_DDD_PWC-1">
+				<table class="dxeListBox_MaterialCompact" id="SelectedReviewer_DDD_L" style="border-collapse:separate;">
+					<tbody><tr>
+						<td style="vertical-align:Top;"><div id="SelectedReviewer_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="SelectedReviewer_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="SelectedReviewer_DDD_LVirtualScrollTopSpacer"></div>
+							<input id="SelectedReviewer_DDD_L_VI" type="hidden" name="SelectedReviewer$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+								<tbody><tr id="SelectedReviewer_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+									<td id="SelectedReviewer_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+								</tr>
+							</tbody></table><table id="SelectedReviewer_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+							</table>
+						</div></div></td>
+					</tr>
+				</tbody></table><script id="dxss_1609522783" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'SelectedReviewer_DDD_L','',{'uniqueID':'SelectedReviewer$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':'1','text':'bpoulin'},{'value':'2','text':'oalexander'},{'value':'3','text':'mholt'},{'value':'4','text':'jrichard'},{'value':'5','text':'amounton'},{'value':'6','text':'afolse'},{'value':'8','text':'ZGachassin'},{'value':'16','text':'GEsponda'},{'value':'20','text':'bcunningham'},{'value':'31','text':'aBabin'},{'value':'79','text':'ngawande'},{'value':'82','text':'RJ.clark'},{'value':'83','text':'zhildreth'},{'value':'87','text':'akeeler'},{'value':'95','text':'phymel'},{'value':'96','text':'spradhan'},{'value':'97','text':'amouton'},{'value':'118','text':'shae.tabatt@eisneramper.com'},{'value':'119','text':'mazin.melegy@eisneramper.com'},{'value':'120','text':'jeffrey.schram@eisneramper.com'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('SelectedReviewer', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('SelectedReviewer', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><script id="dxss_306234238" data-executed="true">
+<!--
+ASPx.AddHoverItems('SelectedReviewer_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'SelectedReviewer_DDD','',{'uniqueID':'SelectedReviewer$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('SelectedReviewer', e); }});
+
+//-->
+</script><script id="dxss_344795212" data-executed="true">
+<!--
+ASPx.AddHoverItems('SelectedReviewer',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('SelectedReviewer',[[['B-100']]]);
+ASPx.AddPressedItems('SelectedReviewer',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('SelectedReviewer',[[['B-100']]]);
+ASPx.AddDisabledItems('SelectedReviewer',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('SelectedReviewer',[[['B-100'],]]);
+ASPx.createControl(MVCxClientComboBox,'SelectedReviewer','',{'scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':''},'nullText':'Select a Reviewer','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'incrementalFilteringMode':'None','lastSuccessValue':null,'islastSuccessValueInit':true},{'SelectedIndexChanged':function(s,e) { reviewerUser = s.GetSelectedItem().value; ChkBoxState(); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_1_1" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflChildInLastRowSys" data-left="394.765625"><table class="dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><label class="dxflCaption_MaterialCompact" for="SubmitBulkReviews_I"></label></td><td class="dxflNestedControlCell_MaterialCompact"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys dxbDisabled_MaterialCompact" id="SubmitBulkReviews" style="-webkit-user-select:none;">
+	<div class="dxb" id="SubmitBulkReviews_CD">
+		<div class="dxb-hbc">
+			<input id="SubmitBulkReviews_I" class="dxb-hb" value="Submit" type="button" name="SubmitBulkReviews" disabled="">
+		</div><span class="dx-vam">Submit</span>
+	</div>
+</div><script id="dxss_498175435" data-executed="true">
+<!--
+ASPx.AddHoverItems('SubmitBulkReviews',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('SubmitBulkReviews',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('SubmitBulkReviews',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('SubmitBulkReviews',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'SubmitBulkReviews','',{'clientEnabled':false,'useSubmitBehavior':false},{'Click':function(s,e) { SubmitBulkReview(); }});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_1_2" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflChildInLastRowSys" data-left="569.8359375"><table class="dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><label class="dxflCaption_MaterialCompact" for="ClearBulkQueue_I"></label></td><td class="dxflNestedControlCell_MaterialCompact"><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys dxbDisabled_MaterialCompact" id="ClearBulkQueue" style="-webkit-user-select:none;">
+	<div class="dxb" id="ClearBulkQueue_CD">
+		<div class="dxb-hbc">
+			<input id="ClearBulkQueue_I" class="dxb-hb" value="Clear Queue" type="button" name="ClearBulkQueue" disabled="">
+		</div><span class="dx-vam">Clear Queue</span>
+	</div>
+</div><script id="dxss_969913780" data-executed="true">
+<!--
+ASPx.AddHoverItems('ClearBulkQueue',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('ClearBulkQueue',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('ClearBulkQueue',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('ClearBulkQueue',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(MVCxClientButton,'ClearBulkQueue','',{'clientEnabled':false,'useSubmitBehavior':false},{'Click':function(s,e) { ClearQueue(); }});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td id="flBulkReview_1_3" class="dxflHARSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflLastChildInRowSys dxflChildInLastRowSys" data-left="794.5546875"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+							<tbody><tr>
+								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys" style="width: 0px; min-width: 0px;"><span id="flBulkReview_1_3_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="BulkQueueCount">Reviews in Queue: 0</span><script id="dxss_1039945111" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientLabel,'BulkQueueCount','',{'scStates':4,'scPostfix':'MaterialCompact'},{'Init':function(s,e) { SetLabelText(0);}});
+
+//-->
+</script></td>
+							</tr>
+						</tbody></table></td><td data-left="842.296875" class="dxflChildInFirstRowSys dxflLastChildInRowSys dxflChildInLastRowSys"></td><td data-left="842.296875" class="dxflChildInFirstRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"></td>
+					</tr>
+				</tbody></table>
+			</div></td>
+		</tr>
+	</tbody></table>
+</div><script id="dxss_33166216" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientFormLayout,'flBulkReview','',null,null,null,{'items':[{'name':'','path':'0','items':[{'name':'BulkTransitionCBList','path':'0_0','associatedNestedExtensionName':null},{'name':'BulkTransitionClaims','path':'0_1','associatedNestedExtensionName':null},{'name':'imgBulkTransitionHelp','path':'0_2','associatedNestedExtensionName':null},{'name':'BulkTransitionCount','path':'0_3','associatedNestedExtensionName':null}]},{'name':'','path':'1','items':[{'name':'SelectedReviewer','path':'1_0','associatedNestedExtensionName':null},{'name':'SubmitBulkReviews','path':'1_1','associatedNestedExtensionName':null},{'name':'ClearBulkQueue','path':'1_2','associatedNestedExtensionName':null},{'name':'BulkQueueCount','path':'1_3','associatedNestedExtensionName':null}]}]});
+
+//-->
+</script>
+<table class="dxgvControl_MaterialCompact dxgv" id="gvBulkReview" style="width:1200px;border-collapse:separate;">
+	<tbody><tr>
+		<td><table id="gvBulkReview_DXMainTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvBulkReview',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvBulkReview_DXHeadersRow0">
+				<td class="dxgvHeader_MaterialCompact" style="width:0.1%;border-top-width:0px;border-left-width:0px;cursor:default;"><img class="dxGridView_gvDetailExpandedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="" style="visibility:hidden;"></td><td id="gvBulkReview_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Enhancement Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvBulkReview_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Question</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvBulkReview_DXEmptyRow" class="dxgvEmptyDataRow_MaterialCompact dxgvLVR">
+				<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;border-bottom-width:0px;">&nbsp;</td><td class="dxgv" colspan="2" style="border-bottom-width:0px;"><div>
+					No data to display
+				</div></td>
+			</tr>
+		</tbody></table><table id="gvBulkReview_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvBulkReview_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvBulkReview_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvBulkReview_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvBulkReview_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvBulkReview_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvBulkReview_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvBulkReview_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_571058436" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvBulkReview','',{'callBack':function(arg) { ; },'stateObject':{'lastMultiSelectIndex':-1,'keys':[],'callbackState':'QH+jLU1CzCOb3d0ilOCY1LOAQWrmFpcDuOoqBGn/u/znqWUzNrDghUeN91TQ/2dzDsf4YRZn/JCyv1zdArDnBYsL37cl5eXycbuQ3Dp2ucPyelQexoLBeO/8OYkNn5fPFv2oQZ2d1S0FpTfADCbCwPHu1dorS0gL3rcJ6kE4CtsGnhudCUssQ2Fa1Mcq1dTx+93XR/UVsLmX29DfEzRjFB/VYi5FsT60rjqfjYfAqGs=','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':true,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,'EnhancementName',0,,,,0],[1,,,'Question',0,,,,1]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':1,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'hasDetailRows':true,'editingItemVisibleIndex':-1,'callbackUrl':'/Admin/gvBulkReviewPartial','keyName':'Id'},{'DetailRowExpanding':function(s,e) { if(reviewerUser != null) { ChkBoxState(); selectedOptions = []; } else { e.cancel = true; alert('Please select a Reviewer before adding a bulk review to the queue.'); } }});
+ASPxClientGridBase.PostponeInitialize('gvBulkReview',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgv" data-colSpan="2" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script><div class="dxpnlControl_MaterialCompact" id="cbpBulkClaimReviews" style="height:100%;width:100%;">
+
+</div><script id="dxss_74513916" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientCallbackPanel,'cbpBulkClaimReviews','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/Admin/cbpBulkClaimReviewsPartial'},{'BeginCallback':OnBeginBulkReviewCallback,'EndCallback':OnEndBulkReviewCallback});
+
+//-->
+</script>
+
+
+
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

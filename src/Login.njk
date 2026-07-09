@@ -1,0 +1,157 @@
+---
+layout: layouts/logged-out.njk
+title: "Login"
+---
+{% raw %}
+
+
+<!-- <style>
+    #rblAccessType_RB0 {
+      margin: auto;
+    }
+
+    #rblAccessType_RB1 {
+      margin: auto;
+    }
+  </style>
+  <script type="text/javascript">
+    function SwitchRequestAccessTypePanel(accessType) {
+      let lawFirmRequestAccessPanel = ASPxClientControl.GetControlCollection().GetByName("panelLawFirmRequestAccess");
+      let plaintffRequestAccessPanel = ASPxClientControl.GetControlCollection().GetByName("panelPlaintiffRequestAccess");
+
+      switch (accessType) {
+        case "1":
+          plaintffRequestAccessPanel.SetVisible(false);
+          lawFirmRequestAccessPanel.SetVisible(true);
+          break;
+        case "2":
+          lawFirmRequestAccessPanel.SetVisible(false);
+          plaintffRequestAccessPanel.SetVisible(true);
+          break;
+      }
+    }
+    function ShowResetPassword() {
+      var screenWidth = $(window).width();
+      ResetEmail.SetText('');
+      pcResetPasswordModal.SetWidth(screenWidth > 520 ? 500 : screenWidth - 20);
+      pcResetPasswordModal.UpdatePosition();
+      pcResetPasswordModal.Show();
+    }
+    function OnBtnSendPasswordRequestClick() {
+      btnSendPasswordRequest.SetEnabled(false)
+      $.ajax({
+        url: '/Account/ForgotPassword',
+        type: 'POST',
+        data: {
+          __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+          ResetEmail: ResetEmail.GetValue(),
+        },
+        success: function (response) {
+          if (response.success) {
+            ShowConfirmationModal(response.resetEmail);
+          } else {
+            if (response.errors) {
+              Object.keys(response.errors).forEach(function (key) {
+                if (response.errors[key].length > 0) {
+                  var editor = ASPxClientControl.GetControlCollection().GetByName(key);
+                  if (editor) {
+                    editor.SetIsValid(false);
+                    editor.SetErrorText(response.errors[key].join(' '));
+                  }
+                }
+              });
+            }
+          }
+        },
+        error: function () {
+          alert("An error occurred while resetting your password.Please try again.")
+        },
+        complete: function () {
+          btnSendPasswordRequest.SetEnabled(true);
+        }
+      });
+    }
+    function ShowConfirmationModal(resetEmail) {
+      var screenWidth = $(window).width();
+      pcResetPasswordConfirmationModal.SetWidth(screenWidth > 470 ? 450 : screenWidth - 20);
+      pcResetPasswordConfirmationModal.UpdatePosition();
+      ResetEmail.Clear();
+      document.getElementById("resetPasswordConfirmationText").textContent = "If an account exists, an email will be sent to " + resetEmail + " with instructions for resetting your password. ";
+      pcResetPasswordModal.Hide();
+      pcResetPasswordConfirmationModal.Show();
+    }
+
+    function OnBtnPlaintiffReqAccessClick(s, e) {
+      var screenWidth = $(window).width();
+      pcPlaintiffRequestAcessModal.SetWidth(screenWidth > 470 ? 450 : screenWidth - 20);
+      pcPlaintiffRequestAcessModal.UpdatePosition();
+    }
+  </script> -->
+<div class="contentPane">
+  <div class="pageHeader">
+    <p>Welcome to the EisnerAmper Legal Administration Portal, a secure website that allows for the exchange of
+      information between Plaintiffs, Defendants, Special Masters, and the Court.</p>
+  </div>
+  <div class="card-stack">
+    <div class="card">
+      <form action="/Account/Login" id="loginForm" method="post" novalidate="novalidate">
+        <input name="__RequestVerificationToken" type="hidden"
+          value="ydhiyj8ykGmIQnlmn8Anw859SeF7d2Ppk-JjP3D_ouLU6AdW-uiQ-9tCBuAQckJ_vgoKkrLw-UhaTMd5sTyQWdluSBTMjrmVwbUCUQCM9Uw1">
+        <div class="card__body">
+          <h2 class="card__title">Log In</h2>
+          <div class="card__content">
+            <fieldset>
+              <div class="input-field input-field--secondary">
+                <label for="Email_I" class="dxeLabel_MaterialCompact dxeLabelSys dxh0">Email Address</label>
+                <input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0"
+                  data-val-required="The Email Address field is required." data-val="true" id="Email_I" name="Email"
+                  onchange="ASPx.EValueChanged('Email')" value="Email" type="text" savedspellcheck="[object Object]"
+                  spellcheck="false" autocomplete="off">
+              </div>
+
+              <div class="input-field input-field--secondary">
+                <label for="Password_I" class="dxeLabel_MaterialCompact dxeLabelSys dxh0">Password</label>
+                <input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0"
+                  data-val-required="The Password field is required." data-val="true" id="Password_I" name="Password"
+                  onchange="ASPx.EValueChanged('Password')" value="Password" type="password"
+                  savedspellcheck="[object Object]" spellcheck="false" autocomplete="off">
+              </div>
+            </fieldset>
+            <div class="form-cta">
+              <input id="btnSignIn_I" class="dxb-hb" value="Sign In" type="submit" name="btnSignIn">
+            </div>
+
+
+          </div>
+        </div>
+        <input type="hidden" name="DXScript"
+          value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1"><input
+          type="hidden" name="DXCss"
+          value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82"><input type="hidden"
+          name="DXMVCEditorsValues"
+          value="{&quot;Email&quot;:null,&quot;Password&quot;:null,&quot;RememberMe&quot;:false}">
+      </form>
+    </div>
+    <div class="card card--secondary">
+      <div class="card__body">
+        <h2 class="card__title">Need Access?</h2>
+        <div class="card__content">
+          <div class="card__block">
+            <h3>I am a law firm user</h3>
+            <p>If you are a member of a law firm that has not been granted access, click the Request Access button to
+              submit a request for approval.</p>
+            <a class="button" href="/AccessRequest">Law Firm Request Access</a>
+          </div>
+          <div class="card__block">
+            <h3>I am a plaintiff</h3>
+            <p>If you are a plaintiff who has been directed to this page and need assistance, please contact the law
+              firm
+              representing you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endraw %}

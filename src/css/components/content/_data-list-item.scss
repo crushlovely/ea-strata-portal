@@ -1,0 +1,44 @@
+// STRATA Data List Item — Figma component 6404:125497.
+// Read-only label/value row styled like a disabled form field.
+@use "typography" as *;
+
+@mixin data-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  height: 2rem; // 32px fixed row height in Figma
+  border-radius: 0.25rem; // 4px unbound literal in Figma
+}
+
+@mixin data-list-item-label {
+  flex: 1;
+  @include form-ui-label-text;
+  color: var(--form-ui-secondary-disabled-label-text);
+  white-space: nowrap;
+}
+
+@mixin data-list-item-value {
+  flex: 1;
+  padding: 0.25rem 1rem; // 4px 16px unbound literals in Figma
+  background-color: var(--form-ui-secondary-focus-input-bg);
+  border-radius: var(--form-ui-input-border-radius);
+  @include form-ui-input-text;
+  color: var(--form-ui-secondary-disabled-input-text);
+  overflow: clip;
+  word-break: break-word;
+}
+
+// Component classes
+.data-list-item {
+  @include data-list-item;
+
+  &__label {
+    @include data-list-item-label;
+  }
+
+  &__value {
+    @include data-list-item-value;
+  }
+}
+
+// App selectors

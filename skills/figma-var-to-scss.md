@@ -68,7 +68,7 @@ Figma stores numbers without units. Convert as follows:
 - font-size, spacing, sizes, border-radius: convert px to rem (divide by 16). e.g. 18 -> 1.125rem
 - line-height and font-weight: unitless, use the raw number (e.g. 1.375, 650). Do not round away precision.
 - letter-spacing: numeric values are em, e.g. 0.15 -> 0.15em (STRING values like "0.15em" already carry the unit)
-- the $bp-* SCSS breakpoint variables stay in px
+- the $bp-\* SCSS breakpoint variables stay in px
 
 ### Other value rules
 
@@ -79,3 +79,37 @@ Figma stores numbers without units. Convert as follows:
 ### Fonts
 
 The families referenced by the Viewport variables (Fraunces, Raleway, Albert Sans) are loaded with a Google Fonts `@import url(...)` in `/src/css/_fonts.scss`, which must stay the first `@use` in `main.scss` so the @import lands at the top of the compiled CSS (browsers ignore late @imports). Use the variable-font versions with weight ranges (300..700, plus opsz for Fraunces) — the design system uses in-between weights like 375 and 650 that static weights don't provide. If a new font-family appears in the Figma variables, add it to that @import URL. The preconnect hints for the font hosts stay in `/src/_includes/layouts/base.njk`.
+
+## 06 Define Typography classes and mixins
+
+We will use the values from the Collections/Viewport variables
+
+for each group (and child group) in the Viewport variables, if it contains a 'font-family'
+variable we will define the typography mixin and class for it.
+
+An example would be:
+
+From the heading1 group the variables are
+font-family
+font-size
+line-height
+font-weight
+
+use the group name as the name of the mixin and class
+
+```
+@mixin heading1 {
+  font-family: var(--heading1-font-family);
+  font-size: var(--heading1-font-size);
+  line-height: var(--heading1-line-height);
+  font-weight: var(--heading1-font-weight);
+  /* any other typography-related classes */
+  /* ignore any variables that start with 'figma-' */
+}
+.heading1 { @include heading1 };
+
+```
+
+some groups are nested/children like form-ui/label-text
+concat the parent/children to define the mixin and class
+like {parent group}-{child group} like @mixin form-ui-label-text, .form-ui-label-text

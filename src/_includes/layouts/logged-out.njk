@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html
+  class="dxChrome dxMacOSPlatform dxWebKitFamily dxBrowserVersion-148 dxTheme-MaterialCompact js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+  <title>{{ title }} · {{ site.name }}</title>
+  {# Fonts are @import-ed in main.css; these hints let the browser connect
+     to the font hosts before it discovers that import. #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  {% include "partials/header-logged-out.njk" %}
+
+  <div class="dxpnlControl_MaterialCompact mainContentPane" id="MainPaneFeature">
+    {{ content | safe }}
+  </div>
+
+  {% include "partials/footer.njk" %}
+</body>
+
+</html>

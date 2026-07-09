@@ -8,7 +8,24 @@
 $bp-tablet: 394px;
 $bp-desktop: 835px;
 
+$site-header-height: 79px;
+$bg-lady-justice-pos-x: 0;
+$bg-lady-justice-pos-y: -30px;
+$bg-lady-justice-pos-y-featured: calc(
+  #{$bg-lady-justice-pos-y} - #{$site-header-height}
+);
+$bg-lady-justice-size-x: 955px;
+
 :root {
+  // Site-header height
+  --site-header-height: #{$site-header-height};
+
+  // Lady Justice background position
+  --bg-lady-justice-pos-x: #{$bg-lady-justice-pos-x};
+  --bg-lady-justice-pos-y: #{$bg-lady-justice-pos-y};
+  --bg-lady-justice-pos-y-featured: #{$bg-lady-justice-pos-y-featured};
+  --bg-lady-justice-size-x: #{$bg-lady-justice-size-x};
+
   // heading1
   --heading1-font-family: "Fraunces";
   --heading1-font-size: 2.4881rem;
@@ -120,7 +137,9 @@ $bp-desktop: 835px;
 
   // data-grid
   --data-grid-title-font-family: "Fraunces";
+  --data-grid-title-font-weight: 300;
   --data-grid-title-font-size: 1.775rem;
+  --data-grid-title-line-height: 1.375;
   --data-grid-header-font-family: "Raleway";
   --data-grid-header-font-size: 0.6875rem;
   --data-grid-header-line-height: 1.5;
@@ -129,8 +148,12 @@ $bp-desktop: 835px;
   --data-grid-header-text-transform: uppercase;
   --data-grid-cell-font-family: var(--small-text-font-family);
   --data-grid-cell-font-size: var(--small-text-font-size);
+  --data-grid-cell-font-weight: var(--small-text-font-weight);
+  --data-grid-cell-line-height: var(--small-text-line-height);
   --data-grid-meta-font-family: var(--small-text-font-family);
   --data-grid-meta-font-size: 0.75rem;
+  --data-grid-meta-font-weight: var(--small-text-font-weight);
+  --data-grid-meta-line-height: var(--small-text-line-height);
 
   // btn-simple
   --btn-simple-simple-font-family: "Raleway";

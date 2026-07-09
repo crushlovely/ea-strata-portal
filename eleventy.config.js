@@ -2,6 +2,9 @@ import path from "node:path";
 import * as sass from "sass";
 
 export default function (eleventyConfig) {
+  // Static assets: copied to _site as-is, preserving the path under src/
+  // (src/images/x.png -> /images/x.png).
+  eleventyConfig.addPassthroughCopy("src/images");
   // Compile SCSS as a first-class template type so the dev server
   // watches it and hot-reloads CSS in the browser without a refresh.
   eleventyConfig.addTemplateFormats("scss");

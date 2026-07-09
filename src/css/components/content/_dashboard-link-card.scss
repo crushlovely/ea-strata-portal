@@ -1,0 +1,105 @@
+// STRATA Dashboard Link Card — Figma component set 6305:10787
+// ("Dashboard metric shortcut card").
+// Variants: Size=Default (6192:415), Size=Large (6305:10788).
+// Big metric number over a dark label bar.
+@use "typography" as *;
+
+@mixin dashboard-link-card {
+  // Size=Default
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  width: 100%;
+  place-items: center;
+  background-color: var(--bg-secondary);
+  overflow: clip;
+  height: auto !important;
+  text-decoration: none !important;
+  &:hover,
+  &:focus-visible {
+    opacity: 0.8;
+    text-decoration: none !important;
+  }
+}
+
+@mixin dashboard-link-card-number {
+  height: auto !important;
+  @include heading2;
+  @include wonk;
+  color: var(--text-default) !important;
+  white-space: nowrap;
+  padding: var(--spacing-sm);
+  text-decoration: inherit;
+  white-space: nowrap;
+  * {
+    white-space: nowrap;
+  }
+}
+
+@mixin dashboard-link-card-label {
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: auto !important;
+  padding: 0.625rem 0.75rem; // 10px 12px unbound literals in Figma
+  background-color: var(--palette-gray);
+  @include eyebrow-label;
+  color: var(--palette-white) !important;
+  white-space: nowrap;
+  text-decoration: inherit;
+}
+
+@mixin dashboard-link-card-number-large {
+  // Size=Large
+  height: auto !important;
+  color: var(--text-default) !important;
+  @include heading1;
+  @include wonk;
+  padding: var(--spacing-sm);
+}
+
+// App selectors
+.grid-container {
+  display: grid;
+  gap: var(--spacing-xs);
+  @media (min-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: auto 1fr 1fr 1fr;
+  }
+}
+
+.gridstackedboxbig,
+.gridstackedboxsmall {
+  @include dashboard-link-card;
+}
+
+.stackedboxstats {
+  height: auto !important;
+  font-size: 1rem !important;
+}
+
+.gridstackedboxbig {
+  @media (min-width: 800px) {
+    grid-column: span 2;
+  }
+  @media (min-width: 1024px) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  @media (min-width: 1330px) {
+    aspect-ratio: 54/32;
+  }
+  .stackedboxstats p {
+    @include dashboard-link-card-number-large;
+  }
+}
+.gridstackedboxsmall {
+  .stackedboxstats p {
+    @include dashboard-link-card-number;
+  }
+}
+.stackedboxtext {
+  @include dashboard-link-card-label;
+}

@@ -1,0 +1,744 @@
+---
+layout: layouts/base.njk
+title: "Announcements Admin"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+
+<style>
+    .resizable-memo textarea {
+        resize: vertical !important;
+        min-height: 100px !important;
+    }
+</style>
+
+<script type="text/javascript">
+    function BeginAnnouncementsCallback(s, e) {
+        e.customArgs["StartDate"] = deAnnouncementsStartDate.GetText();
+        e.customArgs["EndDate"] = deAnnouncementsEndDate.GetText();
+    }
+
+    function OnAnnouncementsDateRangeChanged(s, e) {
+        if (typeof gvAnnouncements !== 'undefined' && !gvAnnouncements.InCallback())
+            gvAnnouncements.PerformCallback();
+    }
+</script>
+
+<h2>Announcements Administration</h2>
+
+<form action="/Admin/Announcements" method="post">    <div style="margin-bottom: 10px;">
+        <b>Date Posted Range:</b>
+
+        <table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeNullText_MaterialCompact dxh0" id="deAnnouncementsStartDate" savedspellcheck="[object Object]" spellcheck="false">
+	<tbody><tr>
+		<td class="dxic" onmousedown="return ASPx.DDMC_MD('deAnnouncementsStartDate', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0" id="deAnnouncementsStartDate_I" name="deAnnouncementsStartDate" onchange="ASPx.ETextChanged('deAnnouncementsStartDate')" value="Start Date" type="text" savedspellcheck="[object Object]" spellcheck="false" autocomplete="off"></td><td id="deAnnouncementsStartDate_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="deAnnouncementsStartDate_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+	</tr>
+</tbody></table><div id="deAnnouncementsStartDate_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="deAnnouncementsStartDate_DDD_PWC-1">
+				<table style="display:none;">
+					<tbody><tr>
+						<td id="deAnnouncementsStartDate_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="deAnnouncementsStartDate_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+					</tr>
+				</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="deAnnouncementsStartDate_DDD_C">
+					<tbody><tr>
+						<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+							<tbody><tr>
+								<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+									<tbody><tr>
+										<td id="deAnnouncementsStartDate_DDD_C_PTPC" class="dxe" style="display:none;"><img id="deAnnouncementsStartDate_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="deAnnouncementsStartDate_DDD_C_PYC" class="dxe"><img id="deAnnouncementsStartDate_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="deAnnouncementsStartDate_DDD_C_PMC" class="dxe"><img id="deAnnouncementsStartDate_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="deAnnouncementsStartDate_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="deAnnouncementsStartDate_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="deAnnouncementsStartDate_DDD_C_NMC" class="dxe"><img id="deAnnouncementsStartDate_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="deAnnouncementsStartDate_DDD_C_NYC" class="dxe"><img id="deAnnouncementsStartDate_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="deAnnouncementsStartDate_DDD_C_NTPC" class="dxe" style="display:none;"><img id="deAnnouncementsStartDate_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+									</tr>
+								</tbody></table></td>
+							</tr><tr>
+								<td id="deAnnouncementsStartDate_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="deAnnouncementsStartDate_DDD_C_mt" style="width:100%;border-collapse:separate;">
+									<tbody><tr class="dx-ac">
+										<td id="deAnnouncementsStartDate_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_7">Sat</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+									</tr>
+								</tbody></table></td>
+							</tr><tr>
+								<td id="deAnnouncementsStartDate_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="deAnnouncementsStartDate_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+									<tbody><tr>
+										<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="deAnnouncementsStartDate_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+											<tbody><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_3">Apr</td>
+											</tr><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_7">Aug</td>
+											</tr><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsStartDate_DDD_C_yc_11">Dec</td>
+											</tr>
+										</tbody></table></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="deAnnouncementsStartDate_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="deAnnouncementsStartDate_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="deAnnouncementsStartDate_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+					</tr>
+				</tbody></table><script id="dxss_1015377210" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsStartDate_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('deAnnouncementsStartDate_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('deAnnouncementsStartDate_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'deAnnouncementsStartDate_DDD_C','',{'uniqueID':'deAnnouncementsStartDate$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><script id="dxss_981055488" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsStartDate_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'deAnnouncementsStartDate_DDD','',{'uniqueID':'deAnnouncementsStartDate$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('deAnnouncementsStartDate', e); }});
+
+//-->
+</script><script id="dxss_371788103" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsStartDate',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('deAnnouncementsStartDate',[[['B-100']]]);
+ASPx.AddPressedItems('deAnnouncementsStartDate',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('deAnnouncementsStartDate',[[['B-100']]]);
+ASPx.AddDisabledItems('deAnnouncementsStartDate',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('deAnnouncementsStartDate',[[['B-100'],]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientDateEdit,'deAnnouncementsStartDate','',{'scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'nullText':'Start Date','displayFormat':'{0:MM/dd/yyyy}','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'dateFormatter':ASPx.DateFormatter.Create('MM/dd/yyyy')},{'ValueChanged':OnAnnouncementsDateRangeChanged},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+
+        <table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact dxeNullText_MaterialCompact dxh0" id="deAnnouncementsEndDate" savedspellcheck="[object Object]" spellcheck="false">
+	<tbody><tr>
+		<td class="dxic" onmousedown="return ASPx.DDMC_MD('deAnnouncementsEndDate', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0" id="deAnnouncementsEndDate_I" name="deAnnouncementsEndDate" onchange="ASPx.ETextChanged('deAnnouncementsEndDate')" value="End Date" type="text" savedspellcheck="[object Object]" spellcheck="false" autocomplete="off"></td><td id="deAnnouncementsEndDate_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="deAnnouncementsEndDate_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+	</tr>
+</tbody></table><div id="deAnnouncementsEndDate_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+	<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+		<div class="dxpc-contentWrapper">
+			<div class="dxpc-content" id="deAnnouncementsEndDate_DDD_PWC-1">
+				<table style="display:none;">
+					<tbody><tr>
+						<td id="deAnnouncementsEndDate_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="deAnnouncementsEndDate_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+					</tr>
+				</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="deAnnouncementsEndDate_DDD_C">
+					<tbody><tr>
+						<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+							<tbody><tr>
+								<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+									<tbody><tr>
+										<td id="deAnnouncementsEndDate_DDD_C_PTPC" class="dxe" style="display:none;"><img id="deAnnouncementsEndDate_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="deAnnouncementsEndDate_DDD_C_PYC" class="dxe"><img id="deAnnouncementsEndDate_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="deAnnouncementsEndDate_DDD_C_PMC" class="dxe"><img id="deAnnouncementsEndDate_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="deAnnouncementsEndDate_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="deAnnouncementsEndDate_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="deAnnouncementsEndDate_DDD_C_NMC" class="dxe"><img id="deAnnouncementsEndDate_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="deAnnouncementsEndDate_DDD_C_NYC" class="dxe"><img id="deAnnouncementsEndDate_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="deAnnouncementsEndDate_DDD_C_NTPC" class="dxe" style="display:none;"><img id="deAnnouncementsEndDate_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+									</tr>
+								</tbody></table></td>
+							</tr><tr>
+								<td id="deAnnouncementsEndDate_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="deAnnouncementsEndDate_DDD_C_mt" style="width:100%;border-collapse:separate;">
+									<tbody><tr class="dx-ac">
+										<td id="deAnnouncementsEndDate_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_7">Sat</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+									</tr><tr>
+										<td class="dxeCalendarWeekNumber_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+									</tr>
+								</tbody></table></td>
+							</tr><tr>
+								<td id="deAnnouncementsEndDate_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="deAnnouncementsEndDate_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+									<tbody><tr>
+										<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="deAnnouncementsEndDate_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+											<tbody><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_3">Apr</td>
+											</tr><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_7">Aug</td>
+											</tr><tr>
+												<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="deAnnouncementsEndDate_DDD_C_yc_11">Dec</td>
+											</tr>
+										</tbody></table></td>
+									</tr>
+								</tbody></table></td>
+							</tr>
+						</tbody></table></td>
+					</tr><tr>
+						<td id="deAnnouncementsEndDate_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="deAnnouncementsEndDate_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="deAnnouncementsEndDate_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+					</tr>
+				</tbody></table><script id="dxss_269293287" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsEndDate_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('deAnnouncementsEndDate_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('deAnnouncementsEndDate_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'deAnnouncementsEndDate_DDD_C','',{'uniqueID':'deAnnouncementsEndDate$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+			</div>
+		</div>
+	</div>
+</div><script id="dxss_2065452006" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsEndDate_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'deAnnouncementsEndDate_DDD','',{'uniqueID':'deAnnouncementsEndDate$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('deAnnouncementsEndDate', e); }});
+
+//-->
+</script><script id="dxss_433869255" data-executed="true">
+<!--
+ASPx.AddHoverItems('deAnnouncementsEndDate',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemoveHoverItems('deAnnouncementsEndDate',[[['B-100']]]);
+ASPx.AddPressedItems('deAnnouncementsEndDate',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+ASPx.RemovePressedItems('deAnnouncementsEndDate',[[['B-100']]]);
+ASPx.AddDisabledItems('deAnnouncementsEndDate',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.RemoveDisabledItems('deAnnouncementsEndDate',[[['B-100'],]]);
+ASPx.createControl(MVCxClientDateEdit,'deAnnouncementsEndDate','',{'scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'nullText':'End Date','displayFormat':'{0:MM/dd/yyyy}','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'dateFormatter':ASPx.DateFormatter.Create('MM/dd/yyyy')},{'ValueChanged':OnAnnouncementsDateRangeChanged},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+    </div>
+
+<table class="dxgvControl_MaterialCompact dxgv" id="gvAnnouncements" style="border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxmLite_MaterialCompact dxm-ltr">
+			<div class="dxm-main dxm-horizontal dxctToolbar_MaterialCompact dxct-sys dxgvCTTop dxmtb dxm-noWrap" id="gvAnnouncements_DXCTMenu0" style="width: 100%; text-align: right;">
+				<ul class="dx dxm-image-l" style="float:right;">
+					<li class="dxm-alignSpacing" style="width: 100%;"></li><li title="Export to XLSX" class="dxm-item dxm-noSubMenu dxct-if dxct-il" id="gvAnnouncements_DXCTMenu0_DXI0_" style="min-width: 144px;"><div class="dxm-content dxm-hasText" id="gvAnnouncements_DXCTMenu0_DXI0_T">
+						<img title="Export to XLSX" class="dxGridView_CTExportXlsx_MaterialCompact dxm-image dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" id="gvAnnouncements_DXCTMenu0_DXI0_Img"><span title="Export to XLSX" class="dx-vam dxm-contentText">Export to XLSX</span>
+					</div></li><li class="dxm-spacing dxm-amis" id="gvAnnouncements_DXCTMenu0_DXI1_II" style="display: none; height: 32px;" savedheight="[object Object]"></li><li class="dxm-item dxm-dropDownMode dxm-noImage dxm-ami dxct-if dxct-il" id="gvAnnouncements_DXCTMenu0_DXI1_" style="display: none;"><div class="dxm-content" id="gvAnnouncements_DXCTMenu0_DXI1_T">
+						<span class="dx-vam dxm-contentText">&nbsp;</span>
+					</div><div class="dxm-popOut" id="gvAnnouncements_DXCTMenu0_DXI1_P" style="display: block;">
+						<img class="dxWeb_mAdaptiveMenu_MaterialCompact dxm-pImage" src="/DXR.axd?r=1_87-SZRsu" alt="..." id="gvAnnouncements_DXCTMenu0_DXI1_PImg">
+					</div></li>
+				</ul>
+			</div><div style="height: 0px; font-size: 0px; line-height: 0; width: 100%;"></div><b class="dx-clear"></b><div id="gvAnnouncements_DXCTMenu0_DXM1_" style="z-index: 20000; display: none; position: absolute;">
+				<div class="dxm-shadow dxm-popup dxmtb dxm-am" id="gvAnnouncements_DXCTMenu0_DXME1_">
+					<ul class="dx dxm-gutter"><li class="dxm-fami" role="menuitem"></li></ul>
+				</div>
+			</div>
+		</div><script id="dxss_445999575" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXCTMenu0',[[['dxm-hovered','',''],['','',''],['DXI0_','DXI1_'],['','P','T'],[[{'spriteCssClass':'dxGridView_CTExportXlsxHover_MaterialCompact'}],[null,null]],['Img','PImg']],[[''],[''],['DXME1_','DXMBC1_']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXCTMenu0',[[['dxm-disabled'],[''],['DXI0_','DXI1_'],['','P','T'],[[{'spriteCssClass':'dxGridView_CTExportXlsxDisabled_MaterialCompact'}],[null,null]],['Img','PImg']]]);
+ASPx.createControl(ASPxClientGridToolbar,'gvAnnouncements_DXCTMenu0','',{'uniqueID':'gvAnnouncements$DXCTMenu0','cpItemsProps':{'commands':{'0':'ExportToXlsx'},'ibpv':[]},'renderData':{'':[[0],[1]]}},{'ItemClick':function(s,e){ASPx.GCmdToolbarMenuItemClick('gvAnnouncements',s,e)}},null,{'items':[{'name':'ExportToXlsx','align':'Right'},{}],'adaptiveModeData':1});
+
+//-->
+</script><table id="gvAnnouncements_DXMainTable" class="dxgvTable_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvAnnouncements',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvAnnouncements_DXHeadersRow0">
+				<td id="gvAnnouncements_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td class="dx-ac"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxbButtonSys" data-args="[['AddNew'],1]" id="gvAnnouncements_DXCBtn0" href="javascript:;"><span>New</span></a><script id="dxss_1687368986" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn0',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Category</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Subject</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Description</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Effective Date</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Date Posted</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col8" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Last Modified Date</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvAnnouncements_col9" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Creator</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvAnnouncements_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv" style="text-align:Left;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAnnouncements_DXFREditorcol1" style="width:100%;">
+					<tbody><tr>
+						<td style="display:none;"><input id="gvAnnouncements_DXFREditorcol1_VI" name="gvAnnouncements_DXFREditorcol1_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol1_I" name="gvAnnouncements$DXFREditorcol1" onchange="ASPx.ETextChanged('gvAnnouncements_DXFREditorcol1')" type="text" autocomplete="off"></td><td id="gvAnnouncements_DXFREditorcol1_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAnnouncements_DXFREditorcol1', event)"><img id="gvAnnouncements_DXFREditorcol1_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAnnouncements_DXFREditorcol1_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAnnouncements_DXFREditorcol1_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvAnnouncements_DXFREditorcol1_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvAnnouncements_DXFREditorcol1_DDD_PWC-1">
+								<table class="dxeListBox_MaterialCompact" id="gvAnnouncements_DXFREditorcol1_DDD_L" style="border-collapse:separate;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><div id="gvAnnouncements_DXFREditorcol1_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvAnnouncements_DXFREditorcol1_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvAnnouncements_DXFREditorcol1_DDD_LVirtualScrollTopSpacer"></div>
+											<input id="gvAnnouncements_DXFREditorcol1_DDD_L_VI" type="hidden" name="gvAnnouncements$DXFREditorcol1$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+												<tbody><tr id="gvAnnouncements_DXFREditorcol1_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+													<td id="gvAnnouncements_DXFREditorcol1_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+												</tr>
+											</tbody></table><table id="gvAnnouncements_DXFREditorcol1_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+											</table>
+										</div></div></td>
+									</tr>
+								</tbody></table><script id="dxss_1486484656" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvAnnouncements_DXFREditorcol1_DDD_L','',{'uniqueID':'gvAnnouncements$DXFREditorcol1$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':1,'text':'Policies'},{'value':2,'text':'Reminders'},{'value':3,'text':'Portal Enhancements'},{'value':4,'text':'FAQs'},{'value':5,'text':'Important Dates'},{'value':6,'text':'Informational'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvAnnouncements_DXFREditorcol1', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvAnnouncements_DXFREditorcol1', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_1248482173" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol1_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAnnouncements_DXFREditorcol1_DDD','',{'uniqueID':'gvAnnouncements$DXFREditorcol1$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAnnouncements_DXFREditorcol1', e); }});
+
+//-->
+</script><script id="dxss_436035904" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol1',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol1',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol1',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvAnnouncements_DXFREditorcol1','',{'uniqueID':'gvAnnouncements$DXFREditorcol1','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAnnouncements', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAnnouncements_DXFREditorcol2" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol2_I" name="gvAnnouncements$DXFREditorcol2" onchange="ASPx.EValueChanged('gvAnnouncements_DXFREditorcol2')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_1778441087" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAnnouncements_DXFREditorcol2','',{'uniqueID':'gvAnnouncements$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAnnouncements',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAnnouncements',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAnnouncements_DXFREditorcol3" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol3_I" name="gvAnnouncements$DXFREditorcol3" onchange="ASPx.EValueChanged('gvAnnouncements_DXFREditorcol3')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_299820543" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAnnouncements_DXFREditorcol3','',{'uniqueID':'gvAnnouncements$DXFREditorcol3','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAnnouncements',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAnnouncements',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAnnouncements_DXFREditorcol4" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" onmousedown="return ASPx.DDMC_MD('gvAnnouncements_DXFREditorcol4', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol4_I" name="gvAnnouncements$DXFREditorcol4" onchange="ASPx.ETextChanged('gvAnnouncements_DXFREditorcol4')" type="text" autocomplete="off"></td><td id="gvAnnouncements_DXFREditorcol4_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAnnouncements_DXFREditorcol4', event)"><img id="gvAnnouncements_DXFREditorcol4_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAnnouncements_DXFREditorcol4_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAnnouncements_DXFREditorcol4_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvAnnouncements_DXFREditorcol4_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvAnnouncements_DXFREditorcol4_DDD_PWC-1">
+								<table style="display:none;">
+									<tbody><tr>
+										<td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+									</tr>
+								</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C" style="border-color:Silver;border-width:1px;border-style:Solid;border-width:1px;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+											<tbody><tr>
+												<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+													<tbody><tr>
+														<td id="gvAnnouncements_DXFREditorcol4_DDD_C_PTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_PYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_PMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="gvAnnouncements_DXFREditorcol4_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_NMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_NYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="gvAnnouncements_DXFREditorcol4_DDD_C_NTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol4_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol4_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="gvAnnouncements_DXFREditorcol4_DDD_C_mt" style="width:100%;border-collapse:separate;">
+													<tbody><tr class="dx-ac">
+														<td id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_7">Sat</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol4_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="gvAnnouncements_DXFREditorcol4_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+													<tbody><tr>
+														<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="gvAnnouncements_DXFREditorcol4_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+															<tbody><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_3">Apr</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_7">Aug</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol4_DDD_C_yc_11">Dec</td>
+															</tr>
+														</tbody></table></td>
+													</tr>
+												</tbody></table></td>
+											</tr>
+										</tbody></table></td>
+									</tr><tr>
+										<td id="gvAnnouncements_DXFREditorcol4_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="gvAnnouncements_DXFREditorcol4_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="gvAnnouncements_DXFREditorcol4_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+									</tr>
+								</tbody></table><script id="dxss_1390915649" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol4_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol4_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol4_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'gvAnnouncements_DXFREditorcol4_DDD_C','',{'uniqueID':'gvAnnouncements$DXFREditorcol4$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_1632677545" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol4_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAnnouncements_DXFREditorcol4_DDD','',{'uniqueID':'gvAnnouncements$DXFREditorcol4$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAnnouncements_DXFREditorcol4', e); }});
+
+//-->
+</script><script id="dxss_1706825544" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol4',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol4',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol4',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientDateEdit,'gvAnnouncements_DXFREditorcol4','',{'uniqueID':'gvAnnouncements$DXFREditorcol4','scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'dateFormatter':ASPx.DateFormatter.Create('M/d/yyyy')},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAnnouncements', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAnnouncements_DXFREditorcol7" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" onmousedown="return ASPx.DDMC_MD('gvAnnouncements_DXFREditorcol7', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol7_I" name="gvAnnouncements$DXFREditorcol7" onchange="ASPx.ETextChanged('gvAnnouncements_DXFREditorcol7')" type="text" autocomplete="off"></td><td id="gvAnnouncements_DXFREditorcol7_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAnnouncements_DXFREditorcol7', event)"><img id="gvAnnouncements_DXFREditorcol7_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAnnouncements_DXFREditorcol7_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAnnouncements_DXFREditorcol7_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvAnnouncements_DXFREditorcol7_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvAnnouncements_DXFREditorcol7_DDD_PWC-1">
+								<table style="display:none;">
+									<tbody><tr>
+										<td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+									</tr>
+								</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C" style="border-color:Silver;border-width:1px;border-style:Solid;border-width:1px;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+											<tbody><tr>
+												<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+													<tbody><tr>
+														<td id="gvAnnouncements_DXFREditorcol7_DDD_C_PTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_PYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_PMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="gvAnnouncements_DXFREditorcol7_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_NMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_NYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="gvAnnouncements_DXFREditorcol7_DDD_C_NTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol7_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol7_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="gvAnnouncements_DXFREditorcol7_DDD_C_mt" style="width:100%;border-collapse:separate;">
+													<tbody><tr class="dx-ac">
+														<td id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_7">Sat</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol7_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="gvAnnouncements_DXFREditorcol7_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+													<tbody><tr>
+														<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="gvAnnouncements_DXFREditorcol7_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+															<tbody><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_3">Apr</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_7">Aug</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol7_DDD_C_yc_11">Dec</td>
+															</tr>
+														</tbody></table></td>
+													</tr>
+												</tbody></table></td>
+											</tr>
+										</tbody></table></td>
+									</tr><tr>
+										<td id="gvAnnouncements_DXFREditorcol7_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="gvAnnouncements_DXFREditorcol7_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="gvAnnouncements_DXFREditorcol7_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+									</tr>
+								</tbody></table><script id="dxss_788209244" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol7_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol7_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol7_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'gvAnnouncements_DXFREditorcol7_DDD_C','',{'uniqueID':'gvAnnouncements$DXFREditorcol7$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_767174873" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol7_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAnnouncements_DXFREditorcol7_DDD','',{'uniqueID':'gvAnnouncements$DXFREditorcol7$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAnnouncements_DXFREditorcol7', e); }});
+
+//-->
+</script><script id="dxss_1387819739" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol7',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol7',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol7',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientDateEdit,'gvAnnouncements_DXFREditorcol7','',{'uniqueID':'gvAnnouncements$DXFREditorcol7','scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'dateFormatter':ASPx.DateFormatter.Create('M/d/yyyy')},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAnnouncements', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAnnouncements_DXFREditorcol8" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" onmousedown="return ASPx.DDMC_MD('gvAnnouncements_DXFREditorcol8', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol8_I" name="gvAnnouncements$DXFREditorcol8" onchange="ASPx.ETextChanged('gvAnnouncements_DXFREditorcol8')" type="text" autocomplete="off"></td><td id="gvAnnouncements_DXFREditorcol8_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAnnouncements_DXFREditorcol8', event)"><img id="gvAnnouncements_DXFREditorcol8_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAnnouncements_DXFREditorcol8_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAnnouncements_DXFREditorcol8_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+					</tr>
+				</tbody></table><div id="gvAnnouncements_DXFREditorcol8_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+					<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+						<div class="dxpc-contentWrapper">
+							<div class="dxpc-content" id="gvAnnouncements_DXFREditorcol8_DDD_PWC-1">
+								<table style="display:none;">
+									<tbody><tr>
+										<td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+									</tr>
+								</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C" style="border-color:Silver;border-width:1px;border-style:Solid;border-width:1px;">
+									<tbody><tr>
+										<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+											<tbody><tr>
+												<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+													<tbody><tr>
+														<td id="gvAnnouncements_DXFREditorcol8_DDD_C_PTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_PYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_PMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="gvAnnouncements_DXFREditorcol8_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_NMC" class="dxe"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_NYC" class="dxe"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="gvAnnouncements_DXFREditorcol8_DDD_C_NTPC" class="dxe" style="display:none;"><img id="gvAnnouncements_DXFREditorcol8_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol8_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="gvAnnouncements_DXFREditorcol8_DDD_C_mt" style="width:100%;border-collapse:separate;">
+													<tbody><tr class="dx-ac">
+														<td id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_7">Sat</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+													</tr><tr>
+														<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+													</tr>
+												</tbody></table></td>
+											</tr><tr>
+												<td id="gvAnnouncements_DXFREditorcol8_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="gvAnnouncements_DXFREditorcol8_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+													<tbody><tr>
+														<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="gvAnnouncements_DXFREditorcol8_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+															<tbody><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_3">Apr</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_7">Aug</td>
+															</tr><tr>
+																<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAnnouncements_DXFREditorcol8_DDD_C_yc_11">Dec</td>
+															</tr>
+														</tbody></table></td>
+													</tr>
+												</tbody></table></td>
+											</tr>
+										</tbody></table></td>
+									</tr><tr>
+										<td id="gvAnnouncements_DXFREditorcol8_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="gvAnnouncements_DXFREditorcol8_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="gvAnnouncements_DXFREditorcol8_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+									</tr>
+								</tbody></table><script id="dxss_875925371" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol8_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol8_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol8_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'gvAnnouncements_DXFREditorcol8_DDD_C','',{'uniqueID':'gvAnnouncements$DXFREditorcol8$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+							</div>
+						</div>
+					</div>
+				</div><script id="dxss_1333506785" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol8_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAnnouncements_DXFREditorcol8_DDD','',{'uniqueID':'gvAnnouncements$DXFREditorcol8$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAnnouncements_DXFREditorcol8', e); }});
+
+//-->
+</script><script id="dxss_348122572" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXFREditorcol8',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXFREditorcol8',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXFREditorcol8',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientDateEdit,'gvAnnouncements_DXFREditorcol8','',{'uniqueID':'gvAnnouncements$DXFREditorcol8','scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'dateFormatter':ASPx.DateFormatter.Create('M/d/yyyy')},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAnnouncements', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="border-right-width:0px;"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAnnouncements_DXFREditorcol9" style="width:100%;">
+					<tbody><tr>
+						<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAnnouncements_DXFREditorcol9_I" name="gvAnnouncements$DXFREditorcol9" onchange="ASPx.EValueChanged('gvAnnouncements_DXFREditorcol9')" type="text" autocomplete="off"></td>
+					</tr>
+				</tbody></table><script id="dxss_256694399" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAnnouncements_DXFREditorcol9','',{'uniqueID':'gvAnnouncements$DXFREditorcol9','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAnnouncements',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAnnouncements',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAnnouncements',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+			</tr><tr id="gvAnnouncements_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['StartEdit',0],1]" id="gvAnnouncements_DXCBtn1" href="javascript:;"><span>Edit</span></a><script id="dxss_347976203" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn1',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['Delete',0],1]" id="gvAnnouncements_DXCBtn2" href="javascript:;"><span>Delete</span></a><script id="dxss_210576996" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn2',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script></td><td class="dxgv dx-al">Informational</td><td class="dxgv">Description box update</td><td class="dxgv">Test</td><td class="dxgv">03/09/2026</td><td class="dxgv">3/10/2026</td><td class="dxgv">3/12/2026</td><td class="dxgv" style="border-right-width:0px;">zhildreth</td>
+			</tr><tr id="gvAnnouncements_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['StartEdit',1],1]" id="gvAnnouncements_DXCBtn3" href="javascript:;"><span>Edit</span></a><script id="dxss_1125071423" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn3',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['Delete',1],1]" id="gvAnnouncements_DXCBtn4" href="javascript:;"><span>Delete</span></a><script id="dxss_1887655814" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn4',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script></td><td class="dxgv dx-al">Portal Enhancements</td><td class="dxgv">Bulk E-Signature Verification Requests and Reminders</td><td class="dxgv">&lt;div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;"&gt; <br><br> <br><br>  &lt;ul style="margin-top: 4px; margin-bottom: 16px;"&gt; <br><br>    &lt;li&gt; <br><br>      You can find an updated &lt;strong&gt;User Guide&lt;/strong&gt; on the Portal Documents tab. <br><br>    &lt;/li&gt; <br><br>    &lt;li style="margin-top: 4px;"&gt; <br><br>      &lt;strong&gt;To ensure you are seeing the latest version of the portal,&lt;/strong&gt; you may need to perform a hard refresh.&lt;br&gt; <br><br>      &lt;em&gt;Windows:&lt;/em&gt; Press &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt; OR &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;F5&lt;/code&gt;  <br><br>      &lt;em&gt;Mac:&lt;/em&gt; Press &lt;code&gt;Cmd&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt;. <br><br>    &lt;/li&gt; <br><br>  &lt;/ul&gt; <br><br> <br><br><br><br> <br><br>  &lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt; Bulk E-Signature Verification Requests &lt;/p&gt; <br><br>  &lt;p style="margin-bottom: 6px;"&gt; <br><br> You can now send E-Signature Verification Requests to up to 500 plaintiffs at once using the Bulk Actions tab. Only plaintiffs with no outstanding items will be eligible for bulk signature. Please refer to Section V. Adding a Plaintiff to the Portal – G. Completing a Verification (page 23) in the User Guide &lt;/p&gt; <br><br> <br><br><br><br>&lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt; Reminders &lt;/p&gt; <br><br> <br><br>    &lt;ul style="margin-top: 4px; margin-bottom: 16px;"&gt; <br><br>    &lt;li&gt;Documents can be uploaded in bulk regardless of Plaintiff status.  <br><br>    &lt;/li&gt; <br><br> <br><br>    &lt;li&gt; SDWIS IDs can be updated via Import <br><br>    &lt;/li&gt; <br><br> <br><br> <br><br>&lt;/div&gt; </td><td class="dxgv">&nbsp;</td><td class="dxgv">2/20/2026</td><td class="dxgv">2/20/2026</td><td class="dxgv" style="border-right-width:0px;">oalexander</td>
+			</tr><tr id="gvAnnouncements_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['StartEdit',2],1]" id="gvAnnouncements_DXCBtn5" href="javascript:;"><span>Edit</span></a><script id="dxss_147689375" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn5',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['Delete',2],1]" id="gvAnnouncements_DXCBtn6" href="javascript:;"><span>Delete</span></a><script id="dxss_410863824" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn6',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script></td><td class="dxgv dx-al">Reminders</td><td class="dxgv">test</td><td class="dxgv">&lt;div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;"&gt;<br><br>    &lt;h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;"&gt;<br>        Important Maintenance Notice<br>    &lt;/h2&gt;<br><br>    &lt;p style="margin-bottom: 6px;"&gt;<br>        The AFFF MDL Portal will offline for scheduled maintenance beginning &lt;strong&gt;Friday, November 14th at 5:00 pm CST&lt;/strong&gt;. The portal will be back online no later than Monday, November 17th at 8:00 am CST. We will post an announcement once maintenance is complete and the portal is accessible.<br>    &lt;/p&gt;<br><br>&lt;/div&gt;<br></td><td class="dxgv">&nbsp;</td><td class="dxgv">11/14/2025</td><td class="dxgv">11/14/2025</td><td class="dxgv" style="border-right-width:0px;">oalexander</td>
+			</tr><tr id="gvAnnouncements_DXDataRow3" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['StartEdit',3],1]" id="gvAnnouncements_DXCBtn7" href="javascript:;"><span>Edit</span></a><script id="dxss_1325358251" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn7',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['Delete',3],1]" id="gvAnnouncements_DXCBtn8" href="javascript:;"><span>Delete</span></a><script id="dxss_1444319166" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvAnnouncements_DXCBtn8',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+
+//-->
+</script></td><td class="dxgv dx-al" style="border-bottom-width:0px;">Reminders</td><td class="dxgv" style="border-bottom-width:0px;">test</td><td class="dxgv" style="border-bottom-width:0px;">&lt;div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;"&gt;<br><br>  &lt;p style="font-size: 16px; margin-bottom: 10px;"&gt;<br>    Updates were rolled out to the portal today.<br>  &lt;/p&gt;<br><br>  &lt;ul style="margin-top: 4px; margin-bottom: 16px;"&gt;<br>    &lt;li&gt;<br>      You can find an updated &lt;strong&gt;User Guide&lt;/strong&gt; on the Portal Documents tab.<br>    &lt;/li&gt;<br>    &lt;li style="margin-top: 4px;"&gt;<br>      &lt;strong&gt;To ensure you are seeing the latest version of the portal,&lt;/strong&gt; you may need to perform a hard refresh.&lt;br&gt;<br>      &lt;em&gt;Windows:&lt;/em&gt; Press &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt; OR &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;F5&lt;/code&gt; <br>      &lt;em&gt;Mac:&lt;/em&gt; Press &lt;code&gt;Cmd&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;R&lt;/code&gt;.<br>    &lt;/li&gt;<br>  &lt;/ul&gt;<br><br>  &lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt;Electronic Verification&lt;/p&gt;<br>  &lt;p style="margin-bottom: 6px;"&gt;<br>    The system will now default to sending the signature request to the email address listed on the Plaintiff Information tab. An alternative signer email may be provided if necessary.  &lt;/p&gt;<br><br><br>  &lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt;Expert Disclosure&lt;/p&gt;<br>  &lt;p style="margin-bottom: 6px;"&gt;<br>    This question will no longer be required for submission to accommodate varying requirements.   &lt;/p&gt;<br><br>  &lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt;Plaintiff Enrollment Report&lt;/p&gt;<br>  &lt;p style="margin-bottom: 6px;"&gt;<br>    Additional fields are now available on this report that were already stored on the Plaintiff Information tab such as plaintiff address, plaintiff email address, and original filing information. &lt;/p&gt;<br><br>  &lt;p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"&gt;Incomplete Items Report &lt;/p&gt;<br>  &lt;p style="margin-bottom: 4px;"&gt;<br>    A new report is now available that lists all incomplete items required for submission for each plaintiff. The report includes a full description of each incomplete item. <br>  &lt;/p&gt;<br><br>&lt;/div&gt;<br></td><td class="dxgv" style="border-bottom-width:0px;">01/01/2025</td><td class="dxgv" style="border-bottom-width:0px;">11/11/2025</td><td class="dxgv" style="border-bottom-width:0px;">11/11/2025</td><td class="dxgv" style="border-right-width:0px;border-bottom-width:0px;">oalexander</td>
+			</tr>
+		</tbody></table><div class="dxmodalSys">
+			<div id="gvAnnouncements_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+				<div class="dxpc-mainDiv dxpc-hf">
+					<div class="dxpc-contentWrapper">
+						<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvAnnouncements_DXHFP_PWC-1">
+							&nbsp;&nbsp;
+						</div>
+					</div><div class="dxpc-footer" id="gvAnnouncements_DXHFP_PWF-1">
+						<div class="dxpc-footerContent">
+							<table id="gvAnnouncements_DXHFP_TPCFCm1_P">
+								<tbody><tr>
+									<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAnnouncements_DXHFP_O" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvAnnouncements_DXHFP_O_CD">
+											<div class="dxb-hbc">
+												<input id="gvAnnouncements_DXHFP_O_I" class="dxb-hb" value="OK" type="button" name="gvAnnouncements$DXHFP$TPCFCm1$O">
+											</div><span class="dx-vam">OK</span>
+										</div>
+									</div><script id="dxss_685174575" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXHFP_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXHFP_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXHFP_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAnnouncements_DXHFP_O',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(ASPxClientButton,'gvAnnouncements_DXHFP_O','',{'uniqueID':'gvAnnouncements$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvAnnouncements');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+									</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAnnouncements_DXHFP_C" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvAnnouncements_DXHFP_C_CD">
+											<div class="dxb-hbc">
+												<input id="gvAnnouncements_DXHFP_C_I" class="dxb-hb" value="Cancel" type="button" name="gvAnnouncements$DXHFP$TPCFCm1$C">
+											</div><span class="dx-vam">Cancel</span>
+										</div>
+									</div><script id="dxss_1781683013" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXHFP_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAnnouncements_DXHFP_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAnnouncements_DXHFP_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAnnouncements_DXHFP_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvAnnouncements_DXHFP_C','',{'uniqueID':'gvAnnouncements$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvAnnouncements');}});
+
+//-->
+</script></td>
+								</tr>
+							</tbody></table>
+						</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+					</div>
+				</div>
+			</div>
+		</div><div id="gvAnnouncements_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+		</div><table id="gvAnnouncements_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAnnouncements_DXHFP_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvAnnouncements_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+		</div><script id="dxss_1520109430" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAnnouncements_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAnnouncements_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvAnnouncements$DXHFP','cpButtonPanelID':'gvAnnouncements_DXHFP_TPCFCm1_P','cpOkButtonID':'gvAnnouncements_DXHFP_O','cpCancelButtonID':'gvAnnouncements_DXHFP_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><table id="gvAnnouncements_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAnnouncements_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvAnnouncements_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvAnnouncements_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAnnouncements_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAnnouncements_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAnnouncements_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAnnouncements_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1818183805" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientGridView,'gvAnnouncements','',{'callBack':function(arg) { ; },'stateObject':{'keys':['5','3','2','1'],'callbackState':'Xlyuou6VYpDQsLPIeVuVFzDmp5eitwn/yk2YeQ7g7nHmJx0a4Z/lRIX7D7Rc3TD0d5RtHdbKQRfcIRl64ZIX59zwNHb8GJz+9AGpRtj1Ty9PkxyRXZS2KpPjQKV4u0SRdsINnX0kajc/qNEJLeuT007G9arclvkMYDmITguo0i9VbkUI6Rq/Q/KZnw+GSmvnVrN2lexZQlpyM3cFk3Cl2qONtEQpHKd6HRp780ub81ivOVTEQ6dmkOkwqk4GXYt6/otb4ijVBr67aW0JYh6m3o5WaURsAw1BDTNBiFTv8JBs44xlPPNRKx4aTDk+DeR2uyl3NfOGqjhBLYYfoUe0h/7lSe0H4emNvDce8IUXZcQ=','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':4,'pageRowSize':10,'pageIndex':0,'pageCount':1,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'confirmDelete':'Are you sure you want to delete this announcement?','editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'toolbarsProp':[[0,]],'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'AnnouncementTypeId',,,,,1],[2,,,'Subject',,,,,2],[3,,,'Description',,,,,3],[4,,,'EffectiveDate',,3,,,4],[5,0,'SendUserEmail','SendAnnouncementEmailAllUsers',,,,,8,,,,,,,,1],[6,0,'SendPrimaryCounselEmail','SendAnnouncementEmailPrimaryCounsels',,,,,9,,,,,,,,1],[7,,,'DatePosted',,3,,,5],[8,,,'LastModifiedDate',,3,,,6],[9,,,'Creator',,,,,7]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'editingItemVisibleIndex':-1,'callbackUrl':'/Admin/gvAnnouncementsPartial','addNewItemUrl':'/Admin/gvAnnouncementsPartialAddNew','updateItemUrl':'/Admin/gvAnnouncementsPartialUpdate','deleteItemUrl':'/Admin/gvAnnouncementsPartialDelete','keyName':'Id'},{'BeginCallback':BeginAnnouncementsCallback});
+ASPxClientGridBase.PostponeInitialize('gvAnnouncements',({'commandButtonIDs':['gvAnnouncements_DXCBtn0','gvAnnouncements_DXCBtn1','gvAnnouncements_DXCBtn2','gvAnnouncements_DXCBtn3','gvAnnouncements_DXCBtn4','gvAnnouncements_DXCBtn5','gvAnnouncements_DXCBtn6','gvAnnouncements_DXCBtn7','gvAnnouncements_DXCBtn8'],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="8" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1,1_252"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47"><input type="hidden" name="DXMVCEditorsValues" value="{&quot;deAnnouncementsStartDate&quot;:null,&quot;deAnnouncementsEndDate&quot;:null,&quot;gvAnnouncements_DXFREditorcol1_DDD_L&quot;:[],&quot;gvAnnouncements_DXFREditorcol1&quot;:null,&quot;gvAnnouncements_DXFREditorcol2&quot;:null,&quot;gvAnnouncements_DXFREditorcol3&quot;:null,&quot;gvAnnouncements_DXFREditorcol4&quot;:null,&quot;gvAnnouncements_DXFREditorcol7&quot;:null,&quot;gvAnnouncements_DXFREditorcol8&quot;:null,&quot;gvAnnouncements_DXFREditorcol9&quot;:null}"></form>
+
+
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

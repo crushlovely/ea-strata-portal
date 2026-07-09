@@ -1,0 +1,397 @@
+---
+layout: layouts/base.njk
+title: "System Audit"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<script type="text/javascript">
+    function OnAuditToolbarItemClick(s, e) {
+        if (e.item.name !== "ExportFilteredToXlsx") {
+            return;
+        }
+
+        e.processOnServer = false;
+
+        var filterExpression = "";
+
+        if (s.GetFilterExpression) {
+            filterExpression = s.GetFilterExpression();
+        } else if (s.cpFilterExpression) {
+            filterExpression = s.cpFilterExpression;
+        }
+
+        document.getElementById("AuditFilterExpression").value = filterExpression || "";
+        document.getElementById("auditExportForm").submit();
+    }
+</script>
+
+<h2>System Audit</h2>
+
+<p class="text-muted">
+    Note: Export is limited to the first 10,000 records based on the current filters.
+</p>
+
+<form action="/Audit/ExportAuditToXlsx" id="auditExportForm" method="post"><input id="AuditFilterExpression" name="filterExpression" type="hidden" value=""><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1,1_252"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47"></form>
+<form action="/Audit/" method="post">
+
+<input type="hidden" name="gvAudit" id="gvAudit_State" value="{&amp;quot;keys&amp;quot;:[],&amp;quot;callbackState&amp;quot;:&amp;quot;8trTeFnS6YFhu+JkTU6I6FOnbuy2uWQ81NroMJKrNM5MUYPc+s73083PHDmxt7M7DS/EI7I+ErttsGYDvR5aDDYHdi34xFlpxl9eBwvo0mdQ98n7EDwAvgaGKOtq9HSAPKgX/FLdyKxyaR6pD9TWmflNHaoOGBkckUZUrIZo9vHpf2O8AlECBByEDpL7eDwcAdauWNpTNGIoV2Rux38HA6K4AxPUHVss46+Ia5IpvbNHlN9v2hOUL0xkDKc+iMfn2YU//ipPkeghs2ddKRzWsHhrC+ahVV8pYYeBTXtFtMkR89Wl7raFAlZHz/idme01yiLC1jH/7aE9vbL5Vb7cmQ==&amp;quot;,&amp;quot;groupLevelState&amp;quot;:{},&amp;quot;selection&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;toolbar&amp;quot;:&amp;quot;{}&amp;quot;}"><table class="dxgvControl_MaterialCompact dxgv" id="gvAudit" style="width:90%;border-collapse:separate;">
+	<tbody><tr>
+		<td><div class="dxmLite_MaterialCompact dxm-ltr">
+	<div class="dxm-main dxm-horizontal dxctToolbar_MaterialCompact dxct-sys dxgvCTTop dxmtb dxm-noWrap" id="gvAudit_DXCTMenu0" style="width: 100%; text-align: right;">
+		<ul class="dx dxm-image-l dxm-noImages" style="float:right;">
+			<li class="dxm-alignSpacing" style="width: 100%;"></li><li class="dxm-item dxm-noSubMenu dxct-if dxct-il" id="gvAudit_DXCTMenu0_DXI0_" style="min-width: 119px;"><div class="dxm-content dxm-hasText" id="gvAudit_DXCTMenu0_DXI0_T">
+				<span class="dx-vam dxm-contentText">Export to XLSX</span>
+			</div></li><li class="dxm-spacing dxm-amis" id="gvAudit_DXCTMenu0_DXI1_II" style="display: none; height: 32px;" savedheight="[object Object]"></li><li class="dxm-item dxm-dropDownMode dxm-ami dxct-if dxct-il" id="gvAudit_DXCTMenu0_DXI1_" style="display: none;"><div class="dxm-content" id="gvAudit_DXCTMenu0_DXI1_T">
+				<span class="dx-vam dxm-contentText">&nbsp;</span>
+			</div><div class="dxm-popOut" id="gvAudit_DXCTMenu0_DXI1_P" style="display: block;">
+				<img class="dxWeb_mAdaptiveMenu_MaterialCompact dxm-pImage" src="/DXR.axd?r=1_87-SZRsu" alt="..." id="gvAudit_DXCTMenu0_DXI1_PImg">
+			</div></li>
+		</ul>
+	</div><b class="dx-clear"></b><div id="gvAudit_DXCTMenu0_DXM1_" style="z-index: 20000; display: none; position: absolute;">
+		<div class="dxm-shadow dxm-popup dxmtb dxm-am" id="gvAudit_DXCTMenu0_DXME1_">
+			<ul class="dx dxm-gutter"><li class="dxm-fami" role="menuitem"></li></ul>
+		</div>
+	</div>
+</div><script id="dxss_827282587" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXCTMenu0',[[['dxm-hovered',''],['',''],['DXI0_'],['','T']],[['dxm-hovered','',''],['','',''],['DXI1_'],['','P','T']],[[''],[''],['DXME1_','DXMBC1_']]]);
+ASPx.AddDisabledItems('gvAudit_DXCTMenu0',[[['dxm-disabled'],[''],['DXI0_'],['','T']],[['dxm-disabled'],[''],['DXI1_'],['','P','T']]]);
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(ASPxClientGridToolbar,'gvAudit_DXCTMenu0','',{'uniqueID':'gvAudit$DXCTMenu0','cpItemsProps':{'commands':{'0':'Custom'},'ibpv':[]},'renderData':{'':[[0],[1]]}},{'ItemClick':function(s,e){ASPx.GCmdToolbarMenuItemClick('gvAudit',s,e)}},null,{'items':[{'name':'ExportFilteredToXlsx','align':'Right'},{}],'adaptiveModeData':1});
+
+//-->
+</script><div id="gvAudit_grouppanel" class="dxgvGroupPanel_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvAudit',event);">
+	Drag a column header here to group by that column
+</div><table id="gvAudit_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvAudit',event);" style="width:100%;empty-cells:show;">
+	<tbody><tr id="gvAudit_DXHeadersRow0">
+		<td class="dxgvHeader_MaterialCompact" style="width:0.1%;border-top-width:0px;border-left-width:0px;cursor:default;"><img class="dxGridView_gvDetailExpandedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="" style="visibility:hidden;"></td><td id="gvAudit_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>#</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+			</tr>
+		</tbody></table></td><td id="gvAudit_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Plaintiff Number</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+			</tr>
+		</tbody></table></td><td id="gvAudit_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Message</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+			</tr>
+		</tbody></table></td><td id="gvAudit_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Date</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderSortDown_MaterialCompact dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Descending" style="margin-left:5px;margin-right:5px;"><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+			</tr>
+		</tbody></table></td><td id="gvAudit_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>User</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+			</tr>
+		</tbody></table></td><td id="gvAudit_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+			<tbody><tr>
+				<td>Audit Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><tr id="gvAudit_DXFilterRow" class="dxgvFilterRow_MaterialCompact">
+		<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAudit_DXFREditorcol1" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAudit_DXFREditorcol1_I" name="gvAudit$DXFREditorcol1" onchange="ASPx.EValueChanged('gvAudit_DXFREditorcol1')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_29497722" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAudit_DXFREditorcol1','',{'uniqueID':'gvAudit$DXFREditorcol1','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAudit',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAudit',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAudit',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAudit_DXFREditorcol2" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAudit_DXFREditorcol2_I" name="gvAudit$DXFREditorcol2" onchange="ASPx.EValueChanged('gvAudit_DXFREditorcol2')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_383150214" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAudit_DXFREditorcol2','',{'uniqueID':'gvAudit$DXFREditorcol2','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAudit',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAudit',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAudit',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><script id="dxss_131374772" data-executed="true">
+<!--
+(function(){
+var a = {'is12HoursCulture':true,'numNegInf':'-∞','percentPattern':1,'twoDigitYearMax':2049,'numPosInf':'∞'};
+for(var b in a) ASPx.CultureInfo[b] = a[b];
+})();
+
+
+//-->
+</script><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAudit_DXFREditorcol3" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" onmousedown="return ASPx.DDMC_MD('gvAudit_DXFREditorcol3', event)" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAudit_DXFREditorcol3_I" name="gvAudit$DXFREditorcol3" onchange="ASPx.ETextChanged('gvAudit_DXFREditorcol3')" type="text" autocomplete="off"></td><td id="gvAudit_DXFREditorcol3_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAudit_DXFREditorcol3', event)"><img id="gvAudit_DXFREditorcol3_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAudit_DXFREditorcol3_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAudit_DXFREditorcol3_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+			</tr>
+		</tbody></table><div id="gvAudit_DXFREditorcol3_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+			<div class="dxpc-mainDiv dxdd-cal dxpc-shadow">
+				<div class="dxpc-contentWrapper">
+					<div class="dxpc-content" id="gvAudit_DXFREditorcol3_DDD_PWC-1">
+						<table style="display:none;">
+							<tbody><tr>
+								<td id="gvAudit_DXFREditorcol3_DDD_C_EC_D" class="dxeCalendarDay_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DS" class="dxeCalendarSelected_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DH" class="dxeCalendarHover_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DA" class="dxeCalendarOtherMonth_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DO" class="dxeCalendarOutOfRange_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DDD" class="dxeCalendarDayDisabled_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DW" class="dxeCalendarWeekend_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DT" class="dxeCalendarToday_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_DD" class="dxeDisabled_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_FNI" class="dxeCalendarFastNavItem_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_FNIS" class="dxeCalendarFastNavItemSelected_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_FNIH" class="dxeCalendarFastNavItemHover_MaterialCompact"></td><td id="gvAudit_DXFREditorcol3_DDD_C_EC_FNIA" class="dxeCalendarFastNavItemOtherPeriod_MaterialCompact"></td>
+							</tr>
+						</tbody></table><table class="dxeCVC dxeCalendar_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C" style="border-color:Silver;border-width:1px;border-style:Solid;border-width:1px;">
+							<tbody><tr>
+								<td style="vertical-align:Top;"><table style="width:100%;border-collapse:collapse;">
+									<tbody><tr>
+										<td class="dxeCalendarHeader_MaterialCompact" style="border-top:0;"><table style="width:100%;border-collapse:collapse;">
+											<tbody><tr>
+												<td id="gvAudit_DXFREditorcol3_DDD_C_PTPC" class="dxe" style="display:none;"><img id="gvAudit_DXFREditorcol3_DDD_C_PTPCImg" class="dxEditors_edtCalendarFNPrevPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Back"></td><td id="gvAudit_DXFREditorcol3_DDD_C_PYC" class="dxe"><img id="gvAudit_DXFREditorcol3_DDD_C_PYCImg" class="dxEditors_edtCalendarPrevYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous year"></td><td class="dxeCHS"></td><td id="gvAudit_DXFREditorcol3_DDD_C_PMC" class="dxe"><img id="gvAudit_DXFREditorcol3_DDD_C_PMCImg" class="dxEditors_edtCalendarPrevMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Previous month"></td><td id="gvAudit_DXFREditorcol3_DDD_C_TC" class="dxe" style="width:100%;cursor:default;"><span id="gvAudit_DXFREditorcol3_DDD_C_T" style="cursor:pointer;">June 2026</span></td><td id="gvAudit_DXFREditorcol3_DDD_C_NMC" class="dxe"><img id="gvAudit_DXFREditorcol3_DDD_C_NMCImg" class="dxEditors_edtCalendarNextMonth_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next month"></td><td class="dxeCHS"></td><td id="gvAudit_DXFREditorcol3_DDD_C_NYC" class="dxe"><img id="gvAudit_DXFREditorcol3_DDD_C_NYCImg" class="dxEditors_edtCalendarNextYear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next year"></td><td id="gvAudit_DXFREditorcol3_DDD_C_NTPC" class="dxe" style="display:none;"><img id="gvAudit_DXFREditorcol3_DDD_C_NTPCImg" class="dxEditors_edtCalendarFNNextPeriod_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Forward"></td>
+											</tr>
+										</tbody></table></td>
+									</tr><tr>
+										<td id="gvAudit_DXFREditorcol3_DDD_C_mc" class="dxMonthGridWithWeekNumbers" style="-webkit-user-select:none;"><table id="gvAudit_DXFREditorcol3_DDD_C_mt" style="width:100%;border-collapse:separate;">
+											<tbody><tr class="dx-ac">
+												<td id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_0"></td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_1">Sun</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_2">Mon</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_3">Tue</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_4">Wed</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_5">Thu</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_6">Fri</td><td class="dxeCalendarDayHeader_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_7">Sat</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_8">23</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_7" savedcursor="[object Object]" style="cursor: pointer;">31</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_8" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_9" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_10" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_11" savedcursor="[object Object]" style="cursor: pointer;">4</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_12" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_13" savedcursor="[object Object]" style="cursor: pointer;">6</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_9">24</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_14" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_15" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_16" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_17" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_18" savedcursor="[object Object]" style="cursor: pointer;">11</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_19" savedcursor="[object Object]" style="cursor: pointer;">12</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_20" savedcursor="[object Object]" style="cursor: pointer;">13</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_10">25</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_21" savedcursor="[object Object]" style="cursor: pointer;">14</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_22" savedcursor="[object Object]" style="cursor: pointer;">15</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_23" savedcursor="[object Object]" style="cursor: pointer;">16</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_24" savedcursor="[object Object]" style="cursor: pointer;">17</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_25" savedcursor="[object Object]" style="cursor: pointer;">18</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_26" savedcursor="[object Object]" style="cursor: pointer;">19</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_27" savedcursor="[object Object]" style="cursor: pointer;">20</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_11">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_28" savedcursor="[object Object]" style="cursor: pointer;">21</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarToday_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_29" savedcursor="[object Object]" style="cursor: pointer;">22</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_30" savedcursor="[object Object]" style="cursor: pointer;">23</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_31" savedcursor="[object Object]" style="cursor: pointer;">24</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_32" savedcursor="[object Object]" style="cursor: pointer;">25</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_33" savedcursor="[object Object]" style="cursor: pointer;">26</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_34" savedcursor="[object Object]" style="cursor: pointer;">27</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_12">27</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_35" savedcursor="[object Object]" style="cursor: pointer;">28</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_36" savedcursor="[object Object]" style="cursor: pointer;">29</td><td class="dxeCalendarDay_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_37" savedcursor="[object Object]" style="cursor: pointer;">30</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_38" savedcursor="[object Object]" style="cursor: pointer;">1</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_39" savedcursor="[object Object]" style="cursor: pointer;">2</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_40" savedcursor="[object Object]" style="cursor: pointer;">3</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_41" savedcursor="[object Object]" style="cursor: pointer;">4</td>
+											</tr><tr>
+												<td class="dxeCalendarWeekNumber_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_AUX_0_0_13">28</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_42" savedcursor="[object Object]" style="cursor: pointer;">5</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_43" savedcursor="[object Object]" style="cursor: pointer;">6</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_44" savedcursor="[object Object]" style="cursor: pointer;">7</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_45" savedcursor="[object Object]" style="cursor: pointer;">8</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_46" savedcursor="[object Object]" style="cursor: pointer;">9</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_47" savedcursor="[object Object]" style="cursor: pointer;">10</td><td class="dxeCalendarDay_MaterialCompact dxeCalendarWeekend_MaterialCompact dxeCalendarOtherMonth_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_mc_48" savedcursor="[object Object]" style="cursor: pointer;">11</td>
+											</tr>
+										</tbody></table></td>
+									</tr><tr>
+										<td id="gvAudit_DXFREditorcol3_DDD_C_yc" class="dxFastNavGrid" style="display:none;"><table id="gvAudit_DXFREditorcol3_DDD_C_yt" class="dxeCalendarFastNav_MaterialCompact" style="height:100%;width:100%;border-collapse:separate;">
+											<tbody><tr>
+												<td class="dxeCalendarFastNavItemArea_MaterialCompact" style="height:100%;width:100%;"><table id="gvAudit_DXFREditorcol3_DDD_C_yt_n" style="height:100%;width:100%;border-collapse:separate;">
+													<tbody><tr>
+														<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_0">Jan</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_1">Feb</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_2">Mar</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_3">Apr</td>
+													</tr><tr>
+														<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_4">May</td><td class="dxeCalendarFastNavItem_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_5">Jun</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_6">Jul</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_7">Aug</td>
+													</tr><tr>
+														<td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_8">Sep</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_9">Oct</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_10">Nov</td><td class="dxeCalendarFastNavItem_MaterialCompact dxeCalendarFastNavItemOtherPeriod_MaterialCompact" id="gvAudit_DXFREditorcol3_DDD_C_yc_11">Dec</td>
+													</tr>
+												</tbody></table></td>
+											</tr>
+										</tbody></table></td>
+									</tr>
+								</tbody></table></td>
+							</tr><tr>
+								<td id="gvAudit_DXFREditorcol3_DDD_C_F" class="dxeCalendarFooter_MaterialCompact"><button id="gvAudit_DXFREditorcol3_DDD_C_BT" class="dxeCalendarButton_MaterialCompact" type="button">Today</button><button id="gvAudit_DXFREditorcol3_DDD_C_BC" class="dxeCalendarButton_MaterialCompact" type="button">Clear</button></td>
+							</tr>
+						</tbody></table><script id="dxss_713909881" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXFREditorcol3_DDD_C',[[['dxeCalendarButtonHover_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddPressedItems('gvAudit_DXFREditorcol3_DDD_C',[[['dxeCalendarButtonPressed_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']]]);
+ASPx.AddDisabledItems('gvAudit_DXFREditorcol3_DDD_C',[[['dxeDisabled_MaterialCompact'],[''],['']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['BT','BC','BO','BCN','FNP_BO','FNP_BC']],[[''],[''],['PYC','PMC','NMC','NYC'],,[[{'spriteCssClass':'dxEditors_edtCalendarPrevYearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarPrevMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextMonthDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtCalendarNextYearDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientCalendar,'gvAudit_DXFREditorcol3_DDD_C','',{'uniqueID':'gvAudit$DXFREditorcol3$DDD$C','scStates':2,'scPostfix':'MaterialCompact','serverCurrentDate':new Date(2026,5,22,0,0,0,0),'visibleDate':new Date(2026,5,22,0,0,0,0),'fastNavRollbackTexts':['Back To Days', 'Back To Months', 'Back To Years'],'isDateEditCalendar':true},null,null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+					</div>
+				</div>
+			</div>
+		</div><script id="dxss_1143304759" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXFREditorcol3_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAudit_DXFREditorcol3_DDD','',{'uniqueID':'gvAudit$DXFREditorcol3$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAudit_DXFREditorcol3', e); }});
+
+//-->
+</script><script id="dxss_693726902" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXFREditorcol3',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAudit_DXFREditorcol3',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAudit_DXFREditorcol3',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientDateEdit,'gvAudit_DXFREditorcol3','',{'uniqueID':'gvAudit$DXFREditorcol3','scStates':2,'scPostfix':'MaterialCompact','stateObject':{'rawValue':'N','useMinDateInsteadOfNull':false},'autoCompleteAttribute':{'name':'autocomplete','value':'off'},'outOfRangeWarningClassName':'dxeOutOfRWarn_MaterialCompact dxeOutOfRWarnRight_MaterialCompact','outOfRangeWarningMessages':['The date must be in the range {0}...{1}', 'The date must be greater than or equal to {0}', 'The date must be less than or equal to {0}'],'forceShowClearButtonAlways':true,'dateFormatter':ASPx.DateFormatter.Create('M/d/yyyy')},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAudit',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAudit', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv"><table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys" id="gvAudit_DXFREditorcol4" style="width:100%;">
+			<tbody><tr>
+				<td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAudit_DXFREditorcol4_I" name="gvAudit$DXFREditorcol4" onchange="ASPx.EValueChanged('gvAudit_DXFREditorcol4')" type="text" autocomplete="off"></td>
+			</tr>
+		</tbody></table><script id="dxss_1355740678" data-executed="true">
+<!--
+ASPx.createControl(ASPxClientTextBox,'gvAudit_DXFREditorcol4','',{'uniqueID':'gvAudit$DXFREditorcol4','scStates':6,'scPostfix':'MaterialCompact'},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAudit',s); },'KeyDown':function(s, event) { ASPx.GVFilterKeyPress('gvAudit',s,event); },'UserInput':function(s, event) { ASPx.GVFilterUserInput('gvAudit',s); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td><td class="dxgv" style="text-align:Left;border-right-width:0px;"><table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="gvAudit_DXFREditorcol5" style="width:100%;">
+			<tbody><tr>
+				<td style="display:none;"><input id="gvAudit_DXFREditorcol5_VI" name="gvAudit_DXFREditorcol5_VI" type="hidden"></td><td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys" id="gvAudit_DXFREditorcol5_I" name="gvAudit$DXFREditorcol5" onchange="ASPx.ETextChanged('gvAudit_DXFREditorcol5')" type="text" autocomplete="off"></td><td id="gvAudit_DXFREditorcol5_B-100" class="dxHideContent dxeButton dxeButtonEditButton_MaterialCompact dxeButtonEditClearButton_MaterialCompact" onmousedown="ASPx.BEClear('gvAudit_DXFREditorcol5', event)"><img id="gvAudit_DXFREditorcol5_B-100Img" class="dxEditors_edtClear_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="x"></td><td id="gvAudit_DXFREditorcol5_B-1" class="dxeButton dxeButtonEditButton_MaterialCompact" style="-webkit-user-select:none;"><img id="gvAudit_DXFREditorcol5_B-1Img" class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+			</tr>
+		</tbody></table><div id="gvAudit_DXFREditorcol5_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root" style="z-index:10000;display:none;visibility:hidden;">
+			<div class="dxpc-mainDiv dxdd-list dxpc-shadow">
+				<div class="dxpc-contentWrapper">
+					<div class="dxpc-content" id="gvAudit_DXFREditorcol5_DDD_PWC-1">
+						<table class="dxeListBox_MaterialCompact" id="gvAudit_DXFREditorcol5_DDD_L" style="border-collapse:separate;">
+							<tbody><tr>
+								<td style="vertical-align:Top;"><div id="gvAudit_DXFREditorcol5_DDD_L_D" class="dxlbd" style="width:100%;overflow-x:hidden;overflow-y:auto;"><div id="gvAudit_DXFREditorcol5_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 0px;"><div id="gvAudit_DXFREditorcol5_DDD_LVirtualScrollTopSpacer"></div>
+									<input id="gvAudit_DXFREditorcol5_DDD_L_VI" type="hidden" name="gvAudit$DXFREditorcol5$DDD$L" value=""><table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+										<tbody><tr id="gvAudit_DXFREditorcol5_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+											<td id="gvAudit_DXFREditorcol5_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;</td>
+										</tr>
+									</tbody></table><table id="gvAudit_DXFREditorcol5_DDD_L_LBT" style="width:100%;border-collapse:separate;" class="">
+
+									</table>
+								</div></div></td>
+							</tr>
+						</tbody></table><script id="dxss_1859721695" data-executed="true">
+<!--
+ASPx.createControl(MVCxClientListBox,'gvAudit_DXFREditorcol5_DDD_L','',{'uniqueID':'gvAudit$DXFREditorcol5$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':43,'text':'Allocation Appeal Updated'},{'value':21,'text':'Allocation Information Updated'},{'value':42,'text':'Allocation Review Reversed'},{'value':18,'text':'Announcement Added'},{'value':20,'text':'Announcement Deleted'},{'value':19,'text':'Announcement Updated'},{'value':25,'text':'Appeal Submitted'},{'value':26,'text':'Bankruptcy and Lien Updated'},{'value':40,'text':'Bulk Review Performed'},{'value':41,'text':'Bulk Transition Performed'},{'value':28,'text':'Case Calculations Run'},{'value':7,'text':'Claim Added'},{'value':27,'text':'Claim Deleted'},{'value':10,'text':'Claim Representative Updated'},{'value':22,'text':'Claim Review Updated'},{'value':66,'text':'Claim Undeleted'},{'value':8,'text':'Claim Updated'},{'value':9,'text':'Claimant Updated'},{'value':64,'text':'CMO 37 Deficiency'},{'value':45,'text':'Delete Law Firm Document'},{'value':13,'text':'Deleted Claim Document'},{'value':56,'text':'Deleted Expense Entry Document'},{'value':49,'text':'Deleted Plaintiff Discovery Document'},{'value':34,'text':'Enhancement Option Added'},{'value':36,'text':'Enhancement Option Deleted'},{'value':35,'text':'Enhancement Option Updated'},{'value':31,'text':'Enhancement Question Added'},{'value':33,'text':'Enhancement Question Deleted'},{'value':32,'text':'Enhancement Question Updated'},{'value':17,'text':'Extension Request Reviewed'},{'value':16,'text':'Extension Request Submitted'},{'value':11,'text':'General Data Administration'},{'value':30,'text':'Initial Allocation Appeal Submitted'},{'value':29,'text':'Initial Allocation Decision'},{'value':37,'text':'Injury Type Added'},{'value':39,'text':'Injury Type Deleted'},{'value':38,'text':'Injury Type Updated'},{'value':4,'text':'Law Firm Added'},{'value':5,'text':'Law Firm Updated'},{'value':15,'text':'Milestones Updated'},{'value':62,'text':'Plaintiff Discovery Amendment'},{'value':46,'text':'Plaintiff Discovery Form Added'},{'value':63,'text':'Plaintiff Discovery Form Deleted'},{'value':65,'text':'Plaintiff Discovery Form Undeleted'},{'value':47,'text':'Plaintiff Discovery Form Updated'},{'value':24,'text':'Portal Document Deleted'},{'value':23,'text':'Portal Document Updated'},{'value':61,'text':'Return PPF/PFS to LawFirm'},{'value':50,'text':'Time/Expense Entry Added'},{'value':58,'text':'Time/Expense Entry Bulk Submission'},{'value':53,'text':'Time/Expense Entry Review Completed'},{'value':54,'text':'Time/Expense Entry Review Reversed'},{'value':52,'text':'Time/Expense Entry Review Started'},{'value':51,'text':'Time/Expense Entry Updated'},{'value':57,'text':'Time/Expense Import Performed'},{'value':14,'text':'Update Claim Document Information'},{'value':44,'text':'Upload Law Firm Document'},{'value':12,'text':'Uploaded Claim Document'},{'value':55,'text':'Uploaded Expense Entry Document'},{'value':48,'text':'Uploaded Plaintiff Discovery Document'},{'value':6,'text':'User Added'},{'value':1,'text':'User Information Updated'},{'value':3,'text':'User Role Added'},{'value':2,'text':'User Role Information Updated'},{'value':59,'text':'Workflow Feature Activated'},{'value':60,'text':'Workflow Feature Deactivated'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('gvAudit_DXFREditorcol5', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('gvAudit_DXFREditorcol5', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script>
+					</div>
+				</div>
+			</div>
+		</div><script id="dxss_872956117" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXFREditorcol5_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAudit_DXFREditorcol5_DDD','',{'uniqueID':'gvAudit$DXFREditorcol5$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('gvAudit_DXFREditorcol5', e); }});
+
+//-->
+</script><script id="dxss_1479593649" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXFREditorcol5',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddPressedItems('gvAudit_DXFREditorcol5',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-100','B-1']]]);
+ASPx.AddDisabledItems('gvAudit_DXFREditorcol5',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-100','B-1'],,[[{'spriteCssClass':'dxEditors_edtClearDisabled_MaterialCompact'}],[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+ASPx.createControl(MVCxClientComboBox,'gvAudit_DXFREditorcol5','',{'uniqueID':'gvAudit$DXFREditorcol5','scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'forceShowClearButtonAlways':true,'ddmInput':true,'lastSuccessValue':null,'islastSuccessValueInit':true,'allowNull':true},{'ValueChanged':function(s, event) { ASPx.GVFilterChanged('gvAudit',s); },'KeyDown':function(s, event) { ASPx.GVFilterSpecKeyPress('gvAudit', s, event); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+
+//-->
+</script></td>
+	</tr><tr id="gvAudit_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF231400</td><td class="dxgv">Amendment 2 Ended by Linked CMO37 Deficiency R2GYS20000003.</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF231400</td><td class="dxgv">Updated: "PFS Status": {Submitted: Pending Amendment -&gt; Submitted: CMO37 Deficient}; </td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">Plaintiff Discovery Form Updated</td>
+	</tr><tr id="gvAudit_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF231400</td><td class="dxgv">Deficiency Ticket Linked R2GYS20000003</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow3" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Amendment 2 Ended by Linked CMO37 Deficiency R2GYS20000002.</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow4" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Updated: "PFS Status": {Submitted: Pending Amendment -&gt; Submitted: CMO37 Deficient}; </td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">Plaintiff Discovery Form Updated</td>
+	</tr><tr id="gvAudit_DXDataRow5" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Deficiency Ticket Linked R2GYS20000002</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow6" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF231400</td><td class="dxgv">Deficiency Ticket Status Update: Void for R1GYS20000003</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow7" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Deficiency Ticket Status Update: Void for R1GYS20000002</td><td class="dxgv">06/18/26 04:48 PM</td><td class="dxgv">ANunez@gunster.com</td><td class="dxgv dx-al" style="border-right-width:0px;">CMO 37 Deficiency</td>
+	</tr><tr id="gvAudit_DXDataRow8" class="dxgvDataRow_MaterialCompact" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Inserted: "Amendment Message" : {Testing whether we can issue a ticket to a Plaintiff with a pending amendment status}; </td><td class="dxgv">06/18/26 03:22 PM</td><td class="dxgv">C.Wood</td><td class="dxgv dx-al" style="border-right-width:0px;">Plaintiff Discovery Amendment</td>
+	</tr><tr id="gvAudit_DXDataRow9" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+		<td class="dxgvDetailButton_MaterialCompact dxgv dxgvDBC" style="width:1px;border-right-width:0px;"><img class="dxGridView_gvDetailCollapsedButton_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Expand" style="visibility:hidden;"></td><td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac">&nbsp;</td><td class="dxgv">AFFF141993</td><td class="dxgv">Updated: "PFS Status": {Submitted: In Review -&gt; Submitted: Pending Amendment}; </td><td class="dxgv">06/18/26 03:22 PM</td><td class="dxgv">C.Wood</td><td class="dxgv dx-al" style="border-right-width:0px;">Plaintiff Discovery Form Updated</td>
+	</tr>
+</tbody></table><div class="dxmodalSys">
+	<div id="gvAudit_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+		<div class="dxpc-mainDiv dxpc-hf">
+			<div class="dxpc-contentWrapper">
+				<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvAudit_DXHFP_PWC-1">
+					&nbsp;&nbsp;
+				</div>
+			</div><div class="dxpc-footer" id="gvAudit_DXHFP_PWF-1">
+				<div class="dxpc-footerContent">
+					<table id="gvAudit_DXHFP_TPCFCm1_P">
+						<tbody><tr>
+							<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAudit_DXHFP_TPCFCm1_O" style="-webkit-user-select:none;">
+								<div class="dxb" id="gvAudit_DXHFP_TPCFCm1_O_CD">
+									<div class="dxb-hbc">
+										<input id="gvAudit_DXHFP_TPCFCm1_O_I" class="dxb-hb" value="OK" type="button" name="gvAudit$DXHFP$TPCFCm1$O">
+									</div><span class="dx-vam">OK</span>
+								</div>
+							</div><script id="dxss_658856941" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXHFP_TPCFCm1_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAudit_DXHFP_TPCFCm1_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAudit_DXHFP_TPCFCm1_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAudit_DXHFP_TPCFCm1_O',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(ASPxClientButton,'gvAudit_DXHFP_TPCFCm1_O','',{'uniqueID':'gvAudit$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvAudit');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+							</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvAudit_DXHFP_TPCFCm1_C" style="-webkit-user-select:none;">
+								<div class="dxb" id="gvAudit_DXHFP_TPCFCm1_C_CD">
+									<div class="dxb-hbc">
+										<input id="gvAudit_DXHFP_TPCFCm1_C_I" class="dxb-hb" value="Cancel" type="button" name="gvAudit$DXHFP$TPCFCm1$C">
+									</div><span class="dx-vam">Cancel</span>
+								</div>
+							</div><script id="dxss_147909935" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXHFP_TPCFCm1_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvAudit_DXHFP_TPCFCm1_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvAudit_DXHFP_TPCFCm1_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvAudit_DXHFP_TPCFCm1_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvAudit_DXHFP_TPCFCm1_C','',{'uniqueID':'gvAudit$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvAudit');}});
+
+//-->
+</script></td>
+						</tr>
+					</tbody></table>
+				</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+			</div>
+		</div>
+	</div>
+</div><div id="gvAudit_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+</div><table id="gvAudit_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAudit_DXHFP_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="gvAudit_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+</div><script id="dxss_1730165386" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvAudit_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvAudit$DXHFP','cpButtonPanelID':'gvAudit_DXHFP_TPCFCm1_P','cpOkButtonID':'gvAudit_DXHFP_TPCFCm1_O','cpCancelButtonID':'gvAudit_DXHFP_TPCFCm1_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+	<div class="dxpLite_MaterialCompact" id="gvAudit_DXPagerBottom" style="min-width: 775px; display: inline-block; float: none;">
+		<b class="dxp-lead dxp-summary">Page 1 of 54570 (545692 items)</b><b id="gvAudit_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b class="dxp-num dxp-current">1</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN1');">2</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN2');">3</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN3');">4</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN4');">5</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN5');">6</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN6');">7</a><b class="dxp-ellip">…</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN54567');">54568</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN54568');">54569</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvAudit','PN54569');">54570</a><a id="gvAudit_DXPagerBottom_PBN" class="dxp-button dxp-bi" onclick="ASPx.GVPagerOnClick('gvAudit','PBN');"><img class="dxWeb_pNext_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></a>
+	</div><b class="dx-clear"></b><script id="dxss_1653105620" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvAudit_DXPagerBottom',[[['dxp-hoverButton'],[''],['PBN']]]);
+ASPx.RemoveHoverItems('gvAudit_DXPagerBottom',[[['PBP']]]);
+ASPx.createControl(ASPxClientPager,'gvAudit_DXPagerBottom','',{'uniqueID':'gvAudit$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'pageSizeItems':[{'text':'10','value':'10'},{'text':'20','value':'20'},{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'200','value':'200'}],'pageSizeSelectedItem':{'text':'10','value':10}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvAudit',e.value); }});
+
+//-->
+</script>
+</div><table id="gvAudit_DXFilterBar" class="dxgvFilterBar_MaterialCompact" style="width:100%;">
+	<tbody><tr class="dxgv">
+		<td class="dxgvFilterBarImageCell_MaterialCompact"><img class="dxGridView_gvFilterRowButton_MaterialCompact" onclick="ASPx.GVShowFilterControl('gvAudit');" src="/DXR.axd?r=1_87-SZRsu" alt="Show filter builder dialog"></td><td class="dxgvFilterBarExpressionCell_MaterialCompact"><a class="dxgvFilterBarLink_MaterialCompact" onclick="ASPx.GVShowFilterControl('gvAudit');" href="javascript:;">Create Filter</a></td><td style="width:100%;">&nbsp;</td>
+	</tr>
+</tbody></table><table id="gvAudit_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+	<tbody><tr>
+		<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvAudit_TL">Loading…</span></td>
+	</tr>
+</tbody></table><div id="gvAudit_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+</div><img id="gvAudit_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAudit_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAudit_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAudit_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvAudit_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"><script id="dxss_968321624" data-executed="true">
+<!--
+var dxo = ASPx.GetControlCollection().Get('gvAudit');
+dxo.SetProperties({'callBacksEnabled':true,'pageRowCount':10,'pageRowSize':10,'pageIndex':0,'pageCount':54570,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'toolbarsProp':[[0,]],'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'ClaimNumber',,,,,1],[2,,,'Message',,,,,2],[3,,,'DateEntered',,3,0,2,3],[4,,,'User',,,,,4],[5,,,'AuditTypeId',,,,,5]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':1,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'hasDetailRows':true,'editingItemVisibleIndex':-1});
+
+//-->
+</script><script id="dxss_1739463674" data-executed="true">
+<!--
+ASPxClientGridBase.PostponeInitialize('gvAudit',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgv" data-colSpan="6" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script></td>
+	</tr>
+</tbody></table><script id="dxss_378454244" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientGridView,'gvAudit','',{'callBack':function(arg) { ; },'stateObject':{'keys':[],'callbackState':'8trTeFnS6YFhu+JkTU6I6FOnbuy2uWQ81NroMJKrNM5MUYPc+s73083PHDmxt7M7DS/EI7I+ErttsGYDvR5aDDYHdi34xFlpxl9eBwvo0mdQ98n7EDwAvgaGKOtq9HSAPKgX/FLdyKxyaR6pD9TWmflNHaoOGBkckUZUrIZo9vHpf2O8AlECBByEDpL7eDwcAdauWNpTNGIoV2Rux38HA6K4AxPUHVss46+Ia5IpvbNHlN9v2hOUL0xkDKc+iMfn2YU//ipPkeghs2ddKRzWsHhrC+ahVV8pYYeBTXtFtMkR89Wl7raFAlZHz/idme01yiLC1jH/7aE9vbL5Vb7cmQ==','groupLevelState':{},'selection':''},'cpFilterExpression':'','callBacksEnabled':true,'pageRowCount':0,'pageRowSize':10,'pageIndex':0,'pageCount':0,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'toolbarsProp':[[0,]],'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'ClaimNumber',,,,,1],[2,,,'Message',,,,,2],[3,,,'DateEntered',,3,0,2,3],[4,,,'User',,,,,4],[5,,,'AuditTypeId',,,,,5]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':1,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'autoFilterDelay':1200,'hasDetailRows':true,'editingItemVisibleIndex':-1,'callbackUrl':'/Audit/gvAuditPartial','keyName':'Id'},{'Init':function(s, e) { s.PerformCallback(); },'ToolbarItemClick':OnAuditToolbarItemClick});
+ASPxClientGridBase.PostponeInitialize('gvAudit',({'commandButtonIDs':[],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgvIndentCell dxgv dxgvDIC" style="border-left-width:0px;border-right-width:0px;">&nbsp;</td><td class="dxgv" data-colSpan="6" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script><input type="hidden" name="DXScript" value="1_0,1_1,1_2,1_3,1_9,1_62,1_10,1_253,1_11,1_12,1_13,1_14,1_18,1_64,1_46,1_15,1_7,14_0,14_8,1_25,1_37,1_29,14_36,1_21,1_53,14_35,1_39,1_52,1_51,14_34,1_181,1_182,1_22,1_31,1_44,1_211,1_225,1_209,1_241,1_45,1_50,14_6,1_49,14_15,1_19,1_20,1_38,1_32,1_17,1_224,1_226,1_210,1_218,1_214,1_219,1_220,1_215,1_221,1_216,1_217,1_212,1_222,1_223,1_228,1_237,1_239,1_240,1_227,1_232,1_233,1_234,1_213,1_229,1_230,1_231,1_235,1_236,1_238,14_49,14_50,14_2,1_57,1_55,14_39,1_54,14_40,1_56,14_41,14_42,1_58,14_3,1_47,14_9,14_10,1_33,14_11,1_61,1_60,14_12,1_48,1_36,14_44,1_41,14_13,14_14,1_65,1_183,1_180,14_24,1_203,14_25,1_192,14_18,1_201,14_20,1_186,1_188,1_196,1_197,1_198,1_202,1_184,1_191,14_17,14_22,1_190,14_19,1_59,1_193,1_187,14_16,1_195,1_189,14_43,1_200,1_194,14_21,1_251,14_1,1_252"><input type="hidden" name="DXCss" value="0_2067,1_66,1_67,0_2070,1_72,1_208,0_1935,1_207,0_1938,0_1952,0_1955,1_82,1_71,0_2,0_8,0_12,0_20,0_24,0_28,0_16,0_32,0_56,0_50,0_53,0_47"><input type="hidden" name="DXMVCEditorsValues" value="{&quot;gvAudit_DXFREditorcol1&quot;:null,&quot;gvAudit_DXFREditorcol2&quot;:null,&quot;gvAudit_DXFREditorcol3&quot;:null,&quot;gvAudit_DXFREditorcol4&quot;:null,&quot;gvAudit_DXFREditorcol5_DDD_L&quot;:[],&quot;gvAudit_DXFREditorcol5&quot;:null}"></form>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

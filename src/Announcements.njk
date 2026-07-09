@@ -1,0 +1,356 @@
+---
+layout: layouts/base.njk
+title: "Announcements"
+---
+{% raw %}
+<div class="contentPane">
+
+
+
+  <script type="text/javascript">
+
+    var annTypeId;
+    var searchText;
+    function RefreshAnnouncementList() {
+      annTypeId = cbAnnouncementTypes.GetValue();
+      searchText = txtSearch.GetText();
+      if (!cbpAnnouncements.InCallback())
+        cbpAnnouncements.PerformCallback();
+    }
+
+    function OnBeginAnnouncementCallback(s, e) {
+      e.customArgs["announcementTypeId"] = annTypeId;
+      e.customArgs["searchText"] = searchText;
+      annTypeId = null;
+      searchText = null;
+    }
+  </script>
+
+  <div class="page-header">
+    <h1>Announcements</h1>
+  </div>
+
+  <div style="float:left; width:100%; padding-bottom:20px">
+    <div style="float:left; width:30%">
+      <table class="dxeButtonEditSys dxeButtonEdit_MaterialCompact" id="cbAnnouncementTypes">
+        <tbody>
+          <tr>
+            <td style="display:none;"><input id="cbAnnouncementTypes_VI" name="cbAnnouncementTypes_VI" type="hidden"
+                value="0"></td>
+            <td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys"
+                id="cbAnnouncementTypes_I" name="cbAnnouncementTypes"
+                onchange="ASPx.ETextChanged('cbAnnouncementTypes')" value="All Announcements" type="text"
+                autocomplete="off"></td>
+            <td id="cbAnnouncementTypes_B-1"
+              class="dxeButton dxeButtonEditButton_MaterialCompact  dxRippleTargetExternal"
+              style="-webkit-user-select:none;"><img id="cbAnnouncementTypes_B-1Img"
+                class="dxEditors_edtDropDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="v"></td>
+          </tr>
+        </tbody>
+      </table><input type="hidden" name="cbAnnouncementTypes$DDDState" id="cbAnnouncementTypes_DDD_State"
+        value="{&amp;quot;windowsState&amp;quot;:&amp;quot;0:0:-1:15:173:1:168:221:1:0:0:0&amp;quot;}">
+      <div id="cbAnnouncementTypes_DDD_PW-1" class="dxpcDropDown_MaterialCompact dxpclW dxpc-ddSys dxdd-root"
+        style="z-index: 10000; visibility: hidden; width: 170px; height: 221px; position: absolute; left: 15px; top: 172.398px; overflow: visible; display: none;">
+        <div class="dxpc-mainDiv dxdd-list dxpc-shadow" style="left: 0px; top: 0px;">
+          <div class="dxpc-contentWrapper" style="display: table; height: 221px;">
+            <div class="dxpc-content" id="cbAnnouncementTypes_DDD_PWC-1" style="display: table-cell;">
+              <input type="hidden" name="cbAnnouncementTypes$DDD$L$State" id="cbAnnouncementTypes_DDD_L_State"
+                value="{&amp;quot;CustomCallback&amp;quot;:&amp;quot;&amp;quot;}">
+              <table class="dxeListBox_MaterialCompact" id="cbAnnouncementTypes_DDD_L"
+                style="border-collapse: separate; height: 0px; width: 168px;">
+                <tbody>
+                  <tr>
+                    <td style="vertical-align:Top;">
+                      <div id="cbAnnouncementTypes_DDD_L_D" class="dxlbd"
+                        style="width: 168px; overflow: hidden auto; padding-right: 0px; height: 217px;">
+                        <div id="cbAnnouncementTypes_DDD_LLBVSTC" style="overflow: hidden; width: 100%; height: 217px;">
+                          <div id="cbAnnouncementTypes_DDD_LVirtualScrollTopSpacer" style="height: 0px;"></div>
+                          <input id="cbAnnouncementTypes_DDD_L_VI" type="hidden" name="cbAnnouncementTypes$DDD$L"
+                            value="0">
+                          <table style="border-collapse:separate;visibility:hidden!important;display:none!important;">
+                            <tbody>
+                              <tr id="cbAnnouncementTypes_DDD_L_LBI-1" class="dxeListBoxItemRow_MaterialCompact">
+                                <td id="cbAnnouncementTypes_DDD_L_LBI-1T0" class="dxeListBoxItem_MaterialCompact">&nbsp;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table id="cbAnnouncementTypes_DDD_L_LBT" style="width:100%;border-collapse:separate;"
+                            class="">
+
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI0T0"
+                                class="dxeListBoxItem_MaterialCompact  dxeListBoxItemSelected_MaterialCompact">All
+                                Announcements</td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI1T0" class="dxeListBoxItem_MaterialCompact">Policies
+                              </td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI2T0" class="dxeListBoxItem_MaterialCompact">Reminders
+                              </td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI3T0" class="dxeListBoxItem_MaterialCompact">Portal
+                                Enhancements</td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI4T0" class="dxeListBoxItem_MaterialCompact">FAQs</td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI5T0" class="dxeListBoxItem_MaterialCompact">Important
+                                Dates</td>
+                            </tr>
+                            <tr class="dxeListBoxItemRow_MaterialCompact">
+                              <td id="cbAnnouncementTypes_DDD_L_LBI6T0" class="dxeListBoxItem_MaterialCompact">
+                                Informational</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <script id="dxss_1281382310" data-executed="true">
+                <!-
+                ASPx.createControl(MVCxClientListBox,'cbAnnouncementTypes_DDD_L','',{'uniqueID':'cbAnnouncementTypes$DDD$L','scStates':6,'scPostfix':'MaterialCompact','stateObject':{'CustomCallback':''},'savedSelectedIndex':0,'isSyncEnabled':false,'isComboBoxList':true,'hasSampleItem':true,'hoverClasses':['dxeListBoxItemHover_MaterialCompact'],'selectedClasses':['dxeListBoxItemSelected_MaterialCompact'],'disabledClasses':['dxeDisabled_MaterialCompact'],'itemsInfo':[{'value':'0','text':'All Announcements'},{'value':'1','text':'Policies'},{'value':'2','text':'Reminders'},{'value':'3','text':'Portal Enhancements'},{'value':'4','text':'FAQs'},{'value':'5','text':'Important Dates'},{'value':'6','text':'Informational'}]},{'SelectedIndexChanged':function (s, e) { ASPx.CBLBSelectedIndexChanged('cbAnnouncementTypes', e); },'ItemClick':function (s, e) { ASPx.CBLBItemMouseUp('cbAnnouncementTypes', e); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+                
+                //-->
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script id="dxss_1036450280" data-executed="true">
+        <!-
+        ASPx.AddHoverItems('cbAnnouncementTypes_DDD',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+        ASPx.createControl(ASPxClientPopupControl,'cbAnnouncementTypes_DDD','',{'uniqueID':'cbAnnouncementTypes$DDD','adjustInnerControlsSizeOnShow':false,'popupAnimationType':'slide','closeAction':'CloseButton','popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below'},{'Shown':function (s, e) { ASPx.DDBPCShown('cbAnnouncementTypes', e); }});
+        
+        //-->
+      </script>
+      <script id="dxss_2128094994" data-executed="true">
+        <!-
+        ASPx.AddHoverItems('cbAnnouncementTypes',[[['dxeButtonEditButtonHover_MaterialCompact'],[''],['B-1']]]);
+        ASPx.RemoveHoverItems('cbAnnouncementTypes',[[['B-100']]]);
+        ASPx.AddPressedItems('cbAnnouncementTypes',[[['dxeButtonEditButtonPressed_MaterialCompact'],[''],['B-1']]]);
+        ASPx.RemovePressedItems('cbAnnouncementTypes',[[['B-100']]]);
+        ASPx.AddDisabledItems('cbAnnouncementTypes',[[['dxeDisabled_MaterialCompact'],[''],['','I']],[['dxeDisabled_MaterialCompact dxeButtonDisabled_MaterialCompact'],[''],['B-1'],,[[{'spriteCssClass':'dxEditors_edtDropDownDisabled_MaterialCompact'}]],['Img']]]);
+        ASPx.RemoveDisabledItems('cbAnnouncementTypes',[[['B-100'],]]);
+        ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+        ASPx.createControl(MVCxClientComboBox,'cbAnnouncementTypes','',{'scStates':2,'scPostfix':'MaterialCompact','autoCompleteAttribute':{'name':'autocomplete','value':'off'},'ddmInput':true,'lastSuccessValue':'0','islastSuccessValueInit':true},{'ValueChanged':function(s,e) { RefreshAnnouncementList(); }},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''}]});
+        
+        //-->
+      </script>
+    </div>
+    <div style="float:left">
+      <input type="hidden" name="txtSearch$State" id="txtSearch_State"
+        value="{&amp;quot;rawValue&amp;quot;:&amp;quot;&amp;quot;}">
+      <table class="dxeTextBoxSys dxeTextBox_MaterialCompact dxeTextBoxDefaultWidthSys dxeNullText_MaterialCompact dxh0"
+        id="txtSearch" savedspellcheck="[object Object]" spellcheck="false">
+        <tbody>
+          <tr>
+            <td class="dxic" style="width:100%;"><input class="dxeEditArea_MaterialCompact dxeEditAreaSys dxh0"
+                id="txtSearch_I" onchange="ASPx.EValueChanged('txtSearch')" value="Search" type="text" name="txtSearch"
+                autocomplete="off" savedspellcheck="[object Object]" spellcheck="false"></td>
+          </tr>
+        </tbody>
+      </table>
+      <script id="dxss_848827083" data-executed="true">
+        <!-
+        ASPx.createControl(ASPxClientTextBox,'txtSearch','',{'scStates':6,'scPostfix':'MaterialCompact','stateObject':{'rawValue':''},'nullText':'Search'},{'KeyUp':function(s,e) { RefreshAnnouncementList();}},null,{'decorationStyles':[{'key':'F','className':'dxeFocused_MaterialCompact','cssText':''},{'key':'N','className':'dxeNullText_MaterialCompact','cssText':''}]});
+        
+        //-->
+      </script>
+    </div>
+  </div>
+
+  <div>
+
+    <div class="dxpnlControl_MaterialCompact" id="cbpAnnouncements">
+      <p>
+        <font style="font:bold;font-size:24px">Informational: Description box update</font> posted on 3/10/2026
+      </p>Test<br>
+      <br><i>Effective as of 3/9/2026</i>
+      <hr>
+      <p>
+        <font style="font:bold;font-size:24px">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders
+        </font> posted on 2/20/2026
+      </p>
+      <div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+
+
+        <ul style="margin-top: 4px; margin-bottom: 16px;">
+
+          <li>
+
+            You can find an updated <strong>User Guide</strong> on the Portal Documents tab.
+
+          </li>
+
+          <li style="margin-top: 4px;">
+
+            <strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a hard
+            refresh.<br>
+
+            <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> +
+            <code>F5</code>
+
+            <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>.
+
+          </li>
+
+        </ul>
+
+
+
+
+
+
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"> Bulk
+          E-Signature Verification Requests </p>
+
+        <p style="margin-bottom: 6px;">
+
+          You can now send E-Signature Verification Requests to up to 500 plaintiffs at once using the Bulk Actions tab.
+          Only plaintiffs with no outstanding items will be eligible for bulk signature. Please refer to Section V.
+          Adding a Plaintiff to the Portal – G. Completing a Verification (page 23) in the User Guide </p>
+
+
+
+
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;"> Reminders
+        </p>
+
+
+
+        <ul style="margin-top: 4px; margin-bottom: 16px;">
+
+          <li>Documents can be uploaded in bulk regardless of Plaintiff status.
+
+          </li>
+
+
+
+          <li> SDWIS IDs can be updated via Import
+
+          </li>
+
+
+
+
+
+        </ul>
+      </div> <br>
+      <hr>
+      <p>
+        <font style="font:bold;font-size:24px">Reminders: test</font> posted on 11/14/2025
+      </p>
+      <div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+        <h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;">
+          Important Maintenance Notice
+        </h2>
+
+        <p style="margin-bottom: 6px;">
+          The AFFF MDL Portal will offline for scheduled maintenance beginning <strong>Friday, November 14th at 5:00 pm
+            CST</strong>. The portal will be back online no later than Monday, November 17th at 8:00 am CST. We will
+          post an announcement once maintenance is complete and the portal is accessible.
+        </p>
+
+      </div>
+      <br>
+      <hr>
+      <p>
+        <font style="font:bold;font-size:24px">Reminders: test</font> posted on 11/11/2025
+      </p>
+      <div style="font-family: inherit; line-height: 1.6; color: #222; max-width: 800px;">
+
+        <p style="font-size: 16px; margin-bottom: 10px;">
+          Updates were rolled out to the portal today.
+        </p>
+
+        <ul style="margin-top: 4px; margin-bottom: 16px;">
+          <li>
+            You can find an updated <strong>User Guide</strong> on the Portal Documents tab.
+          </li>
+          <li style="margin-top: 4px;">
+            <strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a hard
+            refresh.<br>
+            <em>Windows:</em> Press <code>Ctrl</code> + <code>Shift</code> + <code>R</code> OR <code>Ctrl</code> +
+            <code>F5</code>
+            <em>Mac:</em> Press <code>Cmd</code> + <code>Shift</code> + <code>R</code>.
+          </li>
+        </ul>
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Electronic
+          Verification</p>
+        <p style="margin-bottom: 6px;">
+          The system will now default to sending the signature request to the email address listed on the Plaintiff
+          Information tab. An alternative signer email may be provided if necessary. </p>
+
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Expert
+          Disclosure</p>
+        <p style="margin-bottom: 6px;">
+          This question will no longer be required for submission to accommodate varying requirements. </p>
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Plaintiff
+          Enrollment Report</p>
+        <p style="margin-bottom: 6px;">
+          Additional fields are now available on this report that were already stored on the Plaintiff Information tab
+          such as plaintiff address, plaintiff email address, and original filing information. </p>
+
+        <p style="color: #003057; font-weight: bold; font-size: 15px; margin-top: 14px; margin-bottom: 4px;">Incomplete
+          Items Report </p>
+        <p style="margin-bottom: 4px;">
+          A new report is now available that lists all incomplete items required for submission for each plaintiff. The
+          report includes a full description of each incomplete item.
+        </p>
+
+      </div>
+      <br>
+      <br><i>Effective as of 1/1/2025</i>
+      <hr>
+    </div>
+    <table id="cbpAnnouncements_LP"
+      class="dxpnlLoadingPanelWithContent_MaterialCompact dxlpLoadingPanelWithContent_MaterialCompact"
+      style="left:0px;top:0px;z-index:30000;display:none;">
+      <tbody>
+        <tr>
+          <td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft"
+              src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td>
+          <td class="dx" style="padding-left:0px;"><span id="cbpAnnouncements_TL">Loading…</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="cbpAnnouncements_LD"
+      class="dxpnlLoadingDivWithContent_MaterialCompact dxlpLoadingDivWithContent_MaterialCompact dx-ft"
+      style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+    </div>
+    <script id="dxss_774335159" data-executed="true">
+      <!-
+      ASPx.createControl(MVCxClientCallbackPanel,'cbpAnnouncements','',{'callBack':function(arg) { ; },'hideContentOnCallback':false,'callbackUrl':'/Announcements/cbpAnnouncementsPartial'},{'BeginCallback':OnBeginAnnouncementCallback});
+      
+      //-->
+    </script>
+  </div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+  MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+    function (s, e) {
+      showFlashIfPopulated();
+    }
+  );
+</script>
+{% endraw %}

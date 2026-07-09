@@ -1,0 +1,308 @@
+---
+layout: layouts/base.njk
+title: "Import Logs"
+---
+{% raw %}
+<div class="contentPane">
+        
+        
+
+<script type="text/javascript">
+
+    function ImportLogSelectionCallback(s, e) {
+        const selectedImportId = s.GetRowKey(e.visibleIndex);
+
+        exportImportLog(`ExportImportLogRecords?importLogId=${selectedImportId}`);
+    }
+
+    function exportImportLog(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                const a = document.createElement('a');
+                const url = window.URL.createObjectURL(data);
+                a.href = url;
+                a.download = `Import_Log_Export_${new Date().toISOString()}.xlsx`;
+                a.click();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.error(error);
+                alert(error);
+            }
+        });
+    }
+
+</script>
+
+<div class="mt-2">
+    <h2>Import Logs</h2>
+    <p>
+        This page displays the logs of all the imports that have been performed.
+    </p>
+    <br>
+
+    <table class="dxgvControl_MaterialCompact dxgv dxgvAdD" id="gvImportLog" style="width:90%;border-collapse:separate;">
+	<tbody><tr>
+		<td><div id="gvImportLog_DXAHeaderPanel" class="dxgvAdaptiveHeaderPanel_MaterialCompact" oncontextmenu="return ASPx.GVContextMenu('gvImportLog',event);" style="display:none;">
+			<div id="gvImportLog_DXADHeader" class="dxgvADH" style="display:none;">
+				<table>
+					<tbody><tr class="dxgvADHTR">
+						<td></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><table id="gvImportLog_DXMainTable" class="dxgvTable_MaterialCompact dxgvRBB" oncontextmenu="return ASPx.GVContextMenu('gvImportLog',event);" style="width:100%;empty-cells:show;">
+			<tbody><tr id="gvImportLog_DXHeadersRow0">
+				<td id="gvImportLog_col0" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td> </td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col1" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import File Name</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col2" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import Type</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col3" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import Date</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderSortDown_MaterialCompact dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Descending" style="margin-left:5px;margin-right:5px;"><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col4" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import User</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col5" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Records</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col6" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Import Elapsed Time</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td><td id="gvImportLog_col7" class="dxgvHeader_MaterialCompact" style="border-top-width:0px;border-left-width:0px;border-right-width:0px;"><table style="width:100%;">
+					<tbody><tr>
+						<td>Is Successful</td><td style="width:1px;text-align:right;"><span class="dx-vam">&nbsp;</span><img class="dxGridView_gvHeaderFilter_MaterialCompact dxgv__hfb dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="Not filtered" style="cursor:default;"></td>
+					</tr>
+				</tbody></table></td>
+			</tr><tr id="gvImportLog_DXADRow" class="dxgvAdaptiveDetailRow_MaterialCompact dxgvADR" style="display:none;">
+				<td class="dxgv dxgvAdaptiveDetailCell_MaterialCompact" colspan="8"></td>
+			</tr><tr id="gvImportLog_DXDataRow0" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',0],1]" data-isimage="true" id="gvImportLog_DXCBtn0" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn0Img"></a><script id="dxss_1857285559" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn0',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Deficiency Import_6_18_2026 4_32_18 PM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Deficiency Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 04:48:28 PM</td><td class="dxgv" style="border-bottom-width:0px;">ANunez@gunster.com</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.2415421</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow1" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',1],1]" data-isimage="true" id="gvImportLog_DXCBtn1" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn1Img"></a><script id="dxss_1988024142" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn1',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Ticket Status Update Import_6_18_2026 4_46_18 PM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Ticket Status Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 04:48:03 PM</td><td class="dxgv" style="border-bottom-width:0px;">ANunez@gunster.com</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.8482019</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow2" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',2],1]" data-isimage="true" id="gvImportLog_DXCBtn2" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn2Img"></a><script id="dxss_1130135213" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn2',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Deficiency Import_6_18_2026 4_32_18 PM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Deficiency Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 04:45:21 PM</td><td class="dxgv" style="border-bottom-width:0px;">ANunez@gunster.com</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.0936465</td><td class="dxgv dx-ac" style="color:Red;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Unsuccessful</td>
+			</tr><tr id="gvImportLog_DXDataRow3" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',3],1]" data-isimage="true" id="gvImportLog_DXCBtn3" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn3Img"></a><script id="dxss_1853356456" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn3',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Deficiency Import_6_18_2026 4_32_18 PM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Deficiency Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 04:43:20 PM</td><td class="dxgv" style="border-bottom-width:0px;">ANunez@gunster.com</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2</td><td class="dxgv" style="border-bottom-width:0px;">00:00:01.5753292</td><td class="dxgv dx-ac" style="color:Red;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Unsuccessful</td>
+			</tr><tr id="gvImportLog_DXDataRow4" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',4],1]" data-isimage="true" id="gvImportLog_DXCBtn4" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn4Img"></a><script id="dxss_940539339" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn4',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Deficiency Import_6_18_2026 9_45_35 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Deficiency Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 10:25:41 AM</td><td class="dxgv" style="border-bottom-width:0px;">PlaintiffExtensionNotification Test</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">4</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.2995289</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow5" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',5],1]" data-isimage="true" id="gvImportLog_DXCBtn5" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn5Img"></a><script id="dxss_1390196934" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn5',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">CMO 37 Deficiency Import_6_18_2026 9_45_35 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">CMO 37 Deficiency Import</td><td class="dxgv" style="border-bottom-width:0px;">06/18/26 10:24:05 AM</td><td class="dxgv" style="border-bottom-width:0px;">PlaintiffExtensionNotification Test</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">4</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.7669323</td><td class="dxgv dx-ac" style="color:Red;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Unsuccessful</td>
+			</tr><tr id="gvImportLog_DXDataRow6" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',6],1]" data-isimage="true" id="gvImportLog_DXCBtn6" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn6Img"></a><script id="dxss_213388993" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn6',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">Dual Representation Update Import_6_17_2026 8_41_16 PM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/17/26 08:42:25 PM</td><td class="dxgv" style="border-bottom-width:0px;">GeliannyTest3</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">3</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.7907183</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow7" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',7],1]" data-isimage="true" id="gvImportLog_DXCBtn7" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn7Img"></a><script id="dxss_936610236" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn7',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">Dual Representation Update Import_6_17_2026 9_34_56 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/17/26 10:16:54 AM</td><td class="dxgv" style="border-bottom-width:0px;">AdamYahoo</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">1</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.0468955</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow8" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',8],1]" data-isimage="true" id="gvImportLog_DXCBtn8" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn8Img"></a><script id="dxss_1217675231" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn8',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">Dual Representation Update Import_6_17_2026 9_34_56 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/17/26 09:49:08 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">1</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.0468580</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow9" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',9],1]" data-isimage="true" id="gvImportLog_DXCBtn9" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn9Img"></a><script id="dxss_1667332826" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn9',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">Dual Representation Update Import_6_17_2026 9_34_56 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/17/26 09:46:10 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">3</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.1542474</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow10" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',10],1]" data-isimage="true" id="gvImportLog_DXCBtn10" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn10Img"></a><script id="dxss_555590056" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn10',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">AFFF_DualRepresentationCaseReport 6_17_2026 9_07_36 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Dual Representation Update Import</td><td class="dxgv" style="border-bottom-width:0px;">06/17/26 09:44:14 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">103</td><td class="dxgv" style="border-bottom-width:0px;">00:00:00.1906221</td><td class="dxgv dx-ac" style="color:Red;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Unsuccessful</td>
+			</tr><tr id="gvImportLog_DXDataRow11" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',11],1]" data-isimage="true" id="gvImportLog_DXCBtn11" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn11Img"></a><script id="dxss_1182626743" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn11',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">AFFF Initial Plaintiff Import Template_6_16_2026 11_00_42 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Initial Plaintiff Import</td><td class="dxgv" style="border-bottom-width:0px;">06/16/26 11:47:15 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2000</td><td class="dxgv" style="border-bottom-width:0px;">00:01:15.1098981</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow12" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',12],1]" data-isimage="true" id="gvImportLog_DXCBtn12" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn12Img"></a><script id="dxss_983267050" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn12',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">AFFF Initial Plaintiff Import Template_6_16_2026 11_00_42 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Initial Plaintiff Import</td><td class="dxgv" style="border-bottom-width:0px;">06/16/26 11:31:45 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2000</td><td class="dxgv" style="border-bottom-width:0px;">00:01:17.5261381</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow13" class="dxgvDataRow_MaterialCompact" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac" style="border-bottom-width:0px;"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',13],1]" data-isimage="true" id="gvImportLog_DXCBtn13" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn13Img"></a><script id="dxss_228221835" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn13',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv" style="border-bottom-width:0px;">AFFF Initial Plaintiff Import Template_6_16_2026 11_00_42 AM.xlsx</td><td class="dxgv dx-al" style="border-bottom-width:0px;">Initial Plaintiff Import</td><td class="dxgv" style="border-bottom-width:0px;">06/16/26 11:29:17 AM</td><td class="dxgv" style="border-bottom-width:0px;">aBabin</td><td class="dxgv dx-ar" style="border-bottom-width:0px;">2000</td><td class="dxgv" style="border-bottom-width:0px;">00:01:16.2347093</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;border-bottom-width:0px;">Success</td>
+			</tr><tr id="gvImportLog_DXDataRow14" class="dxgvDataRow_MaterialCompact dxgvLVR" style="">
+				<td class="dxgvCommandColumn_MaterialCompact dxgv dx-ac"><a class="dxbButton_MaterialCompact dxgvCommandColumnItem_MaterialCompact dxgv__cci dxbButtonSys" data-args="[['CustomButton','btnExport',14],1]" data-isimage="true" id="gvImportLog_DXCBtn14" href="javascript:;"><img title=" " class="dxIcon_export_exporttoxls_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt=" " id="gvImportLog_DXCBtn14Img"></a><script id="dxss_901803476" data-executed="true">
+<!--
+ASPx.AddDisabledItems('gvImportLog_DXCBtn14',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC'],[[{'spriteCssClass':'dxIcon_export_exporttoxls_32x32_disabled'}]],['Img']]]);
+
+//-->
+</script></td><td class="dxgv">AFFF Initial Plaintiff Import Template_6_16_2026 11_00_42 AM.xlsx</td><td class="dxgv dx-al">Initial Plaintiff Import</td><td class="dxgv">06/16/26 11:27:43 AM</td><td class="dxgv">aBabin</td><td class="dxgv dx-ar">2000</td><td class="dxgv">00:01:16.1472942</td><td class="dxgv dx-ac" style="color:Green;font-weight:bold;border-right-width:0px;">Success</td>
+			</tr>
+		</tbody></table><div class="dxmodalSys">
+			<div id="gvImportLog_DXHFP_PW-1" class="dxpcLite_MaterialCompact dxpclW" style="z-index:10000;display:none;visibility:hidden;">
+				<div class="dxpc-mainDiv dxpc-hf">
+					<div class="dxpc-contentWrapper">
+						<div class="dxpc-content" style="padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px;overflow-x:hidden;overflow-y:auto;" id="gvImportLog_DXHFP_PWC-1">
+							&nbsp;&nbsp;
+						</div>
+					</div><div class="dxpc-footer" id="gvImportLog_DXHFP_PWF-1">
+						<div class="dxpc-footerContent">
+							<table id="gvImportLog_DXHFP_TPCFCm1_P">
+								<tbody><tr>
+									<td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvImportLog_DXHFP_O" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvImportLog_DXHFP_O_CD">
+											<div class="dxb-hbc">
+												<input id="gvImportLog_DXHFP_O_I" class="dxb-hb" value="OK" type="button" name="gvImportLog$DXHFP$TPCFCm1$O">
+											</div><span class="dx-vam">OK</span>
+										</div>
+									</div><script id="dxss_706569418" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvImportLog_DXHFP_O',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvImportLog_DXHFP_O',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvImportLog_DXHFP_O',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvImportLog_DXHFP_O',[[['dxbf'],[''],['CD']]]);
+ASPx.InitializeSVGSprite();
+ASPx.createControl(ASPxClientButton,'gvImportLog_DXHFP_O','',{'uniqueID':'gvImportLog$DXHFP$TPCFCm1$O','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVApplyFilterPopup('gvImportLog');}});
+
+//-->
+</script></td><td><div class="dxHFBPS">
+
+									</div></td><td><div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="gvImportLog_DXHFP_C" style="-webkit-user-select:none;">
+										<div class="dxb" id="gvImportLog_DXHFP_C_CD">
+											<div class="dxb-hbc">
+												<input id="gvImportLog_DXHFP_C_I" class="dxb-hb" value="Cancel" type="button" name="gvImportLog$DXHFP$TPCFCm1$C">
+											</div><span class="dx-vam">Cancel</span>
+										</div>
+									</div><script id="dxss_1738488400" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvImportLog_DXHFP_C',[[['dxbButtonHover_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddPressedItems('gvImportLog_DXHFP_C',[[['dxbButtonPressed_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddDisabledItems('gvImportLog_DXHFP_C',[[['dxbDisabled_MaterialCompact'],[''],[''],['','TC']]]);
+ASPx.AddSelectedItems('gvImportLog_DXHFP_C',[[['dxbf'],[''],['CD']]]);
+ASPx.createControl(ASPxClientButton,'gvImportLog_DXHFP_C','',{'uniqueID':'gvImportLog$DXHFP$TPCFCm1$C','useSubmitBehavior':false,'causesValidation':false},{'Click':function(){ASPx.GVHFCancelButtonClick('gvImportLog');}});
+
+//-->
+</script></td>
+								</tr>
+							</tbody></table>
+						</div><img class="dxpc-sizeGrip dxGridView_WindowResizer_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Resize"><b class="dx-clear"></b>
+					</div>
+				</div>
+			</div>
+		</div><div id="gvImportLog_DXHFP_DXPWMB-1" class="dxpcModalBackLite_MaterialCompact" style="z-index:9999;">
+
+		</div><table id="gvImportLog_DXHFP_LP" class="dxpcLoadingPanel_MaterialCompact dxlpLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvImportLog_DXHFP_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvImportLog_DXHFP_LD" class="dxpcLoadingDiv_MaterialCompact dxlpLoadingDiv_MaterialCompact dx-ft" style="left:0px;top:0px;z-index:29999;display:none;position:absolute;">
+
+		</div><script id="dxss_293758328" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvImportLog_DXHFP',[[['dxpc-closeBtnHover'],[''],['HCB-1']]]);
+ASPx.createControl(ASPxClientPopupControl,'gvImportLog_DXHFP','',{'callBack':function(arg) { ; },'uniqueID':'gvImportLog$DXHFP','cpButtonPanelID':'gvImportLog_DXHFP_TPCFCm1_P','cpOkButtonID':'gvImportLog_DXHFP_O','cpCancelButtonID':'gvImportLog_DXHFP_C','popupAnimationType':'fade','allowResize':true,'closeOnEscape':true,'popupHorizontalAlign':'LeftSides','popupVerticalAlign':'Below','shadowVisible':false,'width':230,'widthFromServer':true,'height':250,'minHeight':250,'minWidth':230,'contentOverflowX':'Hidden','contentOverflowY':'Auto','adaptivityEnabled':true,'modalMinHeight':'200px'});
+
+//-->
+</script><div class="dxgvPagerBottomPanel_MaterialCompact">
+			<div class="dxpLite_MaterialCompact" id="gvImportLog_DXPagerBottom" style="display: inline-block; float: none;">
+				<b class="dxp-lead dxp-summary">Page 1 of 81 (1209 items)</b><b id="gvImportLog_DXPagerBottom_PBP" class="dxp-button dxp-bi dxp-disabledButton"><img class="dxWeb_pPrevDisabled_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Prev"></b><b class="dxp-num dxp-current">1</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN1');">2</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN2');">3</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN3');">4</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN4');">5</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN5');">6</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN6');">7</a><b class="dxp-ellip">…</b><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN78');">79</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN79');">80</a><a class="dxp-num" onclick="ASPx.GVPagerOnClick('gvImportLog','PN80');">81</a><a id="gvImportLog_DXPagerBottom_PBN" class="dxp-button dxp-bi" onclick="ASPx.GVPagerOnClick('gvImportLog','PBN');"><img class="dxWeb_pNext_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Next"></a>
+			</div><b class="dx-clear"></b><script id="dxss_368779576" data-executed="true">
+<!--
+ASPx.AddHoverItems('gvImportLog_DXPagerBottom',[[['dxp-hoverButton'],[''],['PBN']]]);
+ASPx.RemoveHoverItems('gvImportLog_DXPagerBottom',[[['PBP']]]);
+ASPx.createControl(ASPxClientPager,'gvImportLog_DXPagerBottom','',{'uniqueID':'gvImportLog$DXPagerBottom','hasOwnerControl':true,'requireInlineLayout':true,'enableAdaptivity':true,'pageSizeItems':[{'text':'10','value':'10'},{'text':'20','value':'20'},{'text':'50','value':'50'},{'text':'100','value':'100'},{'text':'200','value':'200'}],'pageSizeSelectedItem':{'text':'15','value':15}},{'pageSizeChanged':function(s, e) { ASPx.GVPagerOnClick('gvImportLog',e.value); }});
+
+//-->
+</script>
+		</div><table id="gvImportLog_DXFilterBar" class="dxgvFilterBar_MaterialCompact" style="width:100%;">
+			<tbody><tr class="dxgv">
+				<td class="dxgvFilterBarImageCell_MaterialCompact"><img class="dxGridView_gvFilterRowButton_MaterialCompact" onclick="ASPx.GVShowFilterControl('gvImportLog');" src="/DXR.axd?r=1_87-SZRsu" alt="Show filter builder dialog"></td><td class="dxgvFilterBarExpressionCell_MaterialCompact"><a class="dxgvFilterBarLink_MaterialCompact" onclick="ASPx.GVShowFilterControl('gvImportLog');" href="javascript:;">Create Filter</a></td><td style="width:100%;">&nbsp;</td>
+			</tr>
+		</tbody></table><table id="gvImportLog_LP" class="dxgvLoadingPanel_MaterialCompact" style="left:0px;top:0px;z-index:30000;display:none;">
+			<tbody><tr>
+				<td class="dx" style="padding-right:0px;"><img class="dxlp-loadingImage dxlp-imgPosLeft" src="/DXR.axd?r=1_87-SZRsu" alt="" style="vertical-align:middle;"></td><td class="dx" style="padding-left:0px;"><span id="gvImportLog_TL">Loading…</span></td>
+			</tr>
+		</tbody></table><div id="gvImportLog_LD" class="dxgvLoadingDiv_MaterialCompact" style="display:none;z-index:29999;position:absolute;">
+
+		</div><img id="gvImportLog_IADD" class="dxGridView_gvDragAndDropArrowDown_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Down Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportLog_IADU" class="dxGridView_gvDragAndDropArrowUp_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Up Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportLog_IADL" class="dxGridView_gvDragAndDropArrowLeft_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Left Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportLog_IADR" class="dxGridView_gvDragAndDropArrowRight_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Right Arrow" style="position:absolute;visibility:hidden;top:-100px;"><img id="gvImportLog_IDHF" class="dxGridView_gvDragAndDropHideColumn_MaterialCompact" src="/DXR.axd?r=1_87-SZRsu" alt="Hide" style="position:absolute;visibility:hidden;top:-100px;"></td>
+	</tr>
+</tbody></table><script id="dxss_1133846121" data-executed="true">
+<!--
+ASPx.FillDocumentElementDXThemeCssClassName("MaterialCompact");
+ASPx.createControl(MVCxClientGridView,'gvImportLog','',{'callBack':function(arg) { ; },'stateObject':{'keys':['1228','1227','1226','1225','1224','1223','1222','1221','1220','1219','1218','1217','1216','1215','1214'],'callbackState':'Ppu84zYEF6soz1vMX7p073QuLDZ8ixzkI6uJCD+H1q0Wic0wg9TWK/hn0wuDfrZDKtJHWF2kda1DlCUffp+2oHfMbw3ViDHyqZ6DETN04d25mYz4Fw7vQhjqcjJrS++Hjd9sdltf/mgiU17G1j81HHINI45pBEieTmQQ7Sr9DJq3z/k8erHjaRrnmtiMIk6ZqfF1SbXmo5giRJ4wW0Tiv/JDpc3aeohb9k4gu+hqmMggNpu7Y2LIiZh2IQvNmWgfn2bmbUt7eIEfiQv199lhEHNW0w+k1igLW5+/mkefIt6TtvPxIjHgfBxrT5EQO35KPXOtCDxBb/9Epqeo2o7+XA==','groupLevelState':{},'selection':''},'callBacksEnabled':true,'pageRowCount':15,'pageRowSize':15,'pageIndex':0,'pageCount':81,'selectedWithoutPageRowCount':0,'visibleStartIndex':0,'focusedRowIndex':-1,'allowFocusedRow':false,'allowSelectByItemClick':false,'allowSelectSingleRowOnly':false,'callbackOnFocusedRowChanged':false,'callbackOnSelectionChanged':false,'editState':0,'editItemVisibleIndex':-1,'searchPanelFilter':'','allowDelete':true,'allowEdit':true,'allowInsert':true,'columnProp':[[0,,,,0,,,,0,,1,,,0],[1,,,'ImportFileName',,,,,1],[2,,,'ImportTypeId',,,,,2],[3,,,'FileImportDate',,3,0,2,3],[4,,,'ImportUser',,,,,4],[5,,,'RecordCount',,,,,5],[6,,,'ElapsedTime',,,,,6],[7,,,'IsSuccessfulImportText',,,,,7]],'shouldScrollToNewRow':false,'editMode':2,'indentColumnCount':0,'allowChangeColumnHierarchy':false,'allowMultiColumnAutoFilter':false,'adaptiveColumnsOrder':[7,6,5,4,3,2,1,0],'editingItemVisibleIndex':-1,'callbackUrl':'/Import/OnImportLogCallback','keyName':'Id'},{'CustomButtonClick':ImportLogSelectionCallback},null,{'adaptiveModeInfo':{'adaptivityMode':2,'hideDataCellsWindowInnerWidth':0,'adaptiveDetailColumnCount':1,'allowTextTruncationInAdaptiveMode':{'0':false,'1':false,'2':false,'3':false,'4':false,'5':false,'6':false,'7':false},'allowHideDataCellsByColumnMinWidth':false,'allowOnlyOneAdaptiveDetailExpanded':false}});
+ASPxClientGridBase.PostponeInitialize('gvImportLog',({'commandButtonIDs':['gvImportLog_DXCBtn0','gvImportLog_DXCBtn1','gvImportLog_DXCBtn2','gvImportLog_DXCBtn3','gvImportLog_DXCBtn4','gvImportLog_DXCBtn5','gvImportLog_DXCBtn6','gvImportLog_DXCBtn7','gvImportLog_DXCBtn8','gvImportLog_DXCBtn9','gvImportLog_DXCBtn10','gvImportLog_DXCBtn11','gvImportLog_DXCBtn12','gvImportLog_DXCBtn13','gvImportLog_DXCBtn14'],'styleInfo':{'ei':'<tr class="dxgvEditingErrorRow_MaterialCompact">\r\n\t<td class="dxgv" data-colSpan="8" style="border-right-width:0px;"></td>\r\n</tr>','fc':{'className':'dxgvFocusedCell_MaterialCompact'},'sc':{'className':'dxgvSelectedCell_MaterialCompact'},'bec':{'className':'dxgvBatchEditCell_MaterialCompact dxgv'},'bemc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgv'},'bemergmc':{'className':'dxgvBatchEditModifiedCell_MaterialCompact dxgvBatchEditCell_MaterialCompact dxgv'},'bedi':{'className':'dxgvBatchEditDeletedItem_MaterialCompact dxgv'},'sel':{'className':'dxgvSelectedRow_MaterialCompact'},'fi':{'className':'dxgvFocusedRow_MaterialCompact'},'fgi':{'className':'dxgvFocusedGroupRow_MaterialCompact'},'beni':{'className':'dxgvBatchEditNewItem_MaterialCompact dxgv'}}}));
+
+//-->
+</script>
+</div>
+    </div>
+
+<script type="text/javascript">
+    MVCxClientGlobalEvents.AddControlsInitializedEventHandler(
+            function (s, e) {
+                showFlashIfPopulated();
+            }
+        );
+</script>
+{% endraw %}

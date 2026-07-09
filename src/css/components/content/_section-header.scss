@@ -1,0 +1,65 @@
+// STRATA Section Header — Figma component set 6305:11250.
+// Variants: Intent=Primary (6305:10824), Intent=Secondary (6305:11251).
+// Row with title left and an optional STRATA Button (separate component) right.
+@use "typography" as *;
+
+@mixin section-header {
+  // Intent=Primary (default)
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin section-header-align-right {
+  justify-content: flex-end;
+}
+
+@mixin section-header-title {
+  @include heading3;
+  @include wonk;
+  color: var(--text-heading);
+  word-break: break-word;
+}
+
+@mixin section-header-secondary {
+  // Intent=Secondary
+  border-bottom: 1px solid var(--border-default);
+  padding-block: var(--spacing-xs);
+}
+
+@mixin section-header-secondary-title {
+  @include eyebrow-label;
+  color: var(--text-heading);
+}
+
+// Component classes
+.section-header {
+  @include section-header;
+
+  &__title {
+    @include section-header-title;
+  }
+
+  &--secondary {
+    @include section-header-secondary;
+
+    .section-header__title {
+      @include section-header-secondary-title;
+    }
+  }
+}
+
+// App selectors
+.sectionHeader {
+  @include section-header;
+  margin-block-end: var(--spacing-sm);
+  div {
+    font-size: 1rem !important;
+    float: none;
+  }
+  p {
+    @include section-header-title;
+  }
+  &--align-right {
+    @include section-header-align-right;
+  }
+}
