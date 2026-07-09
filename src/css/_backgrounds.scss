@@ -19,11 +19,11 @@
 }
 
 @mixin bg-lady-justice {
-  background-image: url("/images/BG-Lady-Justice.png");
+  background-image: url("../images/BG-Lady-Justice.png");
 }
 
 @mixin bg-wave {
-  background-image: url("/images/BG-Wave.svg");
+  background-image: url("../images/BG-Wave.svg");
   background-position: center;
   background-size: 509px auto;
 }
@@ -36,8 +36,8 @@
 // components/data-grids/_data-table-filters.scss.
 @mixin bg-icon-mask($icon, $color: currentColor) {
   background-color: $color;
-  -webkit-mask-image: url("/images/icons/#{$icon}.svg");
-  mask-image: url("/images/icons/#{$icon}.svg");
+  -webkit-mask-image: url("../images/icons/#{$icon}.svg");
+  mask-image: url("../images/icons/#{$icon}.svg");
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;

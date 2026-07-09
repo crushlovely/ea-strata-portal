@@ -94,7 +94,7 @@
 // change between states — only its opacity does).
 @mixin -button-wave($intent) {
   &::before {
-    background-image: url("/images/BG-Wave-#{$intent}.svg");
+    background-image: url("../images/BG-Wave-#{$intent}.svg");
   }
 }
 

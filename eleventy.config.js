@@ -1,7 +1,14 @@
 import path from "node:path";
 import * as sass from "sass";
+import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
+  // Rewrites absolute URLs in the HTML output (links, hrefs, srcs) by the
+  // path prefix when one is set — needed on GitHub Pages, where the site is
+  // served from /<repo>/ instead of /. No-op for local dev (prefix "/").
+  // CSS url()s aren't rewritten by this plugin, so SCSS uses relative
+  // ../images/ paths instead of /images/.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
   // Static assets: copied to _site as-is, preserving the path under src/
   // (src/images/x.png -> /images/x.png).
   eleventyConfig.addPassthroughCopy("src/images");
