@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STRATA Portal — DevExpress Theme Guide</title>
+<style>
+  :root{
+    /* Foundation tokens pulled from Figma: Settlement-Redesign */
+    --page-bg:#f5f4f3;
+    --radius:1px;
+    --space-xxs:8px; --space-xs:16px; --space-sm:24px; --space-md:46px;
+
+    /* Brand neutrals */
+    --n-900:#363029; --n-800:#3e3b38; --n-700:#56524e; --n-650:#575451;
+    --n-500:#817b74; --n-200:#efedeb; --n-150:#eae5e1; --n-100:#f5f4f3;
+    /* Accent (gold) */
+    --gold-600:#816840; --gold-500:#9d804e; --gold-400:#bf9b5f;
+    --gold-link:#67460d; --gold-amber:#b87d17;
+    /* Success/outline green */
+    --green-700:#08482f; --green-600:#0d5b3c; --green-400:#1d885d;
+    /* Danger red */
+    --red-900:#4c1517; --red-800:#5d1a1c; --red-700:#7f2629; --red-500:#ad3b3f;
+    /* Text */
+    --text-ink:#181f25; --text-dark:#3e3b38; --white:#ffffff;
+
+    --ui-font:'Raleway',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--page-bg); color:var(--text-ink);
+    font-family:var(--ui-font); font-size:15px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--green-600)}
+
+  /* Layout */
+  .wrap{display:grid; grid-template-columns:250px 1fr; max-width:1400px; margin:0 auto;}
+  nav.side{
+    position:sticky; top:0; align-self:start; height:100vh; overflow:auto;
+    padding:28px 20px; border-right:1px solid #e2ded9; background:#fbfaf9;
+  }
+  nav.side h1{font-size:15px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 4px; color:var(--n-700);}
+  nav.side .sub{font-size:12px; color:var(--n-500); margin-bottom:20px;}
+  nav.side a{display:block; padding:6px 10px; border-radius:4px; color:var(--text-dark);
+    text-decoration:none; font-size:13.5px;}
+  nav.side a:hover{background:#efe9e2;}
+  nav.side .grp{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--n-500);
+    margin:18px 0 6px 10px;}
+  main{padding:44px 56px 120px; min-width:0;}
+
+  header.hero{border-bottom:2px solid var(--n-800); padding-bottom:24px; margin-bottom:36px;}
+  header.hero .eyebrow{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-500); font-weight:600;}
+  header.hero h2{font-size:34px; margin:6px 0 8px; color:var(--n-800); font-weight:700; letter-spacing:-.01em;}
+  header.hero p{max-width:70ch; color:#4a453f; margin:8px 0 0;}
+
+  section{margin:0 0 60px; scroll-margin-top:20px;}
+  section > h3{font-size:23px; color:var(--n-800); border-bottom:1px solid #e2ded9; padding-bottom:8px; margin:0 0 6px; font-weight:700;}
+  section > .lead{color:#5a544d; margin:0 0 22px; max-width:74ch;}
+  h4{font-size:16px; color:var(--n-700); margin:28px 0 10px; letter-spacing:.02em;}
+
+  .callout{border-left:4px solid var(--gold-400); background:#faf6ef; padding:14px 18px; border-radius:0 6px 6px 0; margin:16px 0; font-size:14px;}
+  .callout.dx{border-left-color:var(--green-400); background:#f0f6f2;}
+  .callout strong{color:var(--n-800);}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.86em; background:#efe9e2; padding:2px 6px; border-radius:4px;}
+
+  /* Token / swatch grids */
+  .swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:14px;}
+  .sw{border:1px solid #e2ded9; border-radius:8px; overflow:hidden; background:#fff;}
+  .sw .chip{height:66px;}
+  .sw .meta{padding:8px 10px;}
+  .sw .name{font-size:12.5px; font-weight:600; color:var(--n-800);}
+  .sw .hex{font-family:ui-monospace,Menlo,monospace; font-size:12px; color:#6a645d; cursor:pointer;}
+  .sw .hex:hover{color:var(--green-600);}
+
+  table{border-collapse:collapse; width:100%; font-size:13.5px; margin:8px 0 6px; background:#fff; border-radius:8px; overflow:hidden;}
+  th,td{text-align:left; padding:9px 12px; border-bottom:1px solid #ece7e1;}
+  th{background:#f3eee8; color:var(--n-700); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;}
+  td.val{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; cursor:pointer;}
+  td.val:hover{color:var(--green-600);}
+  .dot{display:inline-block; width:13px; height:13px; border-radius:3px; border:1px solid #0002; vertical-align:-2px; margin-right:7px;}
+
+  /* Live button previews */
+  .btnrow{display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:18px; background:#fff; border:1px solid #e2ded9; border-radius:8px; margin:6px 0 4px;}
+  .btnrow .lbl{width:100%; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--n-500); margin-bottom:4px;}
+  .demo{
+    font-family:var(--ui-font); font-weight:650; font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+    height:46px; padding:0 24px; border-radius:var(--radius); border:1px solid transparent; color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; cursor:default; white-space:nowrap;
+  }
+  .demo.sm{height:30px; padding:0 14px;}
+  .state-tag{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--n-500); align-self:flex-end; margin-left:-8px;}
+
+  /* intent demos */
+  .primary-default{background:#56524e;border-color:#56524e;}
+  .primary-hover{background:linear-gradient(180deg,#575451,#3e3b38);border-color:#3e3b38;}
+  .primary-disabled{background:#efedeb;border-color:#efedeb;color:#817b74;}
+  .secondary-default{background:#bf9b5f;border-color:#bf9b5f;}
+  .secondary-hover{background:linear-gradient(180deg,#bf9b5f,#9d804e);border-color:#9d804e;}
+  .secondary-disabled{background:#efedeb;border-color:#817b74;color:#3e3b38;}
+  .outline-default{background:#fff;border-color:#3e3b38;color:#3e3b38;}
+  .outline-hover{background:#eae5e1;border-color:#1d885d;color:#0d5b3c;}
+  .outline-active{background:#eae5e1;border-color:#08482f;color:#0d5b3c;}
+  .outline-disabled{background:transparent;border-color:#56524e;color:#56524e;}
+  .danger-default{background:#ad3b3f;border-color:#7f2629;}
+  .danger-hover{background:linear-gradient(180deg,#7f2629,#5d1a1c);border-color:#5d1a1c;}
+  .danger-disabled{background:#3e3b38;border-color:#3e3b38;color:#817b74;}
+  .simple-default{background:transparent;border:none;color:#181f25;padding:0 4px;height:auto;}
+  .simple-hover{background:transparent;border:none;color:#67460d;padding:0 4px;height:auto;}
+  .simple-active{background:transparent;border:none;color:#b87d17;padding:0 4px;height:auto;}
+
+  .toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--n-800); color:#fff; padding:10px 18px; border-radius:6px; font-size:13px;
+    opacity:0; transition:.2s; pointer-events:none;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;background:#efe9e2;color:var(--n-700);margin-left:8px;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="side">
+    <h1>STRATA</h1>
+    <div class="sub">DevExpress Theme Guide</div>
+    <a href="#how">How to use this</a>
+    <div class="grp">Foundations</div>
+    <a href="#color">Color palette</a>
+    <a href="#type">Typography</a>
+    <a href="#space">Spacing &amp; radius</a>
+    <div class="grp">Components</div>
+    <a href="#buttons">Buttons</a>
+    <div class="grp">Roadmap</div>
+    <a href="#roadmap">Coming next</a>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">EA STRATA Portal · Settlement Redesign</div>
+      <h2>DevExpress Theme Guide</h2>
+      <p>The colors, typography, and control styling to reproduce the STRATA design system in a
+      <strong>DevExpress ASP.NET Web Forms</strong> theme. Every value is copyable (click any hex or measurement)
+      and mapped to the DevExpress control + state it applies to. Values are sourced directly from the
+      Figma variables in <em>Settlement-Redesign</em>.</p>
+    </header>
+
+    <section id="how">
+      <h3>How to use this document</h3>
+      <p class="lead">This guide pairs a <strong>visual spec</strong> (live-rendered swatches and buttons that match the
+      design exactly) with <strong>copyable values</strong> and a <strong>DevExpress mapping</strong> so the theme can be
+      built directly against ASPx controls.</p>
+      <div class="callout">
+        <strong>Click any hex code or measurement</strong> to copy it to your clipboard.
+      </div>
+      <div class="callout dx">
+        <strong>DevExpress target:</strong> the portal uses classic <strong>ASP.NET Web Forms</strong> controls
+        (<code>ASPxButton</code>, <code>ASPxGridView</code>, <code>ASPxTextBox</code>, <code>ASPxPopupControl</code>, …).
+        In the DevExpress Theme Builder these are styled per control; button state classes are
+        <code>.dxbButton</code> (default), <code>.dxbButtonHover</code>, <code>.dxbButtonPressed</code> (active),
+        <code>.dxbButtonFocused</code>, and <code>.dxbDisabled</code>.
+      </div>
+    </section>
+
+    <!-- ============ COLOR ============ -->
+    <section id="color">
+      <h3>Color palette</h3>
+      <p class="lead">A warm neutral (charcoal-brown) core with a gold accent, plus semantic green (positive / outline)
+      and red (danger). Hex values include an 8-digit form where the design uses transparency
+      (<code>#ffffff00</code> = fully transparent).</p>
+
+      <h4>Brand neutrals <span class="pill">primary surfaces &amp; text</span></h4>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#363029"></div><div class="meta"><div class="name">Neutral 900</div><div class="hex">#363029</div></div></div>
+        <div class="sw"><div class="chip" style="background:#3e3b38"></div><div class="meta"><div class="name">Neutral 800</div><div class="hex">#3e3b38</div></div></div>
+        <div class="sw"><div class="chip" style="background:#56524e"></div><div class="meta"><div class="name">Neutral 700</div><div class="hex">#56524e</div></div></div>
+        <div class="sw"><div class="chip" style="background:#575451"></div><div class="meta"><div class="name">Neutral 650</div><div class="hex">#575451</div></div></div>
+        <div class="sw"><div class="chip" style="background:#817b74"></div><div class="meta"><div class="name">Neutral 500</div><div class="hex">#817b74</div></div></div>
+        <div class="sw"><div class="chip" style="background:#efedeb"></div><div class="meta"><div class="name">Neutral 200</div><div class="hex">#efedeb</div></div></div>
+        <div class="sw"><div class="chip" style="background:#eae5e1"></div><div class="meta"><div class="name">Neutral 150</div><div class="hex">#eae5e1</div></div></div>
+        <div class="sw"><div class="chip" style="background:#f5f4f3;border-bottom:1px solid #e2ded9"></div><div class="meta"><div class="name">Page background</div><div class="hex">#f5f4f3</div></div></div>
+      </div>
+
+      <h4>Accent — gold <span class="pill">secondary / links</span></h4>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#bf9b5f"></div><div class="meta"><div class="name">Gold 400</div><div class="hex">#bf9b5f</div></div></div>
+        <div class="sw"><div class="chip" style="background:#9d804e"></div><div class="meta"><div class="name">Gold 500</div><div class="hex">#9d804e</div></div></div>
+        <div class="sw"><div class="chip" style="background:#816840"></div><div class="meta"><div class="name">Gold 600</div><div class="hex">#816840</div></div></div>
+        <div class="sw"><div class="chip" style="background:#67460d"></div><div class="meta"><div class="name">Gold link</div><div class="hex">#67460d</div></div></div>
+        <div class="sw"><div class="chip" style="background:#b87d17"></div><div class="meta"><div class="name">Amber (active)</div><div class="hex">#b87d17</div></div></div>
+      </div>
+
+      <h4>Green <span class="pill">positive / outline focus</span></h4>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#1d885d"></div><div class="meta"><div class="name">Green 400</div><div class="hex">#1d885d</div></div></div>
+        <div class="sw"><div class="chip" style="background:#0d5b3c"></div><div class="meta"><div class="name">Green 600</div><div class="hex">#0d5b3c</div></div></div>
+        <div class="sw"><div class="chip" style="background:#08482f"></div><div class="meta"><div class="name">Green 700</div><div class="hex">#08482f</div></div></div>
+      </div>
+
+      <h4>Danger — red</h4>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#ad3b3f"></div><div class="meta"><div class="name">Red 500</div><div class="hex">#ad3b3f</div></div></div>
+        <div class="sw"><div class="chip" style="background:#7f2629"></div><div class="meta"><div class="name">Red 700</div><div class="hex">#7f2629</div></div></div>
+        <div class="sw"><div class="chip" style="background:#5d1a1c"></div><div class="meta"><div class="name">Red 800</div><div class="hex">#5d1a1c</div></div></div>
+        <div class="sw"><div class="chip" style="background:#4c1517"></div><div class="meta"><div class="name">Red 900</div><div class="hex">#4c1517</div></div></div>
+      </div>
+
+      <h4>Text</h4>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#181f25"></div><div class="meta"><div class="name">Ink (body)</div><div class="hex">#181f25</div></div></div>
+        <div class="sw"><div class="chip" style="background:#3e3b38"></div><div class="meta"><div class="name">Dark text</div><div class="hex">#3e3b38</div></div></div>
+        <div class="sw"><div class="chip" style="background:#ffffff;border-bottom:1px solid #e2ded9"></div><div class="meta"><div class="name">White (on dark)</div><div class="hex">#ffffff</div></div></div>
+      </div>
+
+      <div class="callout dx" style="margin-top:24px">
+        <strong>Suggested global theme accents.</strong> In DevExpress, set the theme's primary accent to
+        <code>#56524e</code> (neutral 700) and the secondary/brand accent to <code>#bf9b5f</code> (gold 400).
+        Page/content background is <code>#f5f4f3</code>; default border is <code>#3e3b38</code>.
+      </div>
+    </section>
+
+    <!-- ============ TYPOGRAPHY ============ -->
+    <section id="type">
+      <h3>Typography</h3>
+      <p class="lead">The UI/control typeface is <strong>Raleway</strong>. Button and control labels are uppercase with
+      wide tracking.</p>
+      <table>
+        <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Font family</td><td class="val">Raleway</td><td>Load the Raleway web font in the theme.</td></tr>
+          <tr><td>Control label weight</td><td class="val">650</td><td>Figma style: “Semi Bold”.</td></tr>
+          <tr><td>Control label size</td><td class="val">11px</td><td>Buttons, tabs, small controls.</td></tr>
+          <tr><td>Line height</td><td class="val">1.25</td><td></td></tr>
+          <tr><td>Letter spacing</td><td class="val">0.15em</td><td>≈ 1.65px at 11px. Applied to uppercase labels.</td></tr>
+          <tr><td>Text transform</td><td class="val">uppercase</td><td>Button labels render uppercase (e.g. “SIGN IN”).</td></tr>
+        </tbody>
+      </table>
+      <div class="btnrow" style="font-family:var(--ui-font)">
+        <span class="lbl">Sample</span>
+        <span style="font-weight:650;font-size:11px;letter-spacing:.15em;text-transform:uppercase">Raleway Semi Bold · Sign In</span>
+      </div>
+    </section>
+
+    <!-- ============ SPACING ============ -->
+    <section id="space">
+      <h3>Spacing &amp; radius</h3>
+      <table>
+        <thead><tr><th>Token</th><th>Value</th><th>Typical use</th></tr></thead>
+        <tbody>
+          <tr><td>border-radius</td><td class="val">1px</td><td>Corners are effectively square across controls.</td></tr>
+          <tr><td>spacing / xxs</td><td class="val">8px</td><td>Tight gaps, small-button padding.</td></tr>
+          <tr><td>spacing / xs</td><td class="val">16px</td><td>Medium button horizontal padding.</td></tr>
+          <tr><td>spacing / sm</td><td class="val">24px</td><td>Large button horizontal padding.</td></tr>
+          <tr><td>spacing / md</td><td class="val">46px</td><td>Control height for Large &amp; Medium buttons.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ BUTTONS ============ -->
+    <section id="buttons">
+      <h3>Buttons</h3>
+      <p class="lead">Six intents — <strong>Primary, Secondary, Outline, Danger, Simple</strong> (text/link), and
+      <strong>Icon</strong> — each in three sizes (Large, Medium, Small) and five states (Default, Hover, Focus, Active,
+      Disabled). Hover/Focus/Active share the same fill on most intents; where a subtle vertical gradient is used the
+      spec lists both the top color (<em>bg</em>) and bottom color (<em>bg₂</em>).</p>
+
+      <div class="callout dx">
+        <strong>State → DevExpress class:</strong>
+        Default → <code>.dxbButton</code> ·
+        Hover → <code>.dxbButtonHover</code> ·
+        Focus → <code>.dxbButtonFocused</code> ·
+        Active/pressed → <code>.dxbButtonPressed</code> ·
+        Disabled → <code>.dxbDisabled</code>.
+        Map <em>Primary</em> to the default/accent button, <em>Danger</em> to destructive actions,
+        <em>Outline</em> &amp; <em>Secondary</em> to standard buttons, and <em>Simple</em> to link-style buttons.
+      </div>
+
+      <h4>Sizes</h4>
+      <table>
+        <thead><tr><th>Size</th><th>Height</th><th>Horizontal padding</th><th>Font size</th></tr></thead>
+        <tbody>
+          <tr><td>Large</td><td class="val">46px</td><td class="val">24px</td><td class="val">11px</td></tr>
+          <tr><td>Medium</td><td class="val">46px</td><td class="val">16px</td><td class="val">11px</td></tr>
+          <tr><td>Small</td><td class="val">30px</td><td class="val">14px</td><td class="val">11px</td></tr>
+        </tbody>
+      </table>
+
+      <!-- PRIMARY -->
+      <h4>Primary</h4>
+      <div class="btnrow">
+        <span class="lbl">Preview (Large)</span>
+        <span class="demo primary-default">Sign In</span><span class="state-tag">default</span>
+        <span class="demo primary-hover">Sign In</span><span class="state-tag">hover / focus / active</span>
+        <span class="demo primary-disabled">Sign In</span><span class="state-tag">disabled</span>
+      </div>
+      <table>
+        <thead><tr><th>State</th><th>Background</th><th>Background₂</th><th>Border</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Default</td><td class="val"><span class="dot" style="background:#56524e"></span>#56524e</td><td class="val">#56524e</td><td class="val">#56524e</td><td class="val">#ffffff</td></tr>
+          <tr><td>Hover</td><td class="val"><span class="dot" style="background:#575451"></span>#575451</td><td class="val">#3e3b38</td><td class="val">#3e3b38</td><td class="val">#ffffff</td></tr>
+          <tr><td>Focus</td><td class="val"><span class="dot" style="background:#575451"></span>#575451</td><td class="val">#3e3b38</td><td class="val">#3e3b38</td><td class="val">#ffffff</td></tr>
+          <tr><td>Active</td><td class="val"><span class="dot" style="background:#575451"></span>#575451</td><td class="val">#3e3b38</td><td class="val">#3e3b38</td><td class="val">#ffffff</td></tr>
+          <tr><td>Disabled</td><td class="val"><span class="dot" style="background:#efedeb"></span>#efedeb</td><td class="val">#efedeb</td><td class="val">#efedeb</td><td class="val">#817b74</td></tr>
+        </tbody>
+      </table>
+
+      <!-- SECONDARY -->
+      <h4>Secondary <span class="pill">gold</span></h4>
+      <div class="btnrow">
+        <span class="lbl">Preview (Large)</span>
+        <span class="demo secondary-default">Sign In</span><span class="state-tag">default</span>
+        <span class="demo secondary-hover">Sign In</span><span class="state-tag">hover / focus / active</span>
+        <span class="demo secondary-disabled">Sign In</span><span class="state-tag">disabled</span>
+      </div>
+      <table>
+        <thead><tr><th>State</th><th>Background</th><th>Background₂</th><th>Border</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Default</td><td class="val"><span class="dot" style="background:#bf9b5f"></span>#bf9b5f</td><td class="val">#bf9b5f</td><td class="val">#bf9b5f</td><td class="val">#ffffff</td></tr>
+          <tr><td>Hover</td><td class="val"><span class="dot" style="background:#bf9b5f"></span>#bf9b5f</td><td class="val">#9d804e</td><td class="val">#9d804e</td><td class="val">#ffffff</td></tr>
+          <tr><td>Focus</td><td class="val"><span class="dot" style="background:#bf9b5f"></span>#bf9b5f</td><td class="val">#9d804e</td><td class="val">#9d804e</td><td class="val">#ffffff</td></tr>
+          <tr><td>Active</td><td class="val"><span class="dot" style="background:#bf9b5f"></span>#bf9b5f</td><td class="val">#9d804e</td><td class="val">#9d804e</td><td class="val">#ffffff</td></tr>
+          <tr><td>Disabled</td><td class="val"><span class="dot" style="background:#efedeb"></span>#efedeb</td><td class="val">#efedeb</td><td class="val">#817b74</td><td class="val">#3e3b38</td></tr>
+        </tbody>
+      </table>
+
+      <!-- OUTLINE -->
+      <h4>Outline</h4>
+      <div class="btnrow">
+        <span class="lbl">Preview (Large)</span>
+        <span class="demo outline-default">Sign In</span><span class="state-tag">default</span>
+        <span class="demo outline-hover">Sign In</span><span class="state-tag">hover / focus</span>
+        <span class="demo outline-active">Sign In</span><span class="state-tag">active</span>
+        <span class="demo outline-disabled">Sign In</span><span class="state-tag">disabled</span>
+      </div>
+      <table>
+        <thead><tr><th>State</th><th>Background</th><th>Border</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Default</td><td class="val"><span class="dot" style="background:#ffffff"></span>#ffffff</td><td class="val">#3e3b38</td><td class="val">#3e3b38</td></tr>
+          <tr><td>Hover</td><td class="val"><span class="dot" style="background:#eae5e1"></span>#eae5e1</td><td class="val">#1d885d</td><td class="val">#0d5b3c</td></tr>
+          <tr><td>Focus</td><td class="val"><span class="dot" style="background:#eae5e1"></span>#eae5e1</td><td class="val">#1d885d</td><td class="val">#0d5b3c</td></tr>
+          <tr><td>Active</td><td class="val"><span class="dot" style="background:#eae5e1"></span>#eae5e1</td><td class="val">#08482f</td><td class="val">#0d5b3c</td></tr>
+          <tr><td>Disabled</td><td class="val"><span class="dot" style="background:#ffffff;border-style:dashed"></span>transparent</td><td class="val">#56524e</td><td class="val">#56524e</td></tr>
+        </tbody>
+      </table>
+
+      <!-- DANGER -->
+      <h4>Danger</h4>
+      <div class="btnrow">
+        <span class="lbl">Preview (Large)</span>
+        <span class="demo danger-default">Sign In</span><span class="state-tag">default</span>
+        <span class="demo danger-hover">Sign In</span><span class="state-tag">hover / focus / active</span>
+        <span class="demo danger-disabled">Sign In</span><span class="state-tag">disabled</span>
+      </div>
+      <table>
+        <thead><tr><th>State</th><th>Background</th><th>Background₂</th><th>Border</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Default</td><td class="val"><span class="dot" style="background:#ad3b3f"></span>#ad3b3f</td><td class="val">#ad3b3f</td><td class="val">#7f2629</td><td class="val">#ffffff</td></tr>
+          <tr><td>Hover</td><td class="val"><span class="dot" style="background:#7f2629"></span>#7f2629</td><td class="val">#5d1a1c</td><td class="val">#5d1a1c</td><td class="val">#ffffff</td></tr>
+          <tr><td>Focus</td><td class="val"><span class="dot" style="background:#7f2629"></span>#7f2629</td><td class="val">#5d1a1c</td><td class="val">#5d1a1c</td><td class="val">#ffffff</td></tr>
+          <tr><td>Active</td><td class="val"><span class="dot" style="background:#7f2629"></span>#7f2629</td><td class="val">#5d1a1c</td><td class="val">#5d1a1c</td><td class="val">#ffffff</td></tr>
+          <tr><td>Disabled</td><td class="val"><span class="dot" style="background:#3e3b38"></span>#3e3b38</td><td class="val">#3e3b38</td><td class="val">#3e3b38</td><td class="val">#817b74</td></tr>
+        </tbody>
+      </table>
+
+      <!-- SIMPLE -->
+      <h4>Simple <span class="pill">text / link button</span></h4>
+      <div class="btnrow">
+        <span class="lbl">Preview</span>
+        <span class="demo simple-default">Sign In</span><span class="state-tag">default</span>
+        <span class="demo simple-hover">Sign In</span><span class="state-tag">hover / focus</span>
+        <span class="demo simple-active">Sign In</span><span class="state-tag">active</span>
+      </div>
+      <table>
+        <thead><tr><th>State</th><th>Background</th><th>Text</th></tr></thead>
+        <tbody>
+          <tr><td>Default</td><td class="val">transparent</td><td class="val"><span class="dot" style="background:#181f25"></span>#181f25</td></tr>
+          <tr><td>Hover</td><td class="val">transparent</td><td class="val"><span class="dot" style="background:#67460d"></span>#67460d</td></tr>
+          <tr><td>Focus</td><td class="val">transparent</td><td class="val"><span class="dot" style="background:#67460d"></span>#67460d</td></tr>
+          <tr><td>Active</td><td class="val"><span class="dot" style="background:#eae5e1"></span>#eae5e1</td><td class="val"><span class="dot" style="background:#b87d17"></span>#b87d17</td></tr>
+          <tr><td>Disabled</td><td class="val">transparent</td><td class="val"><span class="dot" style="background:#56524e"></span>#56524e</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Icon button</strong> uses the Primary fill (<code>#56524e</code>) in a square (46×46) with the label icon
+        in white. It follows the same state colors as Primary.
+      </div>
+    </section>
+
+    <!-- ============ ROADMAP ============ -->
+    <section id="roadmap">
+      <h3>Coming next</h3>
+      <p class="lead">This guide starts with foundations + buttons. As each Figma component set is finalized it will be
+      added here using the same pattern (visual preview → value table → DevExpress control mapping):</p>
+      <table>
+        <thead><tr><th>Component</th><th>DevExpress control</th></tr></thead>
+        <tbody>
+          <tr><td>Text inputs / memo</td><td class="val">ASPxTextBox, ASPxMemo</td></tr>
+          <tr><td>Dropdowns / combo</td><td class="val">ASPxComboBox</td></tr>
+          <tr><td>Checkbox / radio</td><td class="val">ASPxCheckBox, ASPxRadioButtonList</td></tr>
+          <tr><td>Data grid</td><td class="val">ASPxGridView</td></tr>
+          <tr><td>Tabs / pages</td><td class="val">ASPxPageControl</td></tr>
+          <tr><td>Popups / dialogs</td><td class="val">ASPxPopupControl</td></tr>
+          <tr><td>Pager</td><td class="val">ASPxPager</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+<script>
+  const toast=document.getElementById('toast');
+  function copy(text){
+    navigator.clipboard.writeText(text).then(()=>{
+      toast.textContent='Copied  '+text;
+      toast.classList.add('show');
+      clearTimeout(window._t);
+      window._t=setTimeout(()=>toast.classList.remove('show'),1200);
+    });
+  }
+  document.querySelectorAll('.hex, td.val').forEach(el=>{
+    el.addEventListener('click',()=>copy(el.textContent.trim()));
+    el.title='Click to copy';
+  });
+</script>
+</body>
+</html>
