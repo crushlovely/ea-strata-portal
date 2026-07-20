@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: "Documents Import"
 ---
 {% raw %}
-<div class="contentPane">
+<div class="d-grid grid-cols-1 gap-block">
         
         
 
@@ -309,10 +309,10 @@ title: "Documents Import"
 <form action="/Import/Documents" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flPlaintiffDocumentImport" style="width:100%;">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flPlaintiffDocumentImport_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+			<td id="flPlaintiffDocumentImport_0" class="col dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Start Plaintiff Document Import</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 					<tbody><tr>
-						<td id="flPlaintiffDocumentImport_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCheckBoxWithTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flPlaintiffDocumentImport_0_0" class="col dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCheckBoxWithTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact" for="chkConfidentialDocs_S" style="color:Black;font-weight:bold;">Confidential Documents:</label></td>
 							</tr><tr>
@@ -329,7 +329,7 @@ ASPx.createControl(ASPxClientCheckBox,'chkConfidentialDocs','',{'imageProperties
 							</tr>
 						</tbody></table></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td><td data-left="820.5" class="dxflChildInFirstRowSys dxflLastChildInRowSys"></td>
 					</tr><tr>
-						<td id="flPlaintiffDocumentImport_0_1" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="4" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flPlaintiffDocumentImport_0_1" class="col dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="4" data-left="40"><table class="dxflCLTSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact" for="plaintiffDocumentImportFileUpload_TextBox0_Input" style="color:Black;font-weight:bold;">Upload Plaintiff Documents Below:</label></td>
 							</tr><tr>
@@ -461,16 +461,16 @@ ASPx.createControl(MVCxClientFormLayout,'flPlaintiffDocumentImport','',null,null
 <div class="dxflFormLayout_MaterialCompact" id="flPlaintiffDocumentImportReview" style="height:100%;width:100%;">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flPlaintiffDocumentImportReview_0" class="dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+			<td id="flPlaintiffDocumentImportReview_0" class="col dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Plaintiff Document Import Review</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;padding-bottom:4px;">
 					<tbody><tr>
-						<td id="flPlaintiffDocumentImportReview_0_0" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
+						<td id="flPlaintiffDocumentImportReview_0_0" class="col dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flPlaintiffDocumentImportReview_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of plaintiff documents imported:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="ImportedDocCount"></span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flPlaintiffDocumentImportReview_0_1" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
+						<td id="flPlaintiffDocumentImportReview_0_1" class="col dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:6px;padding-right:6px;padding-top:6px;padding-bottom:6px;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flPlaintiffDocumentImportReview_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of exceptions:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="FailedDocImportCount"></span></td>
 							</tr>
@@ -514,10 +514,10 @@ ASPx.createControl(MVCxClientCallbackPanel,'cbPlaintiffDocumentImportPartial',''
 <form action="/Import/Documents" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flImportPlaintiffPageReference">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flImportPlaintiffPageReference_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflChildInLastRowSys" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="width:650px;">
+			<td id="flImportPlaintiffPageReference_0" class="col dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflChildInLastRowSys" data-left="15"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="width:650px;">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Start Page Reference Import</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 					<tbody><tr>
-						<td id="flImportPlaintiffPageReference_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+						<td id="flImportPlaintiffPageReference_0_0" class="col dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
 <a class="dxbButton_MaterialCompact dxbButtonSys" id="btnDownloadTemplate_PlaintiffPageReference" href="javascript:;"><img class="dxIcon_export_exporttoxlsx_32x32 dx-vam" src="/DXR.axd?r=1_87-SZRsu" alt="" style="margin-right:4px;" id="btnDownloadTemplate_PlaintiffPageReferenceImg"><span class="dx-vam">Download Plaintiff Page Reference Template</span></a><script id="dxss_1315151677" data-executed="true">
 <!--
 ASPx.InitializeSVGSprite();
@@ -527,11 +527,11 @@ ASPx.createControl(MVCxClientButton,'btnDownloadTemplate_PlaintiffPageReference'
 </script>
 						</div></td>
 					</tr><tr>
-						<td id="flImportPlaintiffPageReference_0_1" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" style="width:50%;" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="width:100%;">
+						<td id="flImportPlaintiffPageReference_0_1" class="col dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys" style="width:50%;" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="width:100%;">
 <span class="dxeBase_MaterialCompact" id="lbFileSelection">Select the file you would like to import:</span>
 						</div></td>
 					</tr><tr>
-						<td id="flImportPlaintiffPageReference_0_2" class="dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+						<td id="flImportPlaintiffPageReference_0_2" class="col dxflGroupCell_MaterialCompact dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" data-left="40"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
 <table class="dxuc-root dxucControl_MaterialCompact" id="ucFileSelection" style="width:100%;">
 	<tbody><tr>
 		<td style="width:100%;vertical-align:top;"><table id="ucFileSelection_UploadInputs" class="dxucInputs_MaterialCompact" style="width:100%;border-collapse:separate;">
@@ -681,7 +681,7 @@ ASPx.createControl(MVCxClientPopupControl,'pcProcessLoadingModal','',{'popupAnim
 				<div class="dxflFormLayout_MaterialCompact" id="flImportError">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flImportError_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+			<td id="flImportError_0" class="col dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
 <p>The imported file <b>''</b> has a record count of <b>0</b>, which exceeds the maximum amount of records able to be processed of <b>0</b>.</p>
 			</div></td>
 		</tr>
@@ -720,13 +720,13 @@ ASPx.createControl(MVCxClientPopupControl,'pcImportErrorModal','',{'callBack':fu
 				<div class="dxflFormLayout_MaterialCompact" id="flImportConfirmation">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flImportConfirmation_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+			<td id="flImportConfirmation_0" class="col dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
 <p class="text-justify">Are you sure you want to import <b>0</b> record(s) for <b>''</b>?</p>
 			</div></td>
 		</tr><tr>
-			<td id="flImportConfirmation_1" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+			<td id="flImportConfirmation_1" class="col dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 				<tbody><tr>
-					<td id="flImportConfirmation_1_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+					<td id="flImportConfirmation_1_0" class="col dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
 <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportNo" style="width:100%;-webkit-user-select:none;">
 	<div class="dxb" id="btnImportNo_CD">
 		<div class="dxb-hbc">
@@ -743,7 +743,7 @@ ASPx.createControl(MVCxClientButton,'btnImportNo','',{'useSubmitBehavior':false}
 
 //-->
 </script>
-					</div></td><td id="flImportConfirmation_1_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+					</div></td><td id="flImportConfirmation_1_1" class="col dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
 <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportYes" style="width:100%;-webkit-user-select:none;">
 	<div class="dxb" id="btnImportYes_CD">
 		<div class="dxb-hbc">
@@ -798,11 +798,11 @@ ASPx.createControl(MVCxClientPopupControl,'pcImportConfirmationModal','',{'callB
 				<div class="dxflFormLayout_MaterialCompact" id="flImportProcessingDetails">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flImportProcessingDetails_0" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+			<td id="flImportProcessingDetails_0" class="col dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
 <p class="text-justify">While processing your import, <b>0</b> warning(s) were found that require your attention. Do you still wish to proceed?</p>
 			</div></td>
 		</tr><tr>
-			<td id="flImportProcessingDetails_1" class="dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
+			<td id="flImportProcessingDetails_1" class="col dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact">
 <table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_1a0b5459-805b-48d9-b6c7-6032b6c78afa" style="width:600px;border-collapse:separate;">
 	<tbody><tr>
 		<td><div class="dxgvHSDC">
@@ -855,9 +855,9 @@ ASPxClientGridBase.PostponeInitialize('gvValidationDetails_1a0b5459-805b-48d9-b6
 
 			</div></td>
 		</tr><tr>
-			<td id="flImportProcessingDetails_2" class="dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
+			<td id="flImportProcessingDetails_2" class="col dxflHACSys dxflVATSys dxflGroupCell_MaterialCompact"><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 				<tbody><tr>
-					<td id="flImportProcessingDetails_2_0" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+					<td id="flImportProcessingDetails_2_0" class="col dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
 <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportCancel" style="width:100%;-webkit-user-select:none;">
 	<div class="dxb" id="btnImportCancel_CD">
 		<div class="dxb-hbc">
@@ -874,7 +874,7 @@ ASPx.createControl(MVCxClientButton,'btnImportCancel','',{'useSubmitBehavior':fa
 
 //-->
 </script>
-					</div></td><td id="flImportProcessingDetails_2_1" class="dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
+					</div></td><td id="flImportProcessingDetails_2_1" class="col dxflHACSys dxflVAMSys dxflGroupCell_MaterialCompact"><div class="dxflNestedControlCell_MaterialCompact dxflCLLSys dxflItemSys dxflButtonItemSys dxflItem_MaterialCompact">
 <div class="dxbButton_MaterialCompact dxbButtonSys dxbTSys" id="btnImportProceed" style="width:100%;-webkit-user-select:none;">
 	<div class="dxb" id="btnImportProceed_CD">
 		<div class="dxb-hbc">
@@ -931,64 +931,64 @@ ASPx.createControl(MVCxClientPopupControl,'pcImportProcessingDetailsModal','',{'
 				<div class="dxflFormLayout_MaterialCompact" id="flImportSummary" style="height:100%;width:100%;">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flImportSummary_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;">
+			<td id="flImportSummary_0" class="col dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Import Results</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 					<tbody><tr>
-						<td id="flImportSummary_0_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_0" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Status:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact text-danger" id="lblImportStatus">Unsuccessful</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_1" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_1" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import Name:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportName"></span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_2" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_2" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_2_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import User:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblImportUser"></span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_3" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_3" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_3_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Start Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateStarted">1/1/0001 12:00:00.000 AM</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_4" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_4" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_4_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">End Date:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblDateEnded">1/1/0001 12:00:00.000 AM</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_5" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_5" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_5_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Time Elapsed:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblElapsedTime">0ms</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_6" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_6" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_6_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Expected Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblExpectedRecords">0</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_7" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_7" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_7_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Valid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblValidRecords">0</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_8" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_8" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_8_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Invalid Records:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblInvalidRecords">0</span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flImportSummary_0_9" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_0_9" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_0_9_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Validation Messages:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="lblErrorCount">0</span></td>
 							</tr>
@@ -997,10 +997,10 @@ ASPx.createControl(MVCxClientPopupControl,'pcImportProcessingDetailsModal','',{'
 				</tbody></table>
 			</div></td>
 		</tr><tr>
-			<td id="flImportSummary_1" class="dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;width:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;width:100%;">
+			<td id="flImportSummary_1" class="col dxflVATSys dxflGroupCell_MaterialCompact dxflFullHeightItemCellSys" style="height:100%;width:100%;"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys" style="height:100%;width:100%;">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Validation Summary</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 					<tbody><tr>
-						<td id="flImportSummary_1_0" class="dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flImportSummary_1_0" class="col dxflGroupCell_MaterialCompact"><table class="dxflCLLSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flImportSummary_1_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact"></span></td><td class="dxflNestedControlCell_MaterialCompact"><table class="dxgvControl_MaterialCompact dxgv" id="gvValidationDetails_18bd80a6-fde0-4fa4-9451-0181b99a18f3" style="width:600px;border-collapse:separate;">
 	<tbody><tr>

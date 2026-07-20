@@ -4,66 +4,66 @@
 // pick up the responsive Tablet/Desktop overrides automatically).
 // Do not hand-edit; re-sync from Figma instead. See /skills/figma-var-to-scss.md.
 
-@mixin heading1 {
-  font-family: var(--heading1-font-family);
-  font-size: var(--heading1-font-size);
-  line-height: var(--heading1-line-height);
-  font-weight: var(--heading1-font-weight);
+@mixin headingXXL {
+  font-family: var(--headingXXL-font-family);
+  font-size: var(--headingXXL-font-size);
+  line-height: var(--headingXXL-line-height);
+  font-weight: var(--headingXXL-font-weight);
 }
-.heading1 {
-  @include heading1;
-}
-
-@mixin heading2 {
-  font-family: var(--heading2-font-family);
-  font-size: var(--heading2-font-size);
-  line-height: var(--heading2-line-height);
-  font-weight: var(--heading2-font-weight);
-}
-.heading2 {
-  @include heading2;
+.headingXXL {
+  @include headingXXL;
 }
 
-@mixin heading3 {
-  font-family: var(--heading3-font-family);
-  font-size: var(--heading3-font-size);
-  line-height: var(--heading3-line-height);
-  font-weight: var(--heading3-font-weight);
+@mixin headingXL {
+  font-family: var(--headingXL-font-family);
+  font-size: var(--headingXL-font-size);
+  line-height: var(--headingXL-line-height);
+  font-weight: var(--headingXL-font-weight);
 }
-.heading3 {
-  @include heading3;
-}
-
-@mixin heading4 {
-  font-family: var(--heading4-font-family);
-  font-size: var(--heading4-font-size);
-  line-height: var(--heading4-line-height);
-  font-weight: var(--heading4-font-weight);
-}
-.heading4 {
-  @include heading4;
+.headingXL {
+  @include headingXL;
 }
 
-@mixin heading5 {
-  font-family: var(--heading5-font-family);
-  font-size: var(--heading5-font-size);
-  line-height: var(--heading5-line-height);
-  font-weight: var(--heading5-font-weight);
+@mixin headingLG {
+  font-family: var(--headingLG-font-family);
+  font-size: var(--headingLG-font-size);
+  line-height: var(--headingLG-line-height);
+  font-weight: var(--headingLG-font-weight);
 }
-.heading5 {
-  @include heading5;
+.headingLG {
+  @include headingLG;
 }
 
-@mixin heading6 {
-  font-family: var(--heading6-font-family);
-  font-size: var(--heading6-font-size);
-  line-height: var(--heading6-line-height);
-  font-weight: var(--heading6-font-weight);
-  letter-spacing: var(--heading6-letter-spacing);
-  text-transform: var(--heading6-text-transform);
+@mixin headingMD {
+  font-family: var(--headingMD-font-family);
+  font-size: var(--headingMD-font-size);
+  line-height: var(--headingMD-line-height);
+  font-weight: var(--headingMD-font-weight);
 }
-.heading6 {
-  @include heading6;
+.headingMD {
+  @include headingMD;
+}
+
+@mixin headingSM {
+  font-family: var(--headingSM-font-family);
+  font-size: var(--headingSM-font-size);
+  line-height: var(--headingSM-line-height);
+  font-weight: var(--headingSM-font-weight);
+}
+.headingSM {
+  @include headingSM;
+}
+
+@mixin headingXS {
+  font-family: var(--headingXS-font-family);
+  font-size: var(--headingXS-font-size);
+  line-height: var(--headingXS-line-height);
+  font-weight: var(--headingXS-font-weight);
+  letter-spacing: var(--headingXS-letter-spacing);
+  text-transform: var(--headingXS-text-transform);
+}
+.headingXS {
+  @include headingXS;
 }
 
 @mixin body {

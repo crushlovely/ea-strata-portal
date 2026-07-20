@@ -87,19 +87,19 @@ title: "Login"
       pcPlaintiffRequestAcessModal.UpdatePosition();
     }
   </script> -->
-<div class="contentPane">
-  <div class="pageHeader">
+<div class="d-grid grid-cols-1 gap-block mx-auto w-100" style="max-width: 35rem;">
+  <div class="text-center mx-auto" style="max-width: 50.1875rem;">
     <p>Welcome to the EisnerAmper Legal Administration Portal, a secure website that allows for the exchange of
       information between Plaintiffs, Defendants, Special Masters, and the Court.</p>
   </div>
-  <div class="card-stack">
-    <div class="card">
+  <div class="position-relative d-grid grid-cols-1 gap-sm">
+    <div class="card rounded-0 border-0 border-top border-5 border-secondary bg-white p-md align-items-start">
       <form action="/Account/Login" id="loginForm" method="post" novalidate="novalidate">
         <input name="__RequestVerificationToken" type="hidden"
           value="ydhiyj8ykGmIQnlmn8Anw859SeF7d2Ppk-JjP3D_ouLU6AdW-uiQ-9tCBuAQckJ_vgoKkrLw-UhaTMd5sTyQWdluSBTMjrmVwbUCUQCM9Uw1">
-        <div class="card__body">
-          <h2 class="card__title">Log In</h2>
-          <div class="card__content">
+        <div class="card-body d-flex flex-column align-items-center gap-card w-100 p-0">
+          <h2 class="display-6 fw-normal text-center w-100">Log In</h2>
+          <div class="d-grid gap-md w-100">
             <fieldset>
               <div class="input-field input-field--secondary">
                 <label for="Email_I" class="dxeLabel_MaterialCompact dxeLabelSys dxh0">Email Address</label>
@@ -132,17 +132,17 @@ title: "Login"
           value="{&quot;Email&quot;:null,&quot;Password&quot;:null,&quot;RememberMe&quot;:false}">
       </form>
     </div>
-    <div class="card card--secondary">
-      <div class="card__body">
-        <h2 class="card__title">Need Access?</h2>
-        <div class="card__content">
-          <div class="card__block">
+    <div class="card rounded-0 border-0 border-top bg-white p-md align-items-start">
+      <div class="card-body d-flex flex-column align-items-center gap-card w-100 p-0">
+        <h2 class="headingLG text-center w-100">Need Access?</h2>
+        <div class="d-grid gap-md w-100">
+          <div class="d-flex flex-column align-items-center gap-card-block w-100 text-center">
             <h3>I am a law firm user</h3>
             <p>If you are a member of a law firm that has not been granted access, click the Request Access button to
               submit a request for approval.</p>
             <a class="button" href="/AccessRequest">Law Firm Request Access</a>
           </div>
-          <div class="card__block">
+          <div class="d-flex flex-column align-items-center gap-card-block w-100 text-center">
             <h3>I am a plaintiff</h3>
             <p>If you are a plaintiff who has been directed to this page and need assistance, please contact the law
               firm

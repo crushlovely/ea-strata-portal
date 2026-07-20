@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: "Bulk Claim Import"
 ---
 {% raw %}
-<div class="contentPane">
+<div class="d-grid grid-cols-1 gap-block">
         
         
 
@@ -91,10 +91,10 @@ title: "Bulk Claim Import"
 <form action="/Admin/ClaimImport" method="post" enctype="multipart/form-data"><div class="dxflFormLayout_MaterialCompact" id="flClaimImport" style="width:100%;">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flClaimImport_0" class="dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+			<td id="flClaimImport_0" class="col dxflVATSys dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Start Claim Import</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 					<tbody><tr>
-						<td id="flClaimImport_0_0" class="dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="4"><table class="dxflCLTSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
+						<td id="flClaimImport_0_0" class="col dxflGroupCell_MaterialCompact dxflChildInFirstRowSys dxflFirstChildInRowSys dxflLastChildInRowSys dxflLastChildSys dxflChildInLastRowSys" colspan="4"><table class="dxflCLTSys dxflItemSys dxflCustomItemSys dxflItem_MaterialCompact" style="border-collapse:separate;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><label class="dxflCaption_MaterialCompact" for="claimImportFileUpload_TextBox0_Input" style="color:Black;font-weight:bold;">Upload Claim Import Excel File:</label></td>
 							</tr><tr>
@@ -188,22 +188,22 @@ ASPx.createControl(MVCxClientFormLayout,'flClaimImport','',null,null,null,{'item
 <div class="dxflFormLayout_MaterialCompact" id="flClaimImportReview" style="height:100%;width:100%;">
 	<table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;">
 		<tbody><tr>
-			<td id="flClaimImportReview_0" class="dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
+			<td id="flClaimImportReview_0" class="col dxflVATSys dxflGroupCell_MaterialCompact"><div class="dxflGroupBox_MaterialCompact dxflGroupBoxSys">
 				<span class="dxflGroupBoxCaption_MaterialCompact">Claim Import Review</span><table class="dxflGroup_MaterialCompact dxflGroupSys dxflAGSys" style="border-collapse:separate;padding-bottom:3px;">
 					<tbody><tr>
-						<td id="flClaimImportReview_0_0" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
+						<td id="flClaimImportReview_0_0" class="col dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flClaimImportReview_0_0_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">Import File Name:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="DocumentName"></span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flClaimImportReview_0_1" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
+						<td id="flClaimImportReview_0_1" class="col dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flClaimImportReview_0_1_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of claims imported:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="ImportedClaimCount"></span></td>
 							</tr>
 						</tbody></table></td>
 					</tr><tr>
-						<td id="flClaimImportReview_0_2" class="dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
+						<td id="flClaimImportReview_0_2" class="col dxflGroupCell_MaterialCompact" colspan="8"><table class="dxflCLLSys dxflItemSys dxflTextItemSys dxflItem_MaterialCompact" style="border-collapse:separate;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">
 							<tbody><tr>
 								<td class="dxflHALSys dxflVATSys dxflCaptionCell_MaterialCompact dxflCaptionCellSys"><span id="flClaimImportReview_0_2_Cap" class="dxDefaultCursor dxflCaption_MaterialCompact">No. of exceptions:</span></td><td class="dxflNestedControlCell_MaterialCompact"><span class="dxeBase_MaterialCompact" id="ExceptionCount"></span></td>
 							</tr>

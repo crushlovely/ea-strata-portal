@@ -51,7 +51,7 @@ in a ::root {} declaration create a css variable for every variable found in the
 name the variable in this format: --{group}-{name}
 if the variable is nested it would be --{group}-{group}-name
 in this ::root {} declaration use the value from the Phone mode
-Note: if a variable's name segment starts with 'figma-' (e.g. heading1/figma-font-weight) you can ignore it, this is only used for the figma file
+Note: if a variable's name segment starts with 'figma-' (e.g. headingXXL/figma-font-weight) you can ignore it, this is only used for the figma file
 
 Create a media query `@media (min-width: $bp-tablet)` and put a ::root {} declaration inside of it
 here you will use the same variable names but using the value from the Tablet mode.
@@ -89,7 +89,7 @@ variable we will define the typography mixin and class for it.
 
 An example would be:
 
-From the heading1 group the variables are
+From the headingXXL group the variables are
 font-family
 font-size
 line-height
@@ -98,15 +98,15 @@ font-weight
 use the group name as the name of the mixin and class
 
 ```
-@mixin heading1 {
-  font-family: var(--heading1-font-family);
-  font-size: var(--heading1-font-size);
-  line-height: var(--heading1-line-height);
-  font-weight: var(--heading1-font-weight);
+@mixin headingXXL {
+  font-family: var(--headingXXL-font-family);
+  font-size: var(--headingXXL-font-size);
+  line-height: var(--headingXXL-line-height);
+  font-weight: var(--headingXXL-font-weight);
   /* any other typography-related classes */
   /* ignore any variables that start with 'figma-' */
 }
-.heading1 { @include heading1 };
+.headingXXL { @include headingXXL };
 
 ```
 

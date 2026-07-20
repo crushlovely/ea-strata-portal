@@ -1,7 +1,3 @@
-// Color Primitives — generated from the Figma "Color Primitives" variable collection
-// (Settlement-Redesign file, ERtCJDYHwv062jearypfP7). Do not hand-edit values;
-// re-sync from Figma instead. See /skills/figma-var-to-scss.md.
-
 :root {
   // palette
   --palette-black: #181f25;
@@ -64,10 +60,4 @@
   --palette-pink-medium: #f8485e;
   --palette-pink-dark: #d62239;
   --palette-pink-darker: #af1c2f;
-
-  // status
-  --status-error: var(--palette-red);
-  --status-warning: var(--palette-gold);
-  --status-success: var(--palette-forest-green);
-  --status-info: var(--palette-navy-blue);
 }
