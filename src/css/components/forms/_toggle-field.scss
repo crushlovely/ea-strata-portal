@@ -3,7 +3,7 @@
 // Row: semibold large-text label (flex 1) + 60x30 switch. The switch artwork
 // is a baked image in Figma, so the track/knob below is reconstructed with
 // palette colors — adjust if the design gets real toggle tokens.
-@use "typography" as *;
+@use "components/typography" as *;
 
 // ---------------------------------------------------------------- elements
 

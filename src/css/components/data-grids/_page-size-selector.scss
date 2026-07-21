@@ -1,6 +1,6 @@
 // STRATA Page Size Selector — Figma component 6192:392 ("Grid page-size
 // control"). Header-bg bar, centered: muted "Page size:" label + dropdown value.
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin page-size-selector {
   display: flex;

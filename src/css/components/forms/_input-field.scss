@@ -4,7 +4,7 @@
 // Colors come from the --form-ui-{intent}-{state}-* theme variables
 // (variables/_02_theme.scss); states map to interaction pseudo-classes,
 // error to [aria-invalid="true"].
-@use "typography" as *;
+@use "components/typography" as *;
 
 // ---------------------------------------------------------------- layout
 

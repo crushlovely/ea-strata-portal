@@ -3,7 +3,8 @@
 // (6387:104482, simple-button actions), Button (6394:110033), Checkbox
 // (6387:103271). Link/button/checkbox content is styled by the link, button,
 // and checkbox components — this cell only provides the box.
-@use "typography" as *;
+
+@use "components/typography" as *;
 
 @mixin data-grid-row-cell {
   // Content=Text (default)

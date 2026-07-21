@@ -1,6 +1,6 @@
 // STRATA Pager — Figma component 6192:387 ("Pagination summary and controls").
 // Header-bg bar: "Page 1 of 17 (135 items)" summary + STRATA Pagination.
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin pager {
   display: flex;

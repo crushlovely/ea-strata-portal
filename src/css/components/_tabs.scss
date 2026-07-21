@@ -1,6 +1,5 @@
-// STRATA Tab — Figma component set 6192:404 ("Section/report tab states").
-// Variants: State=Default (6192:398), State=Active (6192:395), State=Disabled (6192:401).
-@use "typography" as *;
+// STRATA Tab
+@use "components/typography" as *;
 
 @mixin tab {
   // State=Default
@@ -54,4 +53,32 @@
 .dxtc-tab.dxtc-disabled a {
   @include tab;
   @include tab-disabled;
+}
+
+// STRATA Tabs
+
+@mixin tabs {
+  display: flex;
+  align-items: stretch;
+  overflow: clip;
+  margin-block-end: var(--spacing-sm);
+  list-style-type: none;
+  li {
+    height: auto !important;
+  }
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid var(--tab-default-border-color);
+  }
+}
+
+// Component classes
+.tabs {
+  @include tabs;
+}
+
+// App selectors
+.dxtc-strip {
+  @include tabs;
 }

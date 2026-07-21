@@ -1,0 +1,102 @@
+// Styles for the custom grid view component
+// This might be moved into overrides or a separate component file in the future.
+
+.custom-grid-view .export-button {
+  background-color: #003a66;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.custom-grid-view .export-button:hover {
+  background-color: #0056b3;
+}
+
+.custom-grid-view .grid-actions {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.grid-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grid-table th,
+.grid-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.grid-table thead th,
+tfoot {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-confirmation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-confirmation button {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: lightgray;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.modal-confirmation button:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .dxgvADHTR:has(> .hide-header-mobile) {
+    display: none;
+  }
+
+  .contentPane {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+
+  .mobile-p-0 {
+    padding: 0px !important;
+  }
+  .dxgvADCC {
+    max-width: 10rem;
+    white-space: break-spaces !important;
+    /*white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;*/
+  }
+}

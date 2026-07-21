@@ -1,6 +1,5 @@
 // STRATA Data Table Filters — Figma component 6283:987.
 // Row of STRATA Grid Filter Cells under the table header.
-@use "backgrounds" as *;
 
 @mixin data-table-filters {
   display: flex;
@@ -25,60 +24,4 @@
     padding-top: 2px !important;
   }
   background-color: var(--data-grid-header-bg) !important;
-}
-
-img[alt="Not filtered"] {
-  @include img-replace(
-    0.75rem,
-    0.75rem,
-    var(--data-grid-header-bg),
-    var(--data-grid-header-text),
-    "FunnelSimple"
-  );
-}
-img[alt="Filter applied"] {
-  @include img-replace(
-    0.75rem,
-    0.75rem,
-    var(--data-grid-header-bg),
-    var(--palette-leather-dark),
-    "FunnelSimple"
-  );
-}
-
-img[alt="Ascending"] {
-  @include img-replace(
-    0.75rem,
-    0.75rem,
-    var(--data-grid-header-bg),
-    var(--data-grid-header-text),
-    "ArrowUp"
-  );
-}
-img[alt="Descending"] {
-  @include img-replace(
-    0.75rem,
-    0.75rem,
-    var(--data-grid-header-bg),
-    var(--palette-leather-dark),
-    "ArrowDown"
-  );
-}
-img[alt="v"] {
-  @include img-replace(
-    1.5rem,
-    1.5rem,
-    var(--data-grid-header-bg),
-    var(--palette-leather-dark),
-    "CaretDown"
-  );
-}
-img[alt="x"] {
-  @include img-replace(
-    1.5rem,
-    1.5rem,
-    var(--data-grid-header-bg),
-    var(--palette-leather-dark),
-    "XCircle"
-  );
 }

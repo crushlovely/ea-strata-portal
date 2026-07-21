@@ -5,7 +5,7 @@
 // the native control is kept (no appearance: none) and accent-color paints the
 // selected dot. Tradeoff: the unselected ring color is UA-drawn and can't match
 // the Figma input-border exactly — accepted for native focus/keyboard/AT behavior.
-@use "typography" as *;
+@use "components/typography" as *;
 
 // ---------------------------------------------------------------- elements
 

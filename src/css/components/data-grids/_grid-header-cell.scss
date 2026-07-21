@@ -2,7 +2,7 @@
 // ("Data grid column header cell").
 // Variants: Sortable=False (6192:341), True (6192:343, + funnel icon),
 // Checkbox (6337:93951, select-all checkbox instead of a label).
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin grid-header-cell {
   // Sortable=False (default)

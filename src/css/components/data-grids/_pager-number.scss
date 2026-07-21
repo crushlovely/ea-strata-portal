@@ -1,7 +1,7 @@
 // STRATA Pager Number — Figma component set 6387:106219.
 // Variants: Active=False (6387:106218, link-colored number), True
 // (6387:106220, filled circle with row-bg number).
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin pager-number {
   display: inline-flex;

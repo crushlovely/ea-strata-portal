@@ -7,7 +7,7 @@
 // checked fill; the browser picks a contrasting checkmark automatically.
 // Tradeoff: the unchecked border color is UA-drawn and can't match the Figma
 // input-border exactly — accepted for native focus/keyboard/AT behavior.
-@use "typography" as *;
+@use "components/typography" as *;
 
 // ---------------------------------------------------------------- elements
 

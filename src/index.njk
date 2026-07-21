@@ -3,656 +3,82 @@ layout: layouts/base.njk
 title: "Home"
 ---
 {% raw %}
-<div class="contentPane">
+<div class="d-grid gap-block container">
 
-  <div class="page-header page-header--center">
+  <div
+    class="d-flex flex-column align-items-center gap-xxs overflow-hidden text-break text-center mx-auto w-100 min-w-0"
+    style="max-width: 50.1875rem;">
     <h1>All Law Firms Dashboard</h1>
     <p>The information, or data, presented below is related to All Law Firms and their respective AFFF MDL
       Plaintiffs.</p>
   </div>
 
-
-  <!-- <style>
-    @media screen and (-ms-high-contrast:active),
-    (-ms-high-contrast:none) {
-      .grid-page {
-        display: -ms-grid;
-        -ms-grid-columns: 46vw 1vw 44vw;
-        -ms-grid-rows: 75px 75px 400px 325px 425px 100px;
-        justify-content: center;
-        grid-row-gap: 10px;
-        grid-column-gap: 0vw;
-      }
-
-      .grid-container {
-        display: -ms-grid;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
-        -ms-grid-row: 3;
-        -ms-grid-columns: 21vw 1vw 19vw 1vw 19vw 1vw 19vw;
-        -ms-grid-rows: 140px 24px 140px;
-        align-items: center;
-        margin-bottom: 25px;
-        transform: translateX(-10px);
-      }
-
-      .gridstackedboxbig {
-        width: 21vw;
-        height: 304px;
-        display: block;
-        background-color: #f5f5f5;
-        border: 1px solid #003057;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-        -ms-grid-row: 1;
-        -ms-grid-row-span: 3;
-        -ms-grid-column: 1;
-        text-decoration: inherit;
-      }
-
-      #welcome {
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-        margin-bottom: 15px;
-      }
-
-      #subtext {
-        -ms-grid-row: 2;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-        margin-bottom: 10px;
-      }
-
-      #csgrid {
-        -ms-grid-row: 3;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-      }
-
-      #rcupdates {
-        -ms-grid-row: 4;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
-        align-self: right;
-        left: 4.5vw;
-      }
-
-      #milestones {
-        -ms-grid-row: 4;
-        -ms-grid-column: 2;
-        height: 315px;
-      }
-
-      #announcement {
-        -ms-grid-row: 5;
-        -ms-grid-column: 2;
-        height: 480px;
-      }
-
-      .grid-section-announce-mile {
-        width: 39vw;
-        position: relative;
-        float: left;
-        left: 0.5vw;
-        border: solid thin;
-        border-color: #003057;
-      }
-    }
-
-    @supports (-ms-ime-align:auto) and (not (position:sticky)) {
-      .grid-page {
-        display: -ms-grid;
-        -ms-grid-columns: 46vw 1vw 44vw;
-        -ms-grid-rows: 75px 75px 400px 325px 425px 100px;
-        justify-content: center;
-        grid-row-gap: 10px;
-      }
-
-      .grid-container {
-        display: -ms-grid;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-        -ms-grid-row: 3;
-        -ms-grid-columns: 21vw 1vw 19vw 1vw 19vw 1vw 19vw;
-        -ms-grid-rows: 140px 24px 140px;
-        align-items: center;
-        margin-bottom: 25px;
-        transform: translateX(-10px);
-      }
-
-      .gridstackedboxbig {
-        width: 21vw;
-        height: 304px;
-        display: block;
-        background-color: #f5f5f5;
-        border: 1px solid #003057;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-        -ms-grid-row: 1;
-        -ms-grid-row-span: 3;
-        -ms-grid-column: 1;
-        //border: 1px solid #003057;
-        text-decoration: inherit;
-      }
-
-      #welcome {
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-        margin-bottom: 15px;
-      }
-
-      #subtext {
-        -ms-grid-row: 2;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-        margin-bottom: 10px;
-      }
-
-      #csgrid {
-        -ms-grid-row: 3;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 3;
-      }
-
-      #rcupdates {
-        -ms-grid-row: 4;
-        -ms-grid-row-span: 2;
-        -ms-grid-column: 1;
-        -ms-grid-column-span: 2;
-        align-self: right;
-        left: 4.5vw;
-      }
-
-      #milestones {
-        -ms-grid-row: 4;
-        -ms-grid-column: 3;
-        height: 315px;
-      }
-
-      #announcement {
-        -ms-grid-row: 5;
-        -ms-grid-column: 3;
-        height: 480px;
-      }
-
-      .grid-section-announce-mile {
-        width: 39vw;
-        position: relative;
-        left: -0.5vw;
-        float: left;
-        border: solid thin;
-        border-color: #003057;
-      }
-
-      .grid-section-claim {
-        width: 41vw;
-        height: 801px;
-        left: 5vw;
-        position: relative;
-        float: right;
-        align-items: right;
-        border-top: solid thin;
-        border-color: #003057;
-      }
-    }
-
-    @supports (display: grid) {
-      .grid-page {
-        display: grid;
-        grid-template-columns: 46vw 44vw;
-        grid-template-rows: 75px 75px 400px 325px 425px 100px;
-        justify-content: center;
-        grid-row-gap: 10px;
-        grid-column-gap: 1vw;
-      }
-
-      .grid-container {
-        display: grid;
-        grid-template-columns: 21vw 19vw 19vw 19vw;
-        grid-gap: 20px;
-        grid-column-gap: 1vw;
-        align-items: center;
-        margin-bottom: 25px;
-        transform: translateX(-10px);
-      }
-
-      #welcome {
-        grid-row: 1;
-        grid-column: 1 / 4;
-      }
-
-      #subtext {
-        grid-row: 2;
-        grid-column: 1/4;
-      }
-
-      #csgrid {
-        grid-row: 3;
-        grid-column: 1/4;
-      }
-
-      #rcupdates {
-        grid-row: 4/5;
-        grid-column: 1 / -2;
-        align-self: right;
-      }
-
-      #milestones {
-        grid-row: 4;
-        grid-column: 2;
-        height: 315px;
-      }
-
-      #announcement {
-        grid-row: 5;
-        grid-column: 2;
-        height: 480px;
-      }
-
-      .gridstackedboxbig {
-        width: 21vw;
-        height: 304px;
-        background-color: #f5f5f5;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-        grid-row: 1 / span 2;
-        border: 1px solid #003057;
-        text-decoration: inherit;
-      }
-    }
-
-    .grid-section-claim {
-      width: 41vw;
-      height: 801px;
-      left: 5vw;
-      position: relative;
-      float: right;
-      align-items: right;
-      border-top: solid thin;
-      border-color: #003057;
-    }
-
-    .grid-section-announce-mile {
-      width: 39vw;
-      position: relative;
-      float: left;
-      border: solid thin;
-      border-color: #003057;
-    }
-
-    .gridstackedboxsmall {
-      width: 19vw;
-      display: block;
-      height: 140px;
-      text-align: center;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-      border: 1px solid #003057;
-      text-decoration: inherit;
-    }
-
-    .stackedboxstats {
-      display: flex;
-      width: 100%;
-      color: #003057;
-      font-size: 48px;
-      background-color: white;
-      justify-content: center;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .stackedboxstats:hover {
-      background-color: #003057;
-      color: white;
-      border-bottom: solid thin;
-      border-bottom-color: white;
-    }
-
-    .stackedboxtext {
-      display: flex;
-      width: 100%;
-      color: white;
-      font-size: 16px;
-      text-align: center;
-      background-color: #003057;
-      justify-content: center;
-      font-family: inherit;
-    }
-
-    .flexchildclaim {
-      width: 40vw;
-      height: 806px;
-      font-family: inherit;
-      float: left;
-    }
-
-    .flexchildannounce {
-      width: 39vw;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
-      font-family: inherit;
-      background-color: white;
-    }
-
-    .flexgchildannounce {
-      max-width: 38.9vw;
-      min-height: 134px;
-      border-bottom: solid thin;
-      border-bottom-color: #dfdfdf;
-      font-family: inherit;
-      color: #636060;
-      position: relative;
-    }
-
-    .flexgchildannounce #effective-date {
-      padding-top: 3px;
-      position: absolute;
-      bottom: 5px;
-    }
-
-    .flexgchildannounce p {
-      font-size: 14px;
-      margin-left: 7px;
-      padding-right: 10px;
-      margin-bottom: 35px;
-    }
-
-    .flexgmilestone {
-      min-width: 39vw;
-      max-width: 39vw;
-      min-height: 55px;
-      max-height: 65px;
-      border-bottom: solid thin;
-      border-bottom-color: #dfdfdf;
-      font-family: inherit;
-      font-size: 15px;
-      color: #636060;
-      position: relative;
-      padding-top: 4px;
-    }
-
-    .flexgmilestone p {
-      position: absolute;
-      left: 7px;
-      top: 15px;
-      font-size: 15px;
-      text-wrap: normal;
-      margin-right: 1px;
-    }
-
-    u.mile-text {
-      font-size: 18px;
-      padding-top: 7px;
-      text-align: center;
-      margin-left: 7px;
-    }
-
-    .flexsmallheadertext {
-      font-size: 13px;
-      color: #636060;
-      font-family: inherit;
-      border-bottom: solid thin;
-      border-bottom-color: #dfdfdf;
-    }
-
-    .smallbutton {
-      text-decoration: inherit;
-      border: solid thin;
-      padding: 4px;
-      border-radius: 5px;
-      border-color: #7D818C;
-      background-color: #003057;
-      color: white;
-    }
-
-    .smallbutton:hover {
-      border-width: 1.5px;
-    }
-
-    .sectionHeader {
-      color: #58595b;
-      margin-top: auto;
-      margin-bottom: auto;
-      padding-left: 10px;
-      height: 50px;
-      line-height: 50px;
-      background-color: #F5F5F5;
-      text-align: left;
-      font-size: 15px;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
-      border-bottom: solid thin #003057;
-    }
-
-    @media all and (max-width: 1350px) {
-      .grid-page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 25px;
-        flex-flow: column nowrap;
-      }
-
-      #welcome {
-        align-items: center;
-        clear: both;
-        margin-bottom: 15px;
-      }
-
-      .grid-section-claim {
-        float: none;
-        align-items: center;
-        clear: both;
-        left: 0vw;
-        margin-bottom: 2vh;
-        min-width: 605px;
-        height: auto;
-      }
-
-      .grid-section-announce-mile {
-        float: none;
-        min-width: 605px;
-        width: 605px;
-        justify-content: center;
-        align-items: center;
-        clear: both;
-        left: 0vw;
-      }
-
-      .flexchildannounce {
-        clear: both;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .flexchildclaim {
-        clear: both;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .flexgmilestone {
-        min-width: 603px;
-      }
-
-      .flexgchildannounce {
-        min-width: 588px;
-        margin-right: 20px;
-      }
-
-      .flex-center {
-        flex-flow: column wrap;
-      }
-
-      #announcement {
-        transform: translateY(20px);
-      }
-
-      #rcGrid {
-        min-width: 605px;
-      }
-
-      #rc-header {
-        width: 595px;
-      }
-
-      #rcupdates {
-        left: 0vw;
-        min-width: 605px;
-      }
-    }
-  </style> -->
-
-  <!-- *REMOVED <div class="flex-center"> -->
+  <!-- *REMOVED <div class="d-flex align-items-center justify-content-center"> -->
   <!-- *REMOVED <div class="grid-page"> -->
 
   <!--Tab Control-->
-  <div id="csgrid" class="flex-center">
-    <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc" id="pcPFSAndOrCBSStatusTabView">
-      <ul class="dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer" id="pcPFSAndOrCBSStatusTabView_TC">
-        <li class="dxtc-leftIndent">&nbsp;</li>
-        <li class="dxtc-tab dxtc-lead" style="display:none;" id="pcPFSAndOrCBSStatusTabView_T0"><a class="dxtc-link"
-            id="pcPFSAndOrCBSStatusTabView_T0T"><span class="dx-vam">Plaintiff Links</span></a></li>
-        <li class="dxtc-activeTab dxtc-lead dxtc-psi" id="pcPFSAndOrCBSStatusTabView_AT0" style="height: 37px;"><a
-            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_AT0T"><span class="dx-vam">Plaintiff Links</span></a>
+  <div id="csgrid" class="w-100 min-w-0 overflow-hidden">
+    <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc w-100 min-w-0"
+      id="pcPFSAndOrCBSStatusTabView">
+      <ul
+        class="nav nav-tabs flex-nowrap overflow-hidden mb-4 min-w-0 dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer"
+        id="pcPFSAndOrCBSStatusTabView_TC">
+        <li class="d-none dxtc-leftIndent">&nbsp;</li>
+        <li class="nav-item dxtc-tab dxtc-lead" style="display:none;" id="pcPFSAndOrCBSStatusTabView_T0"><a
+            class="dxtc-link nav-link" id="pcPFSAndOrCBSStatusTabView_T0T"><span class="dx-vam">Plaintiff
+              Links</span></a></li>
+        <li class="nav-item dxtc-activeTab dxtc-lead dxtc-psi" id="pcPFSAndOrCBSStatusTabView_AT0"><a
+            class="dxtc-link nav-link" id="pcPFSAndOrCBSStatusTabView_AT0T"><span class="dx-vam">Plaintiff
+              Links</span></a>
         </li>
-        <li class="dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T0S">&nbsp;</li>
-        <li class="dxtc-tab dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T1" style="height: 37px;"><a class="dxtc-link"
+        <li class="d-none dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T0S">&nbsp;</li>
+        <li class="nav-item dxtc-tab dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T1"><a class="dxtc-link nav-link"
             id="pcPFSAndOrCBSStatusTabView_T1T"><span class="dx-vam">Time Entry Links</span></a></li>
-        <li class="dxtc-activeTab" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT1"><a class="dxtc-link"
-            id="pcPFSAndOrCBSStatusTabView_AT1T"><span class="dx-vam">Time Entry Links</span></a></li>
-        <li class="dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T1S">&nbsp;</li>
-        <li class="dxtc-tab dxtc-last dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T2" style="height: 37px;"><a
-            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_T2T"><span class="dx-vam">Expense Entry
+        <li class="nav-item dxtc-activeTab" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT1"><a
+            class="dxtc-link nav-link active" id="pcPFSAndOrCBSStatusTabView_AT1T"><span class="dx-vam">Time Entry
               Links</span></a></li>
-        <li class="dxtc-activeTab dxtc-last" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT2"><a
-            class="dxtc-link" id="pcPFSAndOrCBSStatusTabView_AT2T"><span class="dx-vam">Expense Entry
+        <li class="d-none dxtc-spacer" id="pcPFSAndOrCBSStatusTabView_T1S">&nbsp;</li>
+        <li class="nav-item dxtc-tab dxtc-last dxtc-psi" id="pcPFSAndOrCBSStatusTabView_T2"><a
+            class="dxtc-link nav-link" id="pcPFSAndOrCBSStatusTabView_T2T"><span class="dx-vam">Expense Entry
               Links</span></a></li>
-        <li class="dxtc-rightIndent">&nbsp;</li>
+        <li class="nav-item dxtc-activeTab dxtc-last" style="display:none;" id="pcPFSAndOrCBSStatusTabView_AT2"><a
+            class="dxtc-link nav-link" id="pcPFSAndOrCBSStatusTabView_AT2T"><span class="dx-vam">Expense Entry
+              Links</span></a></li>
+        <li class="d-none dxtc-rightIndent">&nbsp;</li>
       </ul>
       <div class="dxtc-content" id="pcPFSAndOrCBSStatusTabView_CC">
         <div id="pcPFSAndOrCBSStatusTabView_C0">
           <div>
 
-
-            <!-- <style>
-                  .total-fs {
-                    grid-column: 1 / 2;
-                    -ms-grid-column: 1;
-                  }
-
-                  .unsubmitted-fs {
-                    grid-row: 1;
-                    grid-column: 2 / 3;
-                    -ms-grid-column: 3;
-                    -ms-grid-row: 1;
-                  }
-
-                  .pending-fs {
-                    grid-row: 2;
-                    grid-column: 2 / 3;
-                    -ms-grid-column: 3;
-                    -ms-grid-row: 3;
-                  }
-
-                  .incomplete-fs {
-                    grid-row: 1;
-                    grid-column: 3 / 4;
-                    -ms-grid-column: 3;
-                    -ms-grid-row: 1;
-                  }
-
-                  .in-review-fs {
-                    grid-row: 2;
-                    grid-column: 3 / 4;
-                    -ms-grid-column: 5;
-                    -ms-grid-row: 3;
-                  }
-
-                  pending-amendment-fs {
-                    grid-row: 1;
-                    grid-column: 4/5;
-                    -ms-grid-column: 7;
-                    -ms-grid-row: 1;
-                  }
-
-                  .complete-fs {
-                    grid-row: 2;
-                    grid-column: 4 / 5;
-                    -ms-grid-column: 7;
-                    -ms-grid-row: 3;
-                  }
-                </style> -->
-
-            <div class="flex-center">
-              <div class="grid-container" style="margin-left: auto; margin-right: auto;">
-                <a href="/FactSheet/Search" class="gridstackedboxbig total-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 252px;font-size: 88px">
-                      <p class="flex-center" style="">61,396</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 52px;text-decoration: inherit">
-                    <p class="flex-center" style="">Total Plaintiffs</p>
-                  </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="link-grid">
+                <a href="/FactSheet/Search" class="link-grid-item">
+                  <span class="link-grid-item__number">61,396</span>
+                  <span class="link-grid-item__label">Total Plaintiffs</span>
                 </a>
-                <a href="/FactSheet/Search?cs=1" class="gridstackedboxsmall unsubmitted-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">47,103</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Not Submitted</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=1" class="link-grid-item">
+                  <span class="link-grid-item__number">47,103</span>
+                  <span class="link-grid-item__label">Not Submitted</span>
                 </a>
-                <a href="/FactSheet/Search?cs=2" class="gridstackedboxsmall pending-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">14,074</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Submitted: Pending Review</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=2" class="link-grid-item">
+                  <span class="link-grid-item__number">14,074</span>
+                  <span class="link-grid-item__label">Submitted: Pending Review</span>
                 </a>
-                <a href="/FactSheet/Search?cs=4|7" class="gridstackedboxsmall incomplete-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">102</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Submitted: Returned Deficient</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=4|7" class="link-grid-item">
+                  <span class="link-grid-item__number">102</span>
+                  <span class="link-grid-item__label">Submitted: Returned Deficient</span>
                 </a>
-                <a href="/FactSheet/Search?cs=3" class="gridstackedboxsmall in-review-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">88</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Submitted: In Review</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=3" class="link-grid-item">
+                  <span class="link-grid-item__number">88</span>
+                  <span class="link-grid-item__label">Submitted: In Review</span>
                 </a>
-                <a href="/FactSheet/Search?cs=6" class="gridstackedboxsmall pending-amendment-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">27</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Submitted: Pending Amendment</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=6" class="link-grid-item">
+                  <span class="link-grid-item__number">27</span>
+                  <span class="link-grid-item__label">Submitted: Pending Amendment</span>
                 </a>
-                <a href="/FactSheet/Search?cs=5" class="gridstackedboxsmall complete-fs">
-                  <div style="text-decoration: inherit">
-                    <div class="stackedboxstats" style="height: 100px;">
-                      <p class="flex-center" style="">2</p>
-                    </div>
-                  </div>
-                  <div class="stackedboxtext" style="height: 40px;">
-                    <p class="flex-center" style="">Review Complete</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=5" class="link-grid-item">
+                  <span class="link-grid-item__number">2</span>
+                  <span class="link-grid-item__label">Review Complete</span>
                 </a>
               </div>
             </div>
@@ -673,10 +99,10 @@ title: "Home"
 
   <!-- Datagrid -->
   <div id="rcupdates" class="grid-section-claim" style="margin-bottom: 35px;">
-    <!-- * Changed HTML <p id="rc-header" class="sectionHeader" style="border-left: solid thin #003057; border-right: solid thin #003057; ">
+    <!-- * Changed HTML <p id="rc-header" class="d-flex align-items-center justify-content-between mb-4" style="border-left: solid thin #003057; border-right: solid thin #003057; ">
       <span>Recent Plaintiff Updates</span>
     </p> -->
-    <div class="sectionHeader">
+    <div class="d-flex align-items-center justify-content-between mb-4">
       <h2>Recent Plaintiff Updates</h2>
     </div>
     <div id="rcGrid" style="border: solid thin #003057; border-top: none;">
@@ -1155,7 +581,7 @@ title: "Home"
   <!-- Announcements-->
   <!-- * Updated announcement markup removed style -->
   <div id="announcement" class="grid-section-announce-mile">
-    <div class="sectionHeader">
+    <div class="d-flex align-items-center justify-content-between mb-4">
       <!-- *ADDED h2 -->
       <h2>Recent Announcements</h2>
       <div style="font-size: 12px; float: right; margin-right: 10px;">
@@ -1164,23 +590,24 @@ title: "Home"
     </div>
 
     <!-- * Removed Style <div id="announce-scroll-panel" style="height: 737px !important; overflow: auto;"> -->
-    <div id="announce-scroll-panel">
-      <div class="announcement flexgchildannounce">
-        <div class="announcement__header">
-          <h3 class="announcement__title">Informational: Description box update</h3>
-          <p class="announcement__date">Posted on 3/10/2026</p>
+    <div id="announce-scroll-panel" class="d-grid gap-xxs">
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-xxs w-100">
+          <h3 class="headingSM flex-grow-1 text-break">Informational: Description box update</h3>
+          <p class="small-text text-secondary text-nowrap">Posted on 3/10/2026</p>
         </div>
-        <div class="announcement__content">
+        <div class="small-text w-100 text-break">
           <p>Test</p>
         </div>
       </div>
 
-      <div class="announcement flexgchildannounce">
-        <div class="announcement__header">
-          <h3 class="announcement__title">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders</h3>
-          <p class="announcement__date">Posted on 2/20/2026</p>
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-xxs w-100">
+          <h3 class="headingSM flex-grow-1 text-break">Portal Enhancements: Bulk E-Signature Verification Requests and
+            Reminders</h3>
+          <p class="small-text text-secondary text-nowrap">Posted on 2/20/2026</p>
         </div>
-        <div class="announcement__content">
+        <div class="small-text w-100 text-break">
           <ul>
             <li>You can find an updated <strong>User Guide</strong> on the Portal Documents tab.</li>
             <li><strong>To ensure you are seeing the latest version of the portal,</strong> you may need to perform a
@@ -1204,12 +631,12 @@ title: "Home"
           </ul>
         </div>
       </div>
-      <div class="announcement flexgchildannounce">
-        <div class="announcement__header">
-          <h3 class="announcement__title">Reminders: test</h3>
-          <p class="announcement__date">Posted on 11/14/2025</p>
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-xxs w-100">
+          <h3 class="headingSM flex-grow-1 text-break">Reminders: test</h3>
+          <p class="small-text text-secondary text-nowrap">Posted on 11/14/2025</p>
         </div>
-        <div class="announcement__content">
+        <div class="small-text w-100 text-break">
           <h2 style="color: red; font-size: 28px; margin-bottom: 12px; text-transform: uppercase;">Important Maintenance
             Notice</h2>
           <p>The AFFF MDL Portal will offline for scheduled maintenance beginning <strong>Friday, November 14th at 5:00
@@ -1218,7 +645,7 @@ title: "Home"
             post an announcement once maintenance is complete and the portal is accessible.</p>
         </div>
         <!-- * Updated announcement markup
-      <div class="flexgchildannounce" style="">
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom" style="">
         <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
           <u style="font-size: 18px">Informational: Description box update</u>
           <sub style="font-size:14px; margin-left:4px;">Posted on 3/10/2026</sub>
@@ -1226,7 +653,7 @@ title: "Home"
         <p>Test</p>
         <i id="effective-date" style="margin-left:7px;">Effective as of 3/9/2026</i>
       </div>
-      <div class="flexgchildannounce" style="">
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom" style="">
         <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
           <u style="font-size: 18px">Portal Enhancements: Bulk E-Signature Verification Requests and Reminders</u>
           <sub style="font-size:14px; margin-left:4px;">Posted on 2/20/2026</sub>
@@ -1303,7 +730,7 @@ title: "Home"
         </div>
         <p></p>
       </div>
-      <div class="flexgchildannounce" style="">
+      <div class="d-flex flex-column gap-xxs px-3 py-3 bg-white border-bottom" style="">
         <div style="margin-left:7px; margin-top:8px; margin-bottom:auto;">
           <u style="font-size: 18px">Reminders: test</u>
           <sub style="font-size:14px; margin-left:4px;">Posted on 11/14/2025</sub>

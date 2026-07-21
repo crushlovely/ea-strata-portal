@@ -1,5 +1,5 @@
 // STRATA Empty State Row — Figma component 6192:390 ("No-results table row").
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin empty-state-row {
   display: flex;

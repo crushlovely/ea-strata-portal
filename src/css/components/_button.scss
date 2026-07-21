@@ -8,8 +8,7 @@
 // The bg/bg2 pairs render as a radial gradient (center -> edge), matching the
 // baked SVG gradient fills in the Figma component. On interaction states, an
 // intent-specific wave SVG fades in over the gradient via the ::before layer.
-@use "typography" as *;
-@use "backgrounds" as *;
+@use "components/typography" as *;
 
 // ---------------------------------------------------------------- base
 
@@ -175,47 +174,6 @@
 
   &--simple {
     @include button-simple;
-  }
-}
-
-// Icon color comes from bg-icon-mask (backgrounds.scss) over the neutral
-// /images/icons/ SVGs — currentColor, so icons follow the button text color
-// through every intent and state.
-.button--icon-before {
-  flex-direction: row-reverse;
-  &::after {
-    content: "";
-    display: block;
-    width: 1.25rem; // 20px
-    height: 1.25rem; // 20px
-  }
-}
-.button--icon-after {
-  &::after {
-    content: "";
-    display: block;
-    width: 1.25rem; // 20px
-    height: 1.25rem; // 20px
-  }
-}
-.button--icon-file {
-  &::after {
-    @include bg-icon-mask("File");
-  }
-}
-.button--icon-calendar {
-  &::after {
-    @include bg-icon-mask("Calendar");
-  }
-}
-.button--icon-file-xls {
-  &::after {
-    @include bg-icon-mask("FileXLS");
-  }
-}
-.button--icon-upload-simple {
-  &::after {
-    @include bg-icon-mask("UploadSimple");
   }
 }
 

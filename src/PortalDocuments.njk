@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: "Portal Documents"
 ---
 {% raw %}
-<div class="contentPane">
+<div class="d-grid grid-cols-1 gap-block">
 
 	<div class="pageHeader">
 		<h1>Portal Documents</h1>
@@ -12,7 +12,7 @@ title: "Portal Documents"
 	<form action="/PortalDocuments/" method="post">
 
 
-		<div class="blocks">
+		<div class="d-grid grid-cols-1 gap-sm">
 
 			<div class="form-control-group">
 				<h2 class="form-control-group__title">Upload Date Range</h2>
@@ -754,7 +754,7 @@ title: "Portal Documents"
 				</div><!-- .form-control-group__content -->
 			</div><!-- .form-control-group -->
 
-			<div class="sectionHeader sectionHeader--align-right">
+			<div class="d-flex align-items-center justify-content-end mb-4">
 				<button class="button button--outline button--icon-before button--icon-file-xls">Export XLSX</button>
 			</div>
 

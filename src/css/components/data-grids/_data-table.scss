@@ -1,6 +1,6 @@
 // STRATA Data Table — Figma component 6284:1042.
 // Composes the sibling data-grid components onto the app's table markup —
-// add app selectors here and @include the mixins below.
+// add app selectors here and @include the mixins below...
 //
 // Available mixins (all loaded unnamespaced):
 //   grid-header-cell, grid-header-cell-sortable
@@ -25,7 +25,7 @@
 @use "pager-number" as *;
 @use "empty-state-row" as *;
 @use "page-size-selector" as *;
-@use "typography" as *;
+@use "components/typography" as *;
 
 @mixin data-table {
   display: table;

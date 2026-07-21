@@ -12,6 +12,9 @@ export default function (eleventyConfig) {
   // Static assets: copied to _site as-is, preserving the path under src/
   // (src/images/x.png -> /images/x.png).
   eleventyConfig.addPassthroughCopy("src/images");
+  // Prebuilt CSS (e.g. bootstrap.css) is copied as-is; SCSS compiles
+  // separately below, so exclude _*.scss partials and .scss sources here.
+  eleventyConfig.addPassthroughCopy("src/css/*.css");
   // Compile SCSS as a first-class template type so the dev server
   // watches it and hot-reloads CSS in the browser without a refresh.
   eleventyConfig.addTemplateFormats("scss");

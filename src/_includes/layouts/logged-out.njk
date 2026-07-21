@@ -6,19 +6,20 @@
   <meta charset="utf-8">
   <meta content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
   <title>{{ title }} · {{ site.name }}</title>
-  {# Fonts are @import-ed in main.css; these hints let the browser connect
+  {# Fonts are @import-ed in strata-styles.css; these hints let the browser connect
      to the font hosts before it discovers that import. #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/strata-styles.css">
 </head>
 
 <body>
   {% include "partials/header-logged-out.njk" %}
 
-  <div class="dxpnlControl_MaterialCompact mainContentPane" id="MainPaneFeature">
+  <main class="dxpnlControl_MaterialCompact mainContentPane bg-body bg-lady-justice px-md py-block overflow-x-auto" id="MainPaneFeature">
     {{ content | safe }}
-  </div>
+  </main>
 
   {% include "partials/footer.njk" %}
 </body>
