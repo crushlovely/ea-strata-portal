@@ -1,0 +1,31 @@
+// STRATA Grid Data Row — Figma component set 6192:386 ("Standard data row
+// states"). Variants: Selected=False (6192:359, row-bg), True (6192:368,
+// row-alt-bg). Contains STRATA Data Grid Row Cells (each flex: 1).
+
+@mixin grid-data-row {
+  display: flex;
+  align-items: center;
+  padding-inline: var(--spacing-xxs);
+  background-color: var(--data-grid-row-bg);
+  border-bottom: 1px solid var(--data-grid-border);
+}
+
+@mixin grid-data-row-selected {
+  background-color: var(--data-grid-row-alt-bg);
+}
+
+// ---------------------------------------------------------------- classes
+
+.grid-data-row {
+  @include grid-data-row;
+
+  > * {
+    flex: 1;
+  }
+
+  &--selected {
+    @include grid-data-row-selected;
+  }
+}
+
+// App selectors

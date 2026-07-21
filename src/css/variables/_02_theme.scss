@@ -12,6 +12,9 @@
     var(--palette-black-medium)
   );
   --bg-secondary: light-dark(var(--palette-white), var(--palette-gray-dark));
+
+  --bg-ui: light-dark(var(--palette-gray), var(--palette-gray-lighter));
+
   --bg-dialog-backdrop: light-dark(
     var(--palette-black-60),
     var(--palette-black-80)
@@ -33,6 +36,8 @@
     var(--palette-parchment),
     var(--palette-parchment)
   );
+  --text-ui: light-dark(var(--palette-white), var(--palette-black));
+
   --text-site-footer: light-dark(var(--palette-gray), var(--palette-beige));
   --text-page-header-title: light-dark(
     var(--palette-navy-blue),

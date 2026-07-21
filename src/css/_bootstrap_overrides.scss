@@ -1,4 +1,4 @@
-@use "typography" as *;
+@use "components/typography" as *;
 
 /* =======================================
   Bootstrap primitives 
@@ -261,6 +261,7 @@
 body {
   font-smooth: antialiased;
   -webkit-font-smoothing: antialiased;
+  @include body;
 }
 
 .h1,
@@ -327,12 +328,14 @@ h6 {
 }
 
 p {
+  @include body;
   margin-top: 0;
   margin-bottom: 1.25em;
 }
 
 ol,
 ul {
+  @include body;
   padding-left: 2em;
 }
 
@@ -382,11 +385,11 @@ button,
 .container-lg,
 .container-md,
 .container-sm {
-  --bs-gutter-x: var(--spacing-md);
+  --bs-gutter-x: var(--spacing-sm);
   --bs-gutter-y: 0;
   width: 100%;
-  padding-right: var(--spacing-md);
-  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-sm);
+  padding-left: var(--spacing-sm);
   margin-right: auto;
   margin-left: auto;
 }
@@ -410,7 +413,7 @@ button,
   .container-lg,
   .container-md,
   .container {
-    max-width: 960px;
+    max-width: 100%;
   }
   .container-sm {
     max-width: 35rem;
@@ -783,9 +786,6 @@ button,
   padding-bottom: var(--spacing-block);
 }
 
-.gap-block {
-  gap: var(--spacing-block);
-}
 .px-md {
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
@@ -795,17 +795,17 @@ button,
   Card
  ======================================= */
 .card {
-  --bs-card-spacer-y: var(--spacing-md);
-  --bs-card-spacer-x: var(--spacing-md);
+  --bs-card-spacer-y: var(--spacing-sm);
+  --bs-card-spacer-x: var(--spacing-sm);
   --bs-card-title-spacer-y: var(--spacing-sm);
   --bs-card-title-color: var(--text-heading);
   --bs-card-subtitle-color: ;
   --bs-card-border-width: var(--bs-border-width);
   --bs-card-border-color: var(--bs-border-color-translucent);
-  --bs-card-border-radius: var(--bs-border-radius);
+  --bs-card-border-radius: var(--border-radius);
   --bs-card-box-shadow: ;
   --bs-card-inner-border-radius: calc(
-    var(--bs-border-radius) - (var(--bs-border-width))
+    var(--border-radius) - (var(--bs-border-width))
   );
   --bs-card-cap-padding-y: var(--spacing-sm);
   --bs-card-cap-padding-x: var(--spacing-md);
@@ -813,7 +813,82 @@ button,
   --bs-card-cap-color: ;
   --bs-card-height: ;
   --bs-card-color: ;
-  --bs-card-bg: var(--bs-body-bg);
+  --bs-card-bg: var(--bg-secondary);
   --bs-card-img-overlay-padding: var(--spacing-md);
   --bs-card-group-margin: var(--spacing-lg);
+}
+
+/* =======================================
+  CSS Grid utilities
+  Bootstrap's opt-in CSS Grid ($enable-cssgrid) is NOT compiled into the
+  vendored bootstrap.css, so `.grid`, `.g-col-*`, `.g-start-*` produce
+  nothing. These utilities restore that system. `.g-row-*` (row spans) is a
+  local addition — stock Bootstrap has no row-span utility, but the markup
+  relies on it (e.g. the "Total Plaintiffs" card spanning two rows).
+  Breakpoints match Bootstrap's defaults so they stay consistent with the
+  rest of bootstrap.css.
+ ======================================= */
+.grid {
+  display: grid;
+  grid-template-rows: repeat(var(--bs-rows, 1), 1fr);
+  grid-template-columns: repeat(var(--bs-columns, 12), 1fr);
+  gap: var(--bs-gap, var(--spacing-md));
+}
+
+@mixin grid-spans($infix: "") {
+  @for $i from 1 through 12 {
+    .g-col#{$infix}-#{$i} {
+      grid-column: auto / span #{$i};
+    }
+    .g-row#{$infix}-#{$i} {
+      grid-row: auto / span #{$i};
+    }
+  }
+  @for $i from 1 through 11 {
+    .g-start#{$infix}-#{$i} {
+      grid-column-start: #{$i};
+    }
+  }
+}
+
+@include grid-spans();
+
+$grid-util-breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+@each $bp, $min in $grid-util-breakpoints {
+  @media (min-width: $min) {
+    @include grid-spans("-#{$bp}");
+  }
+}
+
+/* =======================================
+  Gap utilities (spacing tokens)
+  Declared after `.grid` so an explicit gap wins over the grid default.
+ ======================================= */
+.gap-xxs {
+  gap: var(--spacing-xxs);
+}
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+.gap-md {
+  gap: var(--spacing-md);
+}
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+.gap-xl {
+  gap: var(--spacing-xl);
+}
+.gap-block {
+  gap: var(--spacing-block);
 }

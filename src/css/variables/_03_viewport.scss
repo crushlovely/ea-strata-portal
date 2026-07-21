@@ -8,7 +8,7 @@
 $bp-tablet: 576px;
 $bp-desktop: 768px;
 
-$site-header-height: 79px;
+$site-header-height: 89px;
 $bg-lady-justice-pos-x: 0;
 $bg-lady-justice-pos-y: -30px;
 $bg-lady-justice-pos-y-featured: calc(
@@ -17,6 +17,9 @@ $bg-lady-justice-pos-y-featured: calc(
 $bg-lady-justice-size-x: 955px;
 
 :root {
+  // Border radius
+  --border-radius: 0.125rem;
+
   // Site-header height
   --site-header-height: #{$site-header-height};
 
@@ -33,33 +36,33 @@ $bg-lady-justice-size-x: 955px;
 
   // headingXXL
   --headingXXL-font-family: var(--font-family-heading);
-  --headingXXL-font-size: 2.4881rem;
+  --headingXXL-font-size: clamp(2.488rem, 1.6275rem + 2.8683vw, 4.209rem);
   --headingXXL-line-height: 1.25;
-  --headingXXL-font-weight: 375;
+  --headingXXL-font-weight: 300;
 
   // headingXL
   --headingXL-font-family: var(--font-family-heading);
-  --headingXL-font-size: 1.7281rem;
+  --headingXL-font-size: clamp(1.728rem, 1.4075rem + 1.0683vw, 2.369rem);
   --headingXL-line-height: 1.375;
-  --headingXL-font-weight: 375;
+  --headingXL-font-weight: 300;
 
   // headingLG
   --headingLG-font-family: var(--font-family-heading);
-  --headingLG-font-size: 1.44rem;
+  --headingLG-font-size: clamp(1.44rem, 1.2715rem + 0.5617vw, 1.777rem);
   --headingLG-line-height: 1.375;
   --headingLG-font-weight: 400;
 
   // headingMD
   --headingMD-font-family: var(--font-family-heading);
-  --headingMD-font-size: 1.2rem;
+  --headingMD-font-size: clamp(1.2rem, 1.1335rem + 0.2217vw, 1.333rem);
   --headingMD-line-height: 1.5;
-  --headingMD-font-weight: 375;
+  --headingMD-font-weight: 300;
 
   // headingSM
   --headingSM-font-family: var(--font-family-heading);
   --headingSM-font-size: 1rem;
   --headingSM-line-height: 1.5;
-  --headingSM-font-weight: 375;
+  --headingSM-font-weight: 300;
 
   // headingXS
   --headingXS-font-family: var(--font-family-body);
@@ -77,7 +80,7 @@ $bg-lady-justice-size-x: 955px;
 
   // large-text
   --large-text-font-family: var(--font-family-body);
-  --large-text-font-size: 1.2rem;
+  --large-text-font-size: clamp(1.2rem, 1.1335rem + 0.2217vw, 1.333rem);
   --large-text-line-height: 1.75;
   --large-text-font-weight: 400;
 
@@ -108,21 +111,6 @@ $bg-lady-justice-size-x: 955px;
 
 @media (min-width: $bp-tablet) {
   :root {
-    // headingXXL
-    --headingXXL-font-size: 3.1225rem;
-
-    // headingXL
-    --headingXL-font-size: 1.9644rem;
-
-    // headingLG
-    --headingLG-font-size: 1.5644rem;
-
-    // headingMD
-    --headingMD-font-size: 1.2488rem;
-
-    // large-text
-    --large-text-font-size: 1.2488rem;
-
     // spacing
     --spacing-xs: 0.75rem;
     --spacing-sm: 1.1875rem;
@@ -135,21 +123,6 @@ $bg-lady-justice-size-x: 955px;
 
 @media (min-width: $bp-desktop) {
   :root {
-    // headingXXL
-    --headingXXL-font-size: 4.2063rem;
-
-    // headingXL
-    --headingXL-font-size: 2.3688rem;
-
-    // headingLG
-    --headingLG-font-size: 1.775rem;
-
-    // headingMD
-    --headingMD-font-size: 1.3313rem;
-
-    // large-text
-    --large-text-font-size: 1.3313rem;
-
     // spacing
     --spacing-xxs: 0.5rem;
     --spacing-xs: 1rem;

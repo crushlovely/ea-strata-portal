@@ -1,0 +1,62 @@
+// STRATA File Upload — Figma component set 6268:22
+// ("File upload field with Primary intent and state variants").
+// Row: upload icon (24px) + "Choose File" + filename. In the design the
+// default border uses the button-primary border color and the placeholder
+// filename uses the input-border color.
+@use "components/typography" as *;
+
+// ---------------------------------------------------------------- elements
+
+@mixin file-upload($intent: primary) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  padding: var(--spacing-xs);
+  border: 1px solid var(--btn-primary-default-border);
+  border-radius: 0.25rem; // 4px unbound literal in Figma
+  @include form-ui-input-text;
+  color: var(--form-ui-#{$intent}-default-input-text);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--form-ui-#{$intent}-hover-input-border);
+  }
+
+  &:focus-visible,
+  &:focus-within {
+    border-color: var(--form-ui-#{$intent}-focus-input-border);
+    outline: 2px solid var(--form-ui-#{$intent}-focus-input-outline);
+    outline-offset: 1px;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--form-ui-#{$intent}-error-input-border);
+    color: var(--form-ui-#{$intent}-error-input-text);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    border-color: var(--form-ui-#{$intent}-disabled-input-border);
+    color: var(--form-ui-#{$intent}-disabled-input-text);
+    background-color: var(--form-ui-#{$intent}-disabled-input-bg);
+    cursor: not-allowed;
+  }
+}
+
+// The "No file selected" placeholder text.
+@mixin file-upload-filename($intent: primary) {
+  color: var(--form-ui-#{$intent}-default-input-border);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------- classes
+
+.file-upload {
+  @include file-upload;
+
+  &__filename {
+    @include file-upload-filename;
+  }
+}
+
+// App selectors

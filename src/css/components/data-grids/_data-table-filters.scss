@@ -1,0 +1,27 @@
+// STRATA Data Table Filters — Figma component 6283:987.
+// Row of STRATA Grid Filter Cells under the table header.
+
+@mixin data-table-filters {
+  display: flex;
+  align-items: center;
+  background-color: var(--data-grid-header-bg);
+  padding-inline: var(--spacing-xxs);
+}
+
+// ---------------------------------------------------------------- classes
+
+.data-table-filters {
+  @include data-table-filters;
+  > * {
+    flex: 1;
+  }
+}
+
+// App selectors
+.data-table > tbody > tr[id*="DXFilterRow"] {
+  & > td {
+    background-color: var(--data-grid-header-bg) !important;
+    padding-top: 2px !important;
+  }
+  background-color: var(--data-grid-header-bg) !important;
+}

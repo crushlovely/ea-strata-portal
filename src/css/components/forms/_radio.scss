@@ -1,0 +1,78 @@
+// STRATA Radio — Figma component set 6192:330 ("Radio control variants").
+// Variants: Intent=Primary/Secondary, State=Default/Hover/Focus/Active/Error/Disabled,
+// Selected=True/False.
+// Styled per https://modern-css.com/styling-form-controls-without-rebuilding-them/ —
+// the native control is kept (no appearance: none) and accent-color paints the
+// selected dot. Tradeoff: the unselected ring color is UA-drawn and can't match
+// the Figma input-border exactly — accepted for native focus/keyboard/AT behavior.
+@use "components/typography" as *;
+
+// ---------------------------------------------------------------- elements
+
+// Apply to <input type="radio">.
+@mixin radio-indicator($intent: primary) {
+  width: var(--form-ui-checkbox-radio-size); // 18px viewport token
+  height: var(--form-ui-checkbox-radio-size);
+  accent-color: var(--form-ui-#{$intent}-default-input-accent);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--form-ui-#{$intent}-focus-input-outline);
+    outline-offset: 1px;
+  }
+
+  &[aria-invalid="true"] {
+    accent-color: var(--form-ui-#{$intent}-error-input-accent);
+  }
+
+  &:disabled {
+    accent-color: var(--form-ui-#{$intent}-disabled-input-accent);
+    cursor: not-allowed;
+  }
+}
+
+@mixin radio-label($intent: primary) {
+  @include form-ui-label-text;
+  color: var(--form-ui-#{$intent}-default-label-text);
+}
+
+// Row wrapper: indicator + label (8px gap in Figma).
+@mixin radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  cursor: pointer;
+}
+
+// ---------------------------------------------------------------- classes
+
+.radio {
+  @include radio;
+
+  &__indicator {
+    @include radio-indicator;
+  }
+
+  &__label {
+    @include radio-label;
+  }
+
+  &--secondary {
+    .radio__indicator {
+      @include radio-indicator(secondary);
+    }
+
+    .radio__label {
+      @include radio-label(secondary);
+    }
+  }
+}
+
+// App selectors
+
+// Global
+// The mixin's parameter is the intent (primary/secondary); all states
+// (hover/focus/error/disabled/selected) are handled inside it.
+input[type="radio"] {
+  @include radio-indicator;
+}

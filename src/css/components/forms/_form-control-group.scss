@@ -1,0 +1,46 @@
+// STRATA Form Control Group — Figma component 6404:124885.
+// Labeled fieldset-style box: body-text label in the link/leather accent
+// color over a bordered row-bg wrapper that holds the form controls.
+@use "components/typography" as *;
+
+// ---------------------------------------------------------------- elements
+
+@mixin form-control-group {
+  display: grid;
+  width: 100%;
+  max-width: 40rem;
+  gap: var(--spacing-xxs);
+}
+
+@mixin form-control-group-title {
+  @include body;
+  color: var(--data-grid-link-text);
+  word-break: break-word;
+}
+
+// The bordered box the controls sit in.
+@mixin form-control-group-content {
+  display: grid;
+  width: 100%;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background-color: var(--data-grid-row-bg);
+  border: 1px solid var(--data-grid-border);
+  overflow: clip;
+}
+
+// ---------------------------------------------------------------- classes
+
+.form-control-group {
+  @include form-control-group;
+
+  &__title {
+    @include form-control-group-title;
+  }
+
+  &__content {
+    @include form-control-group-content;
+  }
+}
+
+// App selectors

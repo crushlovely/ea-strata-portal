@@ -1,0 +1,101 @@
+@use "components/typography" as *;
+
+// ── Link Grid ───────────────────────────────────────────────────────────────
+// Responsive dashboard of stat "link" cards: one hero card (first child) plus
+// N secondary metric cards.
+//
+//   < 576px : hero full-width banner, metrics 2-up
+//   ≥ 576px : hero full-width banner, metrics 3-up
+//   ≥ 996px : hero as a 2×2 block on the left, metrics in 3 cols × 2 rows
+//
+// Each metric card spans two of the grid's OWN row tracks — a number track
+// (1fr, so all numbers share height) and a label track (auto) — via row
+// `subgrid`. Because the cards borrow the same tracks, every label band in a
+// row lines up no matter how many lines a neighbouring label wraps to.
+//
+// The hero opts out of the subgrid and sits on its own auto-sized tracks, so
+// its larger number can't stretch the metric rows. On small/medium screens
+// those hero tracks are the two explicit tracks below; on desktop the hero
+// spans all of the metric tracks instead.
+
+.link-grid {
+  display: grid;
+  gap: var(--spacing-sm);
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto; // the hero's number + label tracks
+  grid-auto-rows: 1fr auto; // each metric row: number (1fr) then label (auto)
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 996px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr auto 1fr auto; // two metric rows; hero spans them all
+  }
+}
+
+.link-grid-item {
+  display: grid;
+  grid-row: span 2; // occupy a number track + a label track
+  grid-template-rows: subgrid; // adopt the grid's rows so labels align across a row
+  row-gap: 0; // ...but keep number and label flush inside the card
+  width: 100%;
+  min-height: 6rem;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  background-color: var(--bg-secondary);
+  &:hover,
+  &:focus-visible {
+    opacity: 0.85;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-outline-color);
+    outline-offset: 2px;
+  }
+}
+
+// Hero: the first card. Opts out of the subgrid onto its own tracks.
+.link-grid-item:first-child {
+  grid-template-rows: 1fr auto; // its own internal split, independent of the metrics
+  grid-column: 1 / -1; // full-width banner on small + medium screens
+  grid-row: 1 / -1; // the two explicit hero tracks (all four on desktop)
+
+  @media (min-width: 996px) {
+    grid-column: span 2; // left block on desktop
+  }
+}
+
+.link-grid-item__number {
+  @include headingXL;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-sm);
+  color: var(--text-secondary);
+  @media (min-width: 1200px) {
+    padding: var(--spacing-md);
+  }
+}
+
+// Give the hero number more presence once there's room for it.
+.link-grid-item:first-child .link-grid-item__number {
+  @media (min-width: 576px) {
+    @include headingXXL;
+  }
+}
+
+.link-grid-item__label {
+  @include eyebrow-label;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: var(--spacing-xs);
+  background-color: var(--bg-ui);
+  color: var(--text-ui);
+  @media (min-width: 1200px) {
+    font-size: 0.625rem;
+  }
+}

@@ -1,0 +1,21 @@
+// STRATA Empty State Row — Figma component 6192:390 ("No-results table row").
+@use "components/typography" as *;
+
+@mixin empty-state-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) 1rem; // 16px horizontal unbound literal in Figma
+  background-color: var(--data-grid-row-bg);
+  @include data-grid-cell;
+  color: var(--data-grid-muted-text);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------- classes
+
+.empty-state-row {
+  @include empty-state-row;
+}
+
+// App selectors

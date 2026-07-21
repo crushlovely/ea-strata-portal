@@ -742,7 +742,7 @@ progress {
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "— ";
 }
 
 .img-fluid {
@@ -780,7 +780,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  --bs-gutter-x: var(--spacing-md);
+  --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
@@ -839,7 +839,7 @@ progress {
 }
 
 .row {
-  --bs-gutter-x: var(--spacing-sm);
+  --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
@@ -12694,3 +12694,5 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
+
+/*# sourceMappingURL=bootstrap.css.map */

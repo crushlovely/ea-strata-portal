@@ -7,7 +7,7 @@
   align-items: center;
   gap: var(--spacing-md);
   background-color: var(--bg-site-header) !important;
-  background-image: url("/images/lady-justice.svg");
+  background-image: url("/images/BG-Lady-Justice.png");
   background-repeat: no-repeat;
   background-position: var(--bg-lady-justice-pos-x) var(--bg-lady-justice-pos-y);
   background-size: var(--bg-lady-justice-size-x) auto;
@@ -27,13 +27,7 @@
   .dxpnl-bar-tmpl.dxpnl-np {
     width: 100% !important;
     .templateTitle a {
-      overflow: hidden;
-      text-indent: -9999px;
-      aspect-ratio: 125/27;
-      width: 100%;
-      max-width: 7.8125rem;
-      display: block;
-      background-color: white;
+      position: relative;
     }
   }
 
@@ -48,9 +42,9 @@
   #HeaderPane_EBB {
     width: 2.25rem;
     height: 2.25rem;
-    background-color: white;
+    // @include bg-icon-hamburger;
     &.dxpnl-btnSelected {
-      background-color: white;
+      // @include bg-icon-close;
     }
   }
 }
@@ -69,18 +63,13 @@
       @include header-styles;
       // Logo
       .templateTitle {
-        width: 100% !important;
         img {
-          display: none;
-        }
-        a {
-          overflow: hidden;
-          text-indent: -9999px;
-          aspect-ratio: 344/30;
           width: 100%;
-          max-width: 21.5rem;
-          display: block;
-          background-color: white;
+          max-width: 22.25rem;
+        }
+
+        a {
+          display: none;
         }
       }
       // User Links
@@ -139,7 +128,6 @@
       justify-content: center;
       width: fit-content;
       padding: 0 var(--spacing-md);
-      margin: 0;
     }
     li {
       min-width: 20px !important;
@@ -150,7 +138,7 @@
       .dx-vam.dxm-contentText,
       a {
         display: block;
-        font-size: 0.5625rem;
+        @include btn;
         padding: var(--spacing-sm) var(--spacing-md);
         white-space: nowrap;
         text-decoration: none;
@@ -177,5 +165,3 @@
     }
   }
 }
-
-// aspect-ratio: 344/30;

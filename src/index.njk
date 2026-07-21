@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: "Home"
 ---
 {% raw %}
-<div class="d-grid grid-cols-1 gap-block">
+<div class="d-grid gap-block container">
 
   <div
     class="d-flex flex-column align-items-center gap-xxs overflow-hidden text-break text-center mx-auto w-100 min-w-0"
@@ -21,7 +21,7 @@ title: "Home"
     <div class="dxtcLite_MaterialCompact dxtcSys dxtc-flex dxtc-top dxtc-pc w-100 min-w-0"
       id="pcPFSAndOrCBSStatusTabView">
       <ul
-        class="nav nav-tabs flex-nowrap overflow-hidden mb-sm min-w-0 dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer"
+        class="nav nav-tabs flex-nowrap overflow-hidden mb-4 min-w-0 dxtc-strip dxtc-row dxtc-alLeft dxtc-stripContainer"
         id="pcPFSAndOrCBSStatusTabView_TC">
         <li class="d-none dxtc-leftIndent">&nbsp;</li>
         <li class="nav-item dxtc-tab dxtc-lead" style="display:none;" id="pcPFSAndOrCBSStatusTabView_T0"><a
@@ -51,83 +51,34 @@ title: "Home"
           <div>
 
             <div class="d-flex align-items-center justify-content-center">
-              <div class="grid gap-xs mx-auto">
-                <a href="/FactSheet/Search"
-                  class="g-col-12 g-col-md-3 g-row-md-2 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXXL m-0 py-sm">61,396</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Total Plaintiffs</p>
-                  </div>
+              <div class="link-grid">
+                <a href="/FactSheet/Search" class="link-grid-item">
+                  <span class="link-grid-item__number">61,396</span>
+                  <span class="link-grid-item__label">Total Plaintiffs</span>
                 </a>
-                <a href="/FactSheet/Search?cs=1"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">47,103</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Not Submitted</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=1" class="link-grid-item">
+                  <span class="link-grid-item__number">47,103</span>
+                  <span class="link-grid-item__label">Not Submitted</span>
                 </a>
-                <a href="/FactSheet/Search?cs=2"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">14,074</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Submitted: Pending Review</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=2" class="link-grid-item">
+                  <span class="link-grid-item__number">14,074</span>
+                  <span class="link-grid-item__label">Submitted: Pending Review</span>
                 </a>
-                <a href="/FactSheet/Search?cs=4|7"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">102</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Submitted: Returned Deficient</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=4|7" class="link-grid-item">
+                  <span class="link-grid-item__number">102</span>
+                  <span class="link-grid-item__label">Submitted: Returned Deficient</span>
                 </a>
-                <a href="/FactSheet/Search?cs=3"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">88</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Submitted: In Review</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=3" class="link-grid-item">
+                  <span class="link-grid-item__number">88</span>
+                  <span class="link-grid-item__label">Submitted: In Review</span>
                 </a>
-                <a href="/FactSheet/Search?cs=6"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">27</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Submitted: Pending Amendment</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=6" class="link-grid-item">
+                  <span class="link-grid-item__number">27</span>
+                  <span class="link-grid-item__label">Submitted: Pending Amendment</span>
                 </a>
-                <a href="/FactSheet/Search?cs=5"
-                  class="g-col-12 g-col-sm-6 g-col-md-3 d-flex flex-column bg-white overflow-hidden text-center text-decoration-none">
-                  <div class="flex-grow-1 d-flex">
-                    <div class="flex-grow-1 w-100 d-flex align-items-center justify-content-center">
-                      <p class="headingXL m-0 py-sm">2</p>
-                    </div>
-                  </div>
-                  <div class="d-block w-100 py-2 px-3 bg-primary text-white eyebrow-label text-center text-nowrap">
-                    <p class="m-0">Review Complete</p>
-                  </div>
+                <a href="/FactSheet/Search?cs=5" class="link-grid-item">
+                  <span class="link-grid-item__number">2</span>
+                  <span class="link-grid-item__label">Review Complete</span>
                 </a>
               </div>
             </div>
@@ -148,10 +99,10 @@ title: "Home"
 
   <!-- Datagrid -->
   <div id="rcupdates" class="grid-section-claim" style="margin-bottom: 35px;">
-    <!-- * Changed HTML <p id="rc-header" class="d-flex align-items-center justify-content-between mb-sm" style="border-left: solid thin #003057; border-right: solid thin #003057; ">
+    <!-- * Changed HTML <p id="rc-header" class="d-flex align-items-center justify-content-between mb-4" style="border-left: solid thin #003057; border-right: solid thin #003057; ">
       <span>Recent Plaintiff Updates</span>
     </p> -->
-    <div class="d-flex align-items-center justify-content-between mb-sm">
+    <div class="d-flex align-items-center justify-content-between mb-4">
       <h2>Recent Plaintiff Updates</h2>
     </div>
     <div id="rcGrid" style="border: solid thin #003057; border-top: none;">
@@ -630,7 +581,7 @@ title: "Home"
   <!-- Announcements-->
   <!-- * Updated announcement markup removed style -->
   <div id="announcement" class="grid-section-announce-mile">
-    <div class="d-flex align-items-center justify-content-between mb-sm">
+    <div class="d-flex align-items-center justify-content-between mb-4">
       <!-- *ADDED h2 -->
       <h2>Recent Announcements</h2>
       <div style="font-size: 12px; float: right; margin-right: 10px;">
